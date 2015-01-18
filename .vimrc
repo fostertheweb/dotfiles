@@ -10,6 +10,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'gregsexton/MatchTag'
@@ -28,6 +29,8 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 set relativenumber
+
+" use zsh for commands
 
 " look better plz
 set background=dark
@@ -73,7 +76,7 @@ set laststatus=2
 
 " CtrlP settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|dist\'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files=0
 let g:ctrp_max_depth=40
 
@@ -82,8 +85,6 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " Airline settings
 let g:airline_theme = 'wombat'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts = 1
@@ -105,4 +106,6 @@ let g:airline_mode_map = {
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-autocmd vimenter * NERDTree
+" NERDTree
+" show hidden files
+let NERDTreeShowHidden=1
