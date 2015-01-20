@@ -84,7 +84,9 @@ export PATH=/usr/local/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-eighties.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
