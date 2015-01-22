@@ -8,6 +8,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " plugins from github
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
