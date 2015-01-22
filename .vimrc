@@ -83,7 +83,7 @@ let g:ctrp_max_depth=40
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " Airline settings
-let g:airline_theme = 'murmur'
+let g:airline_theme = 'base16'
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts = 1
