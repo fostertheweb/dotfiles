@@ -18,6 +18,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'mattn/emmet-vim'
@@ -40,7 +41,7 @@ endif
 
 set t_ut=
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-ocean
 
 " leader by choice
 let mapleader=","
