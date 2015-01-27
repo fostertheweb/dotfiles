@@ -25,6 +25,7 @@ Plugin 'burnettk/vim-angular'
 Plugin 'mattn/emmet-vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-bundler'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'trusktr/seti.vim'
 
 call vundle#end()
@@ -109,3 +110,7 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " NERDTree
 " show hidden files
 let NERDTreeShowHidden=1
+
+" multiple cursors
+let g:multi_cursor_next_key='<C-l>'
+let g:multi_cursor_prev_key='<C-h>'
