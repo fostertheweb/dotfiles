@@ -27,6 +27,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-bundler'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'trusktr/seti.vim'
 
 call vundle#end()
