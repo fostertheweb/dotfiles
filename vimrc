@@ -75,6 +75,9 @@ nnoremap U <C-r>
 
 set mouse=a
 
+# pad z + <Enter> with 5 lines
+set scrolloff=5
+
 set incsearch
 set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
