@@ -33,7 +33,9 @@ Plugin 'trusktr/seti.vim'
 call vundle#end()
 filetype plugin indent on
 syntax on
-set relativenumber
+
+" set both current line and relative numbers
+set number
 
 " look better plz
 set background=dark
@@ -69,9 +71,15 @@ nnoremap Y y$
 imap jj <esc>
 nmap <space> :
 
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
 set mouse=a
 
 set incsearch
+set ignorecase  " case insensitive search
+set smartcase   " case insensitive only if search pattern is all lowercase
+set gdefault    " search/replace globally (on a line) by default
 
 set encoding=utf-8
 
