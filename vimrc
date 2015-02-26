@@ -123,10 +123,14 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " show hidden files
 let NERDTreeShowHidden=1
 
-" multiple cursors
+" Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
 let g:multi_cursor_prev_key='<C-h>'
 
-" easier indenting in visual mode
+" Easier indenting in visual mode
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
