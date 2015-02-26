@@ -33,9 +33,8 @@ Plugin 'trusktr/seti.vim'
 call vundle#end()
 filetype plugin indent on
 syntax on
-
-" set both current line and relative numbers
 set number
+set cursorline
 
 " look better plz
 set background=dark
