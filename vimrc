@@ -75,7 +75,7 @@ nnoremap U <C-r>
 
 set mouse=a
 
-# pad z + <Enter> with 5 lines
+" pad scroll line to top with 5 lines
 set scrolloff=5
 
 set incsearch
@@ -122,6 +122,8 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " NERDTree
 " show hidden files
 let NERDTreeShowHidden=1
+" open NERDTree with Control n
+nnoremap <C-n> :NERDTree<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
