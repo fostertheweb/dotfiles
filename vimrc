@@ -126,3 +126,7 @@ let NERDTreeShowHidden=1
 " multiple cursors
 let g:multi_cursor_next_key='<C-l>'
 let g:multi_cursor_prev_key='<C-h>'
+
+" easier indenting in visual mode
+vmap <Tab> >gv
+vmap <S-Tab> <gv
