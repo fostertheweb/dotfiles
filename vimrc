@@ -10,8 +10,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
-Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
+"Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
+"Plugin 'edkolev/tmuxline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'gregsexton/MatchTag'
@@ -20,7 +21,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'chriskempson/base16-vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'mattn/emmet-vim'
 Plugin 'vim-ruby/vim-ruby'
@@ -28,7 +28,10 @@ Plugin 'tpope/vim-bundler'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jszakmeister/vim-togglecursor'
+" colorschemes
+Plugin 'chriskempson/base16-vim'
 Plugin 'trusktr/seti.vim'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()
 filetype plugin indent on
@@ -46,7 +49,7 @@ endif
 
 set t_ut=
 let base16colorspace=256
-colorscheme base16-mocha
+colorscheme gruvbox
 
 " leader by choice
 let mapleader=","
@@ -101,20 +104,6 @@ let g:airline_theme = 'base16'
 let g:airline_enable_branch = 1
 let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts = 1
-
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
