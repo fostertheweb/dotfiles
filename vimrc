@@ -38,6 +38,7 @@ filetype plugin indent on
 syntax on
 set number
 set cursorline
+highlight clear SignColumn
 
 " look better plz
 set background=dark
