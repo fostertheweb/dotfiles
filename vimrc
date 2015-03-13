@@ -20,6 +20,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'burnettk/vim-angular'
 Plugin 'mattn/emmet-vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'terryma/vim-multiple-cursors'
 " colorschemes
