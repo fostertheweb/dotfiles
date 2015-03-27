@@ -41,6 +41,10 @@ if !has('gui_running')
   set term=xterm-256color
 endif
 
+if has('terminal')
+  tnoremap <C-a> <C-\><C-n>
+endif
+
 set t_ut=
 let base16colorspace=256
 colorscheme gruvbox
@@ -99,11 +103,13 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" search file contents
-nnoremap <leader>f :grep:.<CR>
-
 " grep word under cursor
 nnoremap <leader>r :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+" search contents of files in given directory
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
 
 " Syntastic settings
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
