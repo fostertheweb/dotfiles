@@ -1,35 +1,33 @@
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " plugins from github
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-dispatch'
-Plugin 'scrooloose/syntastic'
-Plugin 'gregsexton/MatchTag'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/html5.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'burnettk/vim-angular'
-Plugin 'mattn/emmet-vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'OrangeT/vim-csharp'
-Plugin 'OmniSharp/omnisharp-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-dispatch'
+Plug 'scrooloose/syntastic'
+Plug 'gregsexton/MatchTag'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/html5.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'burnettk/vim-angular'
+Plug 'mattn/emmet-vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'OrangeT/vim-csharp'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'gregsexton/gitv'
+Plug 'kien/ctrlp.vim'
 " colorschemes
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
-call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 syntax on
 set cursorline
@@ -62,7 +60,9 @@ set expandtab
 
 set smartindent
 set autoindent
-set formatoptions-=cro
+set formatoptions-=c
+set formatoptions-=r
+set formatoptions-=o
 
 " better mappings
 nnoremap Y y$
@@ -84,12 +84,26 @@ set gdefault    " search/replace globally (on a line) by default
 
 set encoding=utf-8
 
-
 " CtrlP settings
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|dist\'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files=0
 let g:ctrp_max_depth=40
+
+" The Silver Searcher
+if executable('ag')
+  " use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" search file contents
+nnoremap <leader>f :grep:.<CR>
+
+" grep word under cursor
+nnoremap <leader>r :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Syntastic settings
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
@@ -98,7 +112,8 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " open cwd with netrw
-nnoremap <C-n> :e .<CR>
+nnoremap <C-n> :Explore<CR>
+nnoremap <C-N> :e .<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
