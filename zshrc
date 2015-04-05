@@ -98,3 +98,5 @@ export KEYTIMEOUT=1
 export PATH="/usr/local/heroku/bin:$PATH"
 
 source kvm.sh
+
+DOCKER_HOST=tcp://192.168.59.103:2375

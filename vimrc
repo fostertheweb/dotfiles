@@ -41,10 +41,6 @@ if !has('gui_running')
   set term=xterm-256color
 endif
 
-if has('terminal')
-  tnoremap <C-a> <C-\><C-n>
-endif
-
 set t_ut=
 let base16colorspace=256
 colorscheme gruvbox
@@ -108,7 +104,7 @@ nnoremap <leader>r :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
 " search contents of files in given directory
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 " Syntastic settings
@@ -118,8 +114,9 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " open cwd with netrw
-nnoremap <C-n> :Explore<CR>
 nnoremap <C-N> :e .<CR>
+" open dir of current file
+nnoremap <C-n> :Explore<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
