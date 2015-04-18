@@ -20,11 +20,11 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'OrangeT/vim-csharp'
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'gregsexton/gitv'
 Plug 'kien/ctrlp.vim'
 " colorschemes
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
@@ -39,10 +39,6 @@ set t_Co=256
 
 if !has('gui_running')
   set term=xterm-256color
-endif
-
-if has('terminal')
-  tnoremap <C-a> <C-\><C-n>
 endif
 
 set t_ut=
@@ -108,7 +104,7 @@ nnoremap <leader>r :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
 " search contents of files in given directory
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
 " Syntastic settings
@@ -118,8 +114,9 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " open cwd with netrw
-nnoremap <C-n> :Explore<CR>
 nnoremap <C-N> :e .<CR>
+" open dir of current file
+nnoremap <C-n> :Explore<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
@@ -147,4 +144,17 @@ set statusline +=%=(%{fugitive#head()})
 set statusline +=%=\ %l             "current line
 set statusline +=/%L               "total lines
 set statusline +=%=\ %{SyntasticStatuslineFlag()}
+
+" handle glare in the morning
+function! Glare()
+  if &g:background == 'dark'
+    colorscheme base16-solarized
+    set background=light
+  else
+    colorscheme gruvbox
+    set background=dark
+  endif
+endfunction
+
+nmap <leader>g :call Glare()<CR>
 
