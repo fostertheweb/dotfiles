@@ -22,6 +22,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'OrangeT/vim-csharp'
 Plug 'gregsexton/gitv'
 Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -32,6 +33,7 @@ filetype plugin indent on
 syntax on
 set cursorline
 highlight clear SignColumn
+set encoding=utf-8
 
 " look better plz
 set background=dark
@@ -43,7 +45,7 @@ endif
 
 set t_ut=
 let base16colorspace=256
-colorscheme gruvbox
+colorscheme base16-ocean
 
 " leader by choice
 let mapleader=","
@@ -132,6 +134,17 @@ set splitright
 
 " toggle line numbers
 nmap <leader>n :set invnumber<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set list listchars=tab:→\ ,eol:¬
+
+" Invisible character colors 
+highlight NonText guifg=#555555
+highlight SpecialKey guifg=#555555
+
 
 " edit contents of statusline
 set laststatus=2
