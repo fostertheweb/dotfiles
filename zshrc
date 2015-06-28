@@ -88,8 +88,6 @@ eval "$(rbenv init -)"
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-ocean.dark.sh"
 # [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-bindkey -v
-bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
 
 export KEYTIMEOUT=1
@@ -97,6 +95,7 @@ export KEYTIMEOUT=1
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-source kvm.sh
+source dnvm.sh
 
-DOCKER_HOST=tcp://192.168.59.103:2375
+$(boot2docker shellinit)
+
