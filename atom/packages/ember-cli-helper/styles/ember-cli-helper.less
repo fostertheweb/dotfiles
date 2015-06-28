@@ -1,0 +1,41 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+.ember-cli-helper {
+  .panel-body {
+    height: 95px;
+    overflow: scroll;
+  }
+  .btn:focus {
+    outline: 0;
+  }
+
+
+  // Styles for the buttons that are floated to the right
+  .btn-right {
+    float: right;
+
+    &.inline-block-tight {
+      margin-left: @component-icon-padding;
+    }
+  }
+
+
+  // Add to the btn-sm class
+  .btn-sm {
+    margin-top: @component-icon-padding;
+    margin-bottom: @component-icon-padding;
+
+    &:first-child {
+      margin-left: @component-icon-padding;
+    }
+  }
+
+}
+
+.ember-cli-btn-group:extend(.btn-group) {
+  width: 100%;
+}

@@ -1,0 +1,29 @@
+"*":
+  editor:
+    invisibles: {}
+    scrollPastEnd: true
+    fontFamily: "DejaVu Sans Mono"
+    showIndentGuide: true
+    fontSize: 15
+  core: {}
+  "exception-reporting":
+    userId: "caa84308-3531-537f-a934-03507aeda0bf"
+  welcome:
+    showOnStartup: false
+  emmet: {}
+  linter:
+    subtleLinterErrors: [
+      "rubocop"
+    ]
+  zentabs:
+    maximumOpenedTabs: 4
+    showPinnedIcon: false
+  "vim-surround": {}
+  "autocomplete-plus": {}
+  "vim-mode":
+    startInInsertMode: true
+  "one-light-ui":
+    layoutMode: "Compact"
+  "language-babel": {}
+  "linter-rubocop":
+    executablePath: "/Users/jonathanfoster/.rbenv/shims/rubocop"

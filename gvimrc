@@ -1,4 +1,4 @@
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+set guifont=DejaVu\ Sans\ Mono:h14
 set guioptions-=r
 set guioptions-=L
 set noshowmode
