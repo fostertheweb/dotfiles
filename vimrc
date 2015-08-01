@@ -45,7 +45,7 @@ endif
 
 set t_ut=
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme gruvbox
 
 " leader by choice
 let mapleader=","
