@@ -23,9 +23,12 @@ Plug 'OrangeT/vim-csharp'
 Plug 'gregsexton/gitv'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'christoomey/vim-tmux-navigator'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+Plug 'jdkanani/vim-material-theme'
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
@@ -139,12 +142,11 @@ nmap <leader>n :set invnumber<CR>
 nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set list listchars=tab:→\ ,eol:¬
+set list listchars=tab:-\ ,eol:¬
 
 " Invisible character colors 
 highlight NonText guifg=#555555
 highlight SpecialKey guifg=#555555
-
 
 " edit contents of statusline
 set laststatus=2
@@ -154,7 +156,7 @@ set statusline +=\ %<%F            "full path
 set statusline +=%m                "modified flag
 set statusline +=%r                "read-only flag
 set statusline +=%=(%{fugitive#head()})
-set statusline +=%=\ %l             "current line
+set statusline +=%=\ %l            "current line
 set statusline +=/%L               "total lines
 set statusline +=%=\ %{SyntasticStatuslineFlag()}
 
@@ -170,4 +172,13 @@ function! Glare()
 endfunction
 
 nmap <leader>g :call Glare()<CR>
+
+" treat JSON as JavaScript
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" better split navigation
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 

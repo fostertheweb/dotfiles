@@ -97,5 +97,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 source dnvm.sh
 
-$(boot2docker shellinit)
+# $(boot2docker shellinit)
 
