@@ -11,6 +11,7 @@ Plug 'scrooloose/syntastic'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
 Plug 'othree/html5.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
@@ -19,16 +20,16 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'OrangeT/vim-csharp'
 Plug 'gregsexton/gitv'
 Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'itchyny/lightline.vim'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-Plug 'jdkanani/vim-material-theme'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'goatslacker/mango.vim'
 
 call plug#end()
 
@@ -150,20 +151,20 @@ highlight SpecialKey guifg=#555555
 
 " edit contents of statusline
 set laststatus=2
-set statusline=
-set statusline +=[%n]              "buffer number
-set statusline +=\ %<%F            "full path
-set statusline +=%m                "modified flag
-set statusline +=%r                "read-only flag
-set statusline +=%=(%{fugitive#head()})
-set statusline +=%=\ %l            "current line
-set statusline +=/%L               "total lines
-set statusline +=%=\ %{SyntasticStatuslineFlag()}
+"set statusline=
+"set statusline +=[%n]              "buffer number
+"set statusline +=\ %<%F            "full path
+"set statusline +=%m                "modified flag
+"set statusline +=%r                "read-only flag
+"set statusline +=%=(%{fugitive#head()})
+"set statusline +=%=\ %l            "current line
+"set statusline +=/%L               "total lines
+"set statusline +=%=\ %{SyntasticStatuslineFlag()}
 
 " handle glare in the morning
 function! Glare()
   if &g:background == 'dark'
-    colorscheme base16-solarized
+    colorscheme gruvbox
     set background=light
   else
     colorscheme gruvbox
