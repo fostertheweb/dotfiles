@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
+Plug 'ekalinin/Dockerfile.vim'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -145,21 +146,12 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set list listchars=tab:-\ ,eol:¬
 
-" Invisible character colors 
+" Invisible character colors
 highlight NonText guifg=#555555
 highlight SpecialKey guifg=#555555
 
-" edit contents of statusline
+" prepare statusline for lightline
 set laststatus=2
-"set statusline=
-"set statusline +=[%n]              "buffer number
-"set statusline +=\ %<%F            "full path
-"set statusline +=%m                "modified flag
-"set statusline +=%r                "read-only flag
-"set statusline +=%=(%{fugitive#head()})
-"set statusline +=%=\ %l            "current line
-"set statusline +=/%L               "total lines
-"set statusline +=%=\ %{SyntasticStatuslineFlag()}
 
 " handle glare in the morning
 function! Glare()
@@ -176,6 +168,9 @@ nmap <leader>g :call Glare()<CR>
 
 " treat JSON as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" *.md is Markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " better split navigation
 nnoremap <c-j> <c-w>j
