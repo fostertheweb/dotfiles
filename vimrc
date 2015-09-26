@@ -152,9 +152,6 @@ set listchars=eol:¬
 highlight NonText guifg=#555555
 highlight SpecialKey guifg=#555555
 
-" Indent line
-"let g:indentLine_char = ''
-
 " prepare statusline for lightline
 set laststatus=2
 
