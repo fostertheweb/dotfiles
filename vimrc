@@ -7,6 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-markdown'
 Plug 'scrooloose/syntastic'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
@@ -27,6 +28,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'Yggdroot/indentLine'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -144,11 +146,14 @@ nmap <leader>n :set invnumber<CR>
 nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set list listchars=tab:-\ ,eol:¬
+set listchars=eol:¬
 
-" Invisible character colors
+"Invisible character colors
 highlight NonText guifg=#555555
 highlight SpecialKey guifg=#555555
+
+" Indent line
+"let g:indentLine_char = ''
 
 " prepare statusline for lightline
 set laststatus=2
@@ -168,9 +173,6 @@ nmap <leader>g :call Glare()<CR>
 
 " treat JSON as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
-
-" *.md is Markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " better split navigation
 nnoremap <c-j> <c-w>j
