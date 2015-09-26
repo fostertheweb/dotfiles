@@ -122,10 +122,8 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
-" open cwd with netrw
-nnoremap <C-N> :e .<CR>
-" open dir of current file
-nnoremap <C-n> :Explore<CR>
+" toggle NERDTree sidebar
+map <C-n> :NERDTreeToggle<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-l>'
