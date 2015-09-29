@@ -128,8 +128,8 @@ nnoremap <C-N> :e .<CR>
 nnoremap <C-n> :Explore<CR>
 
 " Multiple Cursors
-let g:multi_cursor_next_key='<C-l>'
-let g:multi_cursor_prev_key='<C-h>'
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-D>'
 
 " Easier indenting in visual mode
 vmap <Tab> >gv
