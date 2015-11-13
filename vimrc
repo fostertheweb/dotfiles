@@ -29,6 +29,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'majutsushi/tagbar'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -41,6 +42,7 @@ syntax on
 set cursorline
 highlight clear SignColumn
 set encoding=utf-8
+set number
 
 " look better plz
 set background=dark
