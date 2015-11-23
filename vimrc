@@ -22,7 +22,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'gregsexton/gitv'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
@@ -30,6 +30,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'Raimondi/delimitMate'
+Plug 'mxw/vim-jsx'
 " colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
@@ -95,10 +98,20 @@ set gdefault    " search/replace globally (on a line) by default
 
 set encoding=utf-8
 
+" deliminate
+let g:delimitMate_expand_cr = 2
+
+" Allow JSX in normal JS files
+let g:jsx_ext_required = 0
+
 " CtrlP settings
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files=0
 let g:ctrp_max_depth=40
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](node_modules|bower_components|vendor|tmp|dist)|(\.(git))$',
+  \ 'file': '\v\.(so|map)$'
+  \ }
 
 " The Silver Searcher
 if executable('ag')
@@ -120,6 +133,7 @@ nnoremap \ :Ag<SPACE>
 
 " Syntastic settings
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
