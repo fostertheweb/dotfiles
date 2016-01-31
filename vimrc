@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 " plugins from github
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-markdown'
 Plug 'scrooloose/syntastic'
