@@ -3,39 +3,49 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " plugins from github
+" git
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-markdown'
-Plug 'scrooloose/syntastic'
-Plug 'gregsexton/MatchTag'
-Plug 'editorconfig/editorconfig-vim'
+Plug 'gregsexton/gitv'
+Plug 'jreybert/vimagit'
+
+" syntax
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
+Plug 'tpope/vim-markdown'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
+Plug 'mxw/vim-jsx'
+Plug 'mustache/vim-mustache-handlebars'
+
+" colorschemes
+Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
+Plug 'goatslacker/mango.vim'
+Plug 'w0ng/vim-hybrid'
+
+" the rest of them
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'scrooloose/syntastic'
+Plug 'gregsexton/MatchTag'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'gregsexton/gitv'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
-Plug 'ekalinin/Dockerfile.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'Raimondi/delimitMate'
-Plug 'mxw/vim-jsx'
-" colorschemes
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-Plug 'goatslacker/mango.vim'
+Plug 'mhinz/vim-startify'
+Plug 'sjl/gundo.vim'
 
 call plug#end()
 
@@ -56,7 +66,9 @@ endif
 
 set t_ut=
 let base16colorspace=256
-colorscheme gruvbox
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme base16-ocean
 
 " leader by choice
 let mapleader=","
@@ -103,6 +115,17 @@ let g:delimitMate_expand_cr = 2
 " Allow JSX in normal JS files
 let g:jsx_ext_required = 0
 
+" Startify settings
+" When opening a file or bookmark, change to its directory
+let g:startify_change_to_dir = 1
+
+" set bookmarks
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/Cenify/device-manager', '~/Sites/session-manager' ]
+
+" Delete open buffers before loading a new session
+let g:startify_session_delete_buffers = 0
+
+
 " CtrlP settings
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files=0
@@ -133,12 +156,16 @@ nnoremap \ :Ag<SPACE>
 " Syntastic settings
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_open = 1
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " toggle NERDTree sidebar
 map <C-n> :NERDTreeToggle<CR>
+
+" toggle Gundo
+nnoremap <leader>u :GundoToggle<CR>
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-d>'
@@ -183,6 +210,9 @@ nmap <leader>g :call Glare()<CR>
 
 " treat JSON as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" open Gitv horizontally
+let g:Gitv_OpenHorizontal = 0
 
 " better split navigation
 nnoremap <c-j> <c-w>j
