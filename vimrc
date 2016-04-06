@@ -6,9 +6,9 @@ call plug#begin('~/.vim/plugged')
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
-Plug 'jreybert/vimagit'
 
 " syntax
+Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
@@ -26,6 +26,8 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'goatslacker/mango.vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'AlessandroYorba/Sierra'
+Plug 'altercation/vim-colors-solarized'
 
 " the rest of them
 Plug 'tpope/vim-surround'
@@ -68,7 +70,7 @@ set t_ut=
 let base16colorspace=256
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
-colorscheme base16-ocean
+colorscheme gruvbox
 
 " leader by choice
 let mapleader=","
@@ -124,6 +126,9 @@ let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/Cenify/device-manager', '~/Si
 
 " Delete open buffers before loading a new session
 let g:startify_session_delete_buffers = 0
+
+" Delete open buffers before loading a new session
+let g:startify_session_persistence = 0
 
 
 " CtrlP settings
@@ -194,11 +199,16 @@ highlight SpecialKey guifg=#555555
 
 " prepare statusline for lightline
 set laststatus=2
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
 " handle glare in the morning
 function! Glare()
   if &g:background == 'dark'
-    colorscheme gruvbox
+    colorscheme solarized
     set background=light
   else
     colorscheme gruvbox
@@ -212,7 +222,10 @@ nmap <leader>g :call Glare()<CR>
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " open Gitv horizontally
-let g:Gitv_OpenHorizontal = 0
+let g:Gitv_OpenHorizontal = 1
+
+" auto spell check in markdown
+autocmd BufRead,BufNewFile *.md setlocal spell
 
 " better split navigation
 nnoremap <c-j> <c-w>j

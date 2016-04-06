@@ -45,7 +45,7 @@ ZSH_THEME="fishy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(git tmux zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,7 +84,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-ocean.dark.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.light.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 bindkey '^R' history-incremental-search-backward
@@ -96,4 +96,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
