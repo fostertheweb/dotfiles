@@ -20,6 +20,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
 Plug 'mxw/vim-jsx'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'digitaltoad/vim-pug'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
@@ -122,7 +123,7 @@ let g:jsx_ext_required = 0
 let g:startify_change_to_dir = 1
 
 " set bookmarks
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}, '~/Cenify/device-manager', '~/Sites/session-manager' ]
+let g:startify_bookmarks = [ {'v': '~/.vimrc'}]
 
 " Delete open buffers before loading a new session
 let g:startify_session_delete_buffers = 0

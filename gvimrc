@@ -1,4 +1,4 @@
-set guifont=Roboto\ Mono:h14
+set guifont=Fira\ Mono:h14
 set guioptions-=r
 set guioptions-=L
 set noshowmode
