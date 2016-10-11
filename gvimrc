@@ -5,4 +5,4 @@ set noshowmode
 
 macmenu File.New\ Tab key=<nop>
 macmenu File.Open\.\.\. key=<nop>
-nnoremap <D-t> :CtrlP<CR>
+nnoremap <D-t> :find<space>
