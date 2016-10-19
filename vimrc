@@ -23,11 +23,6 @@ Plug 'digitaltoad/vim-pug'
 
 " Colors
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-Plug 'goatslacker/mango.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'AlessandroYorba/Sierra'
-Plug 'altercation/vim-colors-solarized'
 
 " the rest of them
 Plug 'tpope/vim-surround'
@@ -39,6 +34,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
@@ -56,15 +52,7 @@ set number
 " look better plz
 set background=dark
 set t_Co=256
-
-if !has('gui_running')
-  set term=xterm-256color
-endif
-
-set t_ut=
-let base16colorspace=256
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
+set term=xterm-256color
 colorscheme gruvbox
 
 " leader by choice
@@ -103,6 +91,18 @@ set incsearch
 set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
+
+" Finding Files
+set path+=**
+set wildmenu
+nnoremap <C-p> :find<space>
+
+" File Browsing
+nmap <leader>k :NERDTreeToggle<CR>
+
+" Tags
+" Create tags file
+command! MakeTags !ctags -R .
 
 " deliminate
 let g:delimitMate_expand_cr = 2
@@ -175,3 +175,4 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
