@@ -8,26 +8,32 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 
 " Languages
-Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
+Plug 'elixir-lang/vim-elixir'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'mxw/vim-jsx'
 
 " Colors
 Plug 'morhetz/gruvbox'
 
+" Better Code
+Plug 'flowtype/vim-flow'
+Plug 'scrooloose/syntastic'
+
 " the rest of them
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch'
-Plug 'scrooloose/syntastic'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
@@ -43,7 +49,7 @@ Plug 'mhinz/vim-startify'
 call plug#end()
 
 filetype plugin indent on
-syntax on
+syntax enable
 set cursorline
 highlight clear SignColumn
 set encoding=utf-8
@@ -53,7 +59,21 @@ set number
 set background=dark
 set t_Co=256
 set term=xterm-256color
+
+" for vim 8
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 colorscheme gruvbox
+
+" Status Line
+set showmode
+set laststatus=2
+set statusline=%f
+set statusline+=\ %{fugitive#statusline()}
+set statusline+=\ %y
+set statusline+=\ %l/%L
 
 " leader by choice
 let mapleader=","
@@ -104,6 +124,15 @@ nmap <leader>k :NERDTreeToggle<CR>
 " Create tags file
 command! MakeTags !ctags -R .
 
+" List JS Frameworks
+let g:used_javascript_libs = 'angularjs,react'
+
+" Allow JSX highlighting in .js
+let g:jsx_ext_required = 0
+
+" Automatically close flow quickfix window
+let g:flow#autoclose = 1
+
 " deliminate
 let g:delimitMate_expand_cr = 2
 
@@ -112,7 +141,7 @@ let g:delimitMate_expand_cr = 2
 let g:startify_change_to_dir = 1
 
 " set bookmarks
-let g:startify_bookmarks = [ {'v': '~/.vimrc'}]
+let g:startify_bookmarks = [ {'v': '~/.vim/vimrc'}]
 
 " Delete open buffers before loading a new session
 let g:startify_session_delete_buffers = 0
@@ -175,4 +204,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+" Run last command with sudo
+cmap w!! %!sudo tee > /dev/null %
 
