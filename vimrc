@@ -1,6 +1,10 @@
 set nocompatible
 
-call plug#begin('~/.vim/plugged')
+if has("win32")
+  call plug#begin('~/vimfiles/plugged')
+else
+  call plug#begin('~/.vim/plugged')
+endif
 
 " Plugins from GitHub
 
