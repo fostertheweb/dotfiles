@@ -30,6 +30,7 @@ Plug 'mxw/vim-jsx'
 
 " Colors
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
 
 " Better Code
 Plug 'flowtype/vim-flow'
@@ -53,7 +54,7 @@ Plug 'mhinz/vim-startify'
 call plug#end()
 
 filetype plugin indent on
-syntax enable
+syntax on
 set cursorline
 highlight clear SignColumn
 set encoding=utf-8
@@ -74,7 +75,9 @@ colorscheme gruvbox
 " Status Line
 set showmode
 set laststatus=2
-set statusline=%f
+set statusline=[%n]
+set statusline+=\ %f
+set statusline+=%=
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=\ %y
 set statusline+=\ %l/%L
@@ -101,6 +104,7 @@ set formatoptions-=o
 " better mappings
 nnoremap Y y$
 imap jj <esc>
+imap kk <esc>
 nmap <space> :
 
 " remap U to <C-r> for easier redo
