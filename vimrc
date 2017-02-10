@@ -50,6 +50,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-startify'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -64,6 +65,7 @@ set number
 set background=dark
 set t_Co=256
 set term=xterm-256color
+set t_ut=
 
 " for vim 8
 if (has("termguicolors"))
@@ -81,6 +83,8 @@ set statusline+=%=
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=\ %y
 set statusline+=\ %l/%L
+
+let g:tmuxline_powerline_separators = 0
 
 " leader by choice
 let mapleader=","
