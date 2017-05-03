@@ -1,12 +1,10 @@
-set nocompatible
-
 if has("win32")
   call plug#begin('~/vimfiles/plugged')
 else
   call plug#begin('~/.vim/plugged')
 endif
 
-" Plugins from GitHub
+Plug 'janko-m/vim-test'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -14,48 +12,42 @@ Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'ekalinin/Dockerfile.vim'
+" Plug 'vim-ruby/vim-ruby'
+" Plug 'tpope/vim-rails'
+" Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
 Plug 'burnettk/vim-angular'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'digitaltoad/vim-pug'
-Plug 'elixir-lang/vim-elixir'
+" Plug 'mustache/vim-mustache-handlebars'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'elixir-lang/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 
 " Colors
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
 
 " Better Code
-Plug 'flowtype/vim-flow'
 Plug 'scrooloose/syntastic'
 
 " the rest of them
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-startify'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
-filetype plugin indent on
-syntax on
 set cursorline
 highlight clear SignColumn
 set encoding=utf-8
@@ -66,11 +58,7 @@ set background=dark
 set t_Co=256
 set term=xterm-256color
 set t_ut=
-
-" for vim 8
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors
 
 colorscheme gruvbox
 
@@ -84,14 +72,11 @@ set statusline+=\ %{fugitive#statusline()}
 set statusline+=\ %y
 set statusline+=\ %l/%L
 
-let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_powerline_separators = 0
 
 " leader by choice
 let mapleader=","
 set timeoutlen=500
-
-" make backspace not suck
-set backspace=indent,eol,start
 
 " tab settings
 set tabstop=2
@@ -100,7 +85,6 @@ set softtabstop=2
 set expandtab
 
 set smartindent
-set autoindent
 set formatoptions-=c
 set formatoptions-=r
 set formatoptions-=o
@@ -114,19 +98,15 @@ nmap <space> :
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
 
-set mouse=a
-
 " pad scroll line to top with 5 lines
 set scrolloff=5
 
-set incsearch
 set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
 " Finding Files
 set path+=**
-set wildmenu
 nnoremap <C-p> :find<space>
 
 " File Browsing
