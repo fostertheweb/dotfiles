@@ -105,10 +105,6 @@ set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
-" Finding Files
-set path+=**
-nnoremap <C-p> :find<space>
-
 " File Browsing
 nmap <leader>k :NERDTreeToggle<CR>
 
