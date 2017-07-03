@@ -4,27 +4,21 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-Plug 'janko-m/vim-test'
-
 " Git
 Plug 'tpope/vim-fugitive'
 
 " Languages
+Plug 'fatih/vim-go'
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
-" Plug 'vim-ruby/vim-ruby'
-" Plug 'tpope/vim-rails'
-" Plug 'ekalinin/Dockerfile.vim'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
 Plug 'burnettk/vim-angular'
-" Plug 'mustache/vim-mustache-handlebars'
-" Plug 'digitaltoad/vim-pug'
-" Plug 'elixir-lang/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
-" Plug 'mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 
 " Colors
 Plug 'morhetz/gruvbox'
@@ -41,10 +35,9 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-startify'
-" Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -56,7 +49,6 @@ set number
 " look better plz
 set background=dark
 set t_Co=256
-set term=xterm-256color
 set t_ut=
 set termguicolors
 
@@ -105,6 +97,9 @@ set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
+" Save
+nmap <leader>s :w<CR>
+
 " File Browsing
 nmap <leader>k :NERDTreeToggle<CR>
 
@@ -117,9 +112,6 @@ let g:used_javascript_libs = 'angularjs,react'
 
 " Allow JSX highlighting in .js
 let g:jsx_ext_required = 0
-
-" Automatically close flow quickfix window
-let g:flow#autoclose = 1
 
 " deliminate
 let g:delimitMate_expand_cr = 2
@@ -195,3 +187,4 @@ nnoremap <c-l> <c-w>l
 
 " Run last command with sudo
 cmap w!! %!sudo tee > /dev/null %
+

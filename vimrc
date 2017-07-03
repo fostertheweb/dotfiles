@@ -20,8 +20,6 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
 Plug 'burnettk/vim-angular'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'digitaltoad/vim-pug'
-Plug 'elixir-lang/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -31,9 +29,9 @@ Plug 'mxw/vim-jsx'
 " Colors
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim'
+Plug 'ajmwagar/vim-deus'
 
 " Better Code
-Plug 'flowtype/vim-flow'
 Plug 'scrooloose/syntastic'
 
 " the rest of them
@@ -42,7 +40,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-bundler'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -124,10 +121,8 @@ set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
-" Finding Files
-set path+=**
-set wildmenu
-nnoremap <C-p> :find<space>
+" Save file
+nmap <leader>s :w<CR>
 
 " File Browsing
 nmap <leader>k :NERDTreeToggle<CR>
