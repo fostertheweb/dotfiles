@@ -9,16 +9,20 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Install nvm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
+# create neovim config dirs
+mkdir -p ~/.config/nvim
+
+# put configs into place
+ln -s ~/.vim/nvimrc ~/.config/nvim/init.vim
+ln -s ~/.vim/zshrc ~/.zsrc
+cp tmux.conf ~/.tmux.conf
+
 # Source zsh config
 source ~/.zshrc
 
 # Install latest version of Node
 nvm install node
 nvm alias default node
-
-# put configs into place
-ln -s ~/.vim/nvimrc ~/.config/nvim/init.vim
-cp tmux.conf ~/.tmux.conf
 
 # create gopath
 mkdir -p ~/Source/go/src/github.com/fostertheweb
