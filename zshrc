@@ -11,7 +11,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
 export PATH=~/.local/bin:$PATH
-export GOPATH="$HOME/Source/Gopher"
+export GOPATH="$HOME/Source/go"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
