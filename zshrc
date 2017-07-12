@@ -6,21 +6,20 @@ plugins=(git tmux)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Path Configuration
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+export PATH=~/.local/bin:$PATH
+export GOPATH="$HOME/Source/Gopher"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-
-# add rbenv to PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-
-# load rbenv
-eval "$(rbenv init -)"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias vim="nvim"
+alias vimrc="nvim ~/.vim/nvimrc"
 
 bindkey '^R' history-incremental-search-backward
 

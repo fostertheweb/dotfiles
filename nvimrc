@@ -1,8 +1,4 @@
-if has("win32")
-  call plug#begin('~/vimfiles/plugged')
-else
-  call plug#begin('~/.vim/plugged')
-endif
+call plug#begin()
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -23,9 +19,6 @@ Plug 'mxw/vim-jsx'
 " Colors
 Plug 'morhetz/gruvbox'
 
-" Better Code
-Plug 'scrooloose/syntastic'
-
 " the rest of them
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
@@ -38,6 +31,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
 Plug 'mhinz/vim-startify'
 Plug 'edkolev/tmuxline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -55,16 +50,8 @@ set termguicolors
 colorscheme gruvbox
 
 " Status Line
-set showmode
-set laststatus=2
-set statusline=[%n]
-set statusline+=\ %f
-set statusline+=%=
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=\ %y
-set statusline+=\ %l/%L
-
-" let g:tmuxline_powerline_separators = 0
+set noshowmode
+let g:tmuxline_powerline_separators = 0
 
 " leader by choice
 let mapleader=","
@@ -113,6 +100,9 @@ let g:used_javascript_libs = 'angularjs,react'
 " Allow JSX highlighting in .js
 let g:jsx_ext_required = 0
 
+" CtrlP Settings
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
 " deliminate
 let g:delimitMate_expand_cr = 2
 
@@ -121,7 +111,7 @@ let g:delimitMate_expand_cr = 2
 let g:startify_change_to_dir = 1
 
 " set bookmarks
-let g:startify_bookmarks = [ {'v': '~/.vim/vimrc'}]
+let g:startify_bookmarks = [ {'v': '~/.vim/nvimrc'}]
 
 " Delete open buffers before loading a new session
 let g:startify_session_delete_buffers = 0
@@ -129,17 +119,15 @@ let g:startify_session_delete_buffers = 0
 " Delete open buffers before loading a new session
 let g:startify_session_persistence = 0
 
-" Syntastic settings
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_javascript_checkers = ['standard']
-let g:syntastic_check_on_open = 1
-
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Multiple Cursors
 let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-D>'
+
+" vim-go
+let g:go_fmt_command='goimports'
 
 " Easier indenting in visual mode
 vmap <Tab> >gv
@@ -157,10 +145,6 @@ nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=eol:¬
-
-"Invisible character colors
-highlight NonText guifg=#555555
-highlight SpecialKey guifg=#555555
 
 " handle glare in the morning
 function! Glare()
