@@ -11,6 +11,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
 export PATH=~/.local/bin:$PATH
+export PATH=~/Library/Python/3.6/bin:$PATH
 export GOPATH="$HOME/Source/go"
 
 export NVM_DIR="$HOME/.nvm"

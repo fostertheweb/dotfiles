@@ -2,6 +2,7 @@ call plug#begin()
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -89,6 +90,7 @@ nmap <leader>s :w<CR>
 
 " File Browsing
 nmap <leader>k :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 " Tags
 " Create tags file
