@@ -85,6 +85,13 @@ set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
+" Enter key is a stretch
+nmap <C-Space> <CR>
+cmap <C-Space> <CR>
+
+" Quit
+nmap <leader>q :q<CR>
+
 " Save
 nmap <leader>s :w<CR>
 
@@ -104,6 +111,7 @@ let g:jsx_ext_required = 0
 
 " CtrlP Settings
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+nmap <C-b> :CtrlPBuffer<CR>
 
 " deliminate
 let g:delimitMate_expand_cr = 2
