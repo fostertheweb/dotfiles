@@ -21,6 +21,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias vim="nvim"
 alias vimrc="nvim ~/.vim/nvimrc"
+alias tmux="tmux -2"
 
 bindkey '^R' history-incremental-search-backward
 
