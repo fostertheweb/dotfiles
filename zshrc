@@ -14,6 +14,9 @@ export PATH=~/.local/bin:$PATH
 export PATH=~/Library/Python/3.6/bin:$PATH
 export GOPATH="$HOME/Source/go"
 
+# Nano is okay but
+EDITOR="nvim"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
