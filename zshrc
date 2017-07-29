@@ -13,6 +13,7 @@ export PATH=/usr/local/go/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/Library/Python/3.6/bin:$PATH
 export GOPATH="$HOME/Source/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # Nano is okay but
 EDITOR="nvim"
@@ -28,3 +29,4 @@ alias tmux="tmux -2"
 
 bindkey '^R' history-incremental-search-backward
 
+eval $(thefuck --alias)
