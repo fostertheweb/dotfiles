@@ -110,7 +110,7 @@ let g:used_javascript_libs = 'angularjs,react'
 let g:jsx_ext_required = 0
 
 " CtrlP Settings
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
 nmap <C-b> :CtrlPBuffer<CR>
 
 " deliminate
