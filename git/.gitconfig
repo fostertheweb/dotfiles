@@ -1,3 +1,8 @@
-[user]
-	name = Jonathan Foster
-	email = jonathan.foster@eagledream.com
+[includeIf "gitdir:~/Source/"]
+  path = .gitconfig-personal
+[includeIf "gitdir:~/Source/CaterTrax"]
+  path = .gitconfig-work
+[color]
+	ui = true
+[core]
+	editor = nvim
