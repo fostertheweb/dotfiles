@@ -1,3 +1,5 @@
+[includeIf "gitdir:~/.dotfiles/"]
+  path = .gitconfig-personal
 [includeIf "gitdir:~/Source/"]
   path = .gitconfig-personal
 [includeIf "gitdir:~/Source/CaterTrax"]
