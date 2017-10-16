@@ -11,14 +11,20 @@ Plug 'tpope/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
 Plug 'burnettk/vim-angular'
-Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
-Plug 'mxw/vim-jsx'
+Plug 'neoclide/vim-jsx-improve'
+Plug 'mhartington/nvim-typescript'
 
 " Colors
 Plug 'morhetz/gruvbox'
+
+" IDE type stuff
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " the rest of them
 Plug 'tpope/vim-surround'
@@ -26,13 +32,9 @@ Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
-Plug 'mhinz/vim-startify'
 Plug 'edkolev/tmuxline.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -104,10 +106,10 @@ let NERDTreeShowHidden=1
 command! MakeTags !ctags -R .
 
 " List JS Frameworks
-let g:used_javascript_libs = 'angularjs,react'
+let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,underscore'
 
-" Allow JSX highlighting in .js
-let g:jsx_ext_required = 0
+" turn on deoplete
+let g:deoplete#enable_at_startup = 1
 
 " CtrlP Settings
 let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
@@ -115,19 +117,6 @@ nmap <C-b> :CtrlPBuffer<CR>
 
 " deliminate
 let g:delimitMate_expand_cr = 2
-
-" Startify settings
-" When opening a file or bookmark, change to its directory
-let g:startify_change_to_dir = 1
-
-" set bookmarks
-let g:startify_bookmarks = [ {'v': '~/.vim/nvimrc'}]
-
-" Delete open buffers before loading a new session
-let g:startify_session_delete_buffers = 0
-
-" Delete open buffers before loading a new session
-let g:startify_session_persistence = 0
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
