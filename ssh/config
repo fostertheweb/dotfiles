@@ -1,0 +1,5 @@
+Host github.com
+	IdentityFile ~/.ssh/id_rsa
+
+Host *.visualstudio.com
+	IdentityFile ~/.ssh/work
