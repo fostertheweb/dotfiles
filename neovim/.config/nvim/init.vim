@@ -10,12 +10,13 @@ Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'othree/html5.vim'
-Plug 'burnettk/vim-angular'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'mhartington/nvim-typescript'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'styled-components/vim-styled-components'
 
 " Colors
 Plug 'morhetz/gruvbox'
@@ -25,6 +26,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'w0rp/ale'
 
 " the rest of them
 Plug 'tpope/vim-surround'
@@ -114,6 +116,14 @@ let g:deoplete#enable_at_startup = 1
 " CtrlP Settings
 let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
 nmap <C-b> :CtrlPBuffer<CR>
+
+" Linter settings
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+" open LocationList
+nmap <leader>j :lopen<CR>
 
 " deliminate
 let g:delimitMate_expand_cr = 2
