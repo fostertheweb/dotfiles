@@ -25,15 +25,15 @@ Plug 'morhetz/gruvbox'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'w0rp/ale'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf.vim'
 
 " the rest of them
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Raimondi/delimitMate'
 Plug 'edkolev/tmuxline.vim'
@@ -89,6 +89,9 @@ set ignorecase  " case insensitive search
 set smartcase   " case insensitive only if search pattern is all lowercase
 set gdefault    " search/replace globally (on a line) by default
 
+" hide search highlight
+nmap <leader>h :noh<CR>
+
 " Enter key is a stretch
 nmap <C-Space> <CR>
 cmap <C-Space> <CR>
@@ -103,9 +106,20 @@ nmap <leader>s :w<CR>
 nmap <leader>k :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
+" Search within files with Ack.vim
+cnoreabbrev Ack Ack!
+nmap <leader>f :Ack<Space>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " Tags
 " Create tags file
 command! MakeTags !ctags -R .
+
+" Search tags
+nmap <leader>r :Tags<CR>
 
 " List JS Frameworks
 let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,underscore'
@@ -113,9 +127,9 @@ let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,
 " turn on deoplete
 let g:deoplete#enable_at_startup = 1
 
-" CtrlP Settings
-let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
-nmap <C-b> :CtrlPBuffer<CR>
+" fzf settings
+nmap <leader>p :Files<CR>
+nmap <leader>b :Buffers<CR>
 
 " Linter settings
 let g:ale_fixers = {
@@ -130,10 +144,6 @@ let g:delimitMate_expand_cr = 2
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-
-" Multiple Cursors
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-D>'
 
 " vim-go
 let g:go_fmt_command='goimports'
