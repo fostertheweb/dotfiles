@@ -1,2 +1,1 @@
-set -gx FZF_DEFAULT_COMMAND 'ag -g ""'
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'

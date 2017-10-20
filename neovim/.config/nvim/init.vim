@@ -27,6 +27,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
 Plug 'mileszs/ack.vim'
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 " the rest of them
@@ -108,7 +109,7 @@ let NERDTreeShowHidden=1
 
 " Search within files with Ack.vim
 cnoreabbrev Ack Ack!
-nmap <leader>f :Ack<Space>
+nmap <leader>f :Ag<CR>
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
