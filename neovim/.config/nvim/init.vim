@@ -3,6 +3,7 @@ call plug#begin()
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -129,7 +130,7 @@ let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,
 let g:deoplete#enable_at_startup = 1
 
 " fzf settings
-nmap <leader>p :Files<CR>
+nmap <leader>t :Files<CR>
 nmap <leader>b :Buffers<CR>
 
 " Linter settings
@@ -156,6 +157,12 @@ vmap <S-Tab> <gv
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+" GitGutter
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
 
 " toggle line numbers
 nmap <leader>n :set invnumber<CR>
