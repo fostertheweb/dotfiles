@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -25,13 +26,16 @@ Plug 'morhetz/gruvbox'
 " IDE type stuff
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
 Plug 'mileszs/ack.vim'
-Plug '/usr/local/opt/fzf'
+" Aliased due to different installtion path
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 
 " the rest of them
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
 Plug 'editorconfig/editorconfig-vim'
@@ -138,6 +142,57 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
 
+" Lightline
+let g:lightline = {
+\ 'active': {
+\ 'left': [['mode', 'paste'], ['filename']],
+\ 'right': [[ 'lineinfo' ], [ 'percent' ], [ 'linter_warnings', 'linter_errors', 'linter_ok' ]]
+\ },
+\ 'component_function': {
+\   'filename': 'LightlineFilename',
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'linter_ok': 'ok'
+\ },
+\ }
+
+autocmd User ALELint call lightline#update()
+
+" ale + lightline
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆' all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓' : ''
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' ✶' : ''
+  return filename . modified
+endfunction
+
 " open LocationList
 nmap <leader>j :lopen<CR>
 
@@ -146,6 +201,13 @@ let g:delimitMate_expand_cr = 2
 
 " Emmet settings
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+" closetag
+let g:closetag_filenames = "*.html,*.jsx,*.js"
+let g:closetag_xhtml_filenames = '*.jsx,*.js'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 " vim-go
 let g:go_fmt_command='goimports'
