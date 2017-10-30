@@ -16,9 +16,9 @@ Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'mhartington/nvim-typescript'
-Plug 'neoclide/vim-jsx-improve'
 Plug 'leafgarland/typescript-vim'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'neoclide/vim-jsx-improve'
 Plug 'styled-components/vim-styled-components'
 
 " Colors
@@ -139,9 +139,9 @@ nmap <leader>t :Files<CR>
 nmap <leader>b :Buffers<CR>
 
 " Linter settings
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
+" let g:ale_fixers = {
+" "\   'javascript': ['eslint'],
+" "\}
 
 " Lightline
 let g:lightline = {
