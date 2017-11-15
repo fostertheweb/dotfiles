@@ -103,6 +103,9 @@ nmap <leader>h :noh<CR>
 nmap <C-Space> <CR>
 cmap <C-Space> <CR>
 
+" Visual Block
+nmap <leader>v <C-v>
+
 " Quit
 nmap <leader>q :q<CR>
 

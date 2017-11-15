@@ -19,6 +19,3 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[status]
-	short = true
-	branch = true
