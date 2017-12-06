@@ -20,6 +20,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'styled-components/vim-styled-components'
+Plug 'rust-lang/rust.vim'
 
 " Colors
 Plug 'morhetz/gruvbox'

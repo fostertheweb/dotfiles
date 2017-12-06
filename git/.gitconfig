@@ -1,6 +1,6 @@
 [includeIf "gitdir:~/"]
   path = .gitconfig-personal
-[includeIf "gitdir:~/Source/CaterTrax"]
+[includeIf "gitdir:~/Source/EDT"]
   path = .gitconfig-work
 [color]
 	ui = true
