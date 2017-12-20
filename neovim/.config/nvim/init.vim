@@ -7,7 +7,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 
 " Languages
-Plug 'fatih/vim-go'
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim'
@@ -27,11 +26,11 @@ Plug 'morhetz/gruvbox'
 
 " IDE type stuff
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'mileszs/ack.vim'
-" Aliased due to different installtion path
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " the rest of them
@@ -67,8 +66,8 @@ set noshowmode
 let g:tmuxline_powerline_separators = 0
 
 " leader by choice
-let mapleader=","
-set timeoutlen=500
+let mapleader=','
+set timeoutlen=800
 
 " tab settings
 set tabstop=2
@@ -83,8 +82,10 @@ set formatoptions-=o
 
 " better mappings
 nnoremap Y y$
+imap hh <esc>
 imap jj <esc>
 imap kk <esc>
+imap lll <esc>
 nmap <space> :
 
 " remap U to <C-r> for easier redo
@@ -141,6 +142,9 @@ let g:deoplete#enable_at_startup = 1
 " fzf settings
 nmap <leader>t :Files<CR>
 nmap <leader>b :Buffers<CR>
+
+" supertab
+let g:SuperTabDefaultCompletionType = 'context'
 
 " Linter settings
 " let g:ale_fixers = {
@@ -205,17 +209,14 @@ nmap <leader>j :lopen<CR>
 let g:delimitMate_expand_cr = 2
 
 " Emmet settings
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:user_emmet_leader_key='<C-e>'
 
 " closetag
-let g:closetag_filenames = "*.html,*.jsx,*.js"
+let g:closetag_filenames = '*.html,*.jsx,*.js'
 let g:closetag_xhtml_filenames = '*.jsx,*.js'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
-
-" vim-go
-let g:go_fmt_command='goimports'
 
 " Easier indenting in visual mode
 vmap <Tab> >gv
