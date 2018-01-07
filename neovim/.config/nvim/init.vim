@@ -146,10 +146,14 @@ nmap <leader>b :Buffers<CR>
 " supertab
 let g:SuperTabDefaultCompletionType = 'context'
 
+" Terminal settings
+tnoremap <C-c> <C-\><C-n>
+nnoremap <leader>j :below 10sp term://$SHELL<cr>i
+
 " Linter settings
-" let g:ale_fixers = {
-" "\   'javascript': ['eslint'],
-" "\}
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\ }
 
 " Lightline
 let g:lightline = {
@@ -203,7 +207,7 @@ function! LightlineFilename()
 endfunction
 
 " open LocationList
-nmap <leader>j :lopen<CR>
+nmap <leader>p :lopen<CR>
 
 " deliminate
 let g:delimitMate_expand_cr = 2
