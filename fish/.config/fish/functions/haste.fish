@@ -5,7 +5,7 @@ function haste
   set -l project
 
   if count $argv > /dev/null
-    set cwd $argv
+    set cwd (string trim -- $argv)
   else
     set cwd (echo $PWD)
   end
@@ -18,11 +18,11 @@ function haste
 
   tmux start-server
   tmux new-session -d -c $cwd -s $project -n server
-  tmux new-window -t $project:2 -n editor
+  tmux new-window -c $cwd -t $project:2 -n editor
 
   tmux send-keys -t $project:2 "nvim ." C-m
   tmux send-keys -t $project:2 ":Tmuxline" C-m
 
   tmux select-window -t $project:1
-  tmux attach-session -t $project
+  # tmux attach-session -c $cwd -t $project
 end
