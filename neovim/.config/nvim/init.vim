@@ -110,12 +110,15 @@ nmap <leader>v <C-v>
 
 " Quit
 nmap <leader>q :q<CR>
+nnoremap <leader>q :q<CR>
 
 " Save
 nmap <leader>s :w<CR>
+nmap <C-s> :w<CR>
 
 " File Browsing
 nmap <leader>k :NERDTreeToggle<CR>
+nmap <C-b> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " Search within files with Ack.vim
@@ -141,6 +144,7 @@ let g:deoplete#enable_at_startup = 1
 
 " fzf settings
 nmap <leader>t :Files<CR>
+nmap <C-p> :Files<CR>
 nmap <leader>b :Buffers<CR>
 
 " supertab
@@ -148,6 +152,7 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 " Terminal settings
 tnoremap <C-c> <C-\><C-n>
+tnoremap <C-d> <C-c>
 nnoremap <leader>j :below 10sp term://$SHELL<cr>i
 
 " Linter settings

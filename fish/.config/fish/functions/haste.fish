@@ -24,5 +24,5 @@ function haste
   tmux send-keys -t $project:2 ":Tmuxline" C-m
 
   tmux select-window -t $project:1
-  # tmux attach-session -c $cwd -t $project
+  tmux attach-session -c $cwd -t $project
 end
