@@ -6,45 +6,47 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 
-" Languages
-Plug 'moll/vim-node'
-Plug 'tpope/vim-markdown'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'othree/html5.vim'
+" JavaScript
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'mhartington/nvim-typescript'
 Plug 'leafgarland/typescript-vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'styled-components/vim-styled-components'
-Plug 'rust-lang/rust.vim'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'styled-components/vim-styled-components'
+
+" Other Languages
+Plug 'othree/csscomplete.vim'
+Plug 'moll/vim-node'
+Plug 'tpope/vim-markdown'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'othree/html5.vim'
 
 " Colors
 Plug 'morhetz/gruvbox'
 
-" IDE type stuff
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ervandew/supertab'
+" File Navigation / Search
 Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" the rest of them
-Plug 'alvan/vim-closetag'
+" Code Quality
+Plug 'w0rp/ale'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Utilities
+Plug 'mattn/emmet-vim'
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'Raimondi/delimitMate'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'BurningEther/nvimux'
 Plug 'itchyny/lightline.vim'
+Plug 'ervandew/supertab'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -63,7 +65,6 @@ colorscheme gruvbox
 
 " Status Line
 set noshowmode
-let g:tmuxline_powerline_separators = 0
 
 " leader by choice
 let mapleader=','
@@ -129,36 +130,89 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" Tags
-" Create tags file
-command! MakeTags !ctags -R .
-
-" Search tags
-nmap <leader>r :Tags<CR>
-
 " List JS Frameworks
 let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,underscore'
-
-" turn on deoplete
-let g:deoplete#enable_at_startup = 1
 
 " fzf settings
 nmap <leader>t :Files<CR>
 nmap <C-p> :Files<CR>
 nmap <leader>b :Buffers<CR>
 
-" supertab
-let g:SuperTabDefaultCompletionType = 'context'
-
 " Terminal settings
-tnoremap <C-c> <C-\><C-n>
-tnoremap <C-d> <C-c>
+tnoremap <C-[> <C-\><C-n>
 nnoremap <leader>j :below 10sp term://$SHELL<cr>i
 
 " Linter settings
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \ }
+
+" open LocationList
+nmap <leader>p :lopen<CR>
+
+" deliminate
+let g:delimitMate_expand_cr = 2
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Emmet settings
+let g:user_emmet_leader_key='<C-e>'
+
+" Easier indenting in visual mode
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" GitGutter
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
+" toggle line numbers
+nmap <leader>n :set invnumber<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=eol:¬
+
+" handle glare in the morning
+function! Glare()
+  if &g:background == 'dark'
+    set background=light
+  else
+    set background=dark
+  endif
+endfunction
+
+nmap <leader>g :call Glare()<CR>
+
+" treat JSON as JavaScript
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
+" auto spell check in markdown
+autocmd BufRead,BufNewFile *.md setlocal spell
+
+" better split navigation
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Run last command with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<c-n>'
+
+" nvimux settings
+" lua require('nvimux').bootstrap()
 
 " Lightline
 let g:lightline = {
@@ -210,69 +264,4 @@ function! LightlineFilename()
   let modified = &modified ? ' ✶' : ''
   return filename . modified
 endfunction
-
-" open LocationList
-nmap <leader>p :lopen<CR>
-
-" deliminate
-let g:delimitMate_expand_cr = 2
-
-" Emmet settings
-let g:user_emmet_leader_key='<C-e>'
-
-" closetag
-let g:closetag_filenames = '*.html,*.jsx,*.js'
-let g:closetag_xhtml_filenames = '*.jsx,*.js'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
-
-" Easier indenting in visual mode
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
-
-" GitGutter
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
-
-" toggle line numbers
-nmap <leader>n :set invnumber<CR>
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=eol:¬
-
-" handle glare in the morning
-function! Glare()
-  if &g:background == 'dark'
-    set background=light
-  else
-    set background=dark
-  endif
-endfunction
-
-nmap <leader>g :call Glare()<CR>
-
-" treat JSON as JavaScript
-autocmd BufNewFile,BufRead *.json set ft=javascript
-
-" auto spell check in markdown
-autocmd BufRead,BufNewFile *.md setlocal spell
-
-" better split navigation
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-
-" Run last command with sudo
-cmap w!! %!sudo tee > /dev/null %
 
