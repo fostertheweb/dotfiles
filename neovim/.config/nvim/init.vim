@@ -208,6 +208,9 @@ nnoremap <c-l> <c-w>l
 " Run last command with sudo
 cmap w!! %!sudo tee > /dev/null %
 
+" CSS Completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<c-n>'
 
