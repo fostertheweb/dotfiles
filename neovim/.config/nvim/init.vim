@@ -16,7 +16,7 @@ Plug 'leafgarland/typescript-vim'
 " Plug 'styled-components/vim-styled-components'
 
 " Other Languages
-Plug 'othree/csscomplete.vim'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'moll/vim-node'
 Plug 'tpope/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim'
@@ -24,6 +24,7 @@ Plug 'othree/html5.vim'
 
 " Colors
 Plug 'morhetz/gruvbox'
+Plug 'ap/vim-css-color'
 
 " File Navigation / Search
 Plug 'scrooloose/nerdtree'
@@ -207,9 +208,6 @@ nnoremap <c-l> <c-w>l
 
 " Run last command with sudo
 cmap w!! %!sudo tee > /dev/null %
-
-" CSS Completion
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<c-n>'
