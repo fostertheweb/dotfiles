@@ -38,13 +38,13 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Utilities
+Plug 'DanySpin97/ttab.vim'
 Plug 'mattn/emmet-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
-" Plug 'BurningEther/nvimux'
 Plug 'itchyny/lightline.vim'
 Plug 'ervandew/supertab'
 Plug 'mhinz/vim-startify'
@@ -84,10 +84,8 @@ set formatoptions-=o
 
 " better mappings
 nnoremap Y y$
-imap hh <esc>
 imap jj <esc>
 imap kk <esc>
-imap lll <esc>
 nmap <space> :
 
 " remap U to <C-r> for easier redo
@@ -211,6 +209,13 @@ cmap w!! %!sudo tee > /dev/null %
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<c-n>'
+
+" ttab prefix and remappings
+let g:ttab_prefix = '<C-a>'
+noremap <C-a>l :tabnext<CR>
+noremap <C-a>h :tabprev<CR>
+noremap <C-a>" :new<CR>:term<CR>
+noremap <C-a>% :vnew<CR>:term<CR>
 
 " nvimux settings
 " lua require('nvimux').bootstrap()
