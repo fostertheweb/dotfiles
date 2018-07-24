@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Window Titles + Bar
-font pango:IBM Plex Mono 20
+font pango:Swiss Siena 24
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -182,8 +182,7 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 # i3bar
 bar {
         status_command i3blocks
-        font pango:VT323 24
-        tray_padding 0
+        tray_output none
 
         colors {
                 background "#0E0600"

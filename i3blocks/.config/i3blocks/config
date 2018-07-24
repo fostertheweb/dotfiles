@@ -1,30 +1,27 @@
-# i3blocks config file
-#
 # Please see man i3blocks for a complete reference!
 # The man page is also hosted at http://vivien.github.io/i3blocks
 
 # Global properties
-#
-# The top properties below are applied to every block, but can be overridden.
-# Each block command defaults to the script name to avoid boilerplate.
-command=/usr/libexec/i3blocks/$BLOCK_NAME
-separator_block_width=40
-markup=none
+command=scripts/$BLOCK_NAME
+separator_block_width=30
+markup=pango
 separator=false
 
-# custom separator
-full_text=
-align=center
-separator=false
-separator_block_width=20
+[battery-charging]
+command=echo -e '<span font_desc="Typicons">\ue02a</span>'
+interval=once
+
+[battery-full]
+command=echo -e '<span font_desc="Typicons">\ue02b</span>'
+interval=once
 
 [volume]
-label=
+label=🎧
 interval=once
 signal=1
 
 [backlight]
-label=
+label=🔦
 command=brightnessctl | grep -E -o '[0-9]{1,3}?%' | head -1
 interval=once
 signal=2
@@ -35,18 +32,15 @@ label=RAM
 interval=30
 
 [wifi]
-label=
+label=📶
 instance=wlp4s0
 interval=10
 
 [battery]
-label=
+label=🔋
 instance=0
 interval=30
 
 [time]
 command=date '+%a %I:%M %p'
 interval=5
-
-[separator]
-color=#5B6076
