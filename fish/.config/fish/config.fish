@@ -1,1 +1,3 @@
-set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
+set -gx EDITOR nvim
+set -gx GDK_SCALE 2
+

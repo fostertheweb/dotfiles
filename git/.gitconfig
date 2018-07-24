@@ -1,3 +1,6 @@
+[user]
+  name = Jonathan Foster
+  email = jxf9099@rit.edu
 [includeIf "gitdir:~/"]
   path = .gitconfig-personal
 [includeIf "gitdir:~/Source/Work"]
@@ -6,15 +9,3 @@
 	ui = true
 [core]
 	editor = nvim
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse

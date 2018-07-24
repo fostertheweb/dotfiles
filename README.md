@@ -1,14 +1,14 @@
-# dotfiles
+## 🤓 my dotfiles
 
-Setup
+### Setup
 
 ```bash
 $ git clone git@github.com:fostertheweb/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
-$ stow fish neovim tmux git # plus whatever else you'd like
+$ stow fish neovim git
 ```
 
-Install [vim-plug](https://github.com/junegunn/vim-plug)
+### Install [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```bash
 $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \

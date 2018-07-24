@@ -1,11 +1,5 @@
 call plug#begin()
 
-" Git
-Plug 'tpope/vim-fugitive'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-rhubarb'
-
 " JavaScript
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -26,19 +20,10 @@ Plug 'othree/html5.vim'
 Plug 'morhetz/gruvbox'
 Plug 'ap/vim-css-color'
 
-" File Navigation / Search
-Plug 'scrooloose/nerdtree'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 " Code Quality
-Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Utilities
-Plug 'DanySpin97/ttab.vim'
 Plug 'mattn/emmet-vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
@@ -46,7 +31,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'gregsexton/MatchTag'
 Plug 'itchyny/lightline.vim'
-Plug 'ervandew/supertab'
 Plug 'mhinz/vim-startify'
 
 call plug#end()
@@ -116,44 +100,11 @@ nnoremap <leader>q :q<CR>
 nmap <leader>s :w<CR>
 nmap <C-s> :w<CR>
 
-" File Browsing
-nmap <leader>k :NERDTreeToggle<CR>
-nmap <C-b> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
-" Search within files with Ack.vim
-cnoreabbrev Ack Ack!
-nmap <leader>f :Ag<CR>
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 " List JS Frameworks
 let g:used_javascript_libs = 'angularjs,react,jasmine,angularui,angularuirouter,underscore'
 
-" fzf settings
-nmap <leader>t :Files<CR>
-nmap <C-p> :Files<CR>
-nmap <leader>b :Buffers<CR>
-
-" Terminal settings
-tnoremap <C-[> <C-\><C-n>
-nnoremap <leader>j :below 10sp term://$SHELL<cr>i
-
-" Linter settings
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\ }
-
-" open LocationList
-nmap <leader>p :lopen<CR>
-
 " deliminate
 let g:delimitMate_expand_cr = 2
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
 
 " Emmet settings
 let g:user_emmet_leader_key='<C-e>'
@@ -165,12 +116,6 @@ vmap <S-Tab> <gv
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" GitGutter
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
 
 " toggle line numbers
 nmap <leader>n :set invnumber<CR>
@@ -207,63 +152,16 @@ nnoremap <c-l> <c-w>l
 " Run last command with sudo
 cmap w!! %!sudo tee > /dev/null %
 
-" SuperTab
-let g:SuperTabDefaultCompletionType = '<c-n>'
-
-" ttab prefix and remappings
-let g:ttab_prefix = '<C-a>'
-noremap <C-a>l :tabnext<CR>
-noremap <C-a>h :tabprev<CR>
-noremap <C-a>" :new<CR>:term<CR>
-noremap <C-a>% :vnew<CR>:term<CR>
-
-" nvimux settings
-" lua require('nvimux').bootstrap()
-
 " Lightline
 let g:lightline = {
 \ 'active': {
 \ 'left': [['mode', 'paste'], ['filename']],
-\ 'right': [[ 'lineinfo' ], [ 'percent' ], [ 'linter_warnings', 'linter_errors', 'linter_ok' ]]
+\ 'right': [[ 'lineinfo' ], [ 'percent' ]]
 \ },
 \ 'component_function': {
 \   'filename': 'LightlineFilename',
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error',
-\   'linter_ok': 'ok'
-\ },
 \ }
-
-autocmd User ALELint call lightline#update()
-
-" ale + lightline
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆' all_non_errors)
-endfunction
-
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓' : ''
-endfunction
+\ }
 
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
