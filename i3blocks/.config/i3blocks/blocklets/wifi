@@ -1,5 +1,4 @@
 #!/bin/bash
-# Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
 # Copyright (C) 2014 Alexander Keller <github@nycroth.com>
 
 # This program is free software: you can redistribute it and/or modify
@@ -17,45 +16,32 @@
 
 #------------------------------------------------------------------------
 
-# Use the provided interface, otherwise the device used for the default route.
-if [[ -n $BLOCK_INSTANCE ]]; then
-  IF=$BLOCK_INSTANCE
-else
-  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
-fi
+INTERFACE="${BLOCK_INSTANCE:-wlan0}"
+ICON=$(echo -e '<span font_desc="Typicons">\ue146</span>')
 
 #------------------------------------------------------------------------
 
 # As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
 # connection (think desktop), the corresponding block should not be displayed.
-[[ ! -d /sys/class/net/${IF} ]] && exit
+[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
+    [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && exit
 
 #------------------------------------------------------------------------
 
-if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
-  echo down # full text
-  echo down # short text
-  echo \#FF0000 # color
-  exit
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+#------------------------------------------------------------------------
+
+echo "${ICON} ${QUALITY}%"
+echo "${ICON} ${QUALITY}%"
+
+# color
+if [[ $QUALITY -ge 80 ]]; then
+    echo "#00FF00"
+elif [[ $QUALITY -lt 80 ]]; then
+    echo "#FFF600"
+elif [[ $QUALITY -lt 60 ]]; then
+    echo "#FFAE00"
+elif [[ $QUALITY -lt 40 ]]; then
+    echo "#FF0000"
 fi
-
-case $1 in
-  -4)
-    AF=inet ;;
-  -6)
-    AF=inet6 ;;
-  *)
-    AF=inet6? ;;
-esac
-
-# if no interface is found, use the first device with a global scope
-IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
-
-case $BLOCK_BUTTON in
-  3) echo -n "$IPADDR" | xclip -q -se c ;;
-esac
-
-#------------------------------------------------------------------------
-
-echo "$IPADDR" # full text
-echo "$IPADDR" # short text

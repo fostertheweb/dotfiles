@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PERCENT_USED=$(free | awk 'FNR == 2 {print int($3 * 100 / $2)}')
+
+echo $PERCENT_USED%
+echo $PERCENT_USED%
+
+if [[ $PERCENT_USED -ge 90 ]]; then
+  echo "#ff0000"
+elif [[ $PERCENT_USED -ge 70 ]]; then
+  echo "#ff6000"
+fi

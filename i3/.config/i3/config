@@ -111,7 +111,7 @@ hide_edge_borders both
 exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpaper/*.jpg
 
 # Start redshift
-exec --no-startup-id redshift-gtk -l 43.1480:-77.5905 -t 5600:3400
+# exec --no-startup-id redshift-gtk -l 43.1480:-77.5905 -t 5600:3400
 
 # Print Screen
 bindsym --release Print exec scrot
@@ -181,7 +181,7 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # i3bar
 bar {
-        status_command i3blocks
+        status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
         tray_output none
 
         colors {
