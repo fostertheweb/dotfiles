@@ -15,9 +15,6 @@ interval=60
 interval=once
 signal=1
 
-[redshift]
-interval=60
-
 [backlight]
 interval=once
 signal=2
@@ -38,3 +35,6 @@ interval=30
 [time]
 command=date '+%a %l:%M %p'
 interval=5
+
+[redshift]
+interval=60

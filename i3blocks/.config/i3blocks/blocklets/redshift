@@ -1,9 +1,13 @@
 #!/bin/bash
 
-ICON=$(echo -e '<span font_desc="Typicons">\ue142</span>')
+ICON=$(echo -e '<span font_desc="Typicons">\ue09a</span>')
 REDSHIFT_STATUS=$(pidof redshift)
 
 if [ $REDSHIFT_STATUS -gt 0 ]; then
   echo "${ICON}"
   echo "${ICON}"
+else
+  echo "${ICON}"
+  echo "${ICON}"
+  echo "#555555"
 fi
