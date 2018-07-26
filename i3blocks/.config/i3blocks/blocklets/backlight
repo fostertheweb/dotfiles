@@ -3,5 +3,6 @@
 ICON=$(echo -e '<span font_desc="Typicons">\ue142</span>')
 BRIGHTNESS_LEVEL=$(brightnessctl | grep -E -o '[0-9]{1,3}?%' | head -1)
 
-echo "${ICON} ${BRIGHTNESS_LEVEL}"
-echo "${ICON} ${BRIGHTNESS_LEVEL}"
+echo -e "<span foreground='#FFE980'>${ICON}</span> ${BRIGHTNESS_LEVEL}"
+echo -e "<span foreground='#FFE980'>${ICON}</span> ${BRIGHTNESS_LEVEL}"
+# echo "${ICON} ${BRIGHTNESS_LEVEL}"

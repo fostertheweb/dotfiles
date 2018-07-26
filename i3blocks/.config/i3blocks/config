@@ -1,8 +1,7 @@
-# Please see man i3blocks for a complete reference!
+# Please s man i3blocks for a complete reference!
 # The man page is also hosted at http://vivien.github.io/i3blocks
 
 # Global properties
-# command=/usr/libexec/i3blocks/$BLOCK_NAME
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=30
 markup=pango
@@ -12,6 +11,7 @@ separator=false
 interval=60
 
 [volume]
+align=center
 interval=once
 signal=1
 
@@ -20,8 +20,6 @@ interval=once
 signal=2
 
 [memory]
-label=RAM
-command=$SCRIPT_DIR/$BLOCK_NAME
 interval=30
 
 [wifi]

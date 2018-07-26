@@ -1,7 +1,16 @@
 #!/bin/bash
 
-ICON=$(echo -e '<span font_desc="Typicons">\ue003</span>')
+ICON=$(echo -e "<span font_desc='Typicons'>\ue003</span>")
 CONTAINER_COUNT=$(docker ps -q | wc -l | sed -r 's/^0$//g')
+DOCKER_PID=$(pidof docker)
 
+
+if [ $DOCKER_PID -gt 0 ]; then
 echo "${ICON} ${CONTAINER_COUNT:-0}"
 echo "${ICON} ${CONTAINER_COUNT:-0}"
+  echo "#ffffff"
+else
+  echo "${ICON} --"
+  echo "${ICON} --"
+  echo "#999999"
+fi

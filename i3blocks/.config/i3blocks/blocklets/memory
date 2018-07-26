@@ -1,12 +1,15 @@
 #!/bin/bash
 
+COLOR_BAD="#FF7600"
+COLOR_URGENT="#FF5050"
+
 PERCENT_USED=$(free | awk 'FNR == 2 {print int($3 * 100 / $2)}')
 
-echo $PERCENT_USED%
-echo $PERCENT_USED%
+echo -e "<span foreground='#AAD5FF' size='small'>RAM</span> ${PERCENT_USED}%"
+echo -e "<span foreground='#AAD5FF' size='small'>RAM</span> ${PERCENT_USED}%"
 
 if [[ $PERCENT_USED -ge 90 ]]; then
-  echo "#ff0000"
+  echo $COLOR_URGENT
 elif [[ $PERCENT_USED -ge 70 ]]; then
-  echo "#ff6000"
+  echo $COLOR_BAD
 fi

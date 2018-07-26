@@ -1,10 +1,18 @@
 #!/bin/bash
 
-ICON_CHARGING=$(echo -e '<span font_desc="Typicons">\ue02a</span>')
-ICON_FULL=$(echo -e '<span font_desc="Typicons">\ue02b</span>')
-ICON_HIGH=$(echo -e '<span font_desc="Typicons">\ue02c</span>')
-ICON_MID=$(echo -e '<span font_desc="Typicons">\ue02e</span>')
-ICON_LOW=$(echo -e '<span font_desc="Typicons">\ue02d</span>')
+COLOR_CHARGING="#AAD5FF"
+COLOR_FULL="#FFD300"
+COLOR_HIGH="#D8FFB4"
+COLOR_MID="#FFD300"
+COLOR_LOW="#FF7600"
+COLOR_URGENT="#FF5050"
+
+ICON_CHARGING=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_FULL'>\ue02a</span>")
+ICON_FULL=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_FULL'>\ue02b</span>")
+ICON_HIGH=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_HIGH'>\ue02c</span>")
+ICON_MID=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_MID'>\ue02e</span>")
+ICON_LOW=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_LOW'>\ue02d</span>")
+ICON_URGENT=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_URGENT'>\ue02d</span>")
 
 BATTERY=0
 BATTERY_INFO=$(acpi -b | grep "Battery ${BATTERY}")
@@ -14,25 +22,19 @@ BATTERY_LEVEL=$(echo "${BATTERY_INFO}" | grep -o '[0-9]\+%' | tr -d '%')
 if [ "$BATTERY_STATE" = "Charging" ]; then
     echo "${ICON_CHARGING} ${BATTERY_LEVEL}%"
     echo "${ICON_CHARGING} ${BATTERY_LEVEL}%"
-    echo "#00FF00"
 elif [[ $BATTERY_LEVEL -ge 80 ]]; then
     echo "${ICON_FULL} ${BATTERY_LEVEL}%"
     echo "${ICON_FULL} ${BATTERY_LEVEL}%"
-    echo "#00FF00"
 elif [[ $BATTERY_LEVEL -ge 60 ]]; then
     echo "${ICON_HIGH} ${BATTERY_LEVEL}%"
     echo "${ICON_HIGH} ${BATTERY_LEVEL}%"
-    echo "#00FF00"
 elif [[ $BATTERY_LEVEL -ge 30 ]]; then
     echo "${ICON_MID} ${BATTERY_LEVEL}%"
     echo "${ICON_MID} ${BATTERY_LEVEL}%"
-    echo "#FFF600"
 elif [[ $BATTERY_LEVEL -ge 20 ]]; then
     echo "${ICON_LOW} ${BATTERY_LEVEL}%"
     echo "${ICON_LOW} ${BATTERY_LEVEL}%"
-    echo "#FFAE00"
 else
-    echo "${ICON_LOW} ${BATTERY_LEVEL}%"
-    echo "${ICON_LOW} ${BATTERY_LEVEL}%"
-    echo "#FF0000"
+    echo "${ICON_URGENT} ${BATTERY_LEVEL}%"
+    echo "${ICON_URGENT} ${BATTERY_LEVEL}%"
 fi

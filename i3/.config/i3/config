@@ -2,7 +2,11 @@
 set $mod Mod4
 
 # Window Titles + Bar
-font pango:Swiss Siena 24
+font pango:Source Sans Pro 20
+
+# hide title bars when it makes sense
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -111,7 +115,7 @@ hide_edge_borders both
 exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpaper/*.jpg
 
 # Start redshift
-# exec --no-startup-id redshift-gtk -l 43.1480:-77.5905 -t 5600:3400
+exec --no-startup-id redshift -c ~/.config/redshift/redshift.conf
 
 # Print Screen
 bindsym --release Print exec scrot
@@ -156,43 +160,37 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# colors
-set $theme-darkest "#0E0600"
-set $theme-dark "#131F2D"
-set $theme-gray "#4A4D56"
-set $theme-yellow "#F9F414"
-set $theme-red "#F25B67"
-set $theme-white "#ffffff"
-
-# class                 border    bground   text      indicator   child_border
-client.focused          "#5B6076" "#131F2D" "#FFFFFF" "#F9F414"   "#5B6076"
-client.focused_inactive "#5B6076" "#5B6076" "#131F2D" "#F9F414"   "#5B6076"
-client.unfocused        "#0E0600" "#0E0600" "#484E50" "#F9F414"   "#5B6076"
-client.urgent           "#FFFFFF" "#F25B67" "#FFFFFF" "#F9F414"   "#5B6076"
-client.placeholder      "#0E0600" "#0E0600" "#FFFFFF" "#F9F414"   "#5B6076"
-
-client.background       "#4A4D56"
-
 # lock the screen
 bindsym $mod+Shift+x exec i3lock -c $theme-dark
 
 # rofi window
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
+# Color Scheme
+# class                 border  bground text    indicator child_border
+client.focused          #B69324 #FFD137 #111111 #A5D6FD   #B69324
+client.focused_inactive #AEAEAE #E9E9E9 #969696 #A5D6FD   #AEAEAE
+client.unfocused        #AEAEAE #E9E9E9 #777777 #A5D6FD   #AEAEAE
+client.urgent           #B65011 #FF711D #FFFFFF #A5D6FD   #B65011
+client.placeholder      #AEAEAE #E9E9E9 #777777 #A5D6FD   #AEAEAE
+
+client.background       #D8D8D8
+
 # i3bar
 bar {
-        status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
-        tray_output none
+  font pango:Swiss Siena, Typicons 24
+  status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
+  tray_output none
 
-        colors {
-                background "#0E0600"
-                statusline "#FFFFFF"
-                separator  "#5B6076"
+  colors {
+    background #222222
+    statusline #FFFFFF
+    separator  #555555
 
-                focused_workspace  "#5B6076" "#131F2D" "#FFFFFF"
-                active_workspace   "#5B6076" "#4A4D56" "#FFFFFF"
-                inactive_workspace "#131F2D" "#131F2D" "#484E50"
-                urgent_workspace   "#F9F414" "#F9F414" "#0E0600"
-                binding_mode       "#FFFFFF" "#F25B67" "#FFFFFF"
-        }
+    focused_workspace  #B69324 #FFD137 #111111
+    active_workspace   #AEAEAE #E9E9E9 #111111
+    inactive_workspace #ACACAC #ACACAC #555555
+    urgent_workspace   #B65011 #FF711D #FFFFFF
+    binding_mode       #296796 ##1E4868 #FFFFFF
+  }
 }

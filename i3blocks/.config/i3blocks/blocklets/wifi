@@ -17,31 +17,35 @@
 #------------------------------------------------------------------------
 
 INTERFACE="${BLOCK_INSTANCE:-wlan0}"
-ICON=$(echo -e '<span font_desc="Typicons">\ue146</span>')
 
 #------------------------------------------------------------------------
 
 # As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
 # connection (think desktop), the corresponding block should not be displayed.
 [[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
-    [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && exit
+    [[ "$(cat /sys/class/net/${INTERFACE}/operstate)" = 'down' ]] && exit
 
 #------------------------------------------------------------------------
 
-QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+QUALITY=$(grep "${INTERFACE}" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
 #------------------------------------------------------------------------
 
-echo "${ICON} ${QUALITY}%"
-echo "${ICON} ${QUALITY}%"
+COLOR_GOOD="#D8FFB4"
+COLOR_DEGRADED="#FFD300"
+COLOR_BAD="#FF7600"
 
-# color
-if [[ $QUALITY -ge 80 ]]; then
-    echo "#00FF00"
-elif [[ $QUALITY -lt 80 ]]; then
-    echo "#FFF600"
-elif [[ $QUALITY -lt 60 ]]; then
-    echo "#FFAE00"
-elif [[ $QUALITY -lt 40 ]]; then
-    echo "#FF0000"
+icon_markup() {
+    echo -e "<span font_desc='Typicons' foreground='$1'>\ue146</span>"
+}
+
+if [[ $QUALITY -lt 60 ]]; then
+    ICON=$(icon_markup $COLOR_DEGRADED)
+elif [[ $QUALITY -lt 30 ]]; then
+    ICON=$(icon_markup $COLOR_BAD)
+else
+    ICON=$(icon_markup $COLOR_GOOD)
 fi
+
+echo -e "${ICON} ${QUALITY}%"
+echo -e "${ICON} ${QUALITY}%"
