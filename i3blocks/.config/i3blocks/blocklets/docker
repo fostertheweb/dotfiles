@@ -2,10 +2,9 @@
 
 ICON=$(echo -e "<span font_desc='Typicons'>\ue003</span>")
 CONTAINER_COUNT=$(docker ps -q | wc -l | sed -r 's/^0$//g')
-DOCKER_PID=$(pidof docker)
+DOCKER_RUNNING=$(systemctl -q is-active docker && echo 1 || echo 0)
 
-
-if [ $DOCKER_PID -gt 0 ]; then
+if [ $DOCKER_RUNNING -gt 0 ]; then
 echo "${ICON} ${CONTAINER_COUNT:-0}"
 echo "${ICON} ${CONTAINER_COUNT:-0}"
   echo "#ffffff"

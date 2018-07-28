@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ICON=$(echo -e "<span font_desc='Typicons'>\ue001</span>")
+ICON=$(echo -e "<span font_desc='Typicons'>\ue13d</span>")
 REDSHIFT_STATUS=$(pidof redshift)
 
 if [ $REDSHIFT_STATUS -gt 0 ]; then
