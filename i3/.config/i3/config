@@ -165,11 +165,11 @@ bindsym $mod+Tab exec --no-startup-id rofi -show window
 
 # Color Scheme
 # class                 border  bground text    indicator child_border
-client.focused          #222222 #222222 #ffffff #A5D6FD   #444444
-client.focused_inactive #444444 #444444 #ffffff #A5D6FD   #444444
-client.unfocused        #444444 #444444 #999999 #A5D6FD   #222222
-client.urgent           #FF3B30 #FF3B30 #FFFFFF #A5D6FD   #FF3B30
-client.placeholder      #000000 #000000 #555555 #A5D6FD   #000000
+client.focused          #222222 #222222 #eeeeee #00ff00   #555555
+client.focused_inactive #222222 #222222 #eeeeee #00ff00   #555555
+client.unfocused        #111111 #111111 #444444 #00ff00   #555555
+client.urgent           #FF3B30 #FF3B30 #FFFFFF #00ff00   #ff0000
+client.placeholder      #000000 #000000 #555555 #00ff00   #ffffff
 
 client.background       #222222
 

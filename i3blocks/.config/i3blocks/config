@@ -3,15 +3,9 @@
 
 # Global properties
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=30
+separator_block_width=40
 markup=pango
 separator=false
-
-[redshift]
-interval=60
-
-[uptime]
-interval=60
 
 [docker]
 interval=60
@@ -29,7 +23,6 @@ signal=2
 interval=30
 
 [wifi]
-instance=wlp4s0
 interval=10
 
 [battery]

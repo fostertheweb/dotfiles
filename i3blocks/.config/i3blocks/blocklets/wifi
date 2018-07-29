@@ -1,51 +1,31 @@
 #!/bin/bash
-# Copyright (C) 2014 Alexander Keller <github@nycroth.com>
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+QUALITY=$(grep wlp4s0 /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+RED="#FF3B30"
+GREEN="#4CD964"
+YELLOW="#FFCC00"
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ICON_NO_CONNECTION=$(echo -e "<span foreground='$RED'>\ued67</span>")
+ICON_100=$(echo -e "<span foreground='$GREEN'>\ued65</span>")
+ICON_75=$(echo -e "<span>\ued65</span>")
+ICON_50=$(echo -e "<span>\ued65</span>")
+ICON_25=$(echo -e "<span foreground='$YELLOW'>\ued65</span>")
 
-#------------------------------------------------------------------------
-
-INTERFACE="${BLOCK_INSTANCE:-wlan0}"
-
-#------------------------------------------------------------------------
-
-# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
-# connection (think desktop), the corresponding block should not be displayed.
-[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
-    [[ "$(cat /sys/class/net/${INTERFACE}/operstate)" = 'down' ]] && exit
-
-#------------------------------------------------------------------------
-
-QUALITY=$(grep "${INTERFACE}" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
-
-#------------------------------------------------------------------------
-
-COLOR_GOOD="#D8FFB4"
-COLOR_DEGRADED="#FFD300"
-COLOR_BAD="#FF7600"
-
-icon_markup() {
-    echo -e "<span font_desc='Typicons' foreground='$1'>\ue146</span>"
-}
-
-if [[ $QUALITY -lt 60 ]]; then
-    ICON=$(icon_markup $COLOR_DEGRADED)
-elif [[ $QUALITY -lt 30 ]]; then
-    ICON=$(icon_markup $COLOR_BAD)
+if [[ $QUALITY -ge 100 ]]; then
+    echo "${ICON_100} ${QUALITY}%"
+    echo "${ICON_100} ${QUALITY}%"
+elif [[ $QUALITY -ge 75 ]]; then
+    echo "${ICON_75} ${QUALITY}%"
+    echo "${ICON_75} ${QUALITY}%"
+elif [[ $QUALITY -ge 50 ]]; then
+    echo "${ICON_50} ${QUALITY}%"
+    echo "${ICON_50} ${QUALITY}%"
+elif [[ $QUALITY -gt 0 ]]; then
+    echo "${ICON_25} ${QUALITY}%"
+    echo "${ICON_25} ${QUALITY}%"
 else
-    ICON=$(icon_markup $COLOR_GOOD)
+    echo "${ICON_NO_CONNECTION} --"
+    echo "${ICON_NO_CONNECTION} --"
+    echo "#999999"
 fi
-
-echo -e "${ICON} ${QUALITY}%"
-echo -e "${ICON} ${QUALITY}%"

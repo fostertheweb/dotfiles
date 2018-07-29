@@ -1,7 +1,9 @@
 #!/bin/bash
 
 ICON=$(echo -e "<span>\ueae5</span>")
-TEXT=$(uptime)
+TEXT=$(echo "whatever")
+
+# loginctl session status
 
 echo "${ICON} ${TEXT}"
 echo "${ICON} ${TEXT}"

@@ -1,15 +1,6 @@
 #!/bin/bash
 
-COLOR_BAD="#FF7600"
-COLOR_URGENT="#FF5050"
-
 PERCENT_USED=$(free | awk 'FNR == 2 {print int($3 * 100 / $2)}')
 
-echo -e "<span foreground='#AAD5FF'>\uec33</span> ${PERCENT_USED}%"
-echo -e "<span font_desc='Swiss Siena' foreground='#AAD5FF' size='small'>RAM</span> ${PERCENT_USED}%"
-
-if [[ $PERCENT_USED -ge 90 ]]; then
-  echo $COLOR_URGENT
-elif [[ $PERCENT_USED -ge 70 ]]; then
-  echo $COLOR_BAD
-fi
+echo -e "<span foreground='#5AC8FA'>\ueca5</span> ${PERCENT_USED}%"
+echo -e "<span foreground='#5AC8FA'>\ueca5</span> ${PERCENT_USED}%"
