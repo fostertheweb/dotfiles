@@ -1,9 +1,11 @@
 #!/bin/bash
 
-ICON_MUTE=$(echo -e "<span font_desc='Typicons'>\ue133</span>")
-ICON_LOW=$(echo -e "<span font_desc='Typicons'>\ue135</span>")
-ICON_MID=$(echo -e "<span font_desc='Typicons'>\ue132</span>")
-ICON_HIGH=$(echo -e "<span font_desc='Typicons'>\ue134</span>")
+ICON_MUTE=$(echo -e "<span>\ued5f</span>")
+ICON_0=$(echo -e "<span>\ued5e</span>")
+ICON_25=$(echo -e "<span>\ued5d</span>")
+ICON_50=$(echo -e "<span>\ued5c</span>")
+ICON_75=$(echo -e "<span>\ued5b</span>")
+ICON_100=$(echo -e "<span>\ued5a</span>")
 
 VOLUME_LEVEL=$(amixer sget Master | grep -E -o "[0-9]{1,3}?%" | head -1 | tr -d "%")
 
@@ -11,13 +13,19 @@ if amixer sget Master | grep -q off; then
     echo "${ICON_MUTE} --"
     echo "${ICON_MUTE} --"
     echo "#999999"
+elif [[ $VOLUME_LEVEL -eq 100 ]]; then
+    echo "${ICON_100} ${VOLUME_LEVEL}%"
+    echo "${ICON_100} ${VOLUME_LEVEL}%"
+elif [[ $VOLUME_LEVEL -ge 75 ]]; then
+    echo "${ICON_75} ${VOLUME_LEVEL}%"
+    echo "${ICON_75} ${VOLUME_LEVEL}%"
 elif [[ $VOLUME_LEVEL -ge 50 ]]; then
-    echo "${ICON_HIGH} ${VOLUME_LEVEL}%"
-    echo "${ICON_HIGH} ${VOLUME_LEVEL}%"
-elif [[ $VOLUME_LEVEL -ge 20 ]]; then
-    echo "${ICON_MID} ${VOLUME_LEVEL}%"
-    echo "${ICON_MID} ${VOLUME_LEVEL}%"
+    echo "${ICON_50} ${VOLUME_LEVEL}%"
+    echo "${ICON_50} ${VOLUME_LEVEL}%"
+elif [[ $VOLUME_LEVEL -gt 0 ]]; then
+    echo "${ICON_25} ${VOLUME_LEVEL}%"
+    echo "${ICON_25} ${VOLUME_LEVEL}%"
 else
-    echo "${ICON_LOW} ${VOLUME_LEVEL}%"
-    echo "${ICON_LOW} ${VOLUME_LEVEL}%"
+    echo "${ICON_0} ${VOLUME_LEVEL}%"
+    echo "${ICON_0} ${VOLUME_LEVEL}%"
 fi

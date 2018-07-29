@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ICON=$(echo -e "<span font_desc='Typicons'>\ue003</span>")
+ICON=$(echo -e "<span>\uecde</span>")
 CONTAINER_COUNT=$(docker ps -q | wc -l | sed -r 's/^0$//g')
 DOCKER_RUNNING=$(systemctl -q is-active docker && echo 1 || echo 0)
 

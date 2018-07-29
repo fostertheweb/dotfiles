@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ICON=$(echo -e "<span>\ueae5</span>")
+TEXT=$(uptime)
+
+echo "${ICON} ${TEXT}"
+echo "${ICON} ${TEXT}"
+echo "#ffffff"

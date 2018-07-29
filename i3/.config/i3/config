@@ -175,7 +175,7 @@ client.background       #222222
 
 # i3bar
 bar {
-  font pango:Inconsolata 24
+  font pango:Faune, Lindua 24
   status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
   tray_output none
 

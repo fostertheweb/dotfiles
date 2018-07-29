@@ -7,11 +7,11 @@ COLOR_MID="#FFD300"
 COLOR_LOW="#FF7600"
 COLOR_URGENT="#FF5050"
 
-ICON_CHARGING=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_FULL'>\ue02a</span>")
-ICON_FULL=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_FULL'>\ue02b</span>")
-ICON_HIGH=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_HIGH'>\ue02c</span>")
-ICON_MID=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_MID'>\ue02e</span>")
-ICON_LOW=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_LOW'>\ue02d</span>")
+ICON_CHARGING=$(echo -e "<span foreground='$COLOR_FULL'>\ue02a</span>")
+ICON_FULL=$(echo -e "<span foreground='$COLOR_FULL'>\uebfa</span>")
+ICON_HIGH=$(echo -e "<span foreground='$COLOR_HIGH'>\ue02c</span>")
+ICON_MID=$(echo -e "<span foreground='$COLOR_MID'>\ue02e</span>")
+ICON_LOW=$(echo -e "<span foreground='$COLOR_LOW'>\ue02d</span>")
 ICON_URGENT=$(echo -e "<span font_desc='Typicons' foreground='$COLOR_URGENT'>\ue02d</span>")
 
 BATTERY=0

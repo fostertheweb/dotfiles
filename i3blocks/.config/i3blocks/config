@@ -7,6 +7,12 @@ separator_block_width=30
 markup=pango
 separator=false
 
+[redshift]
+interval=60
+
+[uptime]
+interval=60
+
 [docker]
 interval=60
 
@@ -33,6 +39,3 @@ interval=30
 [time]
 command=date '+%a %l:%M %p'
 interval=5
-
-[redshift]
-interval=60

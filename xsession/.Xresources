@@ -1,12 +1,32 @@
+! Xft font config
+Xft.antialias:  1
+Xft.autohint:   1
+Xft.dpi:        96
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
+
+! Cursor
+! Xcursor.theme: FlatbedCursors.Black.Regular
+
+! urxvt
+! Make it look nice
 URxvt.font: xft:Inconsolata:size=20
 URxvt.boldFont: xft:Inconsolata:Bold:size=20
-
+URxvt*depth: 24
 URxvt.scrollBar: false
 
+! Click URLs
 Urxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: Uline Bold fg5
+
+! Copy & Paste
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escape
 
 ! gruvbox dark colors
 ! hard contrast: *background: #1d2021
