@@ -1,8 +1,9 @@
 # Windows key
 set $mod Mod4
+set $alt Mod1
 
 # Window Titles + Bar
-font pango:Ilisarniq 20
+font pango:Ilisarniq 10
 
 # hide title bars when it makes sense to
 for_window [class="^.*"] border pixel 1
@@ -19,7 +20,10 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id ulauncher
+
+# lock the screen
+bindsym $mod+Shift+x exec "~/.i3/scripts/lockscreen"
 
 # change focus
 bindsym $mod+h focus left
@@ -157,11 +161,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# lock the screen
-bindsym $mod+Shift+x exec i3lock -c "#222222"
-
 # rofi window
 bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $alt+Tab exec --no-startup-id rofi -show window
 
 # Color Scheme
 # class                 border  bground text    indicator child_border
@@ -175,7 +177,7 @@ client.background       #222222
 
 # i3bar
 bar {
-  font pango:Faune, Lindua 24
+  font pango:Faune, Lindua 12
   status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
   tray_output none
 

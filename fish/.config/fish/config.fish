@@ -1,2 +1,4 @@
 set -gx EDITOR nvim
-set -gx GDK_SCALE 2
+set -gx TERM rxvt-unicode-256color
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_DATA_DIRS /var/lib/flatpak/exports/share
