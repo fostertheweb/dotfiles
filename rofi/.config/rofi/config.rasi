@@ -3,7 +3,7 @@
 configuration {
   /*	modi: "window,run,ssh";*/
   width: 40;
-  lines: 3;
+  lines: 1;
   columns: 1;
   font: "Ilsarniq 20";
   /*	bw: 1;*/
@@ -20,7 +20,7 @@ configuration {
   /*	run-list-command: "";*/
   /*	run-shell-command: "{terminal} -e {cmd}";*/
   /*	window-command: "xkill -id {window}";*/
-  /*	drun-icon-theme: ;*/
+  drun-icon-theme: "Suru";
   /*	disable-history: false;*/
   /*	sort: false;*/
   /*	levenshtein-sort: false;*/
@@ -42,7 +42,7 @@ configuration {
   hide-scrollbar: true;
   /*	fullscreen: false;*/
   /*	fake-transparency: false;*/
-  /*	dpi: -1;*/
+  /* dpi: 1; */
   /*	threads: 0;*/
   /*	scrollbar-width: 8;*/
   /*	scroll-method: 0;*/
@@ -50,18 +50,18 @@ configuration {
   /*	window-format: "{w}    {i}{c}   {t}";*/
   /*	click-to-exit: true;*/
   /*	show-match: true;*/
-  /* theme: "dracula"; */
+   theme: "dracula";
   /*	color-normal: ;*/
   /*	color-urgent: ;*/
   /*	color-active: ;*/
   /*	color-window: ;*/
   /*	plugin-path: "/usr/lib64/rofi";*/
   /*	pid: "/run/user/1000/rofi.pid";*/
-  display-window: "Running";
+  display-window: "Switch";
   /*	display-windowcd: ;*/
   /* display-run: "Search: "; */
   /*	display-ssh: ;*/
-  display-drun: "Search";
+  display-drun: "Launch";
   /*	display-combi: ;*/
   /*	display-keys: ;*/
   /*	kb-primary-paste: "Control+V,Shift+Insert";*/

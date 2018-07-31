@@ -12,7 +12,7 @@ rofi.run-command: fish -c '{cmd}'
 rofi.run-list-command: 'fish -c functions'
 
 ! Cursor
-! Xcursor.theme: FlatbedCursors.Black.Regular
+Xcursor.theme: Suru
 
 ! urxvt
 ! Make it look nice
