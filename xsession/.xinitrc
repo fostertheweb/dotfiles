@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# start pulseaudio
+start-pulseaudio-x11
+
 # caps lock becomes ctrl
 setxkbmap -option ctrl:nocaps
 
