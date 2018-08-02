@@ -6,8 +6,10 @@ set $alt Mod1
 font pango:Ilisarniq 1
 
 # hide title bars when it makes sense to
+hide_edge_borders both
 default_border pixel 0
 default_floating_border pixel 2
+for_window [class="^URxvt.*"] border pixel 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
