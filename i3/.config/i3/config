@@ -2,19 +2,18 @@
 set $mod Mod4
 set $alt Mod1
 
-# Window Titles + Bar
-font pango:Ilisarniq 10
+# Window Titles
+font pango:Ilisarniq 1
 
 # hide title bars when it makes sense to
-for_window [class="^.*"] border pixel 1
-new_window 1pixel
-hide_edge_borders both
+default_border pixel 0
+default_floating_border pixel 2
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxvt -cd $(~/.i3/scripts/terminal-cwd)
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -23,7 +22,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # lock the screen
-bindsym $mod+Shift+x exec "~/.i3/scripts/lockscreen"
+bindsym $mod+Shift+x exec --no-startup-id "~/.i3/scripts/lockscreen"
 
 # change focus
 bindsym $mod+h focus left
@@ -167,11 +166,11 @@ bindsym $alt+Tab exec --no-startup-id rofi -show window
 
 # Color Scheme
 # class                 border  bground text    indicator child_border
-client.focused          #222222 #222222 #eeeeee #00ff00   #555555
-client.focused_inactive #222222 #222222 #eeeeee #00ff00   #555555
-client.unfocused        #111111 #111111 #444444 #00ff00   #555555
-client.urgent           #FF3B30 #FF3B30 #FFFFFF #00ff00   #ff0000
-client.placeholder      #000000 #000000 #555555 #00ff00   #ffffff
+client.focused          #5AC8FA #5AC8FA #5AC8FA #00ff00   #5AC8FA
+client.focused_inactive #007AFF #007AFF #007AFF #00ff00   #007AFF
+client.unfocused        #5856D6 #5856D6 #5856D6 #00ff00   #5856D6
+client.urgent           #FF2D55 #FF2D55 #FF2D55 #00ff00   #FF2D55
+client.placeholder      #222222 #222222 #222222 #00ff00   #222222
 
 client.background       #222222
 

@@ -48,7 +48,7 @@
 #message {
     border:       1px dash 0px 0px ;
     border-color: @separatorcolor;
-    padding:      1px;
+    padding:      10px;
 }
 
 #textbox {
@@ -65,7 +65,7 @@
 
 #element {
     border:  0;
-    padding: 1px;
+    padding: 10px;
 }
 
 #element normal.normal {
@@ -130,7 +130,7 @@
 #inputbar {
     spacing:    0px;
     text-color: @normal-foreground;
-    padding:    1px ;
+    padding:    10px;
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
 
@@ -151,7 +151,6 @@
 
 #textbox-prompt-colon {
     expand:     false;
-    str:        ":";
-    margin:     0px 0.3000em 0.0000em 0.0000em ;
+    margin:     0px 0.5em 0.0000em 0.0000em ;
     text-color: inherit;
 }

@@ -3,9 +3,9 @@
 configuration {
   /*	modi: "window,run,ssh";*/
   width: 40;
-  lines: 1;
+  lines: 8;
   columns: 1;
-  font: "Ilsarniq 20";
+  font: "Ilisarniq 20";
   /*	bw: 1;*/
   /*	location: 0;*/
   padding: 10;
@@ -57,11 +57,11 @@ configuration {
   /*	color-window: ;*/
   /*	plugin-path: "/usr/lib64/rofi";*/
   /*	pid: "/run/user/1000/rofi.pid";*/
-  display-window: "Switch";
+  display-window: "Tab";
   /*	display-windowcd: ;*/
   /* display-run: "Search: "; */
   /*	display-ssh: ;*/
-  display-drun: "Launch";
+  display-drun: "App";
   /*	display-combi: ;*/
   /*	display-keys: ;*/
   /*	kb-primary-paste: "Control+V,Shift+Insert";*/
