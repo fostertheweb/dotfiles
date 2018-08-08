@@ -5,3 +5,5 @@ plugged
 autoload
 session
 fish/.config/fish/fishd.*
+history
+tagged
