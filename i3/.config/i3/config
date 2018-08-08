@@ -73,8 +73,86 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
+# set bg image
+exec --no-startup-id feh --randomize --bg-fill $HOME/Pictures/Wallpaper/*
+
+# Start redshift
+exec --no-startup-id redshift -c ~/.config/redshift/redshift.conf
+
+# Print Screen
+bindsym --release Print exec scrot
+
+# Brightness Controls
+bindsym XF86MonBrightnessUp exec light -A 3%; exec pkill -RTMIN+2 i3blocks
+bindsym XF86MonBrightnessDown exec light -U 3%; exec pkill -RTMIN+2 i3blocks
+
+# Volume Controls
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute; exec pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute; exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle; exec pkill -RTMIN+1 i3blocks
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# rofi window
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $alt+Tab exec --no-startup-id rofi -show window
+
+# Color Scheme
+# class                 border  bground text    indicator child_border
+client.focused          #5AC8FA #5AC8FA #5AC8FA #00ff00   #5AC8FA
+client.focused_inactive #007AFF #007AFF #007AFF #00ff00   #007AFF
+client.unfocused        #5856D6 #5856D6 #5856D6 #00ff00   #5856D6
+client.urgent           #FF2D55 #FF2D55 #FF2D55 #00ff00   #FF2D55
+client.placeholder      #222222 #222222 #222222 #00ff00   #222222
+
+client.background       #222222
+
+# i3bar
+bar {
+  font pango:Faune, Lindua 12
+  status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
+  tray_output none
+
+  colors {
+    background #222222
+    statusline #FFFFFF
+    separator  #555555
+
+    focused_workspace  #444444 #444444 #5AC8FA
+    active_workspace   #444444 #444444 #5856D6
+    inactive_workspace #222222 #222222 #777777
+    urgent_workspace   #FF3B30 #FF3B30 #FFFFFF
+    binding_mode       #007AFF #007AFF #FFFFFF
+  }
+}
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -112,85 +190,3 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-
-# set bg image
-exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpaper/*.jpg
-
-# Start redshift
-exec --no-startup-id redshift -c ~/.config/redshift/redshift.conf
-
-# Print Screen
-bindsym --release Print exec scrot
-
-# Brightness Controls
-bindsym XF86MonBrightnessUp exec light -A 3%; exec pkill -RTMIN+2 i3blocks
-bindsym XF86MonBrightnessDown exec light -U 3%; exec pkill -RTMIN+2 i3blocks
-
-# Volume Controls
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ unmute; exec pkill -RTMIN+1 i3blocks 
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- unmute; exec pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle; exec pkill -RTMIN+1 i3blocks
-
-# ---- Other Stuff ----
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-# rofi window
-bindsym $mod+Tab exec --no-startup-id rofi -show window
-bindsym $alt+Tab exec --no-startup-id rofi -show window
-
-# Color Scheme
-# class                 border  bground text    indicator child_border
-client.focused          #5AC8FA #5AC8FA #5AC8FA #00ff00   #5AC8FA
-client.focused_inactive #007AFF #007AFF #007AFF #00ff00   #007AFF
-client.unfocused        #5856D6 #5856D6 #5856D6 #00ff00   #5856D6
-client.urgent           #FF2D55 #FF2D55 #FF2D55 #00ff00   #FF2D55
-client.placeholder      #222222 #222222 #222222 #00ff00   #222222
-
-client.background       #222222
-
-# i3bar
-bar {
-  font pango:Faune, Lindua 12
-  status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
-  tray_output none
-
-  colors {
-    background #222222
-    statusline #FFFFFF
-    separator  #555555
-
-    focused_workspace  #444444 #444444 #5AC8FA
-    active_workspace   #444444 #444444 #5856D6
-    inactive_workspace #222222 #222222 #777777
-    urgent_workspace   #FF3B30 #FF3B30 #FFFFFF
-    binding_mode       #007AFF #007AFF #FFFFFF
-  }
-}
