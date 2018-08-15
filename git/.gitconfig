@@ -1,6 +1,6 @@
 [user]
-  name = Jonathan Foster
-  email = jxf9099@rit.edu
+	name = Jonathan Foster
+	email = jxf9099@rit.edu
 [includeIf "gitdir:~/"]
   path = .gitconfig-personal
 [includeIf "gitdir:~/Source/Work"]
@@ -9,3 +9,8 @@
 	ui = true
 [core]
 	editor = nvim
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

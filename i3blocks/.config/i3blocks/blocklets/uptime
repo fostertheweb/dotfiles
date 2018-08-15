@@ -1,10 +1,20 @@
 #!/bin/bash
 
 ICON=$(echo -e "<span>\ueae5</span>")
-TEXT=$(echo "whatever")
+RESUME_LOG=$(cat /var/log/syslog | grep 'systemd-sleep' | grep 'resumed' | tail -1 | cut -d" " -f 3)
+CURRENT_TIME=$(date +%s)
+RESUME_TIME=$(date -d $RESUME_LOG +%s)
 
-# loginctl session status
+SECONDS=$(($CURRENT_TIME - $RESUME_TIME))
+MINUTES=$(($SECONDS / 60))
+HOURS=$(($MINUTES / 60))
 
-echo "${ICON} ${TEXT}"
-echo "${ICON} ${TEXT}"
+if [[ $HOURS -ge 1 ]]; then
+  UPTIME=$(echo "${HOURS}h ${MINUTES}m")
+else
+  UPTIME=$(echo "${MINUTES}m")
+fi
+
+echo "${ICON} ${UPTIME}"
+echo "${ICON} ${UPTIME}"
 echo "#ffffff"

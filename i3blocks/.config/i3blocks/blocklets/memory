@@ -2,5 +2,17 @@
 
 PERCENT_USED=$(free | awk 'FNR == 2 {print int($3 * 100 / $2)}')
 
-echo -e "<span foreground='#5AC8FA'>\ueca5</span> ${PERCENT_USED}%"
-echo -e "<span foreground='#5AC8FA'>\ueca5</span> ${PERCENT_USED}%"
+ICON_GOOD=$(echo -e "<span foreground='#5AC8FA'>\ueca5</span> ${PERCENT_USED}%")
+ICON_WARN=$(echo -e "<span foreground='#FFCC00'>\ueca5</span> ${PERCENT_USED}%")
+ICON_URGENT=$(echo -e "<span foreground='#FF3B30'>\ueca5</span> ${PERCENT_USED}%")
+
+if [[ $PERCENT_USED -ge 50 ]]; then
+  echo $ICON_WARN
+  echo $ICON_WARN
+elif [[ $PERCENT_USED -ge 90 ]]; then
+  echo $ICON_URGENT
+  echo $ICON_URGENT
+else
+  echo $ICON_GOOD
+  echo $ICON_GOOD
+fi

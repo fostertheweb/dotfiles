@@ -8,3 +8,4 @@ fish/.config/fish/fishd.*
 history
 tagged
 bookmarks
+fish_prompt.fish
