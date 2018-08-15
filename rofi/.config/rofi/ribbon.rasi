@@ -1,0 +1,61 @@
+/**
+ * ROFI Color theme
+ * User: Rokit
+ * Created from https://github.com/DaveDavenport/rofi-themes/blob/master/User%20Themes/ribbon.rasi
+*/
+
+* {
+  base-bg: #222222;
+  selected-bg: #444444;
+  base-color: #222222aa;
+  selected-color: #ffffff;
+  border-color: #00000066;
+  transparent: #00000000;
+  text-color: #999999;
+}
+#window {
+  width: 100%;
+  background-color: @base-bg;
+  children: [ horibox ];
+  margin: 0px;
+  border: 0px 0px 4px 0px;
+  border-color: #444444;
+}
+#horibox {
+  background-color: @transparent;
+  orientation: horizontal;
+  children: [ prompt, textbox-prompt-colon, entry, listview ];
+}
+#prompt {
+  text-color: #999999;
+  padding: 0.7em 0px 0.7em 10px;
+  background-color: @transparent;
+}
+#textbox-prompt-colon  {
+  expand: false;
+  padding: 0.7em 10px 0.7em 0px;
+  text-color: @selected-color;
+  background-color: @transparent;
+}
+#entry {
+  padding: 0.7em;
+  text-color: @selected-color;
+  background-color: #222222;
+  expand: false;
+  width: 10em;
+}
+#listview {
+  background-color: @transparent;
+  layout: horizontal;
+  spacing: 5px;
+  lines: 100;
+}
+#element {
+  background-color: @transparent;
+  padding: 0.7em;
+}
+#element selected {
+  border: 0px 1px;
+  text-color: @selected-color;
+  background-color: @selected-bg;
+}
