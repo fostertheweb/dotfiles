@@ -6,8 +6,8 @@ CURRENT_TIME=$(date +%s)
 RESUME_TIME=$(date -d $RESUME_LOG +%s)
 
 SECONDS=$(($CURRENT_TIME - $RESUME_TIME))
-MINUTES=$(($SECONDS / 60))
-HOURS=$(($MINUTES / 60))
+HOURS=$(($SECONDS / 3600))
+MINUTES=$((($SECONDS % 3600) / 60))
 
 if [[ $HOURS -ge 1 ]]; then
   UPTIME=$(echo "${HOURS}h ${MINUTES}m")
