@@ -5,7 +5,7 @@ configuration {
   font: "Ilisarniq 20";
   location: 1;
   padding: 10;
-  yoffset: 64;
+  yoffset: 56;
   show-icons: true;
   drun-icon-theme: "Suru";
   line-margin: 10;
