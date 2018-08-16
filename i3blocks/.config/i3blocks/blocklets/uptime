@@ -3,11 +3,16 @@
 ICON=$(echo -e "<span>\ueae5</span>")
 RESUME_DATE=$(cat /var/log/syslog | grep 'systemd-sleep' | grep 'resumed' | tail -1 | cut -d" " -f 3)
 RESUME_TIME=$(date -d $RESUME_DATE +%s)
-LOGIN_DATE=$(loginctl session-status 1 | sed -n 2p | cut -d" " -f 7)
+LOGIN_DATE=$(loginctl show-session 1 | grep 'Timestamp=' | cut -d" " -f 3)
 LOGIN_TIME=$(date -d $LOGIN_DATE +%s)
 CURRENT_TIME=$(date +%s)
 
-SECONDS=$(($CURRENT_TIME - $RESUME_TIME))
+if [[ $LOGIN_TIME -gt $RESUME_TIME ]]; then
+  SECONDS=$(($CURRENT_TIME - $LOGIN_TIME))
+else
+  SECONDS=$(($CURRENT_TIME - $RESUME_TIME))
+fi
+
 HOURS=$(($SECONDS / 3600))
 MINUTES=$(($SECONDS / 60))
 
@@ -16,15 +21,10 @@ if [[ $MINUTES -ge 60 ]]; then
 fi
 
 if [[ $HOURS -ge 1 ]]; then
-  UPTIME=$(echo "${HOURS}h ${MINUTES}m")
+  UPTIME=$(echo "${HOURS}h ${MINUTES:-0}m")
 else
   UPTIME=$(echo "${MINUTES}m")
 fi
 
-if [[ $LOGIN_TIME -gt $RESUME_TIME ]]; then
-  echo ""
-  echo ""
-else
-  echo "${ICON} ${UPTIME}"
-  echo "${ICON} ${UPTIME}"
-fi
+echo "${ICON} ${UPTIME}"
+echo "${ICON} ${UPTIME}"
