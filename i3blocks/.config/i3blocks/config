@@ -7,9 +7,6 @@ separator_block_width=40
 markup=pango
 separator=false
 
-[uptime]
-interval=60
-
 [docker]
 interval=60
 

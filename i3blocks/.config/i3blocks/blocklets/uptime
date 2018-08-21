@@ -7,7 +7,7 @@ LOGIN_DATE=$(loginctl show-session 1 | grep 'Timestamp=' | cut -d" " -f 3)
 LOGIN_TIME=$(date -d $LOGIN_DATE +%s)
 CURRENT_TIME=$(date +%s)
 
-if [[ $LOGIN_TIME -gt $RESUME_TIME ]]; then
+if [[ $LOGIN_TIME -ge $RESUME_TIME ]]; then
   SECONDS=$(($CURRENT_TIME - $LOGIN_TIME))
 else
   SECONDS=$(($CURRENT_TIME - $RESUME_TIME))
