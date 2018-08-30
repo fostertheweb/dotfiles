@@ -3,9 +3,18 @@
 
 # Global properties
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=40
+separator_block_width=0
 markup=pango
 separator=false
+min_width=160
+align=right
+
+[title]
+command=xtitle -s
+interval=persist
+min_width=1280
+align=center
+color=#999999
 
 [docker]
 interval=60
@@ -27,6 +36,7 @@ interval=10
 [battery]
 instance=0
 interval=30
+separator_block_width=40
 
 [time]
 command=date '+%a %l:%M %p'
