@@ -1,17 +1,15 @@
-## 🤓 my dotfiles
+## Setup
 
-### Setup
-
-```bash
-$ git clone git@github.com:fostertheweb/dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
-$ stow fish neovim git
-```
-
-### Install [vim-plug](https://github.com/junegunn/vim-plug)
+> You will need the command-line tool `stow` installed on your system.
 
 ```bash
-$ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-$ nvim +PlugInstall +qa
+git clone git@github.com:fostertheweb/dotfiles.git ~/.dotfiles
 ```
+```bash
+cd ~/.dotfiles
+```
+```bash
+stow bash vim
+```
+💡
+[Managing dotfiles with GNU stow](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/) by Alex Pearce
