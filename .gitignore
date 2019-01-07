@@ -1,9 +1,2 @@
 *.swp
 .DS_Store
-.netrwhist
-plugged
-autoload
-session
-history
-tagged
-bookmarks
