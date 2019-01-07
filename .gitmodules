@@ -4,3 +4,6 @@
 [submodule "vim/.vim/bundle/vim-sensible"]
 	path = vim/.vim/bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible
+[submodule "nvm/.nvm"]
+	path = nvm/.nvm
+	url = https://github.com/creationix/nvm.git
