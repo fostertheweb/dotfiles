@@ -9,6 +9,12 @@ require('packer').startup(function(use)
   use 'savq/melange'
   use 'editorconfig/editorconfig-vim'
   use {
+    'lewis6991/gitsigns.nvim',
+    config = function ()
+      require('gitsigns').setup()
+    end
+  }
+  use {
     'nvim-treesitter/nvim-treesitter',
     config = function ()
       require('nvim-treesitter.configs').setup({
@@ -52,6 +58,9 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.termguicolors = true
+vim.opt.number = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 vim.cmd [[colorscheme melange]]
 
