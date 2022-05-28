@@ -22,7 +22,7 @@ require('packer').startup(function(use)
     config = function ()
       require('lualine').setup {
         options = {
-          theme = 'powerline'
+          theme = 'gruvbox'
         }
       }
     end
@@ -92,4 +92,20 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
 vim.cmd [[colorscheme melange]]
+
+-- Custom
+function is_dark()
+  time = os.date("*t")
+  return time.hour > 21
+end
+
+function bg_mode()
+  if is_dark() then
+    vim.cmd [[set bg=dark]]
+  else
+    vim.cmd [[set bg=light]]
+  end
+end
+
+bg_mode()
 
