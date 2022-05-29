@@ -94,13 +94,9 @@ vim.opt.cursorcolumn = true
 vim.cmd [[colorscheme melange]]
 
 -- Custom
-function is_dark()
-  time = os.date("*t")
-  return time.hour > 21
-end
-
 function bg_mode()
-  if is_dark() then
+  time = os.date("*t")
+  if time.hour > 20 then
     vim.cmd [[set bg=dark]]
   else
     vim.cmd [[set bg=light]]
