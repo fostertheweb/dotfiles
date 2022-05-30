@@ -70,13 +70,20 @@ require('packer').startup(function(use)
     end
   }
   use {
-    'williamboman/nvim-lsp-installer',
+    {
+      'williamboman/nvim-lsp-installer',
+      config = function ()
+        require('nvim-lsp-installer').setup({
+          automatic_installation = true,
+        })
+      end
+    },
     {
       'neovim/nvim-lspconfig',
       config = function ()
-      	require('nvim-lsp-installer').setup({
-          automatic_installation = true,
-      	})
+        local lspconfig = require('lspconfig')
+        lspconfig.sumneko_lua.setup {}
+        lspconfig.tsserver.setup {}
       end
     }
   }
@@ -96,7 +103,7 @@ vim.cmd [[colorscheme melange]]
 -- Custom
 function bg_mode()
   time = os.date("*t")
-  if time.hour > 20 then
+  if time.hour > 20 or time.hour < 7 then
     vim.cmd [[set bg=dark]]
   else
     vim.cmd [[set bg=light]]
