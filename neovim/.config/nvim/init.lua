@@ -60,8 +60,8 @@ require('packer').startup(function(use)
           "typescript",
           "tsx",
         },
-        hightlight = {
-          enabled = true,
+        highlight = {
+          enable = true,
         },
         indent = {
           enable = true,
@@ -89,6 +89,8 @@ require('packer').startup(function(use)
   }
 end)
 
+-- Completions
+
 -- Options
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
@@ -102,7 +104,7 @@ vim.cmd [[colorscheme melange]]
 
 -- Custom
 function bg_mode()
-  time = os.date("*t")
+  local time = os.date("*t")
   if time.hour > 20 or time.hour < 7 then
     vim.cmd [[set bg=dark]]
   else

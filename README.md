@@ -11,7 +11,7 @@ cd ~/.dotfiles
 ```
 
 ```bash
-stow vim git bash
+stow neovim fish alacritty
 ```
 
 💡
