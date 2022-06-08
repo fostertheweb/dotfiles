@@ -6,6 +6,7 @@ keymap("n", "<C-p>", ":Telescope git_files<CR>", {})
 keymap("n", "<C-f>", ":Telescope live_grep<CR>", {})
 keymap("n", "<C-t>", ":Telescope lsp_document_symbols<CR>", {})
 keymap("n", "<C-b>", ":Telescope buffers<CR>", {})
+keymap("n", "<C-o>", ":Lf<CR>", {})
 
 -- Plugins
 require("packer").startup(function(use)
@@ -37,7 +38,7 @@ require("packer").startup(function(use)
       local telescope = require("telescope")
       telescope.setup()
       telescope.load_extension("fzf")
-      telescope.load_extension('projects')
+      telescope.load_extension("projects")
     end,
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -121,6 +122,26 @@ require("packer").startup(function(use)
         },
       })
     end,
+  })
+  use({
+    "akinsho/toggleterm.nvim",
+    tag = "v1.*",
+    config = function()
+      require("toggleterm").setup()
+    end,
+  })
+  use({
+    "lmburns/lf.nvim",
+    config = function()
+      require("lf").setup({
+        winblend = 0,
+        border = "single",
+      })
+    end,
+    requires = {
+      "plenary.nvim",
+      "toggleterm.nvim",
+    },
   })
 end)
 
