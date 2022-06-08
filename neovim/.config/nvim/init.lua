@@ -5,6 +5,7 @@ keymap("i", "jj", "<Esc>", {})
 keymap("n", "<C-p>", ":Telescope git_files<CR>", {})
 keymap("n", "<C-f>", ":Telescope live_grep<CR>", {})
 keymap("n", "<C-t>", ":Telescope lsp_document_symbols<CR>", {})
+keymap("n", "<C-b>", ":Telescope buffers<CR>", {})
 
 -- Plugins
 require("packer").startup(function(use)
@@ -36,6 +37,7 @@ require("packer").startup(function(use)
       local telescope = require("telescope")
       telescope.setup()
       telescope.load_extension("fzf")
+      telescope.load_extension('projects')
     end,
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -90,6 +92,12 @@ require("packer").startup(function(use)
     },
   })
   use({
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({})
+    end,
+  })
+  use({
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -134,7 +142,7 @@ vim.cmd([[colorscheme melange]])
 -- Custom
 function bg_mode()
   local time = os.date("*t")
-  if time.hour > 20 or time.hour < 7 then
+  if time.hour > 19 or time.hour < 7 then
     vim.cmd([[set bg=dark]])
   else
     vim.cmd([[set bg=light]])
