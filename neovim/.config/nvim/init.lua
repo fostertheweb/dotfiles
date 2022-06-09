@@ -75,12 +75,16 @@ require("packer").startup(function(use)
     end,
   })
   use({
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup({})
+    end,
+  })
+  use({
     {
       "williamboman/nvim-lsp-installer",
       config = function()
-        require("nvim-lsp-installer").setup({
-          automatic_installation = true,
-        })
+        require("nvim-lsp-installer").setup({})
       end,
     },
     {
@@ -110,7 +114,8 @@ require("packer").startup(function(use)
               group = augroup,
               buffer = bufnr,
               callback = function()
-                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                -- on 0.8, you should use:
+                -- vim.lsp.buf.format({ bufnr = bufnr })
                 vim.lsp.buf.formatting_sync()
               end,
             })
@@ -143,6 +148,25 @@ require("packer").startup(function(use)
       "toggleterm.nvim",
     },
   })
+  use({
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require("cmp").setup({
+        sources = {
+          { name = "nvim_lsp" },
+        },
+      })
+
+      -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+      require("lspconfig").tsserver.setup({
+        capabilities = capabilities,
+      })
+    end,
+  })
+  use({ "hrsh7th/cmp-nvim-lsp" })
 end)
 
 -- Completions
