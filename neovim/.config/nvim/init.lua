@@ -81,20 +81,15 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    {
-      "williamboman/nvim-lsp-installer",
-      config = function()
-        require("nvim-lsp-installer").setup({})
-      end,
-    },
-    {
-      "neovim/nvim-lspconfig",
-      config = function()
-        local lspconfig = require("lspconfig")
-        lspconfig.sumneko_lua.setup({})
-        lspconfig.tsserver.setup({})
-      end,
-    },
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.sumneko_lua.setup({})
+      lspconfig.tsserver.setup({})
+      lspconfig.cssls.setup({})
+      lspconfig.tailwindcss.setup({})
+      lspconfig.html.setup({})
+    end,
   })
   use({
     "ahmedkhalf/project.nvim",
