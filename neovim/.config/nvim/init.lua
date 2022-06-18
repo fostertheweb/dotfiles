@@ -7,6 +7,9 @@ keymap("n", "<C-f>", ":Telescope live_grep<CR>", {})
 keymap("n", "<C-t>", ":Telescope lsp_document_symbols<CR>", {})
 keymap("n", "<C-b>", ":Telescope buffers<CR>", {})
 keymap("n", "<C-o>", ":Lf<CR>", {})
+keymap("n", "<C-s>", ":w<CR>", {})
+
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
 
 -- Plugins
 require("packer").startup(function(use)
@@ -95,32 +98,6 @@ require("packer").startup(function(use)
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({})
-    end,
-  })
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-      require("null-ls").setup({
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                -- on 0.8, you should use:
-                -- vim.lsp.buf.format({ bufnr = bufnr })
-                vim.lsp.buf.formatting_sync()
-              end,
-            })
-          end
-        end,
-        sources = {
-          require("null-ls").builtins.formatting.stylua,
-          require("null-ls").builtins.formatting.prettier,
-        },
-      })
     end,
   })
   use({
