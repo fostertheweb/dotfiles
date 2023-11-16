@@ -1,0 +1,5 @@
+bind status P !git push origin
+color cursor black yellow bold
+color title-focus black magenta bold
+color title-blur black white
+

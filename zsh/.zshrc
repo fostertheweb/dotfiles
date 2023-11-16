@@ -1,5 +1,13 @@
 export EDITOR=hx
 
+# history configuration
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=99999
+export HISTFILESIZE=999999
+export SAVEHIST=$HISTSIZE
+
+setopt HIST_FIND_NO_DUPS
+
 # opam setup
 [[ ! -r /Users/jonathan/.opam/opam-init/init.zsh ]] || source /Users/jonathan/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
@@ -20,6 +28,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # zsh plugins
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # prompt
 eval "$(starship init zsh)"
