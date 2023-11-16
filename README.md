@@ -11,8 +11,14 @@ cd ~/.dotfiles
 ```
 
 ```bash
-stow neovim fish alacritty
+stow helix zsh kitty
 ```
 
 💡
 [Managing dotfiles with GNU stow](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/) by Alex Pearce
+
+### Install Homebrew packages
+
+```bash
+brew bundle
+```

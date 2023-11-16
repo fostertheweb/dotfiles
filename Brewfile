@@ -1,0 +1,8 @@
+brew "helix"
+brew "tig"
+brew "zoxide"
+brew "starship"
+brew "eza"
+brew "zsh-syntax-highlighting"
+brew "zsh-autosuggestions"
+brew "fzf"
