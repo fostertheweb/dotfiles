@@ -7,6 +7,7 @@ export HISTFILESIZE=999999
 export SAVEHIST=$HISTSIZE
 
 setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY
 
 # opam setup
 [[ ! -r /Users/jonathan/.opam/opam-init/init.zsh ]] || source /Users/jonathan/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
