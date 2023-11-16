@@ -41,3 +41,9 @@ export PATH="$GOPATH/bin:$PATH"
 alias z="zoxide"
 eval "$(z init zsh)"
 alias ls="eza -la"
+alias history="fc -l 1"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
