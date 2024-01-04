@@ -1,4 +1,9 @@
-theme = "monokai_pro_ristretto"
+theme = "gruvbox"
+
+[editor]
+cursorline = true
+line-number = "relative"
+true-color = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -8,3 +13,14 @@ select = "underline"
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
+character = "┊"
+skip-levels = 1
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]

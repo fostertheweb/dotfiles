@@ -9,22 +9,12 @@ export SAVEHIST=$HISTSIZE
 setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 
-# opam setup
-[[ ! -r /Users/jonathan/.opam/opam-init/init.zsh ]] || source /Users/jonathan/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
 # pnpm
 export PNPM_HOME="/Users/jonathan/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-# bun completions
-[ -s "/Users/jonathan/.bun/_bun" ] && source "/Users/jonathan/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # zsh plugins
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -39,9 +29,11 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias z="zoxide"
+alias f="zoxide"
 eval "$(z init zsh)"
 alias ls="eza -la"
 alias history="fc -l 1"
+alias j="zellij"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
