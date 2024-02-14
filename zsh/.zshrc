@@ -1,4 +1,6 @@
-export EDITOR=hx
+bindkey -e
+
+export EDITOR=nvim
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -33,9 +35,15 @@ alias f="zoxide"
 eval "$(z init zsh)"
 alias ls="eza -la"
 alias history="fc -l 1"
-alias j="zellij"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# bun completions
+[ -s "/Users/jonathan/.bun/_bun" ] && source "/Users/jonathan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

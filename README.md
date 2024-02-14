@@ -11,7 +11,7 @@ cd ~/.dotfiles
 ```
 
 ```bash
-stow helix zsh kitty
+stow tmux zsh neovim tig
 ```
 
 💡
