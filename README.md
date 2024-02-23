@@ -11,7 +11,7 @@ cd ~/.dotfiles
 ```
 
 ```bash
-stow tmux zsh neovim tig
+stow tmux zsh neovim tig helix starship git
 ```
 
 💡

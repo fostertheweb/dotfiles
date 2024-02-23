@@ -31,7 +31,7 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias z="zoxide"
-alias f="zoxide"
+alias f="ag . | fzf | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 eval "$(z init zsh)"
 alias ls="eza -la"
 alias history="fc -l 1"
@@ -47,3 +47,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+function ttv() {
+    local url="twitch.tv/$1"
+    streamlink $url best --stream-url | xargs open -a "QuickTime Player.app"
+    open -a Safari "https://$url/chat"
+}
