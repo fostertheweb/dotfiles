@@ -1,0 +1,17 @@
+.dap-breakpoints
+.lsp-session-v1
+.cache
+history
+places
+projects
+eshell
+transient
+elpa/
+auto-save-list/
+elpa-gnupg/
+custom.el
+*.elc
+recentf
+server/
+*.log
+*~

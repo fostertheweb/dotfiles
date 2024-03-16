@@ -31,7 +31,8 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias z="zoxide"
-alias f="ag . | fzf | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
+alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
+alias c="tig status"
 eval "$(z init zsh)"
 alias ls="eza -la"
 alias history="fc -l 1"
@@ -53,3 +54,13 @@ function ttv() {
     streamlink $url best --stream-url | xargs open -a "QuickTime Player.app"
     open -a Safari "https://$url/chat"
 }
+
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+

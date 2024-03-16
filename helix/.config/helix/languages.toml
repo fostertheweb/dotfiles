@@ -4,9 +4,13 @@ formatter = { command = 'prettier' }
 language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
 auto-format = true
 
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+
 [[language]]
 name = "astro"
-formatter = { command = 'prettier' }
+formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
 language-servers = ["astro-ls", "tailwindcss-ls"]
 auto-format = true
 
@@ -47,7 +51,7 @@ auto-format = true
 
 [[language]]
 name = "svelte"
-formatter = { command = 'prettier' }
+formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-svelte", "prettier-plugin-tailwindcss", "--parser", "svelte", "--stdin"] }
 language-servers = ["svelteserver", "tailwindcss-ls"]
 auto-format = true
 
