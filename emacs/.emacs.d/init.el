@@ -54,6 +54,9 @@
 
 (use-package doom-modeline
   :ensure t
+  :config
+  (setq doom-modeline-buffer-file-name-style 'relative-to-project)
+  (setq doom-modeline-buffer-encoding nil)
   :init (doom-modeline-mode 1))
 
 (use-package nerd-icons
