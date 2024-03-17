@@ -59,8 +59,51 @@
   (setq doom-modeline-buffer-encoding nil)
   :init (doom-modeline-mode 1))
 
+(use-package vertico
+  :ensure t
+  :config
+  (setq vertico-cycle t)
+  (setq vertico-resize t)
+  (vertico-mode 1))
+
+(use-package consult
+  :ensure t
+  :bind (;; A recursive grep
+         ("M-s M-g" . consult-git-grep)
+         ;; Search the current buffer
+         ("M-s M-f" . consult-line)
+         ;; Switch to another buffer, or bookmarked file, or recently
+         ;; opened file.
+         ("M-s M-b" . consult-buffer)))
+
+(use-package embark
+  :ensure t
+  :bind (("C-." . embark-act)
+         :map minibuffer-local-map
+         ("C-c C-c" . embark-collect)
+         ("C-c C-e" . embark-export)))
+
+(use-package embark-consult
+  :ensure t)
+
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)))
+
 (use-package nerd-icons
   :ensure t)
+
+(use-package nerd-icons-completion
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package spacious-padding
   :ensure t
