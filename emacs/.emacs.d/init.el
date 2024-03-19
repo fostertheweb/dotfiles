@@ -15,7 +15,9 @@
 (scroll-bar-mode -1)
 
 ;; Set the font. Note: height = px * 100
-(set-face-attribute 'default nil :font "Berkeley Mono" :height 130)
+(set-face-attribute 'default nil :font "Berkeley Mono" :height 140)
+
+(setq-default line-spacing 0.35)
 
 ;; Unique buffer names
 (require 'uniquify)
@@ -211,6 +213,7 @@
   :ensure t
   :mode (("\\.ts\\'" . web-mode)
          ("\\.js\\'" . web-mode)
+         ("\\.astro\\'" . web-mode)
          ("\\.mjs\\'" . web-mode)
          ("\\.cjs\\'" . web-mode)
          ("\\.svelte\\'" . web-mode)
@@ -222,6 +225,7 @@
   (web-mode-css-indent-offset 2)
   (web-mode-markup-indent-offset 2)
   (web-mode-enable-auto-quoting nil)
+  (web-mode-engines-alist '(("astro" . "\\.astro\\'")))
   (web-mode-engines-alist '(("svelte" . "\\.svelte\\'"))))
 
 (use-package rust-mode
