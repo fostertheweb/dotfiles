@@ -52,6 +52,18 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(unless (package-installed-p 'quelpa)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+    (eval-buffer)
+    (quelpa-self-upgrade)))
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+(require 'quelpa-use-package)
+
 (use-package doom-modeline
   :ensure t
   :config
@@ -109,10 +121,9 @@
   :ensure t
   :init (spacious-padding-mode 1))
 
-(use-package ef-themes
-  :ensure t
+(use-package kaolin-themes
   :config
-  (ef-themes-select 'ef-symbiosis))
+  (load-theme 'kaolin-shiva t))
 
 (use-package git-gutter
   :hook (prog-mode . git-gutter-mode)
@@ -125,10 +136,33 @@
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
+(use-package lsp-biome
+    :quelpa (lsp-biome :fetcher github :repo "cxa/lsp-biome"))
+
+(add-hook 'after-init-hook #'global-prettier-mode)
+
+(setq-default tab-width 2)
+
+;; tree sitter
+(require 'treesit)
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook ((rust-mode . lsp-deferred)
+				 (web-mode . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-headerline-breadcrumb-enable nil)
@@ -173,6 +207,23 @@
   :init
   (setq markdown-command "multimarkdown"))
 
+(use-package web-mode
+  :ensure t
+  :mode (("\\.ts\\'" . web-mode)
+         ("\\.js\\'" . web-mode)
+         ("\\.mjs\\'" . web-mode)
+         ("\\.cjs\\'" . web-mode)
+         ("\\.svelte\\'" . web-mode)
+         ("\\.tsx\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode))
+  :custom
+  (web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  (web-mode-code-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-markup-indent-offset 2)
+  (web-mode-enable-auto-quoting nil)
+  (web-mode-engines-alist '(("svelte" . "\\.svelte\\'"))))
+
 (use-package rust-mode
   :ensure t
   :bind (:map rust-mode-map
@@ -184,7 +235,7 @@
 
 ;; Separate file for saved customize options
 (setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file 'noerror 'nomessage)
+;; (load custom-file 'noerror 'nomessage)
 
 ;;; init.el ends here
 
