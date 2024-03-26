@@ -15,3 +15,5 @@ recentf
 server/
 *.log
 *~
+tree-sitter
+quelpa/

@@ -30,10 +30,9 @@ eval "$(starship init zsh)"
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
-alias z="zoxide"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
-eval "$(z init zsh)"
+eval "$(zoxide init zsh)"
 alias ls="eza -la"
 alias history="fc -l 1"
 
@@ -48,6 +47,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# ruby
+eval "$(rbenv init - zsh)"
 
 function ttv() {
     local url="twitch.tv/$1"

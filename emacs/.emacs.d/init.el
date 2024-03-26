@@ -13,11 +13,13 @@
 ;; Remove extra UI clutter by hiding the scrollbar, and toolbar.
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(when (not (display-graphic-p))
+	(menu-bar-mode -1))
 
 ;; Set the font. Note: height = px * 100
-(set-face-attribute 'default nil :font "Berkeley Mono" :height 140)
+(set-face-attribute 'default nil :font "Martian Mono" :height 120)
 
-(setq-default line-spacing 0.35)
+(setq-default line-spacing 0.4)
 
 ;; Unique buffer names
 (require 'uniquify)
@@ -71,6 +73,8 @@
   :config
   (setq doom-modeline-buffer-file-name-style 'relative-to-project)
   (setq doom-modeline-buffer-encoding nil)
+	(setq doom-modeline-percent-position nil)
+	(setq doom-modeline-position-line-format nil)
   :init (doom-modeline-mode 1))
 
 (use-package vertico
@@ -237,8 +241,18 @@
 	      ("C-c C-t" . 'rust-test))
   :hook (rust-mode . prettify-symbols-mode))
 
+(use-package gptel
+	:config
+	(setq
+	 gptel-model "magicoder:latest"
+	 gptel-backend (gptel-make-ollama "Ollama"
+                 :host "localhost:11434"
+                 :stream t
+                 :models '("magicoder:latest"))))
+
 ;; Separate file for saved customize options
 (setq custom-file (locate-user-emacs-file "custom.el"))
+;; don't load this trash
 ;; (load custom-file 'noerror 'nomessage)
 
 ;;; init.el ends here
