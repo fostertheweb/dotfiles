@@ -1,0 +1,12 @@
+layout {
+    tab {
+        pane command="yazi"
+    }
+    tab {
+        pane command="gitu"
+    }
+    tab split_direction="horizontal" {
+        pane size="80%" command="hx" args="."
+        pane size="20%"
+    }
+}

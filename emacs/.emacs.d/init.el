@@ -150,7 +150,9 @@
 (use-package lsp-biome
     :quelpa (lsp-biome :fetcher github :repo "cxa/lsp-biome"))
 
-(add-hook 'after-init-hook #'global-prettier-mode)
+(use-package prettier
+  :ensure t
+  :hook (after-init . global-prettier-mode))
 
 (setq-default tab-width 2)
 

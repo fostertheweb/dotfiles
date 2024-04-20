@@ -1,6 +1,6 @@
 bindkey -e
 
-export EDITOR=nvim
+export EDITOR=hx
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -34,7 +34,10 @@ alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $E
 alias c="tig status"
 eval "$(zoxide init zsh)"
 alias ls="eza -la"
+alias ll="eza -la"
 alias history="fc -l 1"
+alias j="zellij"
+alias y="yazi"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -53,11 +56,12 @@ eval "$(rbenv init - zsh)"
 
 function ttv() {
     local url="twitch.tv/$1"
-    streamlink $url best --stream-url | xargs open -a "QuickTime Player.app"
+    streamlink $url best --stream-url --twitch-disable-ads | xargs open -a "QuickTime Player.app"
     open -a Safari "https://$url/chat"
 }
 
-function ya() {
+# change dir on exit
+function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -68,3 +72,33 @@ function ya() {
 
 # Shopify Hydrogen alias to local projects
 alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# automatic nvm use
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
