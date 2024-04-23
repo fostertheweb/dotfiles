@@ -10,6 +10,8 @@ keybinds {
         bind "Alt l" { MoveFocus "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt q" { GoToPreviousTab; } 
+        bind "Alt e" { GoToNextTab; } 
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -185,6 +187,14 @@ keybinds {
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
+    shared {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+                floating true
+                ignore_case true
+            }
+        }
+    }
 }
 
 plugins {
@@ -208,7 +218,7 @@ plugins {
 //    - true
 //    - false (Default)
 //
-simplified_ui false
+simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -224,7 +234,7 @@ simplified_ui false
 //   - true (default)
 //   - false
 //
-pane_frames false
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -280,7 +290,7 @@ theme "gruvbox"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-default_layout "compact"
+default_layout "default"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal

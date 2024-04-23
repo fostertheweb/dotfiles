@@ -38,6 +38,8 @@ alias ll="eza -la"
 alias history="fc -l 1"
 alias j="zellij"
 alias y="yazi"
+alias .='cd $HOME/.dotfiles'
+alias ted='zellij --session $(basename $PWD) --layout $HOME/.config/zellij/layouts/project.kdl'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
