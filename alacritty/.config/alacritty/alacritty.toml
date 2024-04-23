@@ -1,0 +1,16 @@
+live_config_reload = true
+
+[window]
+decorations = "Buttonless"
+padding.x = 10
+padding.y = 10
+dynamic_padding = true
+option_as_alt = "Both"
+
+[font]
+size = 15
+normal = { family = "BerkeleyMono Nerd Font", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+offset.y = 2

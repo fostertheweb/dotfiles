@@ -10,8 +10,7 @@ keybinds {
         bind "Alt l" { MoveFocus "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
-        bind "Alt q" { GoToPreviousTab; } 
-        bind "Alt e" { GoToNextTab; } 
+        bind "Alt q" { GoToNextTab; } 
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }

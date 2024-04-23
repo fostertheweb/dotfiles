@@ -1,6 +1,5 @@
 layout {
     tab name="files" {
-        
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -10,7 +9,6 @@ layout {
         }
     }
     tab name="git" {
-        
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -25,6 +23,17 @@ layout {
         }
         pane size="80%" command="hx" args="."
         pane size="20%"
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="help" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane command="ollama" {
+            args "run" "magicoder"
+        }
         pane size=2 borderless=true {
             plugin location="zellij:status-bar"
         }
