@@ -1,6 +1,6 @@
 bindkey -e
 
-export EDITOR=hx
+export EDITOR=nvim
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
