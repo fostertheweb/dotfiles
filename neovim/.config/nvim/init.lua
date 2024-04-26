@@ -147,7 +147,7 @@ require('lazy').setup {
 
       vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
-      --
+      -- Git commands
       vim.keymap.set('n', '<leader>gg', '<CMD>G<CR>', { desc = '[G]it Status' })
       vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
       vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
