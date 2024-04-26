@@ -26,7 +26,7 @@ keybinds {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl p" { SwitchToMode "Normal"; }
+        bind "Alt p" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
@@ -166,7 +166,7 @@ keybinds {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
+        bind "Alt p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
         bind "Ctrl n" { SwitchToMode "Resize"; }
@@ -187,6 +187,8 @@ keybinds {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
     shared {
+        unbind "Ctrl p"
+        unbind "Ctrl f"
         bind "Ctrl y" {
             LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
                 floating true
