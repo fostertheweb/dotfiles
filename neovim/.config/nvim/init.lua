@@ -146,6 +146,12 @@ require('lazy').setup {
       }
 
       vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+
+      --
+      vim.keymap.set('n', '<leader>gg', '<CMD>G<CR>', { desc = '[G]it Status' })
+      vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
+      vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
+      vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P}ush' })
     end,
   },
   -- "gc" to comment visual regions/lines
@@ -193,6 +199,7 @@ require('lazy').setup {
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
       }
     end,
   },
