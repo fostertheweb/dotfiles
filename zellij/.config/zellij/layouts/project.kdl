@@ -1,22 +1,4 @@
 layout {
-    tab name="files" {
-        pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
-        }
-        pane command="yazi"
-        pane size=2 borderless=true {
-            plugin location="zellij:status-bar"
-        }
-    }
-    tab name="git" {
-        pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
-        }
-        pane command="gitu"
-        pane size=2 borderless=true {
-            plugin location="zellij:status-bar"
-        }
-    }
     tab name="code" split_direction="horizontal" {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
@@ -27,12 +9,22 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
+    tab name="run" split_direction="horizontal" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane size="50%"
+        pane size="50%"
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
     tab name="help" {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
         pane command="ollama" {
-            args "run" "magicoder"
+            args "run" "codeqwen"
         }
         pane size=2 borderless=true {
             plugin location="zellij:status-bar"
