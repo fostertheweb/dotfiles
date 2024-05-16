@@ -25,6 +25,7 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 
 # prompt
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # go
 export GOPATH="$HOME/Developer/go"
@@ -32,7 +33,6 @@ export PATH="$GOPATH/bin:$PATH"
 
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
-eval "$(zoxide init zsh)"
 alias ls="eza -la"
 alias ll="eza -la"
 alias history="fc -l 1"
@@ -45,13 +45,6 @@ alias ted='zellij --session $(basename $PWD) --layout $HOME/.config/zellij/layou
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# bun completions
-[ -s "/Users/jonathan/.bun/_bun" ] && source "/Users/jonathan/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # ruby
 eval "$(rbenv init - zsh)"
