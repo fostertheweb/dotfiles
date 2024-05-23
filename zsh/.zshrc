@@ -31,15 +31,14 @@ eval "$(zoxide init zsh)"
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
+alias vim="nvim"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
 alias ls="eza -la"
 alias ll="eza -la"
 alias history="fc -l 1"
-alias j="zellij"
 alias y="yazi"
 alias .='cd $HOME/.dotfiles'
-alias ted='zellij --session $(basename $PWD) --layout $HOME/.config/zellij/layouts/project.kdl'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
