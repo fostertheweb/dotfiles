@@ -426,6 +426,7 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'gofmt', 'goimports' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -520,14 +521,12 @@ require('lazy').setup {
   },
 
   {
-    'rebelot/kanagawa.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    'jacoborus/tender.vim',
+    lazy = false,
+    priority = 1000,
     config = function()
       vim.opt.termguicolors = true
-      vim.cmd.colorscheme 'kanagawa-wave'
-
-      -- You can configure highlights by doing something like
+      vim.cmd.colorscheme 'tender'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
@@ -553,9 +552,6 @@ require('lazy').setup {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
       statusline.setup()
 
@@ -566,9 +562,6 @@ require('lazy').setup {
       statusline.section_location = function()
         return ''
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 
@@ -595,16 +588,37 @@ require('lazy').setup {
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+
   {
     'mbbill/undotree',
     config = function()
       vim.keymap.set('n', '<leader>u', '<CMD>UndotreeToggle<CR>', { desc = '[U]ndo Tree' })
     end,
   },
+
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = true,
+  },
+
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      -- adapters
+      'nvim-neotest/neotest-go',
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-go',
+        },
+      }
+    end,
   },
 
   -- require 'kickstart.plugins.debug',
