@@ -53,13 +53,20 @@ func step(_ message: String, command: String) {
   process.waitUntilExit()
 }
 
-step("Update homebrew", command: "brew update")
+// Homebrew
+step("Update Homebrew", command: "brew update")
 step("Install from Brewfile", command: "brew bundle")
 
+// Keyboard
 step(
   "Enable key repeat on hold",
   command: "defaults write -g ApplePressAndHoldEnabled -bool false")
 
+// UI
 let hideDelay = "defaults write com.apple.dock autohide-delay -int 0"
 let hideTime = "defaults write com.apple.dock autohide-time-modifier -float 0.2"
 step("Remove dock reveal delay", command: hideDelay + " && " + hideTime)
+
+print("\r")
+print("\r[Setup Complete]")
+
