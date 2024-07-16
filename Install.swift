@@ -14,9 +14,6 @@ let alert = "\u{26A0}"
 
 func step(_ message: String, command: String) {
   let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧"]
-  var i = 0
-  var running = true
-
   let queue = DispatchQueue.global(qos: .userInteractive)
   let errorPipe = Pipe()
   let process = Process()
@@ -25,6 +22,9 @@ func step(_ message: String, command: String) {
   process.arguments = ["-c", command]
   process.standardOutput = FileHandle(forWritingAtPath: "/dev/null")!
   process.standardError = errorPipe
+
+  var i = 0
+  var running = true
 
   queue.async {
     while running {
