@@ -1,11 +1,11 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [character]
-error_symbol = ""
-success_symbol = ""
+error_symbol = "<!>"
+success_symbol = "$"
 
 [line_break]
-disabled = true
+disabled = false
 
 [python]
 disabled = true
