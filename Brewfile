@@ -1,3 +1,4 @@
+brew "awscli"
 brew "eza"
 brew "fd"
 brew "ffmpegthumbnailer"
