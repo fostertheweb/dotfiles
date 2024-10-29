@@ -27,6 +27,12 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
+# deno
+export PATH="$HOME/.deno/bin:$PATH"
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/jonathan/.zsh/completions:"* ]]; then export FPATH="/Users/jonathan/.zsh/completions:$FPATH"; fi
+
 # go
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -64,19 +70,10 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-# Shopify Hydrogen alias to local projects
-alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# swift
-export TOOLCHAINS=$(plutil -extract CFBundleIdentifier raw /Library/Developer/Toolchains/swift-6.0-DEVELOPMENT-SNAPSHOT-2024-06-13-a.xctoolchain/Info.plist)
-
-# llvm
-export PATH="$(brew --prefix)/opt/llvm/bin:$PATH"
 
 # automatic nvm use
 autoload -U add-zsh-hook
@@ -102,3 +99,4 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+

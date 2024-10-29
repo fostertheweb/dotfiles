@@ -12,9 +12,6 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
--- Sync clipboard between OS and Neovim.
--- vim.opt.clipboard = 'unnamedplus'
-
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -210,7 +207,7 @@ require('lazy').setup {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>p', builtin.git_files, { desc = '[P]roject Files' })
+      vim.keymap.set('n', '<leader>fp', builtin.git_files, { desc = '[F]ind [P]roject Files' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
@@ -341,7 +338,7 @@ require('lazy').setup {
       local servers = {
         gopls = {},
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
 
         require('lspconfig').sourcekit.setup {},
 
@@ -368,11 +365,8 @@ require('lazy').setup {
         },
       }
 
-      --  You can press `g?` for help in this menu
       require('mason').setup()
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
@@ -383,9 +377,6 @@ require('lazy').setup {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
@@ -405,18 +396,13 @@ require('lazy').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         go = { 'gofmt', 'goimports' },
-        swift = { 'swift-format' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { { 'prettierd', 'prettier' } },
+        typescript = { { 'prettierd', 'prettier' } },
       },
     },
   },
 
-  { -- Autocompletion
+  {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -456,19 +442,9 @@ require('lazy').setup {
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
-          -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
-          -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ['<C-j>'] = cmp.mapping.confirm { select = true },
-
-          -- Manually trigger a completion from nvim-cmp.
-          --  Generally you don't need this, because nvim-cmp will display
-          --  completions whenever it has completion options available.
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
@@ -536,7 +512,7 @@ require('lazy').setup {
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we disable the section for
-      -- cursor information because line numbers are already enabled
+      -- cursor information because line numbers are already enable
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return ''
@@ -552,7 +528,7 @@ require('lazy').setup {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'go', 'html', 'lua', 'markdown', 'swift', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'go', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
@@ -595,6 +571,18 @@ require('lazy').setup {
       require('neotest').setup {
         adapters = {
           require 'neotest-go',
+        },
+      }
+    end,
+  },
+
+  {
+    'shellRaining/hlchunk.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('hlchunk').setup {
+        chunk = {
+          enable = true,
         },
       }
     end,
