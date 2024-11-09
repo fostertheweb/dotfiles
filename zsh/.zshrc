@@ -38,6 +38,7 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias vim="nvim"
+alias cat="bat"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
 alias ls="eza -la"
@@ -46,10 +47,16 @@ alias history="fc -l 1"
 alias y="yazi"
 alias .='cd $HOME/.dotfiles'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf shell integration
+source <(fzf --zsh)
 
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|),ctrl-j:execute(nvim {1})+abort'"
+
+# --bind 'f1:execute(nvim {1})'
+# ls | fzf --bind 'f1:execute(nvim {1} < /dev/tty)'
 
 # ruby
 eval "$(rbenv init - zsh)"

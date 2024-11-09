@@ -1,4 +1,5 @@
 brew "awscli"
+brew "bat"
 brew "eza"
 brew "fd"
 brew "ffmpegthumbnailer"
