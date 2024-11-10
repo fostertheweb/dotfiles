@@ -3,6 +3,10 @@ return {
   event = 'VimEnter',
   config = function()
     require('which-key').setup {
+      icons = {
+        mappings = false,
+      },
+      preset = 'helix',
       sort = { 'manual' },
     }
     require('which-key').add {
