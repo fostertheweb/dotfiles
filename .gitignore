@@ -1,3 +1,6 @@
 *.swp
 .DS_Store
 
+Brewfile.lock.json
+neovim/.config/nvim/lazy-lock.json
+
