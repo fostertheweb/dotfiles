@@ -46,6 +46,7 @@ alias ll="eza -la"
 alias history="fc -l 1"
 alias y="yazi"
 alias .='cd $HOME/.dotfiles'
+alias zj="zellij"
 
 # fzf shell integration
 source <(fzf --zsh)
@@ -54,9 +55,6 @@ export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|),ctrl-j:execute(nvim {1})+abort'"
-
-# --bind 'f1:execute(nvim {1})'
-# ls | fzf --bind 'f1:execute(nvim {1} < /dev/tty)'
 
 # ruby
 eval "$(rbenv init - zsh)"
