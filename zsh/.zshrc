@@ -1,6 +1,10 @@
 bindkey -e
 
 export EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
+
+# open tmux-tea with ctrl-t
+bindkey -s '^T' ' tea^M ^M'
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -50,11 +54,7 @@ alias zj="zellij"
 
 # fzf shell integration
 source <(fzf --zsh)
-
-export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|),ctrl-j:execute(nvim {1})+abort'"
+export FZF_CTRL_T_COMMAND=""
 
 # ruby
 eval "$(rbenv init - zsh)"
