@@ -2,10 +2,18 @@ return {
   'folke/noice.nvim',
   event = 'VeryLazy',
   opts = {
+    messages = {
+      enabled = true,
+      view = 'mini',
+      view_error = 'notify',
+      view_warn = 'notify',
+      view_history = 'messages',
+      view_search = 'virtualtext',
+    },
     presets = {
-      bottom_search = false, -- use a classic bottom cmdline for search
-      long_message_to_split = true, -- long messages will be sent to a split
-      lsp_doc_border = true, -- add a border to hover docs and signature help
+      bottom_search = false,
+      long_message_to_split = true,
+      lsp_doc_border = true,
     },
   },
   dependencies = {

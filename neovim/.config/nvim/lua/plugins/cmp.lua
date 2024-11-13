@@ -15,6 +15,8 @@ return {
         return 'make install_jsregexp'
       end)(),
     },
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
@@ -63,8 +65,8 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lsp' },
         { name = 'path' },
       },
     }
