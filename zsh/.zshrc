@@ -3,9 +3,6 @@ bindkey -e
 export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 
-# open tmux-tea with ctrl-t
-bindkey -s '^T' ' tea^M ^M'
-
 # history configuration
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=99999
@@ -105,3 +102,5 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# open tmux-tea with ctrl-t
+bindkey -s '^T' ' tea^M ^M'

@@ -1,4 +1,4 @@
-return { -- directory and file operations
+return {
   'stevearc/oil.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()

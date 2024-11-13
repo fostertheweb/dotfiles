@@ -20,6 +20,7 @@ require('lazy').setup {
   { 'numToStr/Comment.nvim', opts = {} },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  'hrsh7th/cmp-cmdline',
 
   -- require 'kickstart.plugins.debug',
 
