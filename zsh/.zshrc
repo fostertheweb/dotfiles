@@ -104,3 +104,4 @@ load-nvmrc
 
 # open tmux-tea with ctrl-t
 bindkey -s '^T' ' tea^M ^M'
+
