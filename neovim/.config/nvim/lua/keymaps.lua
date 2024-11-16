@@ -1,3 +1,5 @@
+vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Close buffer' })
+
 -- use ; to escape in normal and visual mode
 vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
 
