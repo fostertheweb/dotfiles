@@ -1,4 +1,11 @@
-vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Close buffer' })
+-- close other splits
+vim.keymap.set('n', '<leader>j', '<CMD>only<CR>', { desc = 'Close other splits' })
+
+-- close buffer/split
+vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Quit' })
+
+-- override s default behavior
+vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
 -- use ; to escape in normal and visual mode
 vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')

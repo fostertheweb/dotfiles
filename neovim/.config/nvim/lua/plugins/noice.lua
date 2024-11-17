@@ -4,7 +4,7 @@ return {
   opts = {
     messages = {
       enabled = true,
-      view = 'split',
+      view = 'mini',
       view_error = 'notify',
       view_warn = 'notify',
       view_history = 'messages',

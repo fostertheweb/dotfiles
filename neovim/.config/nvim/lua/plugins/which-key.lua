@@ -8,6 +8,10 @@ return {
       },
       preset = 'helix',
       sort = { 'manual' },
+      triggers = {
+        { '<leader>', mode = { 'n', 'v' } },
+        { 's', mode = { 'n', 'x' } },
+      },
     }
     require('which-key').add {
       { '<leader>c', group = '[C]ode' },

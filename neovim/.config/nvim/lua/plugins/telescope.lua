@@ -4,6 +4,7 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'debugloop/telescope-undo.nvim',
     { -- If encountering errors, see telescope-fzf-native README for install instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -63,6 +64,10 @@ return {
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension, 'undo')
+
+    -- undo tree
+    vim.keymap.set('n', '<leader>u', '<CMD>Telescope undo<CR>', { desc = '[U]ndo tree' })
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'

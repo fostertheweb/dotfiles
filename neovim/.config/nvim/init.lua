@@ -16,6 +16,7 @@ require('lazy').setup {
   'tpope/vim-sleuth',
   -- Git integration
   'tpope/vim-fugitive',
+  'tpope/vim-dispatch',
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   -- Highlight todo, notes, etc in comments
