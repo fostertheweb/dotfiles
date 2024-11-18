@@ -1,8 +1,5 @@
--- close other splits
-vim.keymap.set('n', '<leader>j', '<CMD>only<CR>', { desc = 'Close other splits' })
-
--- close buffer/split
-vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Quit' })
+-- clear search
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
@@ -24,6 +21,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Close buffer/split
+vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Quit' })
+
+-- Close other splits
+vim.keymap.set('n', '<leader>j', '<CMD>only<CR>', { desc = 'Close other splits' })
+
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -36,5 +39,13 @@ vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommi
 vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
 
--- Write
+-- Write buffer
 vim.keymap.set('n', '<leader>s', '<CMD>w<CR>', { desc = '[S]ave Buffer' })
+
+-- Center cursor after page down/up
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Move selected line up/down
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")

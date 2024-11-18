@@ -39,6 +39,7 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias vim="nvim"
+alias e="nvim ."
 alias cat="bat"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
