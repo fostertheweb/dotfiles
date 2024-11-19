@@ -11,6 +11,7 @@ return {
       triggers = {
         { '<leader>', mode = { 'n', 'v' } },
         { 's', mode = { 'n', 'x' } },
+        { 'g', mode = { 'n' } },
       },
     }
     require('which-key').add {
@@ -18,7 +19,7 @@ return {
       { '<leader>d', group = '[D]ocument' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>f', group = '[F]ind' },
-      { '<leader>w', group = '[W]orkspace' },
+      -- { '<leader>w', group = '[W]orkspace' },
       { '<leader>g', group = '[G]it' },
       { '<leader>t', group = '[T]est' },
     }

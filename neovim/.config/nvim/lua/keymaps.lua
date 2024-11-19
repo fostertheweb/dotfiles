@@ -40,7 +40,7 @@ vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]r
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
 
 -- Write buffer
-vim.keymap.set('n', '<leader>s', '<CMD>w<CR>', { desc = '[S]ave Buffer' })
+vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = '[W]rite Buffer' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
