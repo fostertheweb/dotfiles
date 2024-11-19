@@ -15,16 +15,5 @@ return {
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
-
-    local statusline = require 'mini.statusline'
-    statusline.setup()
-
-    -- You can configure sections in the statusline by overriding their
-    -- default behavior. For example, here we disable the section for
-    -- cursor information because line numbers are already enable
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function()
-      return ''
-    end
   end,
 }
