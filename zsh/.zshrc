@@ -51,6 +51,8 @@ alias history="fc -l 1"
 alias y="yazi"
 alias .='cd $HOME/.dotfiles'
 
+# man page colors
+export MANPAGER="less -sR --use-color -Dd+r -Du+b"
 
 # fzf shell integration
 source <(fzf --zsh)

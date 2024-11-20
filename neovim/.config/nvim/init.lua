@@ -23,7 +23,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.melange' },
+  { import = 'themes.gruvbox' },
   { import = 'plugins' },
 }
 
