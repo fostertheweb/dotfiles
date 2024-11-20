@@ -1,5 +1,6 @@
 -- Hide statusline
 vim.opt.laststatus = 0
+vim.opt.ruler = false
 
 -- Set <space> as the leader key
 vim.g.mapleader = ' '

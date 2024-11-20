@@ -39,16 +39,18 @@ export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
 alias vim="nvim"
+alias n="nvim"
 alias e="nvim ."
 alias cat="bat"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias c="tig status"
 alias ls="eza -la"
 alias ll="eza -la"
+alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias y="yazi"
 alias .='cd $HOME/.dotfiles'
-alias zj="zellij"
+
 
 # fzf shell integration
 source <(fzf --zsh)

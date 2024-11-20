@@ -4,19 +4,19 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
+-- go home, go to EOL
+vim.keymap.set({ 'n' }, 'gh', '^')
+vim.keymap.set({ 'n' }, 'gl', '$')
+
 -- use ; to escape in normal and visual mode
 vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
 
 -- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -38,6 +38,7 @@ vim.keymap.set('n', '<leader>gs', '<CMD>G<CR>', { desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
 vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
+vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns blame_line<CR>', { desc = '[G]it [B]lame Line' })
 
 -- Write buffer
 vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = '[W]rite Buffer' })
