@@ -20,7 +20,6 @@ return {
       { '<leader>f', group = '[F]ind' },
       { '<leader>g', group = '[G]it' },
       { '<leader>gh', group = '[H]unk' },
-      -- { '<leader>w', group = '[W]orkspace' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>t', group = '[T]est' },
     }
