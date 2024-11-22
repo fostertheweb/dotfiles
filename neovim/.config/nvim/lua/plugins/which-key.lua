@@ -16,11 +16,10 @@ return {
     }
     require('which-key').add {
       { '<leader>c', group = '[C]ode' },
-      { '<leader>d', group = '[D]ocument' },
+      { '<leader>d', group = '[D]iagnostic' },
       { '<leader>f', group = '[F]ind' },
       { '<leader>g', group = '[G]it' },
       { '<leader>gh', group = '[H]unk' },
-      { '<leader>r', group = '[R]ename' },
       { '<leader>t', group = '[T]est' },
     }
   end,

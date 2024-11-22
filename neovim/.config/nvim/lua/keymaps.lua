@@ -5,36 +5,27 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
 -- go home, go to EOL
-vim.keymap.set({ 'n' }, 'gh', '^')
-vim.keymap.set({ 'n' }, 'gl', '$')
+vim.keymap.set({ 'n' }, 'gh', '^', { desc = '[G]oto beginning of line' })
+vim.keymap.set({ 'n' }, 'gl', '$', { desc = '[G]oto to end of line' })
 
 -- use ; to escape in normal and visual mode
 vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Goto previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Goto next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = '[D]iagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = '[D]iagnostic [Q]uickfix list' })
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Close buffer/split
-vim.keymap.set('n', '<C-q>', '<CMD>q<CR>', { desc = 'Quit' })
-
 -- Close other splits
-vim.keymap.set('n', '<leader>j', '<CMD>only<CR>', { desc = 'Close other splits' })
-
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-w><C-o>', '<CMD>only<CR>', { desc = 'Close other splits' })
 
 -- Git commands
-vim.keymap.set('n', '<leader>gs', '<CMD>G<CR>', { desc = '[G]it [S]tatus' })
+vim.keymap.set('n', '<leader>gs', '<CMD>Git status<CR>', { desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
 vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
