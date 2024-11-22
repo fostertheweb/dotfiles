@@ -38,6 +38,10 @@ if [[ ":$FPATH:" != *":/Users/jonathan/.zsh/completions:"* ]]; then export FPATH
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
 
+# thef*ck
+eval "$(thefuck --alias)"
+alias oops="fuck"
+
 alias vim="nvim"
 alias n="nvim"
 alias e="nvim ."
