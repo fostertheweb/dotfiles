@@ -44,15 +44,15 @@ alias oops="fuck"
 
 alias vim="nvim"
 alias n="nvim"
-alias e="nvim ."
+alias p="nvim ."
 alias cat="bat"
+alias c="cat"
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
-alias c="tig status"
 alias ls="eza -la"
 alias ll="eza -la"
 alias tree="eza --tree -a"
 alias history="fc -l 1"
-alias y="yazi"
+alias e="yazi"
 alias .='cd $HOME/.dotfiles'
 
 # man page colors

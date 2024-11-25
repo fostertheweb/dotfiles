@@ -25,7 +25,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', '<C-w><C-o>', '<CMD>only<CR>', { desc = 'Close other splits' })
 
 -- Git commands
-vim.keymap.set('n', '<leader>gs', '<CMD>Git status<CR>', { desc = '[G]it [S]tatus' })
+vim.keymap.set('n', '<leader>gs', '<CMD>Git<CR>', { desc = '[G]it [S]tage' })
 vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
 vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]rigin' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
