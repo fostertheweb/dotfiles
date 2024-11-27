@@ -31,6 +31,10 @@ vim.keymap.set('n', '<leader>go', '<CMD>Git pull<CR>', { desc = '[G]it Pull [O]r
 vim.keymap.set('n', '<leader>gp', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
 vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns blame_line<CR>', { desc = '[G]it [B]lame Line' })
 
+-- Code commands
+vim.keymap.set('n', '<leader>cc', '<CMD>CodeCompanionChat<CR>', { desc = 'LLM: [C]ode [C]hat' })
+vim.keymap.set('n', '<leader>cp', '<CMD>CodeCompanion<CR>', { desc = 'LLM: [C]ode [P]rompt' })
+
 -- Write buffer
 vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = '[W]rite Buffer' })
 
