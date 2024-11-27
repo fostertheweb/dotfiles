@@ -47,7 +47,6 @@ alias n="nvim"
 alias p="nvim ."
 alias cat="bat"
 alias c="cat"
-alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 alias ls="eza -la"
 alias ll="eza -la"
 alias tree="eza --tree -a"
@@ -61,6 +60,11 @@ export MANPAGER="less -sR --use-color -Dd+r -Du+b"
 # fzf shell integration
 source <(fzf --zsh)
 export FZF_CTRL_T_COMMAND=""
+# Open in tmux popup if on tmux, otherwise use --height mode
+export FZF_DEFAULT_OPTS='--height 40% --tmux center --layout reverse --border'
+
+alias b="git branch -v | fzf | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout"
+alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
 
 # ruby
 eval "$(rbenv init - zsh)"
@@ -111,6 +115,52 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-# open tmux-tea with ctrl-t
-bindkey -s '^T' ' tea^M ^M'
+# tmux
+tmux_attach_or_create() {
+  local path="${1:-$(basename `git rev-parse --show-toplevel`)}"
+  local session_name="${path##*/}"
+  local safe_name="${session_name//./_}"
 
+  if tmux has-session -t "$session_name" 2>/dev/null; then
+    if [[ -n "$TMUX" ]]; then
+      local current_session="$(tmux display-message -p '#S')"
+      if [[ "$session_name" != "$current_session" ]]; then
+	tmux switch-client -t "$session_name"
+      fi
+    else
+      tmux attach-session -t "$session_name"
+    fi
+  else
+    if [[ -n "$TMUX" ]]; then
+      tmux new-session -d -s "$session_name" -c "$path"
+      tmux switch-client -t "$session_name"
+    else
+      tmux new-session -s "$session_name" -c "$path"
+    fi
+  fi
+}
+
+alias t=tmux_attach_or_create
+
+find_dir_and_create_or_attach() {
+  tmux_attach_or_create "$(zoxide query --interactive)"
+}
+
+alias tn=find_dir_and_create_or_attach
+
+tmux_list_and_attach() {
+  local chosen_session="$(tmux list-session | fzf | cut -d: -f1)"
+
+  if [[ -n "$TMUX" ]]; then
+    local current_session="$(tmux display-message -p '#S')"
+    if [[ "$chosen_session" != "$current_session" ]]; then
+      tmux switch-client -t "$chosen_session"
+    fi
+  else
+    tmux attach-session -t "$chosen_session"
+  fi
+}
+
+# create ZLE widget
+zle -N tmux_list_and_attach{,}
+bindkey -s '^T' 'tmux_list_and_attach^M'
