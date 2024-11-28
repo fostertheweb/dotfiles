@@ -115,6 +115,19 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+function create_worktree() {
+  if [[ -z "$1" ]]; then
+    echo "Error: New worktree name required" >&2
+    return 1
+  fi
+
+  local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
+  local worktree=$(pwd | sed "s/$(basename "$(pwd)")/$(basename `pwd`)@$1/")
+  git worktree add $worktree $trunk
+  cd $worktree
+  git status
+}
+
 # open tmux-tea
 bindkey -s '^T' ' tea^M ^M'
 
