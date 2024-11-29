@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- Appearance
-config.color_scheme = 'Rosé Pine (Gogh)'
+config.color_scheme = 'melange'
 config.font = wezterm.font 'BerkeleyMono Nerd Font'
 config.font_size = 14.0
 config.line_height = 1.2

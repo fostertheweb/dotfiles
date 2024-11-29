@@ -69,4 +69,3 @@ step("Remove dock reveal delay", command: hideDelay + " && " + hideTime)
 
 print("\r")
 print("\r[Setup Complete]")
-

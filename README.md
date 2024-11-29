@@ -1,3 +1,7 @@
+## dotfiles
+
+Tool configurations and many conveniences.
+
 ## Setup
 
 ```bash
@@ -11,6 +15,3 @@ cd ~/.dotfiles
 ```bash
 ./Install.swift
 ```
-
-🧐
-[Managing dotfiles with GNU stow](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/) by Alex Pearce
