@@ -1,3 +1,6 @@
+-- Ctrl-g as Esc
+vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
+
 -- clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

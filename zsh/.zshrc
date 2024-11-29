@@ -128,5 +128,7 @@ function create_worktree() {
   git status
 }
 
+alias t="tmux new -s $(basename `pwd`)"
+
 # open tmux-tea
 bindkey -s '^T' ' tea^M ^M'

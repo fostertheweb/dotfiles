@@ -5,6 +5,9 @@ return {
     require('oil').setup {
       default_file_explorer = true,
       delete_to_trash = true,
+      keymaps = {
+        ['<C-j>'] = 'actions.select',
+      },
       skip_confirm_for_simple_edits = true,
       view_options = {
         show_hidden = true,
