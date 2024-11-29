@@ -15,8 +15,8 @@ setopt SHARE_HISTORY
 # pnpm
 export PNPM_HOME="/Users/jonathan/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # zsh plugins
@@ -70,19 +70,19 @@ alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $E
 eval "$(rbenv init - zsh)"
 
 function ttv() {
-    local url="twitch.tv/$1"
-    streamlink $url best --stream-url --twitch-disable-ads | xargs open -a "QuickTime Player.app"
-    open -a Safari "https://$url/chat"
+  local url="twitch.tv/$1"
+  streamlink $url best --stream-url --twitch-disable-ads | xargs open -a "QuickTime Player.app"
+  open -a Safari "https://$url/chat"
 }
 
 # change dir on exit
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # nvm
@@ -122,7 +122,7 @@ function create_worktree() {
   fi
 
   local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
-  local worktree=$(pwd | sed "s/$(basename "$(pwd)")/$(basename `pwd`)@$1/")
+  local worktree=$(pwd | sed "s/$(basename "$(pwd)")/$(basename $(pwd))@$1/")
   git worktree add $worktree $trunk
   cd $worktree
   git status
@@ -130,4 +130,3 @@ function create_worktree() {
 
 # open tmux-tea
 bindkey -s '^T' ' tea^M ^M'
-
