@@ -9,3 +9,15 @@ disabled = true
 [aws]
 disabled = true
 
+[directory]
+read_only = " "
+read_only_style = "red"
+
+[git_branch]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[package]
+symbol = "󰏗 "

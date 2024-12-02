@@ -24,22 +24,13 @@ return {
     -- Two important keymaps to use while in telescope are:
     --  - Insert mode: <c-/>
     --  - Normal mode: ?
-    --
-    -- This opens a window that shows you all of the keymaps for the current
-    -- telescope picker. This is really useful to discover what Telescope can
-    -- do as well as how to actually do it!
-
-    -- [[ Configure Telescope ]]
-    -- See `:help telescope` and `:help telescope.setup()`
+    local actions = require 'telescope.actions'
     require('telescope').setup {
-      -- You can put your default mappings / updates / etc. in here
-      --  All the info you're looking for is in `:help telescope.setup()`
-      --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
+      defaults = {
+        mappings = {
+          i = { ['<C-j>'] = actions.select_default },
+        },
+      },
       pickers = {
         find_files = {
           hidden = true,
