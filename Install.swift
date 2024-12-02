@@ -67,5 +67,9 @@ let hideDelay = "defaults write com.apple.dock autohide-delay -int 0"
 let hideTime = "defaults write com.apple.dock autohide-time-modifier -float 0.2"
 step("Remove dock reveal delay", command: hideDelay + " && " + hideTime)
 
+// Screenshot location
+let createDir = "mkdir -p ~/Pictures/Screenshots/"
+let changeScreenshotDir = "defaults write com.apple.screencapture location ~/Pictures/Screenshots/"
+
 print("\r")
 print("\r[Setup Complete]")
