@@ -36,6 +36,8 @@ local home_replacer="sed \"s|^$HOME|~|\""
 local home_restore="sed \"s|^~|$HOME|\""
 local find_command="fd --hidden --type d --max-depth 4 '.git' $HOME/Developer --exec dirname"
 
+# TODO: --bind "ctrl-f:change-prompt()+reload(),ctrl-s:change-prompt()+reload()"
+
 function select-git-project() {
   eval $find_command | sort -u | eval $home_replacer | fzf --border-label "Git Projects" | eval $home_restore
 }
