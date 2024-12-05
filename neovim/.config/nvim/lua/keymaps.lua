@@ -3,6 +3,7 @@ vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
 
 -- clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
 
 -- override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
