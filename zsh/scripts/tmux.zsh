@@ -1,25 +1,14 @@
 #!/usr/bin/env zsh
 
 function tmux-create-or-attach() {
-  local arg
-  arg="$1"
-
   local dir
-  dir="$arg"
-  [[ -z "$dir" ]] && dir="$(pwd)"
-
-  local repo
-  repo="$(git rev-parse --show-toplevel 2>/dev/null)"
+  dir="$1"
 
   local session_name
-  if [[ -n "$arg" ]]; then
-    session_name="${arg##*/}"
+  if [[ -n "$dir" ]]; then
+    session_name="${dir##*/}"
   else
-    if [[ -n "$repo" ]]; then
-      session_name="$repo"
-    else
-      session_name="${dir##*/}"
-    fi
+    return 0
   fi
 
   # safe session name
@@ -48,8 +37,7 @@ local home_restore="sed \"s|^~|$HOME|\""
 local find_command="fd --hidden --type d --max-depth 4 '.git' $HOME/Developer --exec dirname"
 
 function select-git-project() {
-  eval $find_command | sort -u | eval $home_replacer | fzf | eval $home_restore
-
+  eval $find_command | sort -u | eval $home_replacer | fzf --border-label "Git Projects" | eval $home_restore
 }
 
 function tmux-find-and-create-or-attach() {
@@ -66,7 +54,11 @@ function tmux-list-and-attach() {
     chosen_session="$(select-git-project)"
     chosen_session="${chosen_session##*/}"
   else
-    chosen_session="$(tmux list-session | fzf | cut -d: -f1)"
+    chosen_session="$(tmux list-session | fzf --border-label 'Sessions' | cut -d: -f1)"
+  fi
+
+  if [[ -z "$chosen_session" ]]; then
+    return 0
   fi
 
   if [[ -n "$TMUX" ]]; then
