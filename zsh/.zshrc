@@ -51,9 +51,10 @@ export MANPAGER="less -sR --use-color -Dd+r -Du+b"
 
 # fzf shell integration
 source <(fzf --zsh)
+# Disable fzf Ctrl-T binding
 export FZF_CTRL_T_COMMAND=""
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS='--height 60% --tmux center --layout reverse --border'
+export FZF_DEFAULT_OPTS="--bind 'ctrl-c:abort' --cycle --keep-right --height 60% --tmux center --layout reverse --border"
 
 # ruby
 eval "$(rbenv init - zsh)"
@@ -71,14 +72,11 @@ alias .='cd $HOME/.dotfiles'
 alias oops="fuck"
 alias vim="nvim"
 alias n="nvim"
-alias p="nvim ."
 alias cat="bat"
-alias c="cat"
 alias ls="eza -la"
 alias ll="eza -la"
 alias tree="eza --tree -a"
 alias history="fc -l 1"
-alias e="yazi"
 
 source "$DOTFILES_PREFIX/zsh/scripts/extras.zsh"
 source "$DOTFILES_PREFIX/zsh/scripts/git.zsh"
@@ -89,12 +87,16 @@ add-zsh-hook chpwd load-nvmrc
 
 # Ctrl-T
 # List current sessions and attach
-bindkey -s '^T' ' tmux-list-and-attach^M ^M'
+bindkey -s '^T' 'tmux-list-and-attach^M'
 
 # Alt-T
 # Find directory and create or attach
-bindkey -s '^[t' ' tmux-find-and-create-or-attach^M ^M'
+bindkey -s '^[t' 'tmux-find-and-create-or-attach^M'
 
 # Alt-O
+# Open cwd in yazi
+bindkey -s '^[o' 'yazi .^M'
+
+# Alt-.
 # Open cwd in nvim
-bindkey -s '^[o' 'nvim .^M'
+bindkey -s '^[.' 'nvim .^M'
