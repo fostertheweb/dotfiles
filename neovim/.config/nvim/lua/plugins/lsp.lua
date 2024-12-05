@@ -93,6 +93,7 @@ return {
     -- formatters
     vim.list_extend(ensure_installed, {
       'prettier',
+      'shfmt',
       'stylua',
     })
     -- linters

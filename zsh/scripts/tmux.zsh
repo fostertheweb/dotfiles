@@ -36,10 +36,8 @@ local home_replacer="sed \"s|^$HOME|~|\""
 local home_restore="sed \"s|^~|$HOME|\""
 local find_command="fd --hidden --type d --max-depth 4 '.git' $HOME/Developer --exec dirname"
 
-# TODO: --bind "ctrl-f:change-prompt()+reload(),ctrl-s:change-prompt()+reload()"
-
 function select-git-project() {
-  eval $find_command | sort -u | eval $home_replacer | fzf --border-label "Git Projects" | eval $home_restore
+  eval $find_command | sort -u | eval $home_replacer | fzf --border-label " Git Projects " --prompt " : " | eval $home_restore
 }
 
 function tmux-find-and-create-or-attach() {
@@ -57,7 +55,7 @@ function tmux-list-and-attach() {
     chosen_session="${dir##*/}"
     tmux new-session -s "$chosen_session" -c "$dir"
   else
-    chosen_session="$(tmux list-session | fzf --border-label 'Sessions' | cut -d: -f1)"
+    chosen_session="$(tmux list-session | fzf --border-label ' Sessions ' --prompt ' : ' | cut -d: -f1)"
   fi
 
   if [[ -z "$chosen_session" ]]; then
