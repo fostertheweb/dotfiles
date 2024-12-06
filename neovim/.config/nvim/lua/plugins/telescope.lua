@@ -27,6 +27,13 @@ return {
     local actions = require 'telescope.actions'
     require('telescope').setup {
       defaults = {
+        layout_config = {
+          horizontal = { height = 0.5 },
+          prompt_position = 'top',
+          vertical = { preview_cutoff = 1, mirror = true, width = 0.55 },
+        },
+        layout_strategy = 'vertical',
+        sorting_strategy = 'ascending',
         mappings = {
           i = { ['<C-j>'] = actions.select_default },
         },
@@ -47,7 +54,7 @@ return {
       },
       extensions = {
         ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
+          require('telescope.themes').get_cursor(),
         },
       },
     }
