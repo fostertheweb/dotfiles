@@ -14,7 +14,7 @@ function tmux-create-or-attach() {
   # safe session name
   session_name="${session_name//./_}"
 
-  if tmux has-session -t "$session_name" 2>/dev/null; then
+  if tmux has-session -t "=$session_name" 2>/dev/null; then
     if [[ -n "$TMUX" ]]; then
       if [[ "$session_name" != "$(tmux display-message -p '#S')" ]]; then
         tmux switch-client -t "$session_name"
