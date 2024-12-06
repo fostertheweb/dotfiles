@@ -53,7 +53,13 @@ function tmux-list-and-attach() {
   if [[ -z "$sessions" || (-n "$TMUX" && $(echo "$sessions" | wc -l) -eq 1) ]]; then
     local dir="$(select-git-project)"
     chosen_session="${dir##*/}"
-    tmux new-session -s "$chosen_session" -c "$dir"
+
+    if [[ -n "$TMUX" ]]; then
+      tmux new-session -d -s "$chosen_session" -c "$dir"
+      tmux switch-client -t "$chosen_session"
+    else
+      tmux new-session -s "$chosen_session" -c "$dir"
+    fi
   else
     chosen_session="$(tmux list-session | fzf --border-label ' Sessions ' --prompt ' : ' | cut -d: -f1)"
   fi
@@ -68,7 +74,6 @@ function tmux-list-and-attach() {
       tmux switch-client -t "$chosen_session"
     fi
   else
-    echo "how did i get here"
     tmux attach-session -t "$chosen_session"
   fi
 }
