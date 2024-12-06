@@ -5,7 +5,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'debugloop/telescope-undo.nvim',
-    { -- If encountering errors, see telescope-fzf-native README for install instructions
+    {
       'nvim-telescope/telescope-fzf-native.nvim',
 
       -- `build` is used to run some command when the plugin is installed/updated.
@@ -30,7 +30,12 @@ return {
         layout_config = {
           horizontal = { height = 0.5 },
           prompt_position = 'top',
-          vertical = { preview_cutoff = 1, mirror = true, width = 0.55 },
+          vertical = {
+            preview_cutoff = 1,
+            preview_height = 0.65,
+            mirror = true,
+            width = 0.55,
+          },
         },
         layout_strategy = 'vertical',
         sorting_strategy = 'ascending',
