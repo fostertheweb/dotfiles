@@ -54,7 +54,7 @@ source <(fzf --zsh)
 # Disable fzf Ctrl-T binding
 export FZF_CTRL_T_COMMAND=""
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS="--bind 'ctrl-c:abort' --cycle --keep-right --height 60% --tmux center --layout reverse --border"
+export FZF_DEFAULT_OPTS="--bind 'ctrl-c:abort' --cycle --height 60% --tmux center --layout reverse --border"
 
 # ruby
 eval "$(rbenv init - zsh)"
