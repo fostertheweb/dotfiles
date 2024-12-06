@@ -78,10 +78,10 @@ alias ll="eza -la"
 alias tree="eza --tree -a"
 alias history="fc -l 1"
 
-source "$DOTFILES_PREFIX/zsh/scripts/extras.zsh"
-source "$DOTFILES_PREFIX/zsh/scripts/git.zsh"
-source "$DOTFILES_PREFIX/zsh/scripts/node.zsh"
-source "$DOTFILES_PREFIX/zsh/scripts/tmux.zsh"
+source "$DOTFILES_PREFIX/zsh/functions/extras.zsh"
+source "$DOTFILES_PREFIX/zsh/functions/git.zsh"
+source "$DOTFILES_PREFIX/zsh/functions/node.zsh"
+source "$DOTFILES_PREFIX/zsh/functions/tmux.zsh"
 
 add-zsh-hook chpwd load-nvmrc
 
