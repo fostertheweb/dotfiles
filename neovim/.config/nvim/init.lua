@@ -23,7 +23,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.melange' },
+  { import = 'themes.oxovarbon' },
   { import = 'plugins' },
 }
 

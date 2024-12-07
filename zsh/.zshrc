@@ -64,9 +64,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# cmd-t
 alias t="tmux new -s $(basename $(pwd))"
+# cmd-o
 alias b="git branch -v | fzf | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout"
+# cmd-f
 alias f="ag . | fzf -e -i | sed 's/^\([^:]*\):\([0-9]*\):.*/\+\2 \1/' | xargs $EDITOR"
+# cmd-.
 alias .='cd $HOME/.dotfiles'
 
 alias oops="fuck"
@@ -85,6 +89,10 @@ source "$DOTFILES_PREFIX/zsh/functions/tmux.zsh"
 
 add-zsh-hook chpwd load-nvmrc
 
+# Ctrl-Z
+# Bring bg process to the fg
+bindkey -s '^Z' 'fg^M'
+
 # Ctrl-T
 # List current sessions and attach
 bindkey -s '^T' 'tmux-list-and-attach^M'
@@ -100,3 +108,19 @@ bindkey -s '^[o' 'yazi .^M'
 # Alt-.
 # Open cwd in nvim
 bindkey -s '^[.' 'nvim .^M'
+
+# Cmd-o
+# Choose git branch
+bindkey -s '\eo' 'b^M'
+
+# Cmd-t
+# Create tmux session
+bindkey -s '\et' 't^M'
+
+# Cmd-.
+# Go to dotfiles
+bindkey -s '\e.' '.^M'
+
+# Cmd-f
+# Grep in cwd
+bindkey -s '\ef' 'f^M'

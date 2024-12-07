@@ -10,46 +10,26 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-###############################################################################
-# General UI/UX                                                               #
-###############################################################################
-
-# Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "0x6D746873"
-#sudo scutil --set HostName "0x6D746873"
-#sudo scutil --set LocalHostName "0x6D746873"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
-
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
-# Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
-
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
-# Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-# Possible values: `WhenScrolling`, `Automatic` and `Always`
+# Show scrollbars when scrolling
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 # Disable the over-the-top focus ring animation
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Adjust toolbar title rollover delay
 defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
-
-# Disable smooth scrolling
-# (Uncomment if you’re on an older Mac that messes up the animation)
-#defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
-
-# Increase window resize speed for Cocoa applications
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -59,17 +39,8 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
-# Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-# Disable the “Are you sure you want to open this application?” dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-
-# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 
 # Display ASCII control characters using caret notation in standard text views
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
@@ -81,23 +52,12 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
-# Disable the crash reporter
-#defaults write com.apple.CrashReporter DialogType -string "none"
-
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
-
-# Fix for the ancient UTF-8 bug in QuickLook (https://mths.be/bbo)
-# Commented out, as this is known to cause problems in various Adobe apps :(
-# See https://github.com/mathiasbynens/dotfiles/issues/237
-#echo "0x08000100:0" > ~/.CFUserTextEncoding
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
-# Disable Notification Center and remove the menu bar icon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
 # Disable automatic capitalization as it’s annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
@@ -114,32 +74,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
-# all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-#rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-#sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
-#sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
-
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -170,7 +107,7 @@ defaults write NSGlobalDomain AppleMetricUnits -bool true
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
+sudo systemsetup -settimezone "Europe/Brussels" >/dev/null
 
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -201,7 +138,7 @@ sudo pmset -b sleep 5
 sudo pmset -a standbydelay 86400
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+sudo systemsetup -setcomputersleep Off >/dev/null
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
@@ -612,11 +549,11 @@ defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
 	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 # Load new settings before rebuilding the index
-killall mds > /dev/null 2>&1
+killall mds >/dev/null 2>&1
 # Make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
+sudo mdutil -i on / >/dev/null
 # Rebuild the index from scratch
-sudo mdutil -E / > /dev/null
+sudo mdutil -E / >/dev/null
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
@@ -698,7 +635,7 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
+hash tmutil &>/dev/null && sudo tmutil disablelocal
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -844,14 +781,14 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 ###############################################################################
 
 # Install Sublime Text settings
-cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null
+cp -r init/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2>/dev/null
 
 ###############################################################################
 # Spectacle.app                                                               #
 ###############################################################################
 
 # Set up my preferred keyboard shortcuts
-cp -r init/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
+cp -r init/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2>/dev/null
 
 ###############################################################################
 # Transmission.app                                                            #
@@ -946,7 +883,6 @@ for app in "Activity Monitor" \
 	"Tweetbot" \
 	"Twitter" \
 	"iCal"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" &>/dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
