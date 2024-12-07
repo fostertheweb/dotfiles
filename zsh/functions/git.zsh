@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh 
+#!/usr/bin/env zsh
 
 function create-worktree() {
   if [[ -z "$1" ]]; then
@@ -11,4 +11,8 @@ function create-worktree() {
   git worktree add $worktree $trunk
   cd $worktree
   git status
+}
+
+function select-git-branch() {
+  git branch -v | fzf | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout
 }

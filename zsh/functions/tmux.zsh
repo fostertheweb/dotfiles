@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+function create-tmux-cwd-session() {
+  tmux new -s $(basename $(pwd))
+}
+
 function tmux-create-or-attach() {
   local dir
   dir="$1"
