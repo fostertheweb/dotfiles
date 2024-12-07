@@ -45,9 +45,7 @@ function select-git-project() {
 }
 
 function tmux-find-and-create-or-attach() {
-  local selection=$(select-git-project)
-
-  tmux-create-or-attach "$selection"
+  tmux-create-or-attach "$(select-git-project)"
 }
 
 function tmux-list-and-attach() {
@@ -55,15 +53,7 @@ function tmux-list-and-attach() {
   local chosen_session
 
   if [[ -z "$sessions" || (-n "$TMUX" && $(echo "$sessions" | wc -l) -eq 1) ]]; then
-    local dir="$(select-git-project)"
-    chosen_session="${dir##*/}"
-
-    if [[ -n "$TMUX" ]]; then
-      tmux new-session -d -s "$chosen_session" -c "$dir"
-      tmux switch-client -t "$chosen_session"
-    else
-      tmux new-session -s "$chosen_session" -c "$dir"
-    fi
+    tmux-create-or-attach "$(select-git-project)"
   else
     chosen_session="$(tmux list-session | fzf --border-label ' Sessions ' --prompt ' : ' | cut -d: -f1)"
   fi
