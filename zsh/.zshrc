@@ -53,7 +53,7 @@ source <(fzf --zsh)
 # Disable fzf Ctrl-T binding
 export FZF_CTRL_T_COMMAND=""
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS="--bind 'ctrl-c:abort' --cycle --height 60% --tmux center --layout reverse --border"
+export FZF_DEFAULT_OPTS="--ansi --bind 'ctrl-c:abort,ctrl-j:accept' --cycle --height 60% --tmux center --layout reverse --margin 1,0 --border --border-label-pos 2"
 
 # prompt
 eval "$(starship init zsh)"

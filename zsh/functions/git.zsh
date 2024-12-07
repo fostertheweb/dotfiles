@@ -14,5 +14,6 @@ function create-worktree() {
 }
 
 function select-git-branch() {
-  git branch -v | fzf | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout
+  local fzf_cmd="fzf --keep-right --border-label \" Checkout Branch \" --prompt \" : \""
+  git branch -v | eval $fzf_cmd | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout
 }

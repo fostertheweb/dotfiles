@@ -35,3 +35,7 @@ bindkey -s '\e.' 'cd $HOME/.dotfiles^M'
 # cmd-g
 # Grep in cwd
 bindkey -s '\eg' 'grep-cwd^M'
+
+# cmd-r
+# Source zshrc
+bindkey -s '\er' 'source $HOME/.zshrc^M'

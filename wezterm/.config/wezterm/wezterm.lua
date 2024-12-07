@@ -55,6 +55,11 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.SendString '\x1bg',
   },
+  {
+    key = 'r',
+    mods = 'CMD',
+    action = wezterm.action.SendString '\x1br',
+  },
 }
 
 return config
