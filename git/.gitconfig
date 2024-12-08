@@ -10,16 +10,24 @@
 
 [merge]
     conflictstyle = diff3
+    tool = nvim
+
+[mergetool]
+    prompt = false
+
+[mergetool "nvim"]
+  cmd = nvim -f -c "Gdiffsplit!" "$MERGED"
 
 [diff]
     colorMoved = default
 
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+
 [user]
-	name = Jonathan Foster
-	email = fostertheweb@gmail.com
+    name = Jonathan Foster
+    email = fostertheweb@gmail.com
 
