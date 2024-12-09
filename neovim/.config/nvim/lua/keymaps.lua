@@ -27,7 +27,6 @@ vim.keymap.set('n', '<C-w><C-o>', '<CMD>only<CR>', { desc = 'Close other splits'
 -- Git commands
 vim.keymap.set('n', '<leader>gs', '<CMD>vertical Git<CR>', { desc = '[G]it [S]tage' })
 vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = '[G]it [C]ommit' })
-vim.keymap.set('n', '<leader>go', '<CMD>Git branch<CR>', { desc = '[G]it Check[o]ut Branch' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = '[G]it [p]ull' })
 vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = '[G]it [P]ush' })
 vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns blame_line<CR>', { desc = '[G]it [B]lame Line' })
