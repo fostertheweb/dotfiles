@@ -16,10 +16,13 @@ return {
 
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+
         map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+
         map('<leader>cs', require('telescope.builtin').lsp_document_symbols, '[C]ode [S]ymbols')
+
         map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 

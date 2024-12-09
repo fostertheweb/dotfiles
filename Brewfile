@@ -1,3 +1,4 @@
+brew "1password-cli"
 brew "awscli"
 brew "bat"
 brew "eza"

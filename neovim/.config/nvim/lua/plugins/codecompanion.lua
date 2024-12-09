@@ -5,12 +5,25 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'hrsh7th/nvim-cmp',
     'nvim-telescope/telescope.nvim',
-    { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      ft = {
+        'markdown',
+        'codecompanion',
+      },
+    },
   },
   enabled = false,
   config = function()
     require('codecompanion').setup {
       adapters = {
+        openai = function()
+          return require('codecompanion.adapters').extend('openai', {
+            env = {
+              api_key = 'cmd:op read op://Private/OpenAI/credential --no-newline',
+            },
+          })
+        end,
         ollama = function()
           return require('codecompanion.adapters').extend('ollama', {
             env = {
@@ -32,15 +45,15 @@ return {
       },
       display = {
         chat = {
-          render_headers = false,
+          render_headers = true,
         },
       },
       strategies = {
         chat = {
-          adapter = 'ollama',
+          adapter = 'openai',
         },
         inline = {
-          adapter = 'ollama',
+          adapter = 'openai',
         },
       },
     }
