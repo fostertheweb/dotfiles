@@ -7,6 +7,7 @@ return {
     'nvim-telescope/telescope.nvim',
     { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
   },
+  enabled = false,
   config = function()
     require('codecompanion').setup {
       adapters = {

@@ -21,10 +21,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Goto next [D]iagno
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = '[D]iagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = '[D]iagnostic [Q]uickfix list' })
 
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 -- Close other splits
 vim.keymap.set('n', '<C-w><C-o>', '<CMD>only<CR>', { desc = 'Close other splits' })
 
