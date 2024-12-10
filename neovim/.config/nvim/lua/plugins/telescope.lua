@@ -45,15 +45,19 @@ return {
       },
       pickers = {
         find_files = {
+          theme = 'ivy',
           hidden = true,
         },
         git_files = {
+          theme = 'ivy',
           show_untracked = true,
         },
         grep_string = {
+          theme = 'ivy',
           additional_args = { '--hidden' },
         },
         live_grep = {
+          theme = 'ivy',
           additional_args = { '--hidden' },
         },
       },
