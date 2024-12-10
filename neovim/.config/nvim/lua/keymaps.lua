@@ -44,6 +44,7 @@ end, { desc = 'Open [G]itHub [W]eb' })
 -- Code commands
 vim.keymap.set('n', '<leader>cc', '<CMD>CodeCompanionChat<CR>', { desc = 'LLM: [C]ode [C]hat' })
 vim.keymap.set('n', '<leader>cp', '<CMD>CodeCompanion<CR>', { desc = 'LLM: [C]ode [P]rompt' })
+vim.keymap.set('n', '<leader>cy', '<CMD>%y+<CR>', { desc = '[C]ode [Y]ank Buffer' })
 
 -- Write buffer
 vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = '[W]rite Buffer' })
