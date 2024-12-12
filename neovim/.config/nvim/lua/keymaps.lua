@@ -98,3 +98,9 @@ end, { desc = 'Open [G]itHub [W]eb' })
 
 -- Code commands
 vim.keymap.set('n', '<leader>cy', '<CMD>%y+<CR>', { desc = '[C]ode [Y]ank Buffer' })
+
+-- Navigate tree
+vim.keymap.set('n', '<C-j>', require('treewalker').move_down, { noremap = true })
+vim.keymap.set('n', '<C-k>', require('treewalker').move_up, { noremap = true })
+vim.keymap.set('n', '<C-h>', require('treewalker').move_out, { noremap = true })
+vim.keymap.set('n', '<C-l>', require('treewalker').move_in, { noremap = true })
