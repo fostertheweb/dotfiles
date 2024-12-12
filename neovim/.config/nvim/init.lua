@@ -1,5 +1,4 @@
 require 'options'
-require 'keymaps'
 require 'misc'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -26,5 +25,7 @@ require('lazy').setup {
   { import = 'themes.rose-pine' },
   { import = 'plugins' },
 }
+
+require 'keymaps'
 
 -- vim: ts=2 sts=2 sw=2 et

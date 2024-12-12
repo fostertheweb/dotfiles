@@ -15,12 +15,13 @@ return {
       },
     }
     require('which-key').add {
-      { '<leader>c', group = '[C]ode' },
-      { '<leader>d', group = '[D]iagnostic' },
       { '<leader>f', group = '[F]ind' },
       { '<leader>g', group = '[G]it' },
+      { '<leader>c', group = '[C]ode' },
+      { '<leader>d', group = '[D]iagnostic' },
       { '<leader>gh', group = '[H]unk' },
       { '<leader>t', group = '[T]est' },
+      { '<leader>h', group = '[H]elp' },
     }
   end,
 }
