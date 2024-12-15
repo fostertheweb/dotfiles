@@ -11,20 +11,17 @@ return {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
         local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
         end
 
-        -- Goto
-        map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
-        map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        map('gs', require('telescope.builtin').lsp_document_symbols, '[G]oto [S]ymbols')
-
-        -- Code
-        map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
-        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map('gd', vim.lsp.buf.definition, 'Go to fefinition')
+        map('gt', vim.lsp.buf.type_definition, 'Go to type definition')
+        map('gI', vim.lsp.buf.implementation, 'Go to implementation')
+        map('gD', vim.lsp.buf.declaration, 'Go to declaration')
+        map('grr', vim.lsp.buf.references, 'Go to References')
+        map('grn', vim.lsp.buf.rename, 'Rename Symbol')
+        map('gra', vim.lsp.buf.code_action, 'Code Actions')
+        vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help)
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then

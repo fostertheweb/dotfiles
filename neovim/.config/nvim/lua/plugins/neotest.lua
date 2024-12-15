@@ -17,9 +17,9 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader>tf', '<CMD>Neotest run file<CR>', { desc = '[T]est [F]ile' })
-    vim.keymap.set('n', '<leader>tl', '<CMD>Neotest run last<CR>', { desc = '[T]est [L]ast' })
-    vim.keymap.set('n', '<leader>to', '<CMD>Neotest output-panel<CR>', { desc = '[T]est [O]utput' })
-    vim.keymap.set('n', '<leader>ts', '<CMD>Neotest summary<CR>', { desc = '[T]est [S]ummary' })
+    vim.keymap.set('n', '<leader>tf', '<CMD>Neotest run file<CR>', { desc = 'File' })
+    vim.keymap.set('n', '<leader>tl', '<CMD>Neotest run last<CR>', { desc = 'Last' })
+    vim.keymap.set('n', '<leader>to', '<CMD>Neotest output-panel<CR>', { desc = 'Output' })
+    vim.keymap.set('n', '<leader>ts', '<CMD>Neotest summary<CR>', { desc = 'Summary' })
   end,
 }

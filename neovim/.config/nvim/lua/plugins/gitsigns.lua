@@ -38,16 +38,16 @@ return {
       -- visual mode
       map('v', '<leader>ghs', function()
         gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-      end, { desc = '[H]unk [S]tage' })
+      end, { desc = 'Stage' })
       map('v', '<leader>ghr', function()
         gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-      end, { desc = '[H]unk [R]eset' })
+      end, { desc = 'Reset' })
 
       -- normal mode
-      map('n', '<leader>ghs', gitsigns.stage_hunk, { desc = '[H]unk [S]tage' })
-      map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = '[H]unk [R]eset' })
-      map('n', '<leader>ghu', gitsigns.undo_stage_hunk, { desc = '[H]unk [U]ndo Stage' })
-      map('n', '<leader>ghp', gitsigns.preview_hunk, { desc = '[H]unk [P]review' })
+      map('n', '<leader>ghs', gitsigns.stage_hunk, { desc = 'Stage' })
+      map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'Reset' })
+      map('n', '<leader>ghu', gitsigns.undo_stage_hunk, { desc = 'Undo stage' })
+      map('n', '<leader>ghp', gitsigns.preview_hunk, { desc = 'Preview' })
     end,
   },
 }
