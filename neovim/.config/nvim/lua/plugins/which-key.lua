@@ -17,9 +17,10 @@ return {
     require('which-key').add {
       { '<leader>f', group = 'Find' },
       { '<leader>g', group = 'Git' },
+      { '<leader>gh', group = 'Hunk' },
       { '<leader>c', group = 'Code' },
       { '<leader>d', group = 'Diagnostic' },
-      { '<leader>gh', group = 'Hunk' },
+      { '<leader>q', group = 'Quickfix' },
       { '<leader>t', group = 'Test' },
       { '<leader>h', group = 'Help' },
     }

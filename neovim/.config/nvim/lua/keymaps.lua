@@ -43,3 +43,8 @@ vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = 'Pull' })
 vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Review PR' })
+
+-- Q, Quickfix list
+vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })
+vim.keymap.set('n', '<leader>qn', '<CMD>cnext<CR>', { desc = 'Next quickfix item' })
+vim.keymap.set('n', '<leader>qp', '<CMD>cprev<CR>', { desc = 'Previous quickfix item' })
