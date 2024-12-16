@@ -11,7 +11,7 @@ config.color_scheme = 'melange'
 -- config.color_scheme = 'Tender (Gogh)'
 config.font = wezterm.font 'BerkeleyMono Nerd Font'
 config.font_size = 14.0
-config.line_height = 1.2
+config.line_height = 1.3
 
 -- UI
 config.use_fancy_tab_bar = false
