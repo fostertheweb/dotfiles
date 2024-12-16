@@ -1,8 +1,3 @@
--- TODO
--- Ctrl-j to accept
--- Ctrl-q o copen
--- Ctrl-q n cnext
--- Ctrl-q p cprev
 return {
   'stevearc/quicker.nvim',
   event = 'FileType qf',

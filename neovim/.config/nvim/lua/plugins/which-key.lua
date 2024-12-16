@@ -6,12 +6,28 @@ return {
       icons = {
         mappings = false,
       },
+      plugins = {
+        marks = true,
+        registers = true,
+        spelling = {
+          enabled = true,
+          suggestions = 20,
+        },
+        presets = {
+          operators = true,
+          motions = true,
+          text_objects = true,
+          windows = true,
+          nav = true,
+          z = true,
+          g = true,
+        },
+      },
       preset = 'helix',
       sort = { 'manual' },
       triggers = {
-        { '<leader>', mode = { 'n', 'v' } },
+        { '<auto>', mode = 'nxso' },
         { 's', mode = { 'n', 'x' } },
-        { 'g', mode = { 'n', 'v' } },
       },
     }
     require('which-key').add {

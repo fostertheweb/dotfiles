@@ -15,8 +15,7 @@ vim.keymap.set({ 'n' }, 'gl', '$', { desc = 'Go to end of line' })
 -- use ; to escape in normal and visual mode
 vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
 
--- Close other splits
-vim.keymap.set('n', '<C-w><C-o>', '<CMD>only<CR>', { desc = 'Close other splits' })
+-- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 
 -- Write buffer
