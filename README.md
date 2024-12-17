@@ -1,3 +1,5 @@
+POOP
+
 ## dotfiles
 
 Tool configurations and many conveniences.
