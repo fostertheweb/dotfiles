@@ -23,25 +23,29 @@ return {
     --  - Normal mode: ?
     require('telescope').setup {
       defaults = vim.tbl_extend('force', require('telescope.themes').get_ivy(), {
+        path_display = {
+          truncate = 3,
+        },
         mappings = {
           i = { ['<C-j>'] = 'select_default' },
         },
       }),
       pickers = {
+        buffers = {
+          mappings = {
+            i = { ['<C-k>'] = 'delete_buffer' },
+          },
+        },
         find_files = {
-          theme = 'ivy',
           hidden = true,
         },
         git_files = {
-          theme = 'ivy',
           show_untracked = true,
         },
         grep_string = {
-          theme = 'ivy',
           additional_args = { '--hidden' },
         },
         live_grep = {
-          theme = 'ivy',
           additional_args = { '--hidden' },
         },
       },
@@ -71,8 +75,7 @@ return {
     vim.keymap.set('n', '<leader>fi', builtin.lsp_implementations, { desc = 'Implementations' })
     -- F, Find: Extras
     vim.keymap.set('n', '<C-/>', function()
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_ivy {
-        winblend = 10,
+      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         previewer = false,
       })
     end, { desc = 'Current buffer fuzzy' })
