@@ -7,11 +7,9 @@ return {
     'debugloop/telescope-undo.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-
       -- `build` is used to run some command when the plugin is installed/updated.
       -- This is only run then, not every time Neovim starts up.
       build = 'make',
-
       -- `cond` is a condition used to determine whether this plugin should be
       -- installed and loaded.
       cond = function()
@@ -21,28 +19,14 @@ return {
     { 'nvim-telescope/telescope-ui-select.nvim' },
   },
   config = function()
-    -- Two important keymaps to use while in telescope are:
     --  - Insert mode: <c-/>
     --  - Normal mode: ?
-    local actions = require 'telescope.actions'
     require('telescope').setup {
-      defaults = {
-        layout_config = {
-          horizontal = { height = 0.5 },
-          prompt_position = 'top',
-          vertical = {
-            preview_cutoff = 1,
-            preview_height = 0.65,
-            mirror = true,
-            width = 0.55,
-          },
-        },
-        layout_strategy = 'vertical',
-        sorting_strategy = 'ascending',
+      defaults = vim.tbl_extend('force', require('telescope.themes').get_ivy(), {
         mappings = {
-          i = { ['<C-j>'] = actions.select_default },
+          i = { ['<C-j>'] = 'select_default' },
         },
-      },
+      }),
       pickers = {
         find_files = {
           theme = 'ivy',
