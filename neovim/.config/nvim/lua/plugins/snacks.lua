@@ -25,14 +25,12 @@ return {
       local command = string.format('git blame --abbrev=40 -L %d,%d %s', line_number, line_number, relative_path)
       local commit = vim.fn.system(command)
       local hash = vim.fn.system('cut -d" " -f1', commit)
-      local url = vim.fn.system('gh pr list --state=merged --json url --jq ".[0].url" --search=' .. hash)
+      local pr_number = vim.fn.system('gh pr list --state=merged --json number --jq ".[0].number" --search=' .. hash)
 
-      if #url == 0 then
+      if #pr_number == 0 then
         vim.notify('No pull requests containing SHA: ' .. hash)
       else
-        local commit_url = string.gsub(url, '^%s*(.-)%s*$', '%1') .. '/commits/' .. hash
-        vim.notify('Commit URL: ' .. commit_url)
-        vim.fn.system('open ' .. commit_url)
+        vim.fn.system('gh pr diff --web ' .. pr_number)
       end
     end, { desc = 'GitHub commit' })
   end,
