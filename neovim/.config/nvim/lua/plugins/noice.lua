@@ -7,8 +7,34 @@ return {
   },
   config = function()
     require('noice').setup {
+      views = {
+        popup = {
+          border = {
+            style = 'single',
+          },
+        },
+        popupmenu = {
+          border = {
+            style = 'single',
+          },
+        },
+        cmdline = {
+          border = {
+            style = 'single',
+          },
+        },
+        cmdline_input = {
+          border = {
+            style = 'single',
+          },
+        },
+        cmdline_popup = {
+          border = {
+            style = 'single',
+          },
+        },
+      },
       lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
