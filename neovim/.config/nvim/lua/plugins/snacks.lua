@@ -28,7 +28,7 @@ return {
       local pr_number = vim.fn.system('gh pr list --state=merged --json number --jq ".[0].number" --search=' .. hash)
 
       if #pr_number == 0 then
-        vim.notify('No pull requests containing SHA: ' .. hash)
+        vim.notify('No pull requests containing commit: ' .. hash)
       else
         vim.fn.system('gh pr diff --web ' .. pr_number)
       end
