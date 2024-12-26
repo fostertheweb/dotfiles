@@ -23,7 +23,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.tender' },
+  { import = 'themes.oxocarbon' },
   { import = 'plugins' },
 }
 

@@ -1,0 +1,4 @@
+[manager]
+linemode = "mtime"
+show_hidden = true
+sort_dir_first = true
