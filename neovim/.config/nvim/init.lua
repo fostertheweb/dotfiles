@@ -10,8 +10,8 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
+  'rasulomaroff/reactive.nvim',
   'tpope/vim-sleuth',
-  'tpope/vim-fugitive',
   {
     'numToStr/Comment.nvim',
     opts = {},
@@ -23,7 +23,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.oxocarbon' },
+  { import = 'themes.rose-pine' },
   { import = 'plugins' },
 }
 

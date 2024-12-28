@@ -1,22 +1,13 @@
+[alias]
+    log = serie
+
 [core]
     pager = delta
 
-[interactive]
-    diffFilter = delta --color-only
-
 [delta]
-    navigate = true # use n and N to move between diff sections
+    # use n and N to move between diff sections
+    navigate = true 
     light = false
-
-[merge]
-    conflictstyle = diff3
-    tool = nvim
-
-[mergetool]
-    prompt = false
-
-[mergetool "nvim"]
-  cmd = nvim -f -c "Gdiffsplit!" "$MERGED"
 
 [diff]
     colorMoved = default
@@ -26,6 +17,18 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
+
+[interactive]
+    diffFilter = delta --color-only
+
+[merge]
+    tool = nvim
+
+[mergetool]
+    prompt = false
+
+[mergetool "nvim"]
+    cmd = nvim -f -c "DiffviewOpen"
 
 [user]
     name = Jonathan Foster

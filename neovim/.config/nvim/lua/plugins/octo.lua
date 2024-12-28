@@ -8,5 +8,6 @@ return {
   config = function()
     require('octo').setup()
     vim.treesitter.language.register('markdown', 'octo')
+    vim.keymap.set('n', '<leader>grf', '<CMD>Octo pr list<CR>', { desc = 'Find' })
   end,
 }

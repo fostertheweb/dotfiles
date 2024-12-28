@@ -29,6 +29,10 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
+-- Ctrl-Tab for tabs
+vim.keymap.set('n', '<C-Tab>', '<CMD>tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<C-S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
+
 -- D, Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
@@ -41,7 +45,6 @@ vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = 'Commit' })
 vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = 'Pull' })
 vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
-vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Review PR' })
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })

@@ -1,0 +1,30 @@
+adjust-cell-height = 30%
+
+font-family = BerkeleyMono Nerd Font
+font-size = 14
+
+cursor-style = block
+cursor-style-blink = false
+
+macos-icon = custom-style
+macos-icon-frame = beige
+macos-icon-ghost-color = 39cfac
+macos-icon-screen-color = 6a6c53
+macos-titlebar-style = native
+
+shell-integration-features = no-cursor
+
+theme = rose-pine-moon
+
+window-padding-x = 8
+window-padding-y = 8
+window-theme = "dark"
+
+keybind = super+e=esc:e
+keybind = super+t=esc:t
+keybind = super+o=esc:o
+keybind = super+f=esc:f
+keybind = super+s=esc:s
+keybind = super+g=esc:g
+keybind = super+r=esc:r
+keybind = super+.=text:\x1b.

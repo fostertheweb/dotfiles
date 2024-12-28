@@ -35,6 +35,7 @@ return {
       { '<leader>g', group = 'Git' },
       { '<leader>gh', group = 'Hunk' },
       { '<leader>gw', group = 'Web' },
+      { '<leader>gr', group = 'Pull Request' },
       { '<leader>c', group = 'Code' },
       { '<leader>d', group = 'Diagnostic' },
       { '<leader>q', group = 'Quickfix' },

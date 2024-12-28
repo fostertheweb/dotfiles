@@ -18,7 +18,7 @@ bindkey -s '\ef' 'yazi .^M'
 
 # cmd-e
 # Open cwd in nvim
-bindkey -s '\ee' 'nvim .^M'
+bindkey -s '\ee' 'nvim -c "Telescope git_files" .^M'
 
 # cmd-o
 # Choose git branch
