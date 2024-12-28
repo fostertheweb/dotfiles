@@ -1,6 +1,9 @@
 adjust-cell-height = 30%
 
 font-family = BerkeleyMono Nerd Font
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
 font-size = 14
 
 cursor-style = block
@@ -10,7 +13,7 @@ macos-icon = custom-style
 macos-icon-frame = beige
 macos-icon-ghost-color = 39cfac
 macos-icon-screen-color = 6a6c53
-macos-titlebar-style = native
+macos-titlebar-style = hidden
 
 shell-integration-features = no-cursor
 
@@ -18,7 +21,7 @@ theme = rose-pine-moon
 
 window-padding-x = 8
 window-padding-y = 8
-window-theme = "dark"
+window-theme = "auto"
 
 keybind = super+e=esc:e
 keybind = super+t=esc:t
@@ -27,4 +30,4 @@ keybind = super+f=esc:f
 keybind = super+s=esc:s
 keybind = super+g=esc:g
 keybind = super+r=esc:r
-keybind = super+.=text:\x1b.
+keybind = super+.=text:\x1b[46;9u

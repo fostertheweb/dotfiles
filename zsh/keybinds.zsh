@@ -14,11 +14,11 @@ bindkey -s '\et' 'tmux-find-and-create-or-attach^M'
 
 # cmd-f
 # Open cwd in yazi
-bindkey -s '\ef' 'yazi .^M'
+bindkey -s '\ef' 'yazi^M'
 
 # cmd-e
 # Open cwd in nvim
-bindkey -s '\ee' 'nvim -c "Telescope git_files" .^M'
+bindkey -s '\ee' 'nvim -c "Telescope git_files"^M'
 
 # cmd-o
 # Choose git branch
