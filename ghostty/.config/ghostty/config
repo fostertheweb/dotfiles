@@ -14,11 +14,13 @@ macos-icon = custom-style
 macos-icon-frame = beige
 macos-icon-ghost-color = 39cfac
 macos-icon-screen-color = 6a6c53
+macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = native
 
 shell-integration-features = no-cursor
 
 theme = rose-pine-moon
+title = "👻"
 
 window-padding-x = 8
 window-padding-y = 8
