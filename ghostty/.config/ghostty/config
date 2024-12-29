@@ -1,4 +1,5 @@
 adjust-cell-height = 30%
+adjust-cursor-thickness = 3
 
 font-family = BerkeleyMono Nerd Font
 font-feature = -calt
