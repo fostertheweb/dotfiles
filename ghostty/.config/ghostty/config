@@ -14,7 +14,7 @@ macos-icon = custom-style
 macos-icon-frame = beige
 macos-icon-ghost-color = 39cfac
 macos-icon-screen-color = 6a6c53
-macos-titlebar-style = hidden
+macos-titlebar-style = native
 
 shell-integration-features = no-cursor
 
@@ -22,7 +22,7 @@ theme = rose-pine-moon
 
 window-padding-x = 8
 window-padding-y = 8
-window-theme = "auto"
+window-theme = "dark"
 
 keybind = super+e=esc:e
 keybind = super+t=esc:t
