@@ -19,8 +19,8 @@ macos-titlebar-style = native
 
 shell-integration-features = no-cursor
 
-theme = rose-pine-moon
-title = "👻"
+theme = Mellifluous
+title = "👻 Ghostty"
 
 window-padding-x = 8
 window-padding-y = 8

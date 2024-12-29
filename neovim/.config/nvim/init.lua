@@ -22,7 +22,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.rose-pine' },
+  { import = 'themes.mellifluous' },
   { import = 'plugins' },
 }
 
