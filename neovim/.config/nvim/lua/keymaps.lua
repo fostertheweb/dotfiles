@@ -1,19 +1,20 @@
 -- Ctrl-g as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
 
+-- ; as Esc
+vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
+
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', ';', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
 -- Go home, go to EOL
-vim.keymap.set({ 'n' }, 'gh', '^', { desc = 'Go to beginning of line' })
-vim.keymap.set({ 'n' }, 'gl', '$', { desc = 'Go to end of line' })
-
--- use ; to escape in normal and visual mode
-vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
+vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
+vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
@@ -40,10 +41,12 @@ vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Error mes
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- G, Git commands
-vim.keymap.set('n', '<leader>gs', '<CMD>vertical Git<CR>', { desc = 'Status' })
-vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = 'Commit' })
-vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = 'Pull' })
-vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
+vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
+vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenLog<CR>', { desc = 'Log' })
+-- vim.keymap.set('n', '<leader>gs', '<CMD>vertical Git<CR>', { desc = 'Status' })
+-- vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = 'Commit' })
+-- vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = 'Pull' })
+-- vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
 
 -- Q, Quickfix list

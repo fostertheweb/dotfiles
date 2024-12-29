@@ -1,6 +1,16 @@
-local setup_tig = function()
+local setup_tig_status = function()
   require('tui').setup {
-    name = 'TigOpen',
+    name = 'TigOpenStatus',
+    command = 'tig status',
+    width_margin = 0,
+    height_margin = 0,
+    border = 'none',
+  }
+end
+
+local setup_tig_log = function()
+  require('tui').setup {
+    name = 'TigOpenLog',
     command = 'tig',
     width_margin = 0,
     height_margin = 0,
@@ -32,12 +42,8 @@ return {
   'ezechukwu69/tui.nvim',
   config = function()
     setup_gitu()
-    setup_tig()
+    setup_tig_status()
+    setup_tig_log()
     setup_serie()
   end,
-  keys = {
-    { '<leader>ot', '<cmd>TigOpen<cr>', desc = 'Open tig' },
-    { '<leader>og', '<cmd>GituOpen<cr>', desc = 'Open gitu' },
-    { '<leader>os', '<cmd>SerieOpen<cr>', desc = 'Open serie' },
-  },
 }
