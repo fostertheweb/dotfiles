@@ -1,3 +1,16 @@
+-- Function to move cursor to the end of a specific line
+local function move_to_end_of_line(line_number)
+  local bufnr = 0 -- Current buffer
+  local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
+
+  if #lines > 0 then
+    local line_length = #lines[1]
+    vim.api.nvim_win_set_cursor(0, { line_number, line_length })
+  else
+    print 'Line does not exist!'
+  end
+end
+
 -- Ctrl-g as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
 
@@ -15,6 +28,16 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 -- Go home, go to EOL
 vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
+
+-- TODO: C-y paste " register, C-k delete in front of cursor
+vim.keymap.set('i', '<C-a>', function()
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_win_set_cursor(0, { current_line, 0 })
+end, { desc = 'Go to beginning of line' })
+vim.keymap.set('i', '<C-e>', function()
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]
+  move_to_end_of_line(current_line)
+end, { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
