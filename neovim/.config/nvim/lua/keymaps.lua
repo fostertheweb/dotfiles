@@ -57,10 +57,6 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix 
 -- G, Git commands
 vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
 vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenLog<CR>', { desc = 'Log' })
--- vim.keymap.set('n', '<leader>gs', '<CMD>vertical Git<CR>', { desc = 'Status' })
--- vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = 'Commit' })
--- vim.keymap.set('n', '<leader>gp', '<CMD>Git pull<CR>', { desc = 'Pull' })
--- vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
 
 -- Q, Quickfix list
