@@ -1,13 +1,4 @@
--- move cursor to the end of a given line
-local function move_to_end_of_line(line_number)
-  local bufnr = 0
-  local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
-
-  if #lines > 0 then
-    local line_length = #lines[1]
-    vim.api.nvim_win_set_cursor(0, { line_number, line_length })
-  end
-end
+local utils = require 'utils'
 
 -- Ctrl-g as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
@@ -35,7 +26,7 @@ vim.keymap.set('i', '<C-a>', function()
 end, { desc = 'Go to beginning of line' })
 vim.keymap.set('i', '<C-e>', function()
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  move_to_end_of_line(current_line)
+  utils.move_to_end_of_line(current_line)
 end, { desc = 'Go to end of line' })
 
 -- Window commands
