@@ -1,13 +1,11 @@
--- Function to move cursor to the end of a specific line
+-- move cursor to the end of a given line
 local function move_to_end_of_line(line_number)
-  local bufnr = 0 -- Current buffer
+  local bufnr = 0
   local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
 
   if #lines > 0 then
     local line_length = #lines[1]
     vim.api.nvim_win_set_cursor(0, { line_number, line_length })
-  else
-    print 'Line does not exist!'
   end
 end
 
@@ -45,6 +43,7 @@ vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 
 -- Write buffer
 vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = 'Write' })
+vim.keymap.set('n', '<leader>W', '<CMD>wq<CR>', { desc = 'Write & quit' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
