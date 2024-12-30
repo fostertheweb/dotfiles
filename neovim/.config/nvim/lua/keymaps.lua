@@ -30,6 +30,7 @@ vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- TODO: C-y paste " register, C-k delete in front of cursor
+-- TODO: C-a to ^ not 0
 vim.keymap.set('i', '<C-a>', function()
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   vim.api.nvim_win_set_cursor(0, { current_line, 0 })
