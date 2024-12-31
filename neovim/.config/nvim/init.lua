@@ -22,7 +22,7 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
-  { import = 'themes.ayu' },
+  { import = 'themes.chalktone' },
   { import = 'plugins' },
 }
 
