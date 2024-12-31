@@ -20,7 +20,7 @@ M.move_to_start_of_line = function(cursor_position)
     local current_column = cursor_position[2]
     local start_column = lines[1]:find '%S'
 
-    if current_column == start_column and current_column ~= 1 then
+    if current_column == start_column - 1 and current_column ~= 0 then
       vim.api.nvim_win_set_cursor(bufnr, { line_number, 0 })
     else
       vim.api.nvim_win_set_cursor(bufnr, { line_number, start_column and (start_column - 1) or 0 })

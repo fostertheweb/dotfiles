@@ -19,7 +19,7 @@ macos-titlebar-style = native
 
 shell-integration-features = no-cursor
 
-theme = Mellifluous
+theme = Ayu
 title = "👻 Ghostty"
 
 window-padding-x = 8
