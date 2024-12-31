@@ -18,16 +18,21 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
--- TODO: C-y paste " register, C-k delete in front of cursor
--- TODO: C-a to ^ not 0
+-- Emacs style insert mode movement
 vim.keymap.set('i', '<C-a>', function()
-  local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_win_set_cursor(0, { current_line, 0 })
+  local current_position = vim.api.nvim_win_get_cursor(0)
+  utils.move_to_start_of_line(current_position)
 end, { desc = 'Go to beginning of line' })
 vim.keymap.set('i', '<C-e>', function()
   local current_line = vim.api.nvim_win_get_cursor(0)[1]
   utils.move_to_end_of_line(current_line)
 end, { desc = 'Go to end of line' })
+vim.keymap.set('i', '<C-k>', function()
+  utils.cut()
+end, { desc = 'Cut to end of line' })
+vim.keymap.set('i', '<C-y>', function()
+  utils.paste()
+end, { desc = 'Yank from " register' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
