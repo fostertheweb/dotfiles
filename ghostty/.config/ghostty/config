@@ -1,4 +1,4 @@
-adjust-cell-height = 30%
+adjust-cell-height = 35%
 adjust-cursor-thickness = 3
 
 font-family = BerkeleyMono Nerd Font
@@ -33,7 +33,7 @@ keybind = super+f=esc:f
 keybind = super+s=esc:s
 keybind = super+g=esc:g
 keybind = super+r=esc:r
-keybind = super+.=esc:.
+keybind = super+d=esc:d
 
 background = #292522
 foreground = #ECE1D7

@@ -28,9 +28,9 @@ bindkey -s '\eo' 'select-git-branch^M'
 # Create tmux session
 bindkey -s '\es' 'create-tmux-cwd-session^M'
 
-# cmd-.
+# cmd-d
 # Go to dotfiles
-bindkey -s '\e.' 'cd $HOME/.dotfiles^M'
+bindkey -s '\ed' 'cd $HOME/.dotfiles^M'
 
 # cmd-g
 # Grep in cwd
