@@ -19,6 +19,7 @@ vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Emacs style insert mode movement
+-- TODO: <C-n> & <C-p> move down or up to same column
 vim.keymap.set('i', '<C-a>', function()
   local current_position = vim.api.nvim_win_get_cursor(0)
   utils.move_to_start_of_line(current_position)
@@ -63,6 +64,7 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix 
 vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
 vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenLog<CR>', { desc = 'Log' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
+vim.keymap.set('n', '<leader>gwd', utils.open_pr_diff, { desc = 'GitHub PR Diff' })
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })

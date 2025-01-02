@@ -44,36 +44,20 @@ M.paste = function()
   vim.api.nvim_put({ unnamed_register }, 'c', true, true)
 end
 
--- State variables
-local timer = nil
-local keypress_count = 0
-local threshold_ms = 750
+M.open_pr_diff = function()
+  local git_root = vim.fn.system 'git rev-parse --show-toplevel'
+  local file_path = vim.api.nvim_buf_get_name(0)
+  local relative_path = string.gsub(file_path, git_root .. '/', '')
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
+  local command = string.format('git blame --abbrev=40 -L %d,%d %s', line_number, line_number, relative_path)
+  local commit = vim.fn.system(command)
+  local hash = vim.fn.system('cut -d" " -f1', commit)
+  local pr_number = vim.fn.system('gh pr list --state=merged --json number --jq ".[0].number" --search=' .. hash)
 
-local handle_keypress = function()
-  keypress_count = keypress_count + 1
-
-  if not timer then
-    timer = vim.loop.new_timer()
-  end
-
-  if timer then
-    timer:stop()
-    timer:start(
-      threshold_ms,
-      0,
-      vim.schedule_wrap(function()
-        if keypress_count == 1 then
-          -- Single keypress action
-          print 'Single keypress action executed!'
-        elseif keypress_count > 1 then
-          -- Multiple keypress action
-          print 'Multiple keypress action executed!'
-        end
-        -- Reset state
-        keypress_count = 0
-        timer:stop()
-      end)
-    )
+  if #pr_number == 0 then
+    vim.notify('No pull requests containing commit: ' .. hash)
+  else
+    vim.fn.system('gh pr diff --web ' .. pr_number)
   end
 end
 

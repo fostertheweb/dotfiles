@@ -10,18 +10,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  'tpope/vim-sleuth',
-  {
-    'numToStr/Comment.nvim',
-    opts = {},
-  },
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
-
   { import = 'themes.chalktone' },
   { import = 'plugins' },
 }

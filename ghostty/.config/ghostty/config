@@ -15,7 +15,7 @@ macos-icon-frame = beige
 macos-icon-ghost-color = 39cfac
 macos-icon-screen-color = 6a6c53
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = native
+macos-titlebar-style = transparent
 
 shell-integration-features = no-cursor
 
@@ -33,7 +33,7 @@ keybind = super+f=esc:f
 keybind = super+s=esc:s
 keybind = super+g=esc:g
 keybind = super+r=esc:r
-keybind = super+.=text:\x1b[46;9u
+keybind = super+.=esc:.
 
 background = #292522
 foreground = #ECE1D7
