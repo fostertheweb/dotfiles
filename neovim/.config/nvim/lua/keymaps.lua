@@ -3,9 +3,6 @@ local utils = require 'utils'
 -- Ctrl-g as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
 
--- ; as Esc
-vim.keymap.set({ 'n', 'v' }, ';', '<Esc>')
-
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
@@ -14,8 +11,9 @@ vim.keymap.set('n', ';', '<cmd>nohlsearch<CR>')
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
--- Go home, go to EOL
-vim.keymap.set({ 'n', 'v' }, 'gh', '^', { desc = 'Go to beginning of line' })
+-- Go home, start of text, EOL
+vim.keymap.set({ 'n', 'v' }, 'gh', '0', { desc = 'Go to beginning of line' })
+vim.keymap.set({ 'n', 'v' }, 'gs', '^', { desc = 'Go to start of text' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Emacs style insert mode movement

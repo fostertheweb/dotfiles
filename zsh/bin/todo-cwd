@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+local cwd=$(pwd)
+local todo_dir="$cwd/.todo"
+
+# create empty config if doesn't exist
+if [[ ! -e "$HOME/.todo.cfg" ]]; then
+	touch "$HOME/.todo.cfg"
+fi
+
+# create local .todo directory
+if [[ ! -d $todo_dir ]]; then
+	mkdir "$cwd/.todo"
+fi
+
+# todo.txt directory (absolute path)
+export TODO_DIR=$todo_dir
+
+# todo/done/report.txt locations
+export TODO_FILE="$TODO_DIR/todo.txt"
+export DONE_FILE="$TODO_DIR/done.txt"
+export REPORT_FILE="$TODO_DIR/report.txt"
+
+/opt/homebrew/opt/todo-txt/bin/todo.sh "$@"

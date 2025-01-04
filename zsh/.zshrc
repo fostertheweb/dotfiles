@@ -75,6 +75,7 @@ alias ll="eza -la"
 alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
+alias todo="$DOTFILES_PREFIX/zsh/bin/todo-cwd"
 
 source "$DOTFILES_PREFIX/zsh/functions/extras.zsh"
 source "$DOTFILES_PREFIX/zsh/functions/git.zsh"
