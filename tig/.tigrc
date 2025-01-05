@@ -1,6 +1,6 @@
 bind status P !git push black
 
-color cursor yellow black bold reverse
+color cursor white black bold reverse
 color title-focus blue black bold
 color title-blur white black
 
