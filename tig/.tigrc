@@ -1,4 +1,4 @@
-bind status P !git push black
+bind status P !git push
 
 color default white default
 color cursor white default bold reverse
