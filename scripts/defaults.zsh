@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# Save screenshots to the desktop
+# Save screenshots to specific directory
 mkdir -p "${HOME}/Pictures/Screenshots"
 defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
 

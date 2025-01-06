@@ -56,6 +56,8 @@ func step(_ message: String, command: String) {
 // Homebrew
 step("Update Homebrew", command: "brew update")
 step("Install from Brewfile", command: "brew bundle")
+step("Write macOS Defaults", command: "zsh ./scripts/defaults.zsh")
+step("Link Configurations", command: "stow ghostty neovim ranger starship tig tmux zsh")
 
 print("\r")
 print("\r[Setup Complete]")
