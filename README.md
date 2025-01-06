@@ -1,6 +1,4 @@
-## dotfiles
-
-Tool configurations and many conveniences.
+# fostertheweb's dotfiles
 
 ## Setup
 
