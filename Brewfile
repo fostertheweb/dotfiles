@@ -1,7 +1,6 @@
 brew "asciinema"
 brew "bat"
 brew "eza"
-brew "dog"
 brew "fd"
 brew "ffmpeg"
 brew "ffmpegthumbnailer"
