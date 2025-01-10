@@ -1,11 +1,11 @@
 adjust-cell-height = 35%
 adjust-cursor-thickness = 3
 
-font-family = "BerkeleyMono Nerd Font"
+font-family = "IosevkaTerm Nerd Font"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
-font-size = 14
+font-size = 16
 
 cursor-style = block
 cursor-style-blink = false
