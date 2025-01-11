@@ -1,4 +1,5 @@
 bind status P !git push
+bind status p !git pull --rebase
 
 color default white default
 color cursor white default bold reverse
