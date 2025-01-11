@@ -1,6 +1,6 @@
 return {
   'folke/noice.nvim',
-  enabled = false,
+  enabled = true,
   event = 'VeryLazy',
   opts = {},
   dependencies = {
@@ -8,6 +8,21 @@ return {
   },
   config = function()
     require('noice').setup {
+      cmdline = {
+        view = 'cmdline',
+        format = {
+          cmdline = false,
+          search_down = false,
+          search_up = false,
+          filter = false,
+          lua = false,
+          help = false,
+          input = false,
+        },
+      },
+      popupmenu = {
+        enabled = false,
+      },
       lsp = {
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
@@ -17,6 +32,7 @@ return {
       },
       presets = {
         lsp_doc_border = true,
+        long_message_to_split = true,
       },
     }
   end,
