@@ -1,0 +1,58 @@
+[[language]]
+name = "html"
+formatter = { command = 'prettier' }
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "astro"
+formatter = { command = 'prettier' }
+language-servers = ["astro-ls", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier' }
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = 'prettier' }
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "javascript"
+formatter = { command = 'prettier' }
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "jsx"
+formatter = { command = 'prettier' }
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "typescript"
+formatter = { command = 'prettier' }
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "tsx"
+formatter = { command = 'prettier' }
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "svelte"
+formatter = { command = 'prettier' }
+language-servers = ["svelteserver", "tailwindcss-ls"]
+auto-format = true
+
+[[language]]
+name = "rust"
+auto-format = true
+diagnostic-severity = "Warning"
+language-servers = ["rust-analyzer"]
