@@ -28,6 +28,23 @@ M.move_to_start_of_line = function(cursor_position)
   end
 end
 
+M.move_forward = function(cursor_position)
+  local bufnr = 0
+  local line_number = cursor_position[1]
+  local current_column = cursor_position[2]
+
+  vim.api.nvim_win_set_cursor(bufnr, { line_number, current_column + 1 })
+end
+
+M.move_backward = function(cursor_position)
+  local bufnr = 0
+  local line_number = cursor_position[1]
+  local current_column = cursor_position[2]
+  local next_column = current_column ~= 0 and (current_column - 1) or 0
+
+  vim.api.nvim_win_set_cursor(bufnr, { line_number, next_column })
+end
+
 M.cut = function()
   local current_line = vim.api.nvim_get_current_line()
   local cursor_col = vim.api.nvim_win_get_cursor(0)[2]
