@@ -45,6 +45,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# OCaml
+[[ ! -r '/Users/jonathan/.opam/opam-init/init.zsh' ]] || source '/Users/jonathan/.opam/opam-init/init.zsh' >/dev/null 2>/dev/null
+
 export BAT_THEME=ansi
 
 # man page colors
@@ -76,6 +79,7 @@ alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias todo="$DOTFILES_PREFIX/zsh/bin/todo-cwd"
+alias lf="OPENER=nvim lf"
 
 source "$DOTFILES_PREFIX/zsh/functions/extras.zsh"
 source "$DOTFILES_PREFIX/zsh/functions/git.zsh"

@@ -1,3 +1,23 @@
+local is_inside_work_tree = {}
+
+local project_files = function()
+  local opts = {}
+
+  local cwd = vim.fn.getcwd()
+  if is_inside_work_tree[cwd] == nil then
+    vim.fn.system 'git rev-parse --is-inside-work-tree'
+    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+  end
+
+  if is_inside_work_tree[cwd] then
+    require('telescope.builtin').git_files(opts)
+  else
+    require('telescope.builtin').find_files(opts)
+  end
+end
+
+vim.api.nvim_create_user_command('ProjectFiles', project_files, {})
+
 return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
@@ -59,7 +79,7 @@ return {
     vim.keymap.set('n', '<leader>df', builtin.diagnostics, { desc = 'Find' })
     -- F, Find: Files
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
-    vim.keymap.set('n', '<leader>fp', builtin.git_files, { desc = 'Project files' })
+    vim.keymap.set('n', '<leader>fp', project_files, { desc = 'Project files' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Grep' })
     vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Current word' })
     vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files' })
