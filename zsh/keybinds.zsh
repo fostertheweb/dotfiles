@@ -13,8 +13,8 @@ bindkey -s '^T' 'tmux-list-and-attach^M'
 bindkey -s '\et' 'tmux-find-and-create-or-attach^M'
 
 # cmd-f
-# Open cwd in yazi
-bindkey -s '\ef' 'yazi^M'
+# Open cwd in lf
+bindkey -s '\ef' 'lf^M'
 
 # cmd-e
 # Open cwd in nvim
