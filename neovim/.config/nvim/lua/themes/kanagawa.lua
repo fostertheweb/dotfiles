@@ -6,6 +6,10 @@ return {
     require('kanagawa').setup {
       terminalColors = true,
       dimInactive = true,
+      background = {
+        dark = 'dragon',
+        light = 'wave',
+      },
       colors = {
         theme = {
           all = {
@@ -17,15 +21,14 @@ return {
         },
       },
       overrides = function(colors)
+        local theme = colors.theme
         return {
+          NormalFloat = { bg = 'none' },
           FloatBorder = { bg = 'none' },
           FloatTitle = { bg = 'none' },
-          NormalFloat = {
-            bg = colors.palette.dragonBlack3,
-          },
-          Term = {
-            bg = colors.palette.dragonBlack3,
-          },
+          NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+          LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+          MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
         }
       end,
     }

@@ -14,4 +14,12 @@ require('lazy').setup {
   { import = 'plugins' },
 }
 
+local utils = require 'utils'
+
+if utils.is_dark_mode() then
+  vim.o.background = 'dark'
+else
+  vim.o.background = 'light'
+end
+
 -- vim: ts=2 sts=2 sw=2 et
