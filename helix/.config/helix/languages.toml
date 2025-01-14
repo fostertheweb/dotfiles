@@ -54,5 +54,5 @@ auto-format = true
 [[language]]
 name = "rust"
 auto-format = true
-diagnostic-severity = "Warning"
+diagnostic-severity = "warning"
 language-servers = ["rust-analyzer"]

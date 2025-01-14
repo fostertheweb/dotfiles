@@ -4,11 +4,15 @@ theme = "kanagawa-dragon"
 cursorline = true
 line-number = "relative"
 true-color = true
+end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.file-picker]
+hidden = false
 
 [editor.lsp]
 display-messages = true
@@ -23,4 +27,9 @@ skip-levels = 1
 layout = ["diff", "diagnostics", "line-numbers", "spacer"]
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control", "file-name"]
+left = ["file-name"]
+right = ["diagnostics", "spinner"]
+separator = "│"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
