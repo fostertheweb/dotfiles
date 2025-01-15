@@ -2,10 +2,12 @@ local utils = require 'utils'
 
 -- Ctrl-g as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
+vim.keymap.set({ 'i', 'v' }, '<C-;>', '<Esc>')
 
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<C-;>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', ';', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
