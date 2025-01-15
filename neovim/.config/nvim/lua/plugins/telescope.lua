@@ -83,7 +83,7 @@ return {
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Grep' })
     vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Current word' })
     vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Recent files' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Buffers' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
     -- F, Find: LSP
     vim.keymap.set('n', '<leader>ft', builtin.lsp_type_definitions, { desc = 'Type definition' })
     vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = 'References' })

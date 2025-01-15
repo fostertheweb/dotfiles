@@ -8,10 +8,10 @@ return {
       enable_cmds = false,
       ui = {
         border = 'none',
-        height = 0.96,
-        width = 0.96,
-        x = 0.04,
-        y = 0.04,
+        height = 1,
+        width = 1,
+        x = 0.5,
+        y = 1,
       },
     }
 
