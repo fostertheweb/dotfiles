@@ -16,31 +16,6 @@ vim.keymap.set({ 'n', 'v' }, 'gh', '0', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gs', '^', { desc = 'Go to start of text' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
--- Emacs style insert mode movement
--- TODO: <C-n> & <C-p> move down or up to same column
-vim.keymap.set('i', '<C-a>', function()
-  local current_position = vim.api.nvim_win_get_cursor(0)
-  utils.move_to_start_of_line(current_position)
-end, { desc = 'Go to beginning of line' })
-vim.keymap.set('i', '<C-e>', function()
-  local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  utils.move_to_end_of_line(current_line)
-end, { desc = 'Go to end of line' })
-vim.keymap.set('i', '<C-f>', function()
-  local current_position = vim.api.nvim_win_get_cursor(0)
-  utils.move_forward(current_position)
-end, { desc = 'Go forward' })
-vim.keymap.set('i', '<C-b>', function()
-  local current_position = vim.api.nvim_win_get_cursor(0)
-  utils.move_backward(current_position)
-end, { desc = 'Go backward' })
-vim.keymap.set('i', '<C-k>', function()
-  utils.cut()
-end, { desc = 'Cut to end of line' })
-vim.keymap.set('i', '<C-y>', function()
-  utils.paste()
-end, { desc = 'Yank from " register' })
-
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 
@@ -76,3 +51,18 @@ vim.keymap.set('n', '<leader>gwd', utils.open_pr_diff, { desc = 'GitHub PR Diff'
 vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })
 vim.keymap.set('n', '<leader>qn', '<CMD>cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '<leader>qp', '<CMD>cprev<CR>', { desc = 'Previous quickfix item' })
+
+-- Emacs style insert mode movement
+local imap = function(keys, fn, desc)
+  vim.keymap.set('i', keys, function()
+    fn()
+  end, { desc = desc })
+end
+
+-- TODO: <C-n> & <C-p> move down or up to same column
+imap('<C-a>', utils.move_to_start_of_line, 'Go to line start')
+imap('<C-e>', utils.move_to_end_of_line, 'Go to line end')
+imap('<C-f>', utils.move_forward, 'Go forward')
+imap('<C-b>', utils.move_backward, 'Go backward')
+imap('<C-k>', utils.cut, 'Cut to line end')
+imap('<C-y>', utils.paste, 'Yank from " register')

@@ -1,7 +1,8 @@
 local M = {}
 
 -- move cursor to the end of a given line
-M.move_to_end_of_line = function(line_number)
+M.move_to_end_of_line = function()
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
   local bufnr = 0
   local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
 
@@ -11,7 +12,8 @@ M.move_to_end_of_line = function(line_number)
   end
 end
 
-M.move_to_start_of_line = function(cursor_position)
+M.move_to_start_of_line = function()
+  local cursor_position = vim.api.nvim_win_get_cursor(0)
   local bufnr = 0
   local line_number = cursor_position[1]
   local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
@@ -28,7 +30,8 @@ M.move_to_start_of_line = function(cursor_position)
   end
 end
 
-M.move_forward = function(cursor_position)
+M.move_forward = function()
+  local cursor_position = vim.api.nvim_win_get_cursor(0)
   local bufnr = 0
   local line_number = cursor_position[1]
   local current_column = cursor_position[2]
@@ -36,7 +39,8 @@ M.move_forward = function(cursor_position)
   vim.api.nvim_win_set_cursor(bufnr, { line_number, current_column + 1 })
 end
 
-M.move_backward = function(cursor_position)
+M.move_backward = function()
+  local cursor_position = vim.api.nvim_win_get_cursor(0)
   local bufnr = 0
   local line_number = cursor_position[1]
   local current_column = cursor_position[2]
