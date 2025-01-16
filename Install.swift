@@ -53,7 +53,6 @@ func step(_ message: String, command: String) {
   process.waitUntilExit()
 }
 
-// Homebrew
 step("Update Homebrew", command: "brew update")
 step("Install from Brewfile", command: "brew bundle")
 step("Write macOS Defaults", command: "zsh ./scripts/defaults.zsh")
