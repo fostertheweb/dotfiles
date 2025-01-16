@@ -11,9 +11,5 @@ return {
         },
       },
     }
-
-    vim.opt.termguicolors = true
-    vim.cmd.colorscheme 'chalktone'
-    vim.cmd.hi 'Comment gui=none'
   end,
 }

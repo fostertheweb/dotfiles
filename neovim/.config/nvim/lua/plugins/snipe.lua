@@ -2,6 +2,7 @@ return {
   'leath-dub/snipe.nvim',
   config = function()
     require('snipe').setup {
+      position = 'center',
       ui = {
         open_win_override = {
           title = 'Buffers',

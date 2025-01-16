@@ -11,12 +11,17 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   { import = 'themes.kanagawa' },
+  { import = 'themes.chalktone' },
   { import = 'plugins' },
 }
 
-local utils = require 'utils'
+-- Default theme settings
+vim.o.background = 'dark'
+vim.cmd 'colorscheme kanagawa-dragon'
+vim.opt.termguicolors = true
+vim.cmd.hi 'Comment gui=none'
 
-if utils.is_dark_mode() then
+if require('utils').is_dark_mode() then
   vim.o.background = 'dark'
 else
   vim.o.background = 'light'

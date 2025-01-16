@@ -6,10 +6,6 @@ return {
     require('kanagawa').setup {
       terminalColors = true,
       dimInactive = true,
-      background = {
-        dark = 'dragon',
-        light = 'wave',
-      },
       colors = {
         theme = {
           all = {
@@ -32,9 +28,5 @@ return {
         }
       end,
     }
-
-    vim.opt.termguicolors = true
-    vim.cmd.colorscheme 'kanagawa-dragon'
-    vim.cmd.hi 'Comment gui=none'
   end,
 }

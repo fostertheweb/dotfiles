@@ -13,3 +13,11 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.cmd 'startinsert'
   end,
 })
+
+vim.api.nvim_create_autocmd('OptionSet', {
+  desc = 'Set colorscheme when background changes',
+  pattern = 'background',
+  callback = function()
+    require('utils').set_theme()
+  end,
+})
