@@ -90,12 +90,4 @@ M.is_dark_mode = function()
   return true
 end
 
-M.set_theme = function()
-  if vim.o.background == 'dark' then
-    vim.cmd 'colorscheme kanagawa-dragon'
-  else
-    vim.cmd 'colorscheme chalktone'
-  end
-end
-
 return M

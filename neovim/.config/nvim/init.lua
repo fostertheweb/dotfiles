@@ -22,9 +22,9 @@ vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if require('utils').is_dark_mode() then
-  vim.o.background = 'dark'
+  vim.cmd 'colorscheme kanagawa-dragon'
 else
-  vim.o.background = 'light'
+  vim.cmd 'colorscheme chalktone'
 end
 
 -- vim: ts=2 sts=2 sw=2 et
