@@ -3,7 +3,7 @@ local setup_tig_status = function()
     name = 'TigOpenStatus',
     command = 'tig status',
     width_margin = 0,
-    height_margin = 0,
+    height_margin = 0.5,
     border = 'none',
   }
 end
@@ -13,7 +13,7 @@ local setup_tig_log = function()
     name = 'TigOpenLog',
     command = 'tig',
     width_margin = 0,
-    height_margin = 0,
+    height_margin = 0.5,
     border = 'none',
   }
 end
