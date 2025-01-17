@@ -1,0 +1,24 @@
+layout {
+    pane split_direction="vertical" {
+        pane
+    }
+
+    pane size=1 borderless=true {
+        plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+            hide_frame_for_single_pane "true"
+
+            command_branch_command  "git rev-parse --abbrev-ref HEAD"
+            command_branch_format   "#[fg=174]  󰘬  {stdout} "
+
+            format_left  "#[fg=248]   {session} {tabs}"
+            format_right "{command_branch}"
+
+            mode_normal          "#[fg=#89B4FA] %"
+            mode_tmux            "#[fg=#ffc387] %"
+            mode_default_to_mode "tmux"
+
+            tab_normal               "#[fg=240] {index}:{name} "
+            tab_active               "#[fg=118] {index}:{name} "
+        }
+    }
+}

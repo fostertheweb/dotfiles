@@ -1,6 +1,24 @@
 keybinds clear-defaults=true {
     normal {
         bind "Ctrl s" { SwitchToMode "tmux"; }
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt ." "Alt >" { Resize "Increase"; }
+        bind "Alt ," "Alt <" { Resize "Decrease"; }
+    }
+
+    renametab {
+        bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; }
+    }
+
+    renamepane {
+        bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; }
+    }
+
+    shared_among "renametab" "renamepane" {
+        bind "Enter" { SwitchToMode "Normal"; }
     }
 
     tmux {
@@ -17,9 +35,12 @@ keybinds clear-defaults=true {
         bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "l" { ToggleTab; SwitchToMode "Normal"; }
         bind "c" { NewTab; SwitchToMode "Normal"; }
-        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind ";" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "'" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "o" { FocusNextPane; }
+        bind "," { SwitchToMode "renametab"; }
+        bind "r" { SwitchToMode "renamepane"; }
         bind "f" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
         bind "Esc" { SwitchToMode "Normal"; }
@@ -32,7 +53,7 @@ keybinds clear-defaults=true {
             SwitchToMode "Normal";
         }
 
-        bind "p" {
+        bind "u" {
             LaunchOrFocusPlugin "zellij:plugin-manager" {
                 floating true
             }
@@ -74,6 +95,7 @@ plugins {
 load_plugins {
 }
 
+default_layout "simple"
 simplified_ui true
 theme "ansi"
 pane_frames true
