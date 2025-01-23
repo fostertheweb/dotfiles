@@ -14,14 +14,14 @@ return {
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
         end
 
-        map('gd', vim.lsp.buf.definition, 'Go to fefinition')
+        map('gd', vim.lsp.buf.definition, 'Go to definition')
         map('gt', vim.lsp.buf.type_definition, 'Go to type definition')
         map('gI', vim.lsp.buf.implementation, 'Go to implementation')
         map('gD', vim.lsp.buf.declaration, 'Go to declaration')
         map('grr', vim.lsp.buf.references, 'Go to References')
         map('grn', vim.lsp.buf.rename, 'Rename Symbol')
         map('gra', vim.lsp.buf.code_action, 'Code Actions')
-        vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help)
+        vim.keymap.set('i', '<C-x>', vim.lsp.buf.signature_help)
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
@@ -39,7 +39,7 @@ return {
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
     local servers = {
       eslint_d = {},
