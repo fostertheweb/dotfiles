@@ -1,0 +1,9 @@
+llm  = "chatgpt"
+
+[chatgpt]
+model = "chatgpt-4o-latest"
+url = "https://api.openai.com/v1/chat/completions"
+
+[ollama]
+url = "http://localhost:11434/api/chat"
+model = ""
