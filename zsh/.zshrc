@@ -3,6 +3,7 @@ bindkey -e
 export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
+export ZSH_CONFIG="$HOME/.config/zsh"
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -58,7 +59,21 @@ source <(fzf --zsh)
 # Disable fzf Ctrl-T binding
 export FZF_CTRL_T_COMMAND=""
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS="--ansi --bind 'ctrl-c:abort,ctrl-j:accept' --cycle --height 60% --tmux center --layout reverse --margin 1,0 --border --border-label-pos 2"
+export FZF_DEFAULT_OPTS="
+  --style minimal
+  --ansi
+  --bind 'ctrl-c:abort,ctrl-j:accept'
+  --border none
+  --color pointer:10,header:8
+  --cycle
+  --height 60%
+  --layout reverse 
+  --tmux center
+  ${TMUX:+--border sharp}
+  --info hidden"
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # prompt
 eval "$(starship init zsh)"
@@ -78,16 +93,16 @@ alias ll="eza -la"
 alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
-alias todo="$DOTFILES_PREFIX/zsh/bin/todo-cwd"
+alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias lf="OPENER=nvim lf"
 
-source "$DOTFILES_PREFIX/zsh/functions/extras.zsh"
-source "$DOTFILES_PREFIX/zsh/functions/git.zsh"
-source "$DOTFILES_PREFIX/zsh/functions/node.zsh"
-source "$DOTFILES_PREFIX/zsh/functions/search.zsh"
-source "$DOTFILES_PREFIX/zsh/functions/tmux.zsh"
+source "$ZSH_CONFIG/functions/extras.zsh"
+source "$ZSH_CONFIG/functions/git.zsh"
+source "$ZSH_CONFIG/functions/node.zsh"
+source "$ZSH_CONFIG/functions/search.zsh"
+source "$ZSH_CONFIG/functions/tmux.zsh"
 
-source "$DOTFILES_PREFIX/zsh/keybinds.zsh"
+source "$ZSH_CONFIG/keybinds.zsh"
 
 add-zsh-hook chpwd load-nvmrc
 
