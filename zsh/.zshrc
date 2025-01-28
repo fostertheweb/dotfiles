@@ -90,3 +90,6 @@ source "$DOTFILES_PREFIX/zsh/functions/tmux.zsh"
 source "$DOTFILES_PREFIX/zsh/keybinds.zsh"
 
 add-zsh-hook chpwd load-nvmrc
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jonathan/.cache/lm-studio/bin"

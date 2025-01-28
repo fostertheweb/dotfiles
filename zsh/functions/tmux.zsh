@@ -39,9 +39,10 @@ function tmux-create-or-attach() {
 local home_replacer="sed \"s|^$HOME|~|\""
 local home_restore="sed \"s|^~|$HOME|\""
 local find_command="fd --hidden --type d --max-depth 4 '.git' $HOME/Developer --exec dirname"
+local fzf_git_cmd="fzf --style minimal --border none --info hidden --header '  Projects' --keep-right ${TMUX:+--border sharp}"
 
 function select-git-project() {
-  eval $find_command | sort -u | eval $home_replacer | fzf --keep-right --border-label " Git Projects " --prompt " : " | eval $home_restore
+  eval $find_command | sort -u | eval $home_replacer | eval $fzf_git_cmd | eval $home_restore
 }
 
 function tmux-find-and-create-or-attach() {
@@ -51,11 +52,12 @@ function tmux-find-and-create-or-attach() {
 function tmux-list-and-attach() {
   local sessions="$(tmux list-session 2>/dev/null)"
   local chosen_session
+  local fzf_cmd="fzf --style minimal --border none --info hidden --header '  Sessions' --color=pointer:12 ${TMUX:+--border sharp}"
 
   if [[ -z "$sessions" || (-n "$TMUX" && $(echo "$sessions" | wc -l) -eq 1) ]]; then
     tmux-create-or-attach "$(select-git-project)"
   else
-    chosen_session="$(tmux list-session | fzf --border-label ' Sessions ' --prompt ' : ' | cut -d: -f1)"
+    chosen_session="$(tmux list-session | eval $fzf_cmd | cut -d: -f1)"
   fi
 
   if [[ -z "$chosen_session" ]]; then
