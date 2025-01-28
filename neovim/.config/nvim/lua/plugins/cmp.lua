@@ -1,6 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
-  enabled = false,
+  enabled = true,
   event = 'InsertEnter',
   dependencies = {
     {
@@ -17,6 +17,8 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'tailwind-tools',
+    'onsails/lspkind-nvim',
   },
   config = function()
     local cmp = require 'cmp'
@@ -45,6 +47,11 @@ return {
     })
 
     cmp.setup {
+      formatting = {
+        format = require('lspkind').cmp_format {
+          before = require('tailwind-tools.cmp').lspkind_format,
+        },
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
