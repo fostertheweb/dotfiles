@@ -5,6 +5,9 @@ return {
     require('mini.comment').setup {
       options = {
         ignore_blank_line = true,
+        custom_commentstring = function()
+          return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
+        end,
       },
       mappings = {
         comment = 'g/',

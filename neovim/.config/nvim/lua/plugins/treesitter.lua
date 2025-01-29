@@ -11,5 +11,9 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
     }
+
+    require('ts_context_commentstring').setup {
+      enable_autocmd = false,
+    }
   end,
 }
