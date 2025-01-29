@@ -66,7 +66,7 @@ export FZF_DEFAULT_OPTS="
   --border none
   --color pointer:10,header:8
   --cycle
-  --height 60%
+  --height ~100%
   --layout reverse 
   --tmux center
   ${TMUX:+--border sharp}

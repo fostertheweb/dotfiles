@@ -1,116 +1,101 @@
 return {
-  'neovim/nvim-lspconfig',
-  dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-  },
-  config = function()
-    vim.lsp.inlay_hint.enable()
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-      callback = function(event)
-        local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
-        end
-
-        map('gd', vim.lsp.buf.definition, 'Go to definition')
-        map('gt', vim.lsp.buf.type_definition, 'Go to type definition')
-        map('gI', vim.lsp.buf.implementation, 'Go to implementation')
-        map('gD', vim.lsp.buf.declaration, 'Go to declaration')
-        map('grr', vim.lsp.buf.references, 'Go to References')
-        map('grn', vim.lsp.buf.rename, 'Rename Symbol')
-        map('gra', vim.lsp.buf.code_action, 'Code Actions')
-        vim.keymap.set('i', '<C-x>', vim.lsp.buf.signature_help)
-
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.server_capabilities.documentHighlightProvider then
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
-            callback = vim.lsp.buf.document_highlight,
-          })
-
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
-            callback = vim.lsp.buf.clear_references,
-          })
-        end
-      end,
-    })
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-
-    local servers = {
-      eslint_d = {},
-      rust_analyzer = {},
-      ts_ls = {},
-      lua_ls = {
-        settings = {
-          Lua = {
-            runtime = { version = 'LuaJIT' },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                '${3rd}/luv/library',
-                unpack(vim.api.nvim_get_runtime_file('', true)),
-              },
-              -- If lua_ls is really slow on your computer, you can try this instead:
-              -- library = { vim.env.VIMRUNTIME },
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            diagnostics = { disable = { 'missing-fields' } },
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'saghen/blink.cmp',
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = {
+            { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
           },
         },
       },
-    }
-
-    -- setup swift lsp
-    require('lspconfig').sourcekit.setup {
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = true,
-          },
+      {
+        'luckasRanarison/tailwind-tools.nvim',
+        name = 'tailwind-tools',
+        build = ':UpdateRemotePlugins',
+        dependencies = {
+          'nvim-treesitter/nvim-treesitter',
+          'nvim-telescope/telescope.nvim',
         },
+        opts = {},
       },
-    }
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup()
 
-    require('lspconfig').eslint.setup {
-      on_attach = function(_, bufnr)
-        vim.api.nvim_create_autocmd('BufWritePre', {
-          buffer = bufnr,
-          command = 'EslintFixAll',
-        })
-      end,
-    }
-
-    require('mason').setup()
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    -- formatters
-    vim.list_extend(ensure_installed, {
-      'prettier',
-      'shfmt',
-      'stylua',
-    })
-    -- linters
-    vim.list_extend(ensure_installed, {
-      'eslint_d',
-    })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-    require('mason-lspconfig').setup {
-      handlers = {
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      require('mason-lspconfig').setup_handlers {
         function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          require('lspconfig')[server_name].setup { capabilities = capabilities }
         end,
-      },
-    }
-  end,
+      }
+
+      vim.lsp.inlay_hint.enable()
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
+          end
+
+          map('gd', vim.lsp.buf.definition, 'Go to definition')
+          map('gD', vim.lsp.buf.declaration, 'Go to declaration')
+          map('gi', vim.lsp.buf.implementation, 'Go to implementation')
+          map('go', vim.lsp.buf.type_definition, 'Go to type definition')
+          map('gr', vim.lsp.buf.references, 'Go to references')
+          map('gc', vim.lsp.buf.rename, 'Rename symbol')
+          map('g.', vim.lsp.buf.code_action, 'Code actions')
+          map('g,', vim.lsp.buf.signature_help, 'Signature Help')
+          map('=g', vim.lsp.buf.format, 'Format code')
+          vim.keymap.set('i', '<C-i>', vim.lsp.buf.signature_help)
+
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.server_capabilities.documentHighlightProvider then
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+              buffer = event.buf,
+              callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+              buffer = event.buf,
+              callback = vim.lsp.buf.clear_references,
+            })
+          end
+        end,
+      })
+    end,
+  },
+  {
+    'lewis6991/hover.nvim',
+    config = function()
+      require('hover').setup {
+        init = function()
+          require 'hover.providers.lsp'
+          require 'hover.providers.diagnostic'
+        end,
+        preview_opts = {
+          border = 'single',
+        },
+        preview_window = false,
+        title = true,
+      }
+
+      vim.keymap.set('n', 'K', require('hover').hover, { desc = 'Show hover' })
+      vim.keymap.set('n', '<C-p>', function()
+        ---@diagnostic disable-next-line: missing-parameter
+        require('hover').hover_switch 'previous'
+      end, { desc = 'hover.nvim (previous source)' })
+      vim.keymap.set('n', '<C-n>', function()
+        ---@diagnostic disable-next-line: missing-parameter
+        require('hover').hover_switch 'next'
+      end, { desc = 'hover.nvim (next source)' })
+    end,
+  },
 }

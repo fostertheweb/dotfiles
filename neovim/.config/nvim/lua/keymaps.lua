@@ -31,14 +31,9 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
--- Ctrl-Tab for tabs
-vim.keymap.set('n', '<C-Tab>', '<CMD>tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', '<C-S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
-
 -- D, Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
-vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Error messages' })
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- G, Git commands
