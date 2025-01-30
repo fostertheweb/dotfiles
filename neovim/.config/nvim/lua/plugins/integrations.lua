@@ -2,9 +2,9 @@ local setup_tig_status = function()
   require('tui').setup {
     name = 'TigOpenStatus',
     command = 'tig status',
-    width_margin = 0,
-    height_margin = 0.5,
-    border = 'none',
+    width_margin = 1.5,
+    height_margin = 2,
+    border = 'rounded',
   }
 end
 
@@ -12,9 +12,9 @@ local setup_tig_log = function()
   require('tui').setup {
     name = 'TigOpenLog',
     command = 'tig',
-    width_margin = 0,
-    height_margin = 0.5,
-    border = 'none',
+    width_margin = 1.5,
+    height_margin = 2,
+    border = 'rounded',
   }
 end
 

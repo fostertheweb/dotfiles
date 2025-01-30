@@ -7,7 +7,6 @@ return {
       },
     },
   },
-  { 'kevinhwang91/nvim-hlslens' },
   {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
