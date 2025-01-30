@@ -39,7 +39,7 @@ function tmux-create-or-attach() {
 local home_replacer="sed \"s|^$HOME|~|\""
 local home_restore="sed \"s|^~|$HOME|\""
 local find_command="fd --hidden --type d --max-depth 4 '.git' $HOME/Developer --exec dirname"
-local fzf_git_cmd="fzf --header '  Projects' --keep-right"
+local fzf_git_cmd="fzf --header '  Projects' --keep-right ${TMUX:+--border sharp}"
 
 function select-git-project() {
   eval $find_command | sort -u | eval $home_replacer | eval $fzf_git_cmd | eval $home_restore
