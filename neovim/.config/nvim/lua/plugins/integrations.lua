@@ -8,9 +8,9 @@ local setup_tig_status = function()
   }
 end
 
-local setup_tig_log = function()
+local setup_tig_commits = function()
   require('tui').setup {
-    name = 'TigOpenLog',
+    name = 'TigOpenCommits',
     command = 'tig',
     width_margin = 1.5,
     height_margin = 2,
@@ -23,7 +23,7 @@ return {
     'ezechukwu69/tui.nvim',
     config = function()
       setup_tig_status()
-      setup_tig_log()
+      setup_tig_commits()
     end,
   },
 }

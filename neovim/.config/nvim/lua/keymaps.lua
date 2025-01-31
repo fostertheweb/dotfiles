@@ -1,7 +1,8 @@
 local utils = require 'utils'
 
--- Ctrl-g as Esc
+-- Ctrl-g, Ctrl-Space as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
+vim.keymap.set({ 'i', 'v' }, '<C-Space>', '<Esc>')
 
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -38,9 +39,9 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix 
 
 -- G, Git commands
 vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
-vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenLog<CR>', { desc = 'Log' })
-vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns blame_line<CR>', { desc = 'Blame line' })
-vim.keymap.set('n', '<leader>gwd', utils.open_pr_diff, { desc = 'GitHub PR Diff' })
+vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenCommits<CR>', { desc = 'Commits' })
+vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
+vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })

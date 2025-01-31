@@ -76,6 +76,8 @@ return {
 
       -- Keymaps
       local builtin = require 'telescope.builtin'
+      -- Space
+      vim.keymap.set('n', '<leader>f<leader>', builtin.resume, { desc = 'Rerun Previous' })
       -- D, Diagnostics
       vim.keymap.set('n', '<leader>df', builtin.diagnostics, { desc = 'Find' })
       -- F, Find: Files
@@ -104,9 +106,8 @@ return {
       -- H, Help
       vim.keymap.set('n', '<leader>hf', builtin.help_tags, { desc = 'Find' })
       vim.keymap.set('n', '<leader>hk', builtin.keymaps, { desc = 'Keymaps' })
-      vim.keymap.set('n', '<leader>ht', builtin.builtin, { desc = 'Telescope' })
       -- U, Undo tree
-      vim.keymap.set('n', '<leader>u', '<CMD>Telescope undo<CR>', { desc = 'Undo tree' })
+      vim.keymap.set('n', '<leader>u', '<CMD>Telescope undo<CR>', { desc = 'Undo' })
 
       -- Enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')

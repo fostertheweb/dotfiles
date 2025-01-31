@@ -48,7 +48,7 @@ return {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<Tab>'] = cmp.mapping.confirm { select = true },
-          ['<C-Space>'] = cmp.mapping.complete {},
+          ["<C-'>"] = cmp.mapping.complete {},
           ['<C-c>'] = cmp.mapping.abort(),
         },
         matching = {
@@ -58,6 +58,9 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'lazydev', group_index = 0 },
+          per_filetype = {
+            codecompanion = { 'codecompanion' },
+          },
         },
         window = {
           completion = {
@@ -65,11 +68,13 @@ return {
             col_offset = -4,
             side_padding = 1,
             scrollbar = false,
+            winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
           },
           documentation = {
             border = 'rounded',
             max_width = 80,
             max_height = 20,
+            winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
           },
         },
       }

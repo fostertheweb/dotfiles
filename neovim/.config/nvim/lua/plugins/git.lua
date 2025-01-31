@@ -2,7 +2,6 @@ return {
   {
     'sindrets/diffview.nvim',
     config = function()
-      -- TODO: open file diff from status
       vim.keymap.set('n', '<leader>gd', '<CMD>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>', { desc = 'Diff' })
     end,
   },
@@ -56,7 +55,7 @@ return {
     config = function()
       require('octo').setup()
       vim.treesitter.language.register('markdown', 'octo')
-      vim.keymap.set('n', '<leader>grf', '<CMD>Octo pr list<CR>', { desc = 'Find' })
+      vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
     end,
   },
 }

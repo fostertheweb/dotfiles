@@ -77,13 +77,10 @@ return {
         },
       }
       require('which-key').add {
+        { '<leader>c', group = 'Chat' },
+        { '<leader>d', group = 'Diagnostic' },
         { '<leader>f', group = 'Find' },
         { '<leader>g', group = 'Git' },
-        { '<leader>gh', group = 'Hunk' },
-        { '<leader>gw', group = 'Web' },
-        { '<leader>gr', group = 'Pull Request' },
-        { '<leader>c', group = 'Code' },
-        { '<leader>d', group = 'Diagnostic' },
         { '<leader>q', group = 'Quickfix' },
         { '<leader>t', group = 'Test' },
         { '<leader>h', group = 'Help' },
