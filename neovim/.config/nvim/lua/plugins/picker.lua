@@ -77,11 +77,11 @@ return {
       -- Keymaps
       local builtin = require 'telescope.builtin'
       -- Space
-      vim.keymap.set('n', '<leader>f<leader>', builtin.resume, { desc = 'Rerun Previous' })
+      vim.keymap.set('n', '<leader>f<leader>', builtin.resume, { desc = 'Rerun previous' })
       -- D, Diagnostics
       vim.keymap.set('n', '<leader>df', builtin.diagnostics, { desc = 'Find' })
       -- F, Find: Files
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'All files' })
       vim.keymap.set('n', '<leader>fp', project_files, { desc = 'Project files' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Grep' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Current word' })

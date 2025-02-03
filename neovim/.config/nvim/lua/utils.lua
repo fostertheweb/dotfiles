@@ -94,4 +94,12 @@ M.is_dark_mode = function()
   return true
 end
 
+M.close_tab_or_quit = function()
+  if #vim.api.nvim_list_tabpages() > 1 then
+    vim.cmd 'tabclose'
+  else
+    vim.cmd 'quit'
+  end
+end
+
 return M
