@@ -104,6 +104,3 @@ source "$ZSH_CONFIG/functions/tmux.zsh"
 source "$ZSH_CONFIG/keybinds.zsh"
 
 add-zsh-hook chpwd load-nvmrc
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jonathan/.cache/lm-studio/bin"
