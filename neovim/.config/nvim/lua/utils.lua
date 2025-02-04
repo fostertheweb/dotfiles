@@ -113,8 +113,13 @@ M.git_add_all = function()
 end
 
 M.git_commit = function()
-  vim.fn.system 'git commit'
-  vim.cmd 'redraw'
+  vim.cmd 'enew' -- Create a new buffer
+  vim.fn.termopen('git commit', {
+    on_exit = function()
+      vim.cmd 'bd!'
+    end,
+  })
+  vim.cmd 'startinsert' -- Start in insert mode for the terminal
 end
 
 return M
