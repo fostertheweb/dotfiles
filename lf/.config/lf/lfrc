@@ -1,7 +1,0 @@
-set hidden!
-set incfilter
-set incsearch
-set mouse
-set cursorpreviewfmt "\033[7;90m"
-set previewer "~/.config/lf/preview.sh"
-set icons true
