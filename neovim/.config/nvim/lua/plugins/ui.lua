@@ -77,7 +77,7 @@ return {
         },
       }
       require('which-key').add {
-        { '<leader>c', group = 'Chat' },
+        { '<leader>c', group = 'Copilot' },
         { '<leader>d', group = 'Diagnostic' },
         { '<leader>f', group = 'Find' },
         { '<leader>g', group = 'Git' },

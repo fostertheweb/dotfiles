@@ -102,4 +102,12 @@ M.close_tab_or_quit = function()
   end
 end
 
+M.git_add_all = function()
+  vim.fn.system 'git add --all'
+end
+
+M.git_commit = function()
+  vim.fn.system 'git commit'
+end
+
 return M

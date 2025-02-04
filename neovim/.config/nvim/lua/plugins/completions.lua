@@ -55,6 +55,7 @@ return {
         matching = {
           disallow_partial_fuzzy_matching = false,
         },
+        preselect = 'None',
         sources = {
           { name = 'nvim_lsp' },
           { name = 'path' },
@@ -79,9 +80,7 @@ return {
 
       cmp.setup.cmdline({ '/', '?' }, {
         completion = { keyword_length = 1 },
-        mapping = cmp.mapping.preset.cmdline {
-          ['<Tab>'] = cmp.mapping.confirm { select = true },
-        },
+        mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'nvim_lsp_document_symbol' },
           { name = 'buffer' },
@@ -89,14 +88,16 @@ return {
       })
 
       cmp.setup.cmdline(':', {
-        completion = { keyword_length = 1 },
-        mapping = cmp.mapping.preset.cmdline {
-          ['<Tab>'] = cmp.mapping.confirm { select = true },
-        },
         formatting = {
           fields = { 'abbr' },
         },
-        sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false },
         window = {
           completion = {
             side_padding = 1,

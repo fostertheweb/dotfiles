@@ -1,17 +1,7 @@
-local setup_tig_status = function()
+local setup_tui = function(name, command)
   require('tui').setup {
-    name = 'TigOpenStatus',
-    command = 'tig status',
-    width_margin = 1.5,
-    height_margin = 2,
-    border = 'rounded',
-  }
-end
-
-local setup_tig_commits = function()
-  require('tui').setup {
-    name = 'TigOpenCommits',
-    command = 'tig',
+    name = name,
+    command = command,
     width_margin = 1.5,
     height_margin = 2,
     border = 'rounded',
@@ -22,8 +12,10 @@ return {
   {
     'ezechukwu69/tui.nvim',
     config = function()
-      setup_tig_status()
-      setup_tig_commits()
+      setup_tui('TigOpenStatus', 'tig status')
+      setup_tui('TigOpenCommits', 'tig')
+      setup_tui('BtopOpen', 'btop')
+      setup_tui('PostingOpen', 'posting')
     end,
   },
 }
