@@ -2,7 +2,7 @@ return {
   {
     'hrsh7th/nvim-cmp',
     enabled = true,
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
@@ -47,7 +47,10 @@ return {
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<Tab>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          },
           ['<C-;>'] = cmp.mapping.complete {},
           ['<C-e>'] = cmp.mapping.close(),
           ['<C-c>'] = cmp.mapping.abort(),
@@ -105,6 +108,14 @@ return {
             max_height = 20,
           },
         },
+      })
+
+      cmp.setup.filetype('copilot-chat', {
+        completion = {
+          autocomplete = false,
+          completeopt = 'noinsert,noselect',
+        },
+        preselect = cmp.PreselectMode.None,
       })
     end,
   },

@@ -104,10 +104,17 @@ end
 
 M.git_add_all = function()
   vim.fn.system 'git add --all'
+
+  if vim.v.shell_error ~= 0 then
+    vim.notify 'Nothing was staged'
+  else
+    vim.notify 'All changes staged'
+  end
 end
 
 M.git_commit = function()
   vim.fn.system 'git commit'
+  vim.cmd 'redraw'
 end
 
 return M

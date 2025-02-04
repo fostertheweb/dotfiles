@@ -1,5 +1,9 @@
 return {
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown', 'copilot-chat' },
+  },
+  {
     'CopilotC-Nvim/CopilotChat.nvim',
     dependencies = {
       {
