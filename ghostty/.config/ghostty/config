@@ -22,7 +22,7 @@ macos-titlebar-style = transparent
 shell-integration-features = no-cursor
 
 title = "👻 Ghostty"
-theme = dark:"Kanagawa Dragon",light:"melange-dark"
+theme = dark:"Kanagawa Dragon",light:"zenbones_light"
 
 window-colorspace = display-p3
 window-padding-x = 8

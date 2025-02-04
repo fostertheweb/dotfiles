@@ -11,7 +11,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   { import = 'themes.kanagawa' },
-  { import = 'themes.chalktone' },
+  { import = 'themes.zenbones' },
   { import = 'plugins' },
 }
 
@@ -24,7 +24,8 @@ vim.cmd.hi 'Comment gui=none'
 if require('utils').is_dark_mode() then
   vim.cmd 'colorscheme kanagawa-dragon'
 else
-  vim.cmd 'colorscheme chalktone'
+  vim.o.background = 'light'
+  vim.cmd 'colorscheme zenbones'
 end
 
 -- vim: ts=2 sts=2 sw=2 et
