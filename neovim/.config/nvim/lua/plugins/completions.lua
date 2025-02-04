@@ -48,7 +48,8 @@ return {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<Tab>'] = cmp.mapping.confirm { select = true },
-          ["<C-'>"] = cmp.mapping.complete {},
+          ['<C-;>'] = cmp.mapping.complete {},
+          ['<C-e>'] = cmp.mapping.close(),
           ['<C-c>'] = cmp.mapping.abort(),
         },
         matching = {
@@ -58,9 +59,6 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'lazydev', group_index = 0 },
-          per_filetype = {
-            codecompanion = { 'codecompanion' },
-          },
         },
         window = {
           completion = {
@@ -81,7 +79,9 @@ return {
 
       cmp.setup.cmdline({ '/', '?' }, {
         completion = { keyword_length = 1 },
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline {
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
+        },
         sources = {
           { name = 'nvim_lsp_document_symbol' },
           { name = 'buffer' },
@@ -90,7 +90,9 @@ return {
 
       cmp.setup.cmdline(':', {
         completion = { keyword_length = 1 },
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline {
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
+        },
         formatting = {
           fields = { 'abbr' },
         },
