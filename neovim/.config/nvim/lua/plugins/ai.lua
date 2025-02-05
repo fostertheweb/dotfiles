@@ -21,7 +21,7 @@ return {
     },
     build = 'make tiktoken',
     opts = {
-      chat_autocomplete = true,
+      chat_autocomplete = false,
       mappings = {
         submit_prompt = {
           insert = '<C-j>',

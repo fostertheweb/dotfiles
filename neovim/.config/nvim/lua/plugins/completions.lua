@@ -43,7 +43,9 @@ return {
             return fmt
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+        completion = {
+          completeopt = 'menu,menuone,noinsert',
+        },
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -51,7 +53,7 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
           },
-          ['<C-;>'] = cmp.mapping.complete {},
+          ['<C-l>'] = cmp.mapping.complete {},
           ['<C-e>'] = cmp.mapping.close(),
           ['<C-c>'] = cmp.mapping.abort(),
         },
@@ -108,14 +110,6 @@ return {
             max_height = 20,
           },
         },
-      })
-
-      cmp.setup.filetype('copilot-chat', {
-        completion = {
-          autocomplete = false,
-          completeopt = 'noinsert,noselect',
-        },
-        preselect = cmp.PreselectMode.None,
       })
     end,
   },
