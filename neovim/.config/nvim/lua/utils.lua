@@ -113,15 +113,14 @@ M.git_add_all = function()
 end
 
 M.git_commit = function()
-  -- Window and buffer options
-  local buf = vim.api.nvim_create_buf(false, true) -- Create a new unlisted buffer
+  local buf = vim.api.nvim_create_buf(false, true)
   local width = math.floor(vim.o.columns * 0.8)
   local height = math.floor(vim.o.lines * 0.8)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
 
   -- Create a floating window
-  vim.api.nvim_open_win(buf, true, {
+  local win = vim.api.nvim_open_win(buf, true, {
     relative = 'editor',
     width = width,
     height = height,
@@ -131,10 +130,14 @@ M.git_commit = function()
     border = 'rounded',
   })
 
-  vim.fn.termopen 'git commit'
-
+  vim.fn.termopen('git commit', {
+    on_exit = function(_, exit_code, _)
+      if exit_code == 0 then
+        vim.api.nvim_win_close(win, true)
+      end
+    end,
+  })
   vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':q<CR>', { noremap = true, silent = true })
-
   vim.cmd 'startinsert'
 end
 
