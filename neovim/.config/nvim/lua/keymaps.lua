@@ -43,11 +43,12 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix 
 
 -- G, Git commands
 vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
+vim.keymap.set('n', '<leader>gA', utils.git_add_all, { desc = 'Stage all changes' })
+vim.keymap.set('n', '<leader>gC', utils.git_commit, { desc = 'Commit message' })
+vim.keymap.set('n', '<leader>gP', utils.git_push, { desc = 'Push' })
 vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenCommits<CR>', { desc = 'Commits' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
-vim.keymap.set('n', '<leader>gA', utils.git_add_all, { desc = 'Stage all changes' })
-vim.keymap.set('n', '<leader>gC', utils.git_commit, { desc = 'Open commitmsg' })
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list' })

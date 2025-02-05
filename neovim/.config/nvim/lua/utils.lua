@@ -122,4 +122,14 @@ M.git_commit = function()
   vim.cmd 'startinsert' -- Start in insert mode for the terminal
 end
 
+M.git_push = function()
+  local output = vim.fn.system 'git push'
+
+  if vim.v.shell_error ~= 0 then
+    vim.notify 'Failed to push to remote'
+  else
+    vim.notify(output)
+  end
+end
+
 return M
