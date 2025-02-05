@@ -113,13 +113,29 @@ M.git_add_all = function()
 end
 
 M.git_commit = function()
-  vim.cmd 'enew' -- Create a new buffer
-  vim.fn.termopen('git commit', {
-    on_exit = function()
-      vim.cmd 'bd!'
-    end,
+  -- Window and buffer options
+  local buf = vim.api.nvim_create_buf(false, true) -- Create a new unlisted buffer
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  -- Create a floating window
+  vim.api.nvim_open_win(buf, true, {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = 'minimal',
+    border = 'rounded',
   })
-  vim.cmd 'startinsert' -- Start in insert mode for the terminal
+
+  vim.fn.termopen 'git commit'
+
+  vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':q<CR>', { noremap = true, silent = true })
+
+  vim.cmd 'startinsert'
 end
 
 M.git_push = function()

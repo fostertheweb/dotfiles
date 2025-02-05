@@ -3,6 +3,7 @@
 
 [core]
     pager = delta
+	editor = nvim
 
 [delta]
     # use n and N to move between diff sections
