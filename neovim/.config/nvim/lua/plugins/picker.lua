@@ -8,6 +8,24 @@ return {
     config = function()
       local fzf = require 'fzf-lua'
       fzf.setup()
+
+      local project_files = function()
+        local opts = {}
+
+        local cwd = vim.fn.getcwd()
+        if is_inside_work_tree[cwd] == nil then
+          vim.fn.system 'git rev-parse --is-inside-work-tree'
+          is_inside_work_tree[cwd] = vim.v.shell_error == 0
+        end
+
+        if is_inside_work_tree[cwd] then
+          fzf.git_files(opts)
+        else
+          fzf.files(opts)
+        end
+      end
+
+      vim.api.nvim_create_user_command('ProjectFiles', project_files, {})
       -- Space
       vim.keymap.set('n', '<leader>f<leader>', fzf.resume, { desc = 'Rerun previous' })
       -- D, Diagnostics
