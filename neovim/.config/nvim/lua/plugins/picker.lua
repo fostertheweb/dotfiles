@@ -1,28 +1,43 @@
 local is_inside_work_tree = {}
 
-local project_files = function()
-  local opts = {}
-
-  local cwd = vim.fn.getcwd()
-  if is_inside_work_tree[cwd] == nil then
-    vim.fn.system 'git rev-parse --is-inside-work-tree'
-    is_inside_work_tree[cwd] = vim.v.shell_error == 0
-  end
-
-  if is_inside_work_tree[cwd] then
-    require('telescope.builtin').git_files(opts)
-  else
-    require('telescope.builtin').find_files(opts)
-  end
-end
-
-vim.api.nvim_create_user_command('ProjectFiles', project_files, {})
-
 return {
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {},
+    config = function()
+      local fzf = require 'fzf-lua'
+      fzf.setup()
+      -- Space
+      vim.keymap.set('n', '<leader>f<leader>', fzf.resume, { desc = 'Rerun previous' })
+      -- D, Diagnostics
+      vim.keymap.set('n', '<leader>df', fzf.diagnostics_workspace, { desc = 'Find' })
+      -- F, Find: Files
+      vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'All files' })
+      vim.keymap.set('n', '<leader>fp', fzf.git_files, { desc = 'Project files' })
+      vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Grep' })
+      vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'Current word' })
+      vim.keymap.set('n', '<leader>f.', fzf.oldfiles, { desc = 'Recent files' })
+      vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Buffers' })
+      -- F, Find: LSP
+      vim.keymap.set('n', '<leader>ft', fzf.lsp_typedefs, { desc = 'Type definition' })
+      vim.keymap.set('n', '<leader>fr', fzf.lsp_references, { desc = 'References' })
+      vim.keymap.set('n', '<leader>fs', fzf.lsp_document_symbols, { desc = 'Symbols' })
+      vim.keymap.set('n', '<leader>fi', fzf.lsp_implementations, { desc = 'Implementations' })
+      -- Buffer search
+      vim.keymap.set('n', '<C-/>', fzf.lgrep_curbuf, { desc = 'Current buffer fuzzy' })
+      -- G, Git commands
+      vim.keymap.set('n', '<leader>gb', fzf.git_branches, { desc = 'Branches' })
+      -- H, Help
+      vim.keymap.set('n', '<leader>hf', fzf.helptags, { desc = 'Find' })
+      vim.keymap.set('n', '<leader>hk', fzf.keymaps, { desc = 'Keymaps' })
+    end,
+  },
   {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
+    enabled = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'debugloop/telescope-undo.nvim',
@@ -36,6 +51,23 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
     },
     config = function()
+      local project_files = function()
+        local opts = {}
+
+        local cwd = vim.fn.getcwd()
+        if is_inside_work_tree[cwd] == nil then
+          vim.fn.system 'git rev-parse --is-inside-work-tree'
+          is_inside_work_tree[cwd] = vim.v.shell_error == 0
+        end
+
+        if is_inside_work_tree[cwd] then
+          require('telescope.builtin').git_files(opts)
+        else
+          require('telescope.builtin').find_files(opts)
+        end
+      end
+
+      vim.api.nvim_create_user_command('ProjectFiles', project_files, {})
       --  - Insert mode: <c-/>
       --  - Normal mode: ?
       require('telescope').setup {
