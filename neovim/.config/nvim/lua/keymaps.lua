@@ -24,6 +24,10 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 
+-- Tab navigation
+vim.keymap.set('n', 'gn', '<CMD>tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', 'gp', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
+
 -- Write buffer
 vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = 'Write' })
 vim.keymap.set('n', '<leader>W', '<CMD>wq<CR>', { desc = 'Write & quit' })

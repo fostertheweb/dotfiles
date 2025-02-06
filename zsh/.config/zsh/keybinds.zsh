@@ -13,16 +13,16 @@ bindkey -s '^T' 'tmux-list-and-attach^M'
 bindkey -s '\et' 'tmux-find-and-create-or-attach^M'
 
 # cmd-f
-# Open cwd in ranger
-bindkey -s '\ef' 'ranger^M'
+# Find file with fzf
+bindkey -s '\ef' 'find-file^M'
 
 # cmd-e
 # Open cwd in nvim
 bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
 
 # cmd-o
-# Choose git branch
-bindkey -s '\eo' 'select-git-branch^M'
+# Open ranger file manager
+bindkey -s '\eo' 'ranger^M'
 
 # cmd-s
 # Create tmux session
