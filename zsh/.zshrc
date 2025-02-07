@@ -69,7 +69,8 @@ export FZF_DEFAULT_OPTS="
   --height ~100%
   --layout reverse 
   --tmux center
-  --info hidden"
+  --info hidden
+  ${TMUX:+--border sharp}"
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --header 'Press CTRL-Y to copy command into clipboard'"

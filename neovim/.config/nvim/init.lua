@@ -10,6 +10,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
+  { import = 'themes.ef' },
   { import = 'themes.kanagawa' },
   { import = 'themes.zenbones' },
   { import = 'plugins' },
@@ -24,8 +25,8 @@ vim.cmd.hi 'Comment gui=none'
 if require('utils').is_dark_mode() then
   vim.cmd 'colorscheme kanagawa-dragon'
 else
-  vim.o.background = 'light'
-  vim.cmd 'colorscheme zenbones'
+  vim.o.background = 'dark'
+  vim.cmd 'colorscheme ef-cherie'
 end
 
 -- vim: ts=2 sts=2 sw=2 et

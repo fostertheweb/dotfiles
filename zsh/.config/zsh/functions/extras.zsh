@@ -6,12 +6,20 @@ function ttv() {
   open -a Safari "https://$url/chat"
 }
 
-# yazi - change dir on exit
-function yy() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    cd -- "$cwd"
+function run-zsh-fn() {
+  local user_funcs=()
+  local func
+
+  for func in ${(k)functions}; do
+    if [[ "$func" != _* ]]; then
+      user_funcs+="$func"
+    fi
+  done
+
+  local selected
+  selected=$(printf "%s\n" "${user_funcs[@]}" | sort | fzf --prompt="Run Command: ")
+
+  if [[ -n "$selected" ]]; then
+    $selected
   fi
-  rm -f -- "$tmp"
 }
