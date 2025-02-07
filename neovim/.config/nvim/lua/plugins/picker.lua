@@ -7,31 +7,30 @@ return {
     opts = {},
     config = function()
       local fzf = require 'fzf-lua'
-      fzf.setup()
+      fzf.setup {
+        file_icon_padding = ' ',
+        grep = {
+          hidden = true,
+        },
+        keymap = {
+          fzf = {
+            ['ctrl-k'] = 'kill-line',
+          },
+        },
+      }
 
-      local project_files = function()
-        local opts = {}
-
-        local cwd = vim.fn.getcwd()
-        if is_inside_work_tree[cwd] == nil then
-          vim.fn.system 'git rev-parse --is-inside-work-tree'
-          is_inside_work_tree[cwd] = vim.v.shell_error == 0
-        end
-
-        if is_inside_work_tree[cwd] then
-          fzf.git_files(opts)
-        else
-          fzf.files(opts)
-        end
+      local file_resume = function()
+        fzf.files { resume = true }
       end
 
-      vim.api.nvim_create_user_command('ProjectFiles', project_files, {})
+      vim.api.nvim_create_user_command('ProjectFiles', file_resume, {})
       -- Space
       vim.keymap.set('n', '<leader>f<leader>', fzf.resume, { desc = 'Rerun previous' })
       -- D, Diagnostics
       vim.keymap.set('n', '<leader>df', fzf.diagnostics_workspace, { desc = 'Find' })
       -- F, Find: Files
-      vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'All files' })
+      vim.keymap.set('n', '<leader>ff', file_resume, { desc = 'All files' })
+      vim.keymap.set('n', '<leader>p', file_resume, { desc = 'Project files' })
       vim.keymap.set('n', '<leader>fp', fzf.git_files, { desc = 'Project files' })
       vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Grep' })
       vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'Current word' })
@@ -43,12 +42,15 @@ return {
       vim.keymap.set('n', '<leader>fs', fzf.lsp_document_symbols, { desc = 'Symbols' })
       vim.keymap.set('n', '<leader>fi', fzf.lsp_implementations, { desc = 'Implementations' })
       -- Buffer search
-      vim.keymap.set('n', '<C-/>', fzf.lgrep_curbuf, { desc = 'Current buffer fuzzy' })
+      vim.keymap.set('n', '<leader>/', function()
+        fzf.lgrep_curbuf()
+      end, { desc = 'Current buffer fuzzy' })
       -- G, Git commands
       vim.keymap.set('n', '<leader>gb', fzf.git_branches, { desc = 'Branches' })
       -- H, Help
       vim.keymap.set('n', '<leader>hf', fzf.helptags, { desc = 'Find' })
       vim.keymap.set('n', '<leader>hk', fzf.keymaps, { desc = 'Keymaps' })
+      vim.keymap.set('n', '<leader>hp', fzf.builtin, { desc = 'Pickers' })
     end,
   },
   {

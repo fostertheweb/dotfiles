@@ -21,9 +21,9 @@ return {
   {
     'jiaoshijie/undotree',
     dependencies = 'nvim-lua/plenary.nvim',
-    config = true,
-    keys = {
-      { '<leader>u', "<cmd>lua require('undotree').toggle()<cr>" },
-    },
+    config = function()
+      require('undotree').setup()
+      vim.keymap.set('n', '<leader>u', "<CMD>lua require('undotree').toggle()<Cr>", { desc = 'Undo history' })
+    end,
   },
 }

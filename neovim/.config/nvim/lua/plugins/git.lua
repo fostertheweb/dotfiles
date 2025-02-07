@@ -49,11 +49,13 @@ return {
     'pwntester/octo.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
+      'ibhagwan/fzf-lua',
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require('octo').setup()
+      require('octo').setup {
+        picker = 'fzf-lua',
+      }
       vim.treesitter.language.register('markdown', 'octo')
       vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
     end,
