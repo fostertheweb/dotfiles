@@ -8,6 +8,9 @@ return {
     config = function()
       local fzf = require 'fzf-lua'
       fzf.setup {
+        defaults = {
+          formatter = 'path.filename_first',
+        },
         file_icon_padding = ' ',
         grep = {
           hidden = true,
@@ -19,18 +22,17 @@ return {
         },
       }
 
-      local file_resume = function()
-        fzf.files { resume = true }
-      end
+      vim.api.nvim_create_user_command('ProjectFiles', fzf.files, {})
 
-      vim.api.nvim_create_user_command('ProjectFiles', file_resume, {})
       -- Space
       vim.keymap.set('n', '<leader>f<leader>', fzf.resume, { desc = 'Rerun previous' })
       -- D, Diagnostics
       vim.keymap.set('n', '<leader>df', fzf.diagnostics_workspace, { desc = 'Find' })
       -- F, Find: Files
-      vim.keymap.set('n', '<leader>ff', file_resume, { desc = 'All files' })
-      vim.keymap.set('n', '<leader>p', file_resume, { desc = 'Project files' })
+      vim.keymap.set('n', '<leader>ff', function()
+        fzf.files { resume = true }
+      end, { desc = 'All files' })
+      vim.keymap.set('n', '<leader>p', fzf.files, { desc = 'Project files' })
       vim.keymap.set('n', '<leader>fp', fzf.git_files, { desc = 'Project files' })
       vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Grep' })
       vim.keymap.set('n', '<leader>fw', fzf.grep_cword, { desc = 'Current word' })
