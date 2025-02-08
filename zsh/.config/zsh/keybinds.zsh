@@ -43,3 +43,7 @@ bindkey -s '\eP' 'run-zsh-fn^M'
 # cmd-r
 # Source zshrc
 bindkey -s '\er' 'source $HOME/.zshrc^M'
+
+# cmd-y
+# Run GUI application
+bindkey -s '\ey' 'run-app^M'

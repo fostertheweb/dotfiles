@@ -23,3 +23,16 @@ function run-zsh-fn() {
     $selected
   fi
 }
+
+function run-app() {
+apps_list=$(osascript <<EOF
+set appNames to ""
+tell application "Finder"
+    set installedApps to name of every application file of (path to applications folder)
+end tell
+return installedApps
+EOF
+)
+
+  echo "$apps_list" | tr "," "\n" | sed 's/\.app$//' | awk '{$1=$1; print}' | fzf | xargs open -a
+}
