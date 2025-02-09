@@ -17,3 +17,18 @@ function select-git-branch() {
   local fzf_cmd="fzf --keep-right --border-label \" Checkout Branch \" --prompt \" : \""
   git branch -v | eval $fzf_cmd | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout
 }
+
+function origin-status() {
+  git fetch origin
+
+  local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
+  read -r behind ahead <<<$(git rev-list --left-right --count HEAD...origin/$trunk)
+  local output="$behind behind, $ahead ahead"
+  local merge_dry_run=$(git merge --no-commit --no-ff --dry-run origin/main 2>&1)
+
+  if echo "$merge_dry_run" | grep -q 'CONFLICT'; then
+    output="$output with conflicts"
+  fi
+
+  echo $output
+}

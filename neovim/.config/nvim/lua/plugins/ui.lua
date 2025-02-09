@@ -74,6 +74,7 @@ return {
         triggers = {
           { '<auto>', mode = 'nxso' },
           { 's', mode = { 'n', 'x' } },
+          { '<C>', mode = { 'n' } },
         },
       }
       require('which-key').add {

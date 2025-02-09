@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+source "$ZSH_CONFIG/functions/git.zsh"
+
+origin-status

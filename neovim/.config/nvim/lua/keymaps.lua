@@ -1,8 +1,7 @@
 local utils = require 'utils'
 
--- Ctrl-g, Ctrl-Space as Esc
+-- Ctrl-g, as Esc
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
-vim.keymap.set({ 'i', 'v' }, '<C-Space>', '<Esc>')
 
 -- Close tab or quit
 vim.keymap.set({ 'n', 'v' }, 'Q', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
@@ -10,8 +9,7 @@ vim.keymap.set({ 'n', 'v' }, 'Q', utils.close_tab_or_quit, { desc = 'Close tab o
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<C-Space>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', ';', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<C-[>', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
@@ -61,16 +59,15 @@ vim.keymap.set('n', '<leader>qn', '<CMD>cnext<CR>', { desc = 'Next quickfix item
 vim.keymap.set('n', '<leader>qp', '<CMD>cprev<CR>', { desc = 'Previous quickfix item' })
 
 -- Emacs style insert mode movement
-local imap = function(keys, fn, desc)
-  vim.keymap.set('i', keys, function()
-    fn()
-  end, { desc = desc })
-end
+-- local imap = function(keys, fn, desc)
+--   vim.keymap.set('i', keys, function()
+--     fn()
+--   end, { desc = desc })
+-- end
 
--- TODO: <C-n> & <C-p> move down or up to same column
-imap('<C-a>', utils.move_to_start_of_line, 'Go to line start')
-imap('<C-e>', utils.move_to_end_of_line, 'Go to line end')
-imap('<C-f>', utils.move_forward, 'Go forward')
-imap('<C-b>', utils.move_backward, 'Go backward')
-imap('<C-k>', utils.cut, 'Cut to line end')
-imap('<C-y>', utils.paste, 'Yank from " register')
+-- imap('<C-a>', utils.move_to_start_of_line, 'Go to line start')
+-- imap('<C-e>', utils.move_to_end_of_line, 'Go to line end')
+-- imap('<C-f>', utils.move_forward, 'Go forward')
+-- imap('<C-b>', utils.move_backward, 'Go backward')
+-- imap('<C-k>', utils.cut, 'Cut to line end')
+-- imap('<C-y>', utils.paste, 'Yank from " register')
