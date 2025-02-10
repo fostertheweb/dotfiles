@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   { import = 'themes.ef' },
   { import = 'themes.kanagawa' },
-  { import = 'themes.zenbones' },
   { import = 'plugins' },
 }
 
@@ -27,7 +26,7 @@ if require('utils').is_dark_mode() then
   vim.cmd 'colorscheme kanagawa-dragon'
 else
   vim.o.background = 'dark'
-  vim.cmd 'colorscheme ef-cherie'
+  vim.cmd 'colorscheme ef-dream'
 end
 
 -- vim: ts=2 sts=2 sw=2 et

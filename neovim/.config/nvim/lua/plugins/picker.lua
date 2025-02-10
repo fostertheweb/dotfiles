@@ -16,14 +16,15 @@ return {
           hidden = true,
         },
         winopts = {
+          backdrop = 90,
           preview = {
             hidden = true,
           },
         },
         keymap = {
           builtin = {
-            ['ctrl-k'] = 'kill-line',
-            ['ctrl-l'] = 'toggle-preview',
+            ['<C-k>'] = 'kill-line',
+            ['<C-l>'] = 'toggle-preview',
           },
           fzf = {
             ['ctrl-k'] = 'kill-line',

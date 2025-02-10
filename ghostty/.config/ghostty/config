@@ -7,7 +7,7 @@ font-feature = -dlig
 font-feature = -liga
 font-size = 16
 
-fullscreen = true
+fullscreen = false
 
 cursor-style = block
 cursor-style-blink = false
@@ -17,12 +17,12 @@ macos-icon-frame = beige
 macos-icon-ghost-color = 39cfac
 macos-icon-screen-color = 6a6c53
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = transparent
+macos-titlebar-style = hidden
 
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,no-title
 
 title = ""
-theme = dark:"Kanagawa Dragon",light:"ef-cherie"
+theme = dark:"Kanagawa Dragon",light:"ef-dream"
 
 window-colorspace = display-p3
 window-padding-x = 8
@@ -40,24 +40,3 @@ keybind = super+d=esc:d
 keybind = super+y=esc:y
 keybind = super+shift+p=esc:P
 
-# background = #292522
-# foreground = #ECE1D7
-# cursor-color = #ECE1D7
-# selection-background = #403A36
-# selection-foreground = #ECE1D7
-# palette = 0=#34302C
-# palette = 1=#BD8183
-# palette = 2=#78997A
-# palette = 3=#E49B5D
-# palette = 4=#7F91B2
-# palette = 5=#B380B0
-# palette = 6=#7B9695
-# palette = 7=#C1A78E
-# palette = 8=#867462
-# palette = 9=#D47766
-# palette = 10=#85B695
-# palette = 11=#EBC06D
-# palette = 12=#A3A9CE
-# palette = 13=#CF9BC2
-# palette = 14=#89B3B6
-# palette = 15=#ECE1D7
