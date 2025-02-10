@@ -15,9 +15,24 @@ return {
         grep = {
           hidden = true,
         },
+        winopts = {
+          preview = {
+            hidden = true,
+          },
+        },
         keymap = {
+          builtin = {
+            ['ctrl-k'] = 'kill-line',
+            ['ctrl-l'] = 'toggle-preview',
+          },
           fzf = {
             ['ctrl-k'] = 'kill-line',
+            ['ctrl-l'] = 'toggle-preview',
+          },
+        },
+        previewers = {
+          builtin = {
+            toggle_behavior = 'extend',
           },
         },
       }

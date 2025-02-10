@@ -23,7 +23,7 @@ return {
     dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       require('undotree').setup()
-      vim.keymap.set('n', '<leader>u', "<CMD>lua require('undotree').toggle()<Cr>", { desc = 'Undo history' })
+      vim.keymap.set('n', '<leader>u', require('undotree').toggle, { desc = 'Undo history' })
     end,
   },
 }
