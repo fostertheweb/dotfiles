@@ -1,0 +1,85 @@
+{
+  "type" : "group",
+  "actions" : [
+    {
+      "key" : "t",
+      "type" : "application",
+      "label" : "",
+      "value" : "/Applications/Ghostty.app"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "s",
+          "value" : "/Applications/Safari.app",
+          "type" : "application",
+          "label" : ""
+        },
+        {
+          "value" : "/Applications/Mail.app",
+          "label" : "",
+          "key" : "e",
+          "type" : "application"
+        },
+        {
+          "key" : "i",
+          "type" : "application",
+          "value" : "/System/Applications/Music.app",
+          "label" : ""
+        },
+        {
+          "type" : "application",
+          "key" : "m",
+          "value" : "/Applications/Messages.app",
+          "label" : ""
+        },
+        {
+          "type" : "application",
+          "value" : "/System/Applications/Podcasts.app",
+          "label" : "",
+          "key" : "p"
+        }
+      ],
+      "key" : "o",
+      "label" : "",
+      "type" : "group"
+    },
+    {
+      "key" : "r",
+      "label" : "",
+      "actions" : [
+        {
+          "type" : "url",
+          "key" : "e",
+          "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+          "label" : ""
+        }
+      ],
+      "type" : "group"
+    },
+    {
+      "key" : " ",
+      "type" : "application",
+      "value" : "/Applications/Raycast.app",
+      "label" : ""
+    },
+    {
+      "type" : "application",
+      "key" : "b",
+      "value" : "/Applications/Brain.fm.app",
+      "label" : ""
+    },
+    {
+      "label" : "",
+      "type" : "application",
+      "value" : "/Applications/ChatGPT.app",
+      "key" : "c"
+    },
+    {
+      "type" : "application",
+      "key" : ",",
+      "value" : "/System/Applications/System Settings.app",
+      "label" : ""
+    }
+  ]
+}
