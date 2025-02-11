@@ -11,6 +11,12 @@ defaults write com.apple.dock autohide-time-modifier -float 0.2
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
+# Disable app opening animation
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# Move windows by dragging any part of the window
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 

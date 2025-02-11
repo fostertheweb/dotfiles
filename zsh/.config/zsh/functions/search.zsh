@@ -5,5 +5,5 @@ function grep-cwd() {
 }
 
 function find-file() {
-  fzf | xargs $EDITOR
+  $EDITOR "$(fzf)"
 }
