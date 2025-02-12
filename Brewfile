@@ -1,9 +1,3 @@
-tap "FelixKratz/formulae"
-brew "borders"
-
-tap "jesseduffield/lazydocker"
-brew "lazydocker"
-
 brew "asciinema"
 brew "bat"
 brew "borders"
@@ -50,3 +44,10 @@ brew "zsh-syntax-highlighting"
 
 cask "1password-cli"
 cask "nikitabobko/tap/aerospace"
+
+tap "FelixKratz/formulae"
+brew "borders"
+
+tap "jesseduffield/lazydocker"
+brew "lazydocker"
+
