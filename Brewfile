@@ -1,6 +1,8 @@
-tap "homebrew/cask"
 tap "FelixKratz/formulae"
-tap "jesseduffield/lazydocker/lazydocker"
+brew "borders"
+
+tap "jesseduffield/lazydocker"
+brew "lazydocker"
 
 brew "asciinema"
 brew "bat"
@@ -20,7 +22,6 @@ brew "gping"
 brew "helix"
 brew "jj"
 brew "jq"
-brew "lazydocker"
 brew "neovim"
 brew "pipx"
 brew "pnpm"
