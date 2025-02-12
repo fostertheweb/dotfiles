@@ -2,84 +2,90 @@
   "type" : "group",
   "actions" : [
     {
+      "label" : "",
       "key" : "t",
       "type" : "application",
-      "label" : "",
       "value" : "/Applications/Ghostty.app"
     },
     {
       "actions" : [
         {
           "key" : "s",
-          "value" : "/Applications/Safari.app",
           "type" : "application",
-          "label" : ""
-        },
-        {
-          "value" : "/Applications/Mail.app",
           "label" : "",
-          "key" : "e",
-          "type" : "application"
+          "value" : "/Applications/Safari.app"
         },
         {
-          "key" : "i",
+          "value" : "/System/Applications/Mail.app",
+          "label" : "",
           "type" : "application",
+          "key" : "e"
+        },
+        {
           "value" : "/System/Applications/Music.app",
-          "label" : ""
+          "type" : "application",
+          "label" : "",
+          "key" : "i"
         },
         {
           "type" : "application",
           "key" : "m",
-          "value" : "/Applications/Messages.app",
-          "label" : ""
+          "label" : "",
+          "value" : "/Applications/Messages.app"
         },
         {
           "type" : "application",
-          "value" : "/System/Applications/Podcasts.app",
           "label" : "",
+          "value" : "/System/Applications/Podcasts.app",
           "key" : "p"
         }
       ],
       "key" : "o",
-      "label" : "",
-      "type" : "group"
-    },
-    {
-      "key" : "r",
-      "label" : "",
-      "actions" : [
-        {
-          "type" : "url",
-          "key" : "e",
-          "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
-          "label" : ""
-        }
-      ],
-      "type" : "group"
-    },
-    {
-      "key" : " ",
-      "type" : "application",
-      "value" : "/Applications/Raycast.app",
+      "type" : "group",
       "label" : ""
     },
     {
+      "actions" : [
+        {
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+          "label" : "",
+          "key" : "e"
+        }
+      ],
+      "key" : "r",
+      "label" : "",
+      "type" : "group"
+    },
+    {
       "type" : "application",
+      "key" : " ",
+      "label" : "",
+      "value" : "/Applications/Raycast.app"
+    },
+    {
       "key" : "b",
+      "type" : "application",
       "value" : "/Applications/Brain.fm.app",
       "label" : ""
     },
     {
-      "label" : "",
+      "key" : "c",
       "type" : "application",
-      "value" : "/Applications/ChatGPT.app",
-      "key" : "c"
+      "label" : "",
+      "value" : "/Applications/ChatGPT.app"
     },
     {
-      "type" : "application",
-      "key" : ",",
+      "label" : "",
       "value" : "/System/Applications/System Settings.app",
-      "label" : ""
+      "type" : "application",
+      "key" : ","
+    },
+    {
+      "value" : "/Users/jonathan",
+      "label" : "",
+      "key" : "f",
+      "type" : "folder"
     }
   ]
 }
