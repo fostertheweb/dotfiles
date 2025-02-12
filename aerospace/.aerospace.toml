@@ -1,6 +1,9 @@
-after-login-command = []
-after-startup-command = []
 start-at-login = true
+
+after-login-command = []
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffd25f5f inactive_color=0xff767273 width=8.0'
+]
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -11,12 +14,12 @@ default-root-container-orientation = 'auto'
 key-mapping.preset = 'qwerty'
 
 [gaps]
-inner.horizontal = 8
-inner.vertical =   8
-outer.left =       8
-outer.bottom =     8
-outer.top =        8
-outer.right =      8
+inner.horizontal = 16
+inner.vertical =   16
+outer.left =       16
+outer.bottom =     16
+outer.top =        16
+outer.right =      16
 
 [exec]
 inherit-env-vars = true
