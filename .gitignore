@@ -4,3 +4,4 @@
 Brewfile.lock.json
 neovim/.config/nvim/lazy-lock.json
 
+**/__pycache__
