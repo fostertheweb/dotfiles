@@ -1,90 +1,90 @@
 {
   "actions" : [
     {
-      "value" : "/Applications/Ghostty.app",
-      "key" : "t",
+      "type" : "application",
       "label" : "",
-      "type" : "application"
+      "value" : "/Applications/Ghostty.app",
+      "key" : "t"
     },
     {
       "type" : "group",
+      "key" : "o",
       "actions" : [
         {
-          "type" : "application",
           "key" : "s",
+          "value" : "/Applications/Safari.app",
           "label" : "",
-          "value" : "/Applications/Safari.app"
+          "type" : "application"
         },
         {
-          "type" : "application",
-          "value" : "/System/Applications/Mail.app",
           "key" : "e",
+          "value" : "/System/Applications/Mail.app",
+          "type" : "application",
           "label" : ""
         },
         {
-          "type" : "application",
-          "value" : "/System/Applications/Music.app",
           "key" : "i",
+          "value" : "/System/Applications/Music.app",
+          "type" : "application",
           "label" : ""
         },
         {
-          "type" : "application",
-          "value" : "/Applications/Messages.app",
           "key" : "m",
+          "value" : "/Applications/Messages.app",
+          "type" : "application",
           "label" : ""
         },
         {
           "key" : "p",
-          "type" : "application",
           "label" : "",
+          "type" : "application",
           "value" : "/System/Applications/Podcasts.app"
         }
       ],
-      "label" : "",
-      "key" : "o"
-    },
-    {
-      "type" : "group",
-      "actions" : [
-        {
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
-          "label" : "",
-          "key" : "e"
-        }
-      ],
-      "key" : "r",
       "label" : ""
     },
     {
+      "actions" : [
+        {
+          "label" : "",
+          "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+          "key" : "e",
+          "type" : "url"
+        }
+      ],
       "label" : "",
+      "key" : "r",
+      "type" : "group"
+    },
+    {
       "type" : "application",
+      "label" : "",
       "value" : "/Applications/Raycast.app",
       "key" : " "
     },
     {
-      "key" : "b",
-      "type" : "application",
+      "value" : "/Applications/Brain.fm.app",
       "label" : "",
-      "value" : "/Applications/Brain.fm.app"
+      "key" : "b",
+      "type" : "application"
     },
     {
       "value" : "/Applications/ChatGPT.app",
+      "key" : "c",
       "label" : "",
-      "type" : "application",
-      "key" : "c"
+      "type" : "application"
     },
     {
-      "type" : "application",
       "key" : ",",
       "label" : "",
+      "type" : "application",
       "value" : "/System/Applications/System Settings.app"
     },
     {
-      "type" : "folder",
-      "value" : "/Users/jonathan",
+      "key" : "f",
       "label" : "",
-      "key" : "f"
+      "type" : "folder",
+      "value" : "/Users/jonathan"
     }
   ],
   "type" : "group"
