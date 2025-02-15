@@ -31,11 +31,6 @@ return {
             ['ctrl-l'] = 'toggle-preview',
           },
         },
-        previewers = {
-          builtin = {
-            toggle_behavior = 'extend',
-          },
-        },
       }
 
       vim.api.nvim_create_user_command('ProjectFiles', fzf.files, {})
