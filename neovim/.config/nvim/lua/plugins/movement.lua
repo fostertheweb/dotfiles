@@ -36,6 +36,9 @@ return {
     end,
   },
   {
+    -- try alternatives
+    -- manually mantaining list is probably better
+    -- hard to parse filenames in snipe
     'leath-dub/snipe.nvim',
     config = function()
       -- TODO: ctrl-j to accept, q close, ctrl-c close, ctrl-k to close buffer
