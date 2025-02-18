@@ -1,5 +1,21 @@
--- Hide statusline
-vim.opt.laststatus = 0
+vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+
+vim.api.nvim_create_autocmd('WinLeave', {
+  group = vim.api.nvim_create_augroup('InactiveStatusline', { clear = true }),
+  pattern = '*',
+  callback = function()
+    vim.opt_local.statusline = "%!v:lua.require'custom.statusline'.inactive_statusline()"
+  end,
+})
+
+vim.api.nvim_create_autocmd('WinEnter', {
+  group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
+  pattern = '*',
+  callback = function()
+    vim.opt_local.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+  end,
+})
+
 vim.opt.ruler = false
 
 -- Tab width

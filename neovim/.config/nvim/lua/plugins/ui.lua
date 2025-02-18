@@ -1,7 +1,7 @@
 return {
   {
     'utilyre/barbecue.nvim',
-    enabled = true,
+    enabled = false,
     dependencies = {
       'SmiteshP/nvim-navic',
       'nvim-tree/nvim-web-devicons',
@@ -33,6 +33,32 @@ return {
         border = 'single',
       },
     },
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    enabled = false,
+    config = function()
+      require('lualine').setup {
+        options = {
+          icons_enabled = false,
+          theme = 'auto',
+          component_separators = '',
+          section_separators = '',
+        },
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+            },
+          },
+          lualine_b = { 'filename' },
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = { 'branch', 'diff' },
+          lualine_z = {},
+        },
+      }
+    end,
   },
   {
     'alvarosevilla95/luatab.nvim',
