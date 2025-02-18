@@ -27,11 +27,33 @@ local mode_map = {
   t = { label = 'TERMINAL', hl = 'ModeTerminal' },
 }
 
+-- highlight color for no problems, errors or warnings
+local function lsp_status()
+  if vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.ERROR }) then
+    return 'DiagnosticError'
+  elseif vim.diagnostic.get(nil, { severity = vim.diagnostic.severity.WARN }) then
+    return 'DiagnosticWarn'
+  else
+    return 'DiagnosticOk'
+  end
+end
+
+-- highlight color for saved or unsaved buffer
+local function modified_status()
+  if vim.bo.modified then
+    return 'DiagnosticWarn'
+  else
+    return 'Normal'
+  end
+end
+
+local s = '%'
 -- Returns a string for the mode component.
 local function mode_component()
   local mode = vim.api.nvim_get_mode().mode
   local info = mode_map[mode] or { label = mode, hl = 'ModeNormal' }
-  return string.format('%%#%s#󰝤 󰔶  ', info.hl)
+  -- -:**-
+  return string.format('%%#%s#󰿟%%#%s#󰿟%%#%s#󰿟', info.hl, lsp_status(), modified_status())
 end
 
 -- Returns a string for the file path (excluding the filename).
@@ -107,7 +129,7 @@ end
 -- Combine all parts into one statusline string.
 function M.statusline()
   -- Left side: mode, file path and filename.
-  local left = mode_component() .. separator() .. file_name_component()
+  local left = mode_component() .. file_name_component()
   -- Right side: git branch then diff.
   local right = file_path_component() .. git_diff_component()
   -- Use %=% to push right side to the far right.
