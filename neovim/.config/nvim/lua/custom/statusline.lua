@@ -2,11 +2,11 @@ local M = {}
 
 local normal_hl = vim.api.nvim_get_hl(0, { name = 'Normal', link = false })
 local warning_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticWarn', link = false })
-local error_hl = vim.api.nvim_get_hl(0, { name = 'diffRemoved', link = false })
-local ok_hl = vim.api.nvim_get_hl(0, { name = 'diffAdded', link = false })
+local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignError', link = false })
+local diff_add_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignOk', link = false })
 
-vim.api.nvim_set_hl(0, 'SimpleLineGitDiffAdd', { fg = ok_hl.fg })
-vim.api.nvim_set_hl(0, 'SimpleLineGitDiffDel', { fg = error_hl.fg })
+vim.api.nvim_set_hl(0, 'SimpleLineGitDiffAdd', { fg = diff_add_hl.fg })
+vim.api.nvim_set_hl(0, 'SimpleLineGitDiffDel', { fg = diff_delete_hl.fg })
 vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = normal_hl.fg, bg = 'NONE', bold = false })
 vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = warning_hl.fg, bg = 'NONE', bold = true })
 
@@ -82,8 +82,8 @@ local function git_diff_component()
 end
 
 function M.statusline()
-  local left = buffer_number() .. file_name_component()
-  local right = file_path_component() .. git_diff_component()
+  local left = buffer_number() .. file_name_component() .. file_path_component()
+  local right = git_diff_component()
   -- Use %=% to push right side to the far right.
   return left .. ' %=' .. right
 end
