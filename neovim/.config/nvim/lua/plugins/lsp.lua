@@ -56,6 +56,7 @@ return {
           map('gi', vim.lsp.buf.implementation, 'Go to implementation')
           map('go', vim.lsp.buf.type_definition, 'Go to type definition')
           map('gr', vim.lsp.buf.references, 'Go to references')
+          map('gk', vim.lsp.buf.document_symbol, 'Document symbols')
           map('gc', vim.lsp.buf.rename, 'Rename symbol')
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')

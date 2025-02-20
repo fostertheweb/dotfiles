@@ -41,13 +41,13 @@ local function file_name_component()
     return ''
   end
 
-  local extension = vim.fn.expand '%:e'
+  local filetype = vim.bo.filetype
   local has_devicons, devicons = pcall(require, 'nvim-web-devicons')
   local icon = nil
 
   if has_devicons then
     local icons = devicons.get_icons()
-    local name = devicons.get_icon_name_by_filetype(extension)
+    local name = devicons.get_icon_name_by_filetype(filetype)
     icon = icons[name] or devicons.get_default_icon()
     vim.api.nvim_set_hl(0, 'IconColor', { fg = icon.color, bg = 'NONE', bold = true })
   end
@@ -64,6 +64,23 @@ local function file_name_component()
   end
 
   return string.format(' %%#IconColor# %s %%#%s# %s ', icon.icon, filename_hl, filename)
+end
+
+local function lsp_status()
+  local counts = vim.diagnostic.count(nil, {
+    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+  })
+
+  local error_count = counts[vim.diagnostic.severity.ERROR] or 0
+  local warn_count = counts[vim.diagnostic.severity.WARN] or 0
+
+  if error_count > 0 then
+    return string.format('%%#DiagnosticSignError#%s', '! ')
+  elseif warn_count > 0 then
+    return string.format('%%#DiagnosticSignWarn#%s', '* ')
+  else
+    return string.format('%%#DiagnosticSignOk#%s', '% ')
+  end
 end
 
 local function git_diff_component()
@@ -83,7 +100,7 @@ end
 
 function M.statusline()
   local left = buffer_number() .. file_name_component() .. file_path_component()
-  local right = git_diff_component()
+  local right = lsp_status() .. git_diff_component()
   -- Use %=% to push right side to the far right.
   return left .. ' %=' .. right
 end

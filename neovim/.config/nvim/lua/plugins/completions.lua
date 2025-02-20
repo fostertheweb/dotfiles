@@ -44,25 +44,58 @@ return {
           end,
         },
         completion = {
+          keyword_length = 1,
           completeopt = 'menu,menuone,noinsert',
+        },
+        cmdline = {
+          mapping = {
+            ['<C-j>'] = {
+              c = function(_)
+                if cmp.visible() then
+                  if #cmp.get_entries() == 1 then
+                    cmp.confirm { select = true }
+                  else
+                    cmp.select_next_item()
+                  end
+                else
+                  cmp.complete()
+                  if #cmp.get_entries() == 1 then
+                    cmp.confirm { select = true }
+                  end
+                end
+              end,
+            },
+          },
         },
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<Tab>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          },
-          ['<C-l>'] = cmp.mapping.complete {},
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm { select = true }
+              else
+                cmp.select_next_item()
+              end
+            elseif require('utils').has_words_before() then
+              cmp.complete()
+              if #cmp.get_entries() == 1 then
+                cmp.confirm { select = true }
+              end
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-e>'] = cmp.mapping.close(),
           ['<C-c>'] = cmp.mapping.abort(),
         },
         matching = {
           disallow_partial_fuzzy_matching = false,
         },
-        preselect = 'None',
         sources = {
           { name = 'nvim_lsp' },
+          { name = 'buffer' },
           { name = 'path' },
           { name = 'lazydev', group_index = 0 },
         },
