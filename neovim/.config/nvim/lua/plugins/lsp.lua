@@ -27,17 +27,11 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup()
 
-      local on_attach = function(client, bufnr)
-        vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-      end
-
-      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       require('mason-lspconfig').setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = on_attach,
           }
         end,
       }
@@ -61,18 +55,36 @@ return {
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')
           map('=g', vim.lsp.buf.format, 'Format code')
-          vim.keymap.set('i', '<C-i>', vim.lsp.buf.signature_help)
+
+          local function client_supports_method(client, method, bufnr)
+            if vim.fn.has 'nvim-0.11' == 1 then
+              return client:supports_method(method, bufnr)
+            else
+              return client.supports_method(method, { bufnr = bufnr })
+            end
+          end
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
+          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+            local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+              group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+              callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
+              end,
             })
           end
         end,

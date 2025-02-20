@@ -7,6 +7,7 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-path',
       'tailwind-tools',
       'onsails/lspkind-nvim',
@@ -48,44 +49,12 @@ return {
           completeopt = 'menu,menuone,noinsert',
         },
         cmdline = {
-          mapping = {
-            ['<C-j>'] = {
-              c = function(_)
-                if cmp.visible() then
-                  if #cmp.get_entries() == 1 then
-                    cmp.confirm { select = true }
-                  else
-                    cmp.select_next_item()
-                  end
-                else
-                  cmp.complete()
-                  if #cmp.get_entries() == 1 then
-                    cmp.confirm { select = true }
-                  end
-                end
-              end,
-            },
-          },
+          mapping = {},
         },
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              if #cmp.get_entries() == 1 then
-                cmp.confirm { select = true }
-              else
-                cmp.select_next_item()
-              end
-            elseif require('utils').has_words_before() then
-              cmp.complete()
-              if #cmp.get_entries() == 1 then
-                cmp.confirm { select = true }
-              end
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-e>'] = cmp.mapping.close(),
           ['<C-c>'] = cmp.mapping.abort(),
@@ -129,7 +98,26 @@ return {
         formatting = {
           fields = { 'abbr' },
         },
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline {
+          ['<C-n>'] = cmp.config.disable,
+          ['<C-p>'] = cmp.config.disable,
+          ['<C-j>'] = {
+            c = function(_)
+              if cmp.visible() then
+                if #cmp.get_entries() == 1 then
+                  cmp.confirm { select = true }
+                else
+                  cmp.select_next_item()
+                end
+              else
+                cmp.complete()
+                if #cmp.get_entries() == 1 then
+                  cmp.confirm { select = true }
+                end
+              end
+            end,
+          },
+        },
         sources = cmp.config.sources({
           { name = 'path' },
         }, {
