@@ -20,7 +20,17 @@ return {
         dependencies = {
           'nvim-treesitter/nvim-treesitter',
         },
-        opts = {},
+        opts = {
+          extension = {
+            patterns = {
+              typescriptreact = {
+                'style%s*=%s*{%s*tw`([^`]*)`%s*}',
+                'style%s*=%s*{%s*%[%s*tw`([^`]*)`',
+                'style%s*=%s*{%s*tw%.style%((.-)%)%s*}',
+              },
+            },
+          },
+        },
       },
     },
     config = function()
