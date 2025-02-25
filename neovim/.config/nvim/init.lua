@@ -29,4 +29,23 @@ else
   vim.cmd 'colorscheme zenbones'
 end
 
+require('custom.undotree').setup {
+  window = {
+    width = 80,
+    height = 20,
+    border = 'rounded',
+  },
+  mappings = {
+    next = 'j',
+    prev = 'k',
+    revert = 'r',
+    copy = 'y',
+    close = 'q',
+  },
+  diff_opts = {
+    internal = true,
+    vertical = false,
+  },
+}
+
 -- vim: ts=2 sts=2 sw=2 et

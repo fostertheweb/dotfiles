@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd('WinLeave', {
   end,
 })
 
-vim.api.nvim_create_autocmd('WinEnter', {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'WinClosed', 'WinEnter' }, {
   group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
   pattern = '*',
   callback = function()
