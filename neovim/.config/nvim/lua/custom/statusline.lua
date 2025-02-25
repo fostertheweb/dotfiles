@@ -2,8 +2,8 @@ local M = {}
 
 local normal_hl = vim.api.nvim_get_hl(0, { name = 'Normal', link = false })
 local warning_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticWarn', link = false })
-local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignError', link = false })
 local diff_add_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignOk', link = false })
+local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignError', link = false })
 
 vim.api.nvim_set_hl(0, 'SimpleLineGitDiffAdd', { fg = diff_add_hl.fg })
 vim.api.nvim_set_hl(0, 'SimpleLineGitDiffDel', { fg = diff_delete_hl.fg })

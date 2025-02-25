@@ -11,22 +11,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  { import = 'themes.ef' },
-  { import = 'themes.kanagawa' },
+  { import = 'themes.black-metal' },
+  { import = 'themes.zenbones' },
   { import = 'plugins' },
 }
 
 -- Default theme settings
 vim.o.background = 'dark'
-vim.cmd 'colorscheme kanagawa-dragon'
+vim.cmd 'colorscheme base16-black-metal-bathory'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if require('utils').is_dark_mode() then
-  vim.cmd 'colorscheme kanagawa-dragon'
+  vim.cmd 'colorscheme base16-black-metal-bathory'
 else
-  vim.o.background = 'dark'
-  vim.cmd 'colorscheme ef-dream'
+  vim.o.background = 'light'
+  vim.cmd 'colorscheme zenbones'
 end
 
 -- vim: ts=2 sts=2 sw=2 et

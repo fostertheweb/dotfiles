@@ -8,9 +8,9 @@ bindkey -s '^Z' 'fg^M'
 # List current sessions and attach
 bindkey -s '^T' 'tmux-list-and-attach^M'
 
-# cmd-t
-# Find directory and create or attach
-bindkey -s '\et' 'tmux-find-and-create-or-attach^M'
+# cmd-o
+# Find project and create or attach
+bindkey -s '\eo' 'tmux-find-and-create-or-attach^M'
 
 # cmd-f
 # Find file with fzf
@@ -22,7 +22,7 @@ bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
 
 # cmd-o
 # Open ranger file manager
-bindkey -s '\eo' 'ranger^M'
+bindkey -s '\e/' 'ranger^M'
 
 # cmd-s
 # Create tmux session
