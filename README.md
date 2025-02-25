@@ -1,6 +1,6 @@
 # fostertheweb's dotfiles
 
-<img width="1608" alt="image" src="https://github.com/user-attachments/assets/0321c5af-9cc2-4b59-b89d-784a064d4e1e" />
+<img width="1576" alt="image" src="https://github.com/user-attachments/assets/3a2c8c44-2739-463c-b7b7-a023f9ff54b7" />
 
 ## Setup
 
