@@ -1,0 +1,36 @@
+theme = "system"
+
+[widgets]
+displayed = [
+    "default.spaces",
+    "spacer",
+    "default.nowplaying",
+    "default.network",
+    "default.battery",
+    "divider",
+    "default.time"
+]
+
+[widgets.default.spaces]
+space.show-key = true        # show space number (or character, if you use AeroSpace)
+window.show-title = true
+window.title.max-length = 50
+
+[widgets.default.battery]
+show-percentage = true
+warning-level = 30
+critical-level = 10
+
+[widgets.default.time]
+format = "E d, J:mm"
+calendar.format = "J:mm"
+
+calendar.show-events = true
+calendar.allow-list = ["Appointments"]
+
+[popup.default.time]
+view-variant = "box"
+
+
+[widgets.default.time.popup]
+view-variant = "vertical"

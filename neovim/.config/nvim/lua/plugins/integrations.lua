@@ -12,10 +12,13 @@ return {
   {
     'ezechukwu69/tui.nvim',
     config = function()
+      setup_tui('BtopOpen', 'btop')
+      setup_tui('Claude', 'claude')
+      setup_tui('Gitu', 'gitu')
+      setup_tui('PostingOpen', 'posting')
+      setup_tui('Serie', 'serie')
       setup_tui('TigOpenStatus', 'tig status')
       setup_tui('TigOpenCommits', 'tig')
-      setup_tui('BtopOpen', 'btop')
-      setup_tui('PostingOpen', 'posting')
     end,
   },
 }
