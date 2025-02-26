@@ -12,7 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   { import = 'themes.black-metal' },
-  { import = 'themes.zenbones' },
+  { import = 'themes.modus' },
   { import = 'plugins' },
 }
 
@@ -26,7 +26,7 @@ if require('utils').is_dark_mode() then
   vim.cmd 'colorscheme base16-black-metal-bathory'
 else
   vim.o.background = 'light'
-  vim.cmd 'colorscheme zenbones'
+  vim.cmd 'colorscheme modus_operandi'
 end
 
 require('custom.undotree').setup {
