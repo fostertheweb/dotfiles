@@ -4,7 +4,7 @@ local utils = require 'utils'
 vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
 
 -- Close tab or quit
-vim.keymap.set({ 'n', 'v' }, 'Q', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
+vim.keymap.set({ 'n', 'v' }, '<leader>Q', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
 
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
