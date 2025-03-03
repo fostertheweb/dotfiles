@@ -1,0 +1,24 @@
+#!/usr/bin/env fish
+
+set cwd (pwd)
+set todo_dir "$cwd/.todo"
+
+# create empty config if doesn't exist
+if not test -e "$HOME/.todo.cfg"
+    touch "$HOME/.todo.cfg"
+end
+
+# create local .todo directory
+if not test -d $todo_dir
+    mkdir "$cwd/.todo"
+end
+
+# todo.txt directory (absolute path)
+set -x TODO_DIR $todo_dir
+
+# todo/done/report.txt locations
+set -x TODO_FILE "$TODO_DIR/todo.txt"
+set -x DONE_FILE "$TODO_DIR/done.txt"
+set -x REPORT_FILE "$TODO_DIR/report.txt"
+
+/opt/homebrew/opt/todo-txt/bin/todo.sh $argv

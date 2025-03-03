@@ -27,12 +27,28 @@ return {
     end,
   },
   {
-    'stevearc/dressing.nvim',
-    opts = {
-      input = {
-        border = 'single',
-      },
-    },
+    'b0o/incline.nvim',
+    enabled = false,
+    config = function()
+      require('incline').setup {
+        hide = {
+          cursorline = false,
+          focused_win = true,
+          only_win = true,
+        },
+        window = {
+          overlap = {
+            borders = true,
+            statusline = true,
+          },
+          placement = {
+            horizontal = 'center',
+            vertical = 'bottom',
+          },
+        },
+      }
+    end,
+    event = 'VeryLazy',
   },
   {
     'nvim-lualine/lualine.nvim',

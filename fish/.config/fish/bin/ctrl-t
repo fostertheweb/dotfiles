@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+source "$FISH_CONFIG/functions/tmux.fish"
+
+tmux-list-and-attach

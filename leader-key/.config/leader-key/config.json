@@ -36,7 +36,7 @@
           "key" : "m",
           "label" : "",
           "type" : "application",
-          "value" : "/Applications/Messages.app"
+          "value" : "/System/Applications/Messages.app"
         },
         {
           "key" : "p",
@@ -77,7 +77,7 @@
       "key" : "c",
       "label" : "",
       "type" : "application",
-      "value" : "/Applications/ChatGPT.app"
+      "value" : "/Applications/Claude.app"
     },
     {
       "key" : ",",

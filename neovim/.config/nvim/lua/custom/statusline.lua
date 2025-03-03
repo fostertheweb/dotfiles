@@ -25,13 +25,15 @@ local function file_path_component()
 
   local sep = package.config:sub(1, 1) -- get system's path separator
   local dirs = vim.split(full_path, sep, { plain = true })
-  local joined = table.concat(dirs, string.format '%%#NonText#  ')
+  local joined = table.concat(dirs, string.format '%%#NonText#  ')
 
   return string.format('%%#NonText# %s ', joined)
 end
 
-local function buffer_number()
-  return string.format('%%#NonText#[%%#SpecialKey#%d%%#NonText#]', vim.api.nvim_get_current_buf())
+local function buffer_number(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+  return string.format('%%#NonText#[%%#SpecialKey#%d%%#NonText#]', bufnr)
 end
 
 local function file_name_component()
@@ -70,7 +72,6 @@ local function lsp_status()
   local counts = vim.diagnostic.count(nil, {
     severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
   })
-
   local error_count = counts[vim.diagnostic.severity.ERROR] or 0
   local warn_count = counts[vim.diagnostic.severity.WARN] or 0
 
@@ -105,8 +106,21 @@ function M.statusline()
   return left .. ' %=' .. right
 end
 
-function M.inactive_statusline()
-  return string.format('%%#NonText#%s', '%F')
+function M.inactive_statusline(winid)
+  local bufnr = vim.api.nvim_win_get_buf(winid)
+  local filename = vim.api.nvim_buf_get_name(bufnr)
+  filename = vim.fn.fnamemodify(filename, ':t') -- Get just the tail (filename)
+
+  if filename == '' then
+    filename = '[No Name]'
+  end
+
+  local buffer_status = '-'
+  if vim.api.nvim_get_option_value('modified', { buf = bufnr }) then
+    buffer_status = '+'
+  end
+
+  return buffer_number(bufnr) .. string.format('  %%#NonText#%s %s', buffer_status, filename)
 end
 
 return M
