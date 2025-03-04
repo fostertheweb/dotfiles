@@ -29,14 +29,14 @@ return {
         width_preview = 80,
       },
     }
-    require('mini.indentscope').setup {
-      draw = {
-        animation = function()
-          return 0
-        end,
-      },
-      symbol = '│',
-    }
+    -- require('mini.indentscope').setup {
+    --   draw = {
+    --     animation = function()
+    --       return 0
+    --     end,
+    --   },
+    --   symbol = '│',
+    -- }
     require('mini.pairs').setup()
     require('mini.surround').setup()
 

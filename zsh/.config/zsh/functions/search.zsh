@@ -2,6 +2,7 @@
 
 function grep-cwd() {
   local selection=$(ag --hidden . | fzf -e -i)
+
   if [[ -n "$selection" ]]; then
     local file=$(echo "$selection" | sed -E 's/^([^:]*):([0-9]*):.*/\1/')
     local line=$(echo "$selection" | sed -E 's/^([^:]*):([0-9]*):.*/\2/')
@@ -10,5 +11,9 @@ function grep-cwd() {
 }
 
 function find-file() {
-  $EDITOR "$(fzf)"
+  local selection=$(fzf)
+
+  if [[ -n "$selection" ]]; then
+    $EDITOR $selection
+  fi
 }

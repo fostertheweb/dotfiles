@@ -11,41 +11,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  { import = 'themes.black-metal' },
-  { import = 'themes.monokai-pro' },
+  { import = 'themes.kanagawa' },
+  { import = 'themes.catppuccin' },
   { import = 'plugins' },
 }
 
 -- Default theme settings
 vim.o.background = 'dark'
-vim.cmd 'colorscheme base16-black-metal-bathory'
+vim.cmd 'colorscheme kanagawa-dragon'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if require('utils').is_dark_mode() then
-  vim.cmd 'colorscheme base16-black-metal-bathory'
+  vim.cmd 'colorscheme kanagawa-dragon'
 else
   vim.o.background = 'light'
-  vim.cmd 'colorscheme monokai-pro'
+  vim.cmd 'colorscheme catppuccin'
 end
-
-require('custom.undotree').setup {
-  window = {
-    width = 80,
-    height = 20,
-    border = 'rounded',
-  },
-  mappings = {
-    next = 'j',
-    prev = 'k',
-    revert = 'r',
-    copy = 'y',
-    close = 'q',
-  },
-  diff_opts = {
-    internal = true,
-    vertical = false,
-  },
-}
 
 -- vim: ts=2 sts=2 sw=2 et

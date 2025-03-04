@@ -19,6 +19,7 @@ return {
       setup_tui('Serie', 'serie')
       setup_tui('TigOpenStatus', 'tig status')
       setup_tui('TigOpenCommits', 'tig')
+      setup_tui('MameDiff', 'mamediff')
     end,
   },
 }

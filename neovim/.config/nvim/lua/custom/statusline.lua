@@ -25,7 +25,7 @@ local function file_path_component()
 
   local sep = package.config:sub(1, 1) -- get system's path separator
   local dirs = vim.split(full_path, sep, { plain = true })
-  local joined = table.concat(dirs, string.format '%%#NonText#  ')
+  local joined = table.concat(dirs, string.format '%%#NonText# 󰿟 ')
 
   return string.format('%%#NonText# %s ', joined)
 end

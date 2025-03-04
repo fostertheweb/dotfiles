@@ -18,7 +18,7 @@ macos-titlebar-style = tabs
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = dark:"base16-black-metal-bathory",light:"Monokai Pro Light Sun"
+theme = dark:"Kanagawa Dragon",light:"catppuccin-latte"
 
 window-colorspace = display-p3
 window-padding-balance = true

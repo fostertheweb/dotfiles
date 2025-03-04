@@ -20,26 +20,6 @@ return {
         dependencies = {
           'nvim-treesitter/nvim-treesitter',
         },
-        opts = {
-          server = {
-            override = true,
-            settings = {
-              experimental = {
-                classRegex = {
-                  'tw`([^`]*)',
-                  'tw="([^"]*)',
-                  'tw={"([^"}]*)',
-                  'tw\\.\\w+`([^`]*)',
-                  'tw\\(.*?\\)`([^`]*)',
-                  { 'clsx\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                  { 'classnames\\(([^)]*)\\)', "'([^']*)'" },
-                  { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
-                  { 'cn\\(([^)]*)\\)', "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                },
-              },
-            },
-          },
-        },
       },
     },
     config = function()
@@ -68,9 +48,9 @@ return {
           map('gD', vim.lsp.buf.declaration, 'Go to declaration')
           map('gi', vim.lsp.buf.implementation, 'Go to implementation')
           map('go', vim.lsp.buf.type_definition, 'Go to type definition')
-          map('gr', vim.lsp.buf.references, 'Go to references')
-          map('gk', vim.lsp.buf.document_symbol, 'Document symbols')
-          map('gc', vim.lsp.buf.rename, 'Rename symbol')
+          map('grr', vim.lsp.buf.references, 'Go to references')
+          map('grs', vim.lsp.buf.document_symbol, 'Document symbols')
+          map('grn', vim.lsp.buf.rename, 'Rename symbol')
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')
           map('=g', vim.lsp.buf.format, 'Format code')
