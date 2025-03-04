@@ -1,33 +1,21 @@
 vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
 
 vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
+  group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
+  pattern = '*',
   callback = function()
     vim.wo.statusline = "%!v:lua.require('custom.statusline').statusline()"
   end,
 })
 
 vim.api.nvim_create_autocmd({ 'WinLeave', 'BufLeave' }, {
+  group = vim.api.nvim_create_augroup('InactiveStatusline', { clear = true }),
+  pattern = '*',
   callback = function()
     local winid = vim.api.nvim_get_current_win()
     vim.wo.statusline = string.format("%%!v:lua.require('custom.statusline').inactive_statusline(%d)", winid)
   end,
 })
-
--- vim.api.nvim_create_autocmd('WinLeave', {
---   group = vim.api.nvim_create_augroup('InactiveStatusline', { clear = true }),
---   pattern = '*',
---   callback = function()
---     vim.opt_local.statusline = "%!v:lua.require'custom.statusline'.inactive_statusline()"
---   end,
--- })
-
--- vim.api.nvim_create_autocmd({ 'BufEnter', 'WinClosed', 'WinEnter' }, {
---   group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
---   pattern = '*',
---   callback = function()
---     vim.opt_local.statusline = "%!v:lua.require'custom.statusline'.statusline()"
---   end,
--- })
 
 vim.opt.ruler = false
 
