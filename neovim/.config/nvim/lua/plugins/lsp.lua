@@ -116,4 +116,13 @@ return {
       end, { desc = 'hover.nvim (next source)' })
     end,
   },
+  {
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = {
+      { '<leader>o', '<cmd>Outline<CR>', desc = 'Outline' },
+    },
+    opts = {},
+  },
 }

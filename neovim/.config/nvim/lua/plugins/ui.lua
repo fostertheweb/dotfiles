@@ -122,11 +122,9 @@ return {
       require('which-key').add {
         { '<leader>c', group = 'Copilot' },
         { '<leader>d', group = 'Diagnostic' },
-        { '<leader>f', group = 'Find' },
         { '<leader>g', group = 'Git' },
         { '<leader>q', group = 'Quickfix' },
         { '<leader>t', group = 'Test' },
-        { '<leader>h', group = 'Help' },
       }
     end,
   },
