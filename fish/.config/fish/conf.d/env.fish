@@ -1,3 +1,9 @@
+# Load Cargo environment
+if test -f "$HOME/.cargo/env"
+    bash -c 'source "$HOME/.cargo/env"'
+end
+
+# Aliases
 # This is equivalent to .zprofile and .zshenv
 eval (/opt/homebrew/bin/brew shellenv)
 
