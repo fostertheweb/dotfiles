@@ -3,12 +3,17 @@ return {
     'windwp/nvim-autopairs',
     enabled = true,
     event = 'InsertEnter',
-    config = true,
+    opts = {
+      check_ts = true,
+      enable_check_bracket_line = true,
+      fast_wrap = false,
+      ignored_next_char = '[%w%.]',
+    },
   },
   {
     'windwp/nvim-ts-autotag',
-    config = true,
     event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
   },
   {
     'tpope/vim-sleuth',

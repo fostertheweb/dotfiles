@@ -101,22 +101,7 @@ return {
         mapping = cmp.mapping.preset.cmdline {
           ['<C-n>'] = cmp.config.disable,
           ['<C-p>'] = cmp.config.disable,
-          ['<C-j>'] = {
-            c = function(_)
-              if cmp.visible() then
-                if #cmp.get_entries() == 1 then
-                  cmp.confirm { select = true }
-                else
-                  cmp.select_next_item()
-                end
-              else
-                cmp.complete()
-                if #cmp.get_entries() == 1 then
-                  cmp.confirm { select = true }
-                end
-              end
-            end,
-          },
+          ['<C-j>'] = cmp.config.disable,
         },
         sources = cmp.config.sources({
           { name = 'path' },
