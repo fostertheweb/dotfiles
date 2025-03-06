@@ -3,7 +3,6 @@ return {
   'folke/snacks.nvim',
   opts = {
     bufdelete = {},
-    dim = {},
     indent = {
       only_scope = true,
       only_current = true,
@@ -15,7 +14,6 @@ return {
     input = {},
     layout = {},
     picker = {
-      preview = false,
       layout = {
         preset = 'vscode',
       },
@@ -42,21 +40,21 @@ return {
     {
       '<leader>p',
       function()
-        Snacks.picker.files { hidden = true }
+        Snacks.picker.files { hidden = true, preview = false }
       end,
       desc = 'Files',
     },
     {
       '<leader>f',
       function()
-        Snacks.picker.grep { hidden = true, ignored = false }
+        Snacks.picker.grep { hidden = true, ignored = false, layout = 'default' }
       end,
-      desc = 'Grep',
+      desc = 'Search',
     },
     {
       '<leader><leader>',
       function()
-        Snacks.picker.buffers()
+        Snacks.picker.buffers { layout = 'select' }
       end,
       desc = 'Buffers',
     },
@@ -70,21 +68,21 @@ return {
     {
       '<leader>u',
       function()
-        Snacks.picker.undo()
+        Snacks.picker.undo { layout = 'default' }
       end,
       desc = 'Undo',
     },
     {
       '<leader>h',
       function()
-        Snacks.picker.help()
+        Snacks.picker.help { preview = false }
       end,
       desc = 'Help',
     },
     {
       '<leader>/',
       function()
-        Snacks.picker.lines()
+        Snacks.picker.lines { layout = 'bottom', preview = false }
       end,
       desc = 'Find',
     },

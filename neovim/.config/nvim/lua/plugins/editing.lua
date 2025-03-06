@@ -1,12 +1,7 @@
 return {
   {
-    'numToStr/Comment.nvim',
-    enabled = false,
-    opts = {},
-  },
-  {
     'windwp/nvim-autopairs',
-    enabled = false,
+    enabled = true,
     event = 'InsertEnter',
     config = true,
   },
@@ -17,13 +12,5 @@ return {
   },
   {
     'tpope/vim-sleuth',
-  },
-  {
-    'jiaoshijie/undotree',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('undotree').setup()
-      vim.keymap.set('n', '<leader>u', require('undotree').toggle, { desc = 'Undo history' })
-    end,
   },
 }

@@ -1,7 +1,6 @@
 return {
   'echasnovski/mini.nvim',
   config = function()
-    require('mini.bufremove').setup()
     require('mini.comment').setup {
       options = {
         ignore_blank_line = true,
@@ -29,15 +28,6 @@ return {
         width_preview = 80,
       },
     }
-    -- require('mini.indentscope').setup {
-    --   draw = {
-    --     animation = function()
-    --       return 0
-    --     end,
-    --   },
-    --   symbol = '│',
-    -- }
-    require('mini.pairs').setup()
     require('mini.surround').setup()
 
     vim.keymap.set('n', '-', function()
