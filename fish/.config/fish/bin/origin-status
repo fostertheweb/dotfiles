@@ -1,5 +1,0 @@
-#!/usr/bin/env fish
-
-source "$FISH_CONFIG/functions/git.fish"
-
-origin-status
