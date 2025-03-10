@@ -1,4 +1,4 @@
-theme = "system"
+theme = "dark"
 
 [widgets]
 displayed = [
@@ -9,7 +9,7 @@ displayed = [
 
 [widgets.default.spaces]
 space.show-key = true
-window.show-title = true
+window.show-title = false
 window.title.max-length = 50
 
 [widgets.default.battery]
@@ -27,12 +27,10 @@ calendar.allow-list = ["Appointments"]
 view-variant = "box"
 
 [experimental.background]
-displayed = false
-height = "menu-bar"
-blur = 3
+displayed = true
+blur = 1
 
 [experimental.foreground]
-height = "default"
 horizontal-padding = 16
 spacing = 16
 

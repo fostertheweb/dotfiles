@@ -2,13 +2,7 @@
   "actions" : [
     {
       "key" : "t",
-      "label" : "",
-      "type" : "application",
-      "value" : "/Applications/Ghostty.app"
-    },
-    {
-      "key" : "g",
-      "label" : "",
+      "label" : "Terminal",
       "type" : "application",
       "value" : "/Applications/Ghostty.app"
     },
@@ -22,13 +16,13 @@
         },
         {
           "key" : "e",
-          "label" : "",
+          "label" : "Email",
           "type" : "application",
           "value" : "/System/Applications/Mail.app"
         },
         {
           "key" : "i",
-          "label" : "",
+          "label" : "iTunes",
           "type" : "application",
           "value" : "/System/Applications/Music.app"
         },
@@ -36,7 +30,7 @@
           "key" : "m",
           "label" : "",
           "type" : "application",
-          "value" : "/Applications/Messages.app"
+          "value" : "/System/Applications/Messages.app"
         },
         {
           "key" : "p",
@@ -58,7 +52,7 @@
         }
       ],
       "key" : "a",
-      "label" : "",
+      "label" : "Apple",
       "type" : "group"
     },
     {
@@ -77,7 +71,7 @@
       "key" : "c",
       "label" : "",
       "type" : "application",
-      "value" : "/Applications/ChatGPT.app"
+      "value" : "/Applications/Claude.app"
     },
     {
       "key" : ",",

@@ -42,6 +42,8 @@ brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 
 cask "1password-cli"
+cask "mocki-toki/formulae/barik"
+cask "karabiner-elements"
 cask "nikitabobko/tap/aerospace"
 
 tap "FelixKratz/formulae"
