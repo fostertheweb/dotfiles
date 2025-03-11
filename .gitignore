@@ -5,3 +5,5 @@ Brewfile.lock.json
 neovim/.config/nvim/lazy-lock.json
 
 **/__pycache__
+
+karabiner/.config/karabiner/automatic_backups/
