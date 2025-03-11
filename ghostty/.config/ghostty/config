@@ -35,6 +35,7 @@ keybind = super+g=esc:g
 keybind = super+r=esc:r
 keybind = super+d=esc:d
 keybind = super+y=esc:y
+keybind = super+u=esc:u
 keybind = super+shift+p=esc:P
 
 keybind = ctrl+shift+h=csi:104;6u

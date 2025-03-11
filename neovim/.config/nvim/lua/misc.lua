@@ -47,3 +47,52 @@ vim.api.nvim_create_user_command('QuickLint', function()
     print 'ESLint: No errors found'
   end
 end, {})
+
+-- Add this to your Neovim configuration
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    -- Store the current 'shortmess' setting
+    local old_shortmess = vim.o.shortmess
+
+    -- Add 's' to shortmess to suppress the written message
+    vim.o.shortmess = old_shortmess .. 's'
+
+    -- Set up a one-time autocmd to restore the original shortmess
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      buffer = 0, -- Only for the current buffer
+      once = true, -- Execute only once
+      callback = function()
+        vim.o.shortmess = old_shortmess
+      end,
+    })
+  end,
+})
+
+-- Add this to your Neovim configuration
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    -- Store the current 'shortmess' setting
+    local old_shortmess = vim.o.shortmess
+    -- Add 's' to shortmess to suppress the written message
+    vim.o.shortmess = old_shortmess .. 's'
+    -- Set up a one-time autocmd to restore the original shortmess
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      buffer = vim.fn.bufnr(),
+      once = true, -- Execute only once
+      callback = function()
+        vim.o.shortmess = old_shortmess
+      end,
+    })
+  end,
+})
+
+-- Your existing BufWritePost autocmd for fidget notification
+vim.api.nvim_create_autocmd('BufWritePost', {
+  callback = function()
+    local filename = vim.fn.expand '%:t'
+    vim.notify('Saved ' .. filename, vim.log.levels.INFO, {
+      title = 'File Saved',
+      icon = '💾',
+    })
+  end,
+})

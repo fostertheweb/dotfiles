@@ -47,3 +47,6 @@ bindkey -s '\er' 'source $HOME/.zshrc^M'
 # cmd-y
 # Run GUI application
 bindkey -s '\ey' 'run-app^M'
+
+# cmd-u
+bindkey -s '\eu' 'git pull --rebase^M'
