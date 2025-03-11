@@ -49,6 +49,12 @@
           "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Calendar.app"
+        },
+        {
+          "key" : "r",
+          "label" : "",
+          "type" : "application",
+          "value" : "/System/Applications/Reminders.app"
         }
       ],
       "key" : "a",
