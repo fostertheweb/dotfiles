@@ -1,6 +1,7 @@
+require 'autocmds'
 require 'options'
 require 'keymaps'
-require 'misc'
+require 'usercmds'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field

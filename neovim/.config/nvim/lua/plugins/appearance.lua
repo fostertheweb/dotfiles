@@ -1,13 +1,5 @@
 return {
   {
-    'j-hui/fidget.nvim',
-    opts = {
-      notification = {
-        override_vim_notify = true,
-      },
-    },
-  },
-  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     config = function()
