@@ -117,12 +117,11 @@ return {
     end,
   },
   {
-    'hedyhli/outline.nvim',
-    lazy = true,
-    cmd = { 'Outline', 'OutlineOpen' },
-    keys = {
-      { '<leader>o', '<cmd>Outline<CR>', desc = 'Outline' },
-    },
-    opts = {},
+    'oskarrrrrrr/symbols.nvim',
+    config = function()
+      local r = require 'symbols.recipes'
+      require('symbols').setup(r.DefaultFilters, r.AsciiSymbols, {})
+      vim.keymap.set('n', 'gk', '<cmd>Symbols<CR>')
+    end,
   },
 }
