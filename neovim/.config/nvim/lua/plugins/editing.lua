@@ -1,7 +1,7 @@
 return {
   {
     'windwp/nvim-autopairs',
-    enabled = true,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       check_ts = true,
