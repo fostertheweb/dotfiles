@@ -77,7 +77,7 @@
       "key" : "c",
       "label" : "",
       "type" : "application",
-      "value" : "/Applications/Claude.app"
+      "value" : "/Applications/ChatGPT.app"
     },
     {
       "key" : ",",
@@ -96,6 +96,12 @@
       "label" : "",
       "type" : "application",
       "value" : "/Applications/1Password.app"
+    },
+    {
+      "key" : "z",
+      "label" : null,
+      "type" : "application",
+      "value" : "/Applications/Zen Browser.app"
     }
   ],
   "type" : "group"

@@ -46,3 +46,9 @@ sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262
 
 # Follow the keyboard focus while zoomed in
 sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+# Disable displays have separate spaces
+defaults write com.apple.spaces spans-displays -bool true
+
+# Show input in sound menu
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
