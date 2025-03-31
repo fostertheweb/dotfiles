@@ -26,7 +26,8 @@ return {
       require('mason').setup()
       require('mason-lspconfig').setup()
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
       require('mason-lspconfig').setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
@@ -46,11 +47,11 @@ return {
 
           map('gd', vim.lsp.buf.definition, 'Go to definition')
           map('gD', vim.lsp.buf.declaration, 'Go to declaration')
-          map('gi', vim.lsp.buf.implementation, 'Go to implementation')
+          -- map('gri', vim.lsp.buf.implementation, 'Go to implementation')
           map('go', vim.lsp.buf.type_definition, 'Go to type definition')
-          map('grr', vim.lsp.buf.references, 'Go to references')
+          -- map('grr', vim.lsp.buf.references, 'Go to references')
           map('grs', vim.lsp.buf.document_symbol, 'Document symbols')
-          map('grn', vim.lsp.buf.rename, 'Rename symbol')
+          -- map('grn', vim.lsp.buf.rename, 'Rename symbol')
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')
           map('=g', vim.lsp.buf.format, 'Format code')
@@ -121,7 +122,7 @@ return {
     config = function()
       local r = require 'symbols.recipes'
       require('symbols').setup(r.DefaultFilters, r.AsciiSymbols, {})
-      vim.keymap.set('n', 'gk', '<cmd>Symbols<CR>')
+      vim.keymap.set('n', 'g0', '<cmd>Symbols<CR>')
     end,
   },
 }
