@@ -82,7 +82,7 @@ return {
     {
       '<leader>/',
       function()
-        Snacks.picker.lines { layout = 'bottom', preview = false }
+        Snacks.picker.lines { preview = false }
       end,
       desc = 'Find',
     },

@@ -44,3 +44,8 @@ vim.api.nvim_create_user_command('QuickLint', function()
     vim.notify('Failed to start ESLint process', vim.log.levels.ERROR)
   end
 end, {})
+
+vim.api.nvim_create_user_command('ProjectFiles', function()
+  ---@diagnostic disable-next-line: undefined-global
+  require('snacks').picker.files { hidden = true, preview = false }
+end, {})

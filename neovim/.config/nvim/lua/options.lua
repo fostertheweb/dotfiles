@@ -51,3 +51,6 @@ vim.opt.hlsearch = true
 
 -- completion popup menu
 vim.opt.pumheight = 20
+
+-- round all floats
+vim.o.winborder = 'rounded'

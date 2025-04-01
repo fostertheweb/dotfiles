@@ -18,7 +18,7 @@ macos-titlebar-style = hidden
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = dark:"Kanagawa Dragon",light:"catppuccin-latte"
+theme = dark:"Kanagawa Dragon",light:"melange-dark"
 
 window-colorspace = display-p3
 window-padding-balance = true
