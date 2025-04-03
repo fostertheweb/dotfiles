@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 vim.api.nvim_create_user_command('QuickLint', function()
   vim.fn.setqflist {}
 
@@ -46,6 +47,5 @@ vim.api.nvim_create_user_command('QuickLint', function()
 end, {})
 
 vim.api.nvim_create_user_command('ProjectFiles', function()
-  ---@diagnostic disable-next-line: undefined-global
   require('snacks').picker.files { hidden = true, preview = false }
 end, {})

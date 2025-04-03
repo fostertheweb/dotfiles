@@ -99,7 +99,7 @@
     },
     {
       "key" : "z",
-      "label" : null,
+      "label" : "",
       "type" : "application",
       "value" : "/Applications/Zen Browser.app"
     }
