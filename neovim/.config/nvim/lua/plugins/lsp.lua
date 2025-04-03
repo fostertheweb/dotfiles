@@ -45,9 +45,9 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
           end
 
-          -- map('gd', vim.lsp.buf.definition, 'Go to definition')
+          map('gd', vim.lsp.buf.definition, 'Go to definition')
           map('gD', vim.lsp.buf.declaration, 'Go to declaration')
-          -- map('gri', vim.lsp.buf.implementation, 'Go to implementation')
+          map('gri', vim.lsp.buf.implementation, 'Go to implementation')
           map('gt', vim.lsp.buf.type_definition, 'Go to type definition')
           map('grs', vim.lsp.buf.document_symbol, 'Document symbols')
           map('g.', vim.lsp.buf.code_action, 'Code actions')
