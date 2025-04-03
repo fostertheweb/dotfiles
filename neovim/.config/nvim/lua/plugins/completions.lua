@@ -3,7 +3,12 @@ return {
     'saghen/blink.cmp',
     version = '1.*',
     opts = {
-      keymap = { preset = 'default' },
+      keymap = {
+        preset = 'default',
+        ['<C-j>'] = { 'select_and_accept' },
+        ['<Tab>'] = { 'select_and_accept' },
+        ['<C-i>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      },
       appearance = {
         nerd_font_variant = 'mono',
       },
