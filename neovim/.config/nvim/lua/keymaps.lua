@@ -1,14 +1,21 @@
 local utils = require 'utils'
 
--- Ctrl-g, as Esc
-vim.keymap.set({ 'i', 'v' }, '<C-g>', '<Esc>')
+-- Write file on <Enter>
+vim.keymap.set('n', '<CR>', ':write!<CR>', {})
+
+-- q to go back a word
+vim.keymap.set({ 'n', 'v' }, 'q', 'b')
+vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
+
+-- use b for macros
+vim.keymap.set({ 'n', 'v' }, 'b', 'q')
+vim.keymap.set({ 'n', 'v' }, 'B', 'Q')
 
 -- Close tab or quit
 vim.keymap.set({ 'n', 'v' }, '<leader>Q', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
 
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<C-g>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-[>', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
@@ -23,12 +30,8 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 
 -- Tab navigation
-vim.keymap.set('n', 'gn', '<CMD>tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', 'gp', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
-
--- Write buffer
-vim.keymap.set('n', '<leader>w', '<CMD>w<CR>', { desc = 'Write' })
-vim.keymap.set('n', '<leader>W', '<CMD>wq<CR>', { desc = 'Write & quit' })
+vim.keymap.set('n', '<Tab>', '<CMD>tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -39,15 +42,13 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- D, Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- G, Git commands
-vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
 vim.keymap.set('n', '<leader>gA', utils.git_add_all, { desc = 'Stage all changes' })
 vim.keymap.set('n', '<leader>gC', utils.git_commit, { desc = 'Commit message' })
 vim.keymap.set('n', '<leader>gP', utils.git_push, { desc = 'Push' })
+vim.keymap.set('n', '<leader>gs', '<CMD>TigOpenStatus<CR>', { desc = 'Status' })
 vim.keymap.set('n', '<leader>gc', '<CMD>TigOpenCommits<CR>', { desc = 'Commits' })
 vim.keymap.set('n', '<leader>gl', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
