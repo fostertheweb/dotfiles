@@ -2,6 +2,7 @@ local utils = require 'utils'
 
 -- Write file on <Enter>
 vim.keymap.set('n', '<CR>', ':write!<CR>', {})
+vim.keymap.set('n', '<C-s>', ':write!<CR>', {})
 
 -- q to go back a word
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
@@ -28,6 +29,9 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
+
+-- Marks
+vim.keymap.set('n', 'gj', '<CMD>marks A-Z<CR>', { desc = 'Jump to global mark' })
 
 -- Tab navigation
 vim.keymap.set('n', '<Tab>', '<CMD>tabnext<CR>', { desc = 'Next tab' })

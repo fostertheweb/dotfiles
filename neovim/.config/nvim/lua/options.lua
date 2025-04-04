@@ -1,5 +1,6 @@
+-- global statusline
+vim.o.laststatus = 3
 vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
-
 vim.opt.ruler = false
 
 -- Tab width
@@ -11,7 +12,7 @@ vim.g.maplocalleader = ' '
 
 -- Make line numbers default
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -51,6 +52,3 @@ vim.opt.hlsearch = true
 
 -- completion popup menu
 vim.opt.pumheight = 20
-
--- round all floats
-vim.o.winborder = 'rounded'

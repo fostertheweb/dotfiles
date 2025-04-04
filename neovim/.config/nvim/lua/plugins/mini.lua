@@ -15,6 +15,7 @@ return {
         textobject = 'g/',
       },
     }
+    require('mini.diff').setup()
     require('mini.files').setup {
       mappings = {
         go_in = '',
@@ -28,6 +29,7 @@ return {
         width_preview = 80,
       },
     }
+    require('mini.git').setup()
 
     local notify_win_config = function()
       local has_statusline = vim.o.laststatus > 0
