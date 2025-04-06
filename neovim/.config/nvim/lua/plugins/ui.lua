@@ -1,4 +1,4 @@
-local function get_hex_colors(hl_group)
+local function get_colors(hl_group)
   local hl = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
 
   local guifg = string.format('#%06x', hl.fg or 0)
@@ -49,17 +49,17 @@ return {
 
           local modified = vim.bo[props.buf].modified
           local ft_icon, ft_color = devicons.get_icon_color(filename)
-          local modified_fg = get_hex_colors('DiagnosticWarn').guifg
+          local modified_fg = get_colors('DiagnosticWarn').guifg
 
           return {
             modified and { ' ●  ', guifg = modified_fg } or ft_icon and { ' ', ft_icon, '  ', guifg = ft_color } or '',
             {
               filename,
               gui = modified and 'bold,italic' or 'bold',
-              guifg = modified and modified_fg or get_hex_colors('Normal').guifg,
+              guifg = modified and modified_fg or get_colors('Normal').guifg,
             },
             ' ',
-            guibg = get_hex_colors('FloatShadow').guibg,
+            guibg = get_colors('FloatShadow').guibg,
           }
         end,
       }

@@ -114,8 +114,8 @@ end
 
 M.git_commit = function()
   local buf = vim.api.nvim_create_buf(false, true)
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.8)
+  local width = math.floor(vim.o.columns * 0.7)
+  local height = math.floor(vim.o.lines * 0.7)
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
 
@@ -155,6 +155,17 @@ M.has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
+end
+
+M.hex_to_ansi = function(hex)
+  -- Remove the '#' if present.
+  hex = hex:gsub('#', '')
+  -- Extract the red, green, and blue components and convert them from hex to a decimal number.
+  local r = tonumber(hex:sub(1, 2), 16)
+  local g = tonumber(hex:sub(3, 4), 16)
+  local b = tonumber(hex:sub(5, 6), 16)
+  -- Return the ANSI escape sequence for 24-bit (true color) foreground.
+  return string.format('\27[38;2;%d;%d;%dm', r, g, b)
 end
 
 return M
