@@ -1,8 +1,18 @@
 [alias]
+    st = status -s
     blame = blame -C -C -C
     diff = diff --word-diff
     lol = log --oneline --decorate
-    graph = log --oneline --graph --decorate
+    graph = log --oneline --graph --decorate --all
+
+[branch]
+    sort = -committerdate
+
+[column]
+    ui = auto
+
+[commit]
+    verbose = true
 
 [core]
     excludesfile = /Users/fostertheweb/.gitignore
@@ -15,7 +25,15 @@
     light = false
 
 [diff]
-    colorMoved = default
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 
 [filter "lfs"]
     required = true
@@ -27,11 +45,17 @@
     lineNumber = true
     patternType = perl
 
+[help]
+    autocorrect = prompt
+
+[init]
+    defaultBranch = main
+
 [interactive]
     diffFilter = delta --color-only
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
     tool = nvim
 
 [mergetool]
@@ -40,8 +64,25 @@
 [mergetool "nvim"]
     cmd = nvim -f -c "DiffviewOpen"
 
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
 [rerere]
     enabled = true
+    autoupdate = true
+
+[tag]
+    sort = version:refname
 
 [user]
     name = Jonathan Foster
