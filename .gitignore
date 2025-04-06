@@ -7,3 +7,4 @@ neovim/.config/nvim/lazy-lock.json
 **/__pycache__
 
 karabiner/.config/karabiner/automatic_backups/
+.aider*
