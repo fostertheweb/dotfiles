@@ -2,11 +2,19 @@ local utils = require 'utils'
 local marks = require 'custom.marks'
 
 -- Write file on <Enter>
-vim.keymap.set('n', '<CR>', ':write!<CR>', {})
-vim.keymap.set('n', '<C-s>', ':write!<CR>', {})
+vim.keymap.set('n', '<CR>', function()
+  if vim.bo.buftype == '' then
+    vim.cmd 'write!'
+    return ''
+  else
+    return '<CR>'
+  end
+end, { expr = true, silent = true })
+
+vim.keymap.set('n', '<C-s>', '<CMD>write!<CR>', {})
 
 -- write and quit
-vim.keymap.set('n', '<C-x><leader>', ':wq!<CR>', {})
+vim.keymap.set('n', '<C-x><leader>', '<CMD>wq!<CR>')
 
 -- q to go back a word
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
@@ -39,8 +47,8 @@ vim.keymap.set('n', 'gj', marks.goto_global_mark, { desc = 'Jump to global mark'
 vim.keymap.set('n', 'M', marks.add_global_mark, { desc = 'Mark global' })
 
 -- Tab navigation
-vim.keymap.set('n', '<Tab>', '<CMD>tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', '<S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', '<C-x>n', '<CMD>tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<C-x>p', '<CMD>tabprev<CR>', { desc = 'Previous tab' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
