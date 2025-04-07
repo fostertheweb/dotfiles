@@ -77,10 +77,6 @@ return {
     end,
   },
   {
-    'stevearc/overseer.nvim',
-    opts = {},
-  },
-  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()

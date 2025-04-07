@@ -1,23 +1,6 @@
 local M = {}
 
-M.add_global_mark = function()
-  vim.ui.input({ prompt = 'Set Mark' }, function(input)
-    if input == nil then
-      return
-    end
-
-    if not input:match '%a' then
-      vim.notify('A-Z only', vim.log.levels.WARN)
-      return
-    end
-
-    local mark_char = input:upper()
-    vim.cmd('normal! m' .. mark_char)
-    vim.notify('Marked ' .. vim.fn.expand '%:t' .. ':' .. vim.api.nvim_win_get_cursor(0)[1])
-  end)
-end
-
-M.goto_global_mark = function()
+M.get_global_marks = function()
   local devicons = require 'nvim-web-devicons'
   local global_marks = {}
 
@@ -31,9 +14,44 @@ M.goto_global_mark = function()
       local filename = vim.fn.fnamemodify(bufname, ':t')
       local ft_icon = devicons.get_icon_color(filename)
       local display = string.format('%s %s %s:%d', mark_char, ft_icon, filename, pos[2])
-      table.insert(global_marks, { mark = mark_char, display = display })
+      table.insert(global_marks, { mark = mark_char, bufname = bufname, display = display })
     end
   end
+
+  return global_marks
+end
+
+M.add_global_mark = function()
+  local global_marks = M.get_global_marks()
+  local bufname = vim.api.nvim_buf_get_name(0)
+
+  vim.ui.input({ prompt = 'Set Mark' }, function(input)
+    if input == nil then
+      return
+    end
+
+    if not input:match '%a' then
+      vim.notify('A-Z only', vim.log.levels.WARN)
+      return
+    end
+
+    local mark_char = input:upper()
+
+    vim.cmd('normal! m' .. mark_char)
+    vim.notify('Marked ' .. vim.fn.expand '%:t' .. ':' .. vim.api.nvim_win_get_cursor(0)[1])
+
+    for _, mark in ipairs(global_marks) do
+      if mark.bufname == bufname then
+        vim.notify('Existing: ' .. mark.bufname .. 'New: ' .. bufname)
+        vim.cmd('normal! delmarks ' .. mark.mark)
+        vim.notify('Removed redundant mark for ' .. bufname)
+      end
+    end
+  end)
+end
+
+M.goto_global_mark = function()
+  local global_marks = M.get_global_marks()
 
   if #global_marks == 0 then
     vim.notify('No global marks set.', vim.log.levels.ERROR)

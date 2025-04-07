@@ -38,20 +38,6 @@ return {
 
       vim.lsp.inlay_hint.enable()
 
-      -- Diagnostic
-      vim.diagnostic.config {
-        virtual_text = {
-          severity = {
-            max = vim.diagnostic.severity.WARN,
-          },
-        },
-        virtual_lines = {
-          severity = {
-            min = vim.diagnostic.severity.ERROR,
-          },
-        },
-      }
-
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
@@ -67,6 +53,7 @@ return {
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')
           map('g=', vim.lsp.buf.format, 'Format code')
+          map('L', vim.diagnostic.open_float, 'Show diagnostic')
 
           local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then
