@@ -5,7 +5,7 @@ return {
     opts = {
       keymap = {
         preset = 'default',
-        ['<Tab>'] = { 'select_and_accept' },
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
         ["<C-'>"] = { 'show_signature', 'hide_signature', 'fallback' },
       },
       appearance = {
