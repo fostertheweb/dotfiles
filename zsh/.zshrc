@@ -5,6 +5,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
 
+# credential
+export ANTHROPIC_API_KEY="$(op read 'op://Private/Anthropic API Key/credential')"
+
 # history configuration
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=99999
