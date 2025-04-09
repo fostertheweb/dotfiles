@@ -11,6 +11,7 @@ return {
     },
     config = function()
       require('supermaven-nvim').setup {
+        ignore_filetypes = { 'copilot-chat' },
         -- keymaps = {
         --   accept_suggestion = '<C-f>',
         --   clear_suggestion = '<C-k>',
@@ -38,7 +39,7 @@ return {
     },
     build = 'make tiktoken',
     opts = {
-      chat_autocomplete = false,
+      chat_autocomplete = true,
       mappings = {
         submit_prompt = {
           insert = '<C-j>',

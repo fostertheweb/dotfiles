@@ -6,7 +6,7 @@ return {
       keymap = {
         preset = 'default',
         ['<Tab>'] = { 'select_and_accept', 'fallback' },
-        ["<C-;>"] = { 'show_signature', 'hide_signature', 'fallback' },
+        ['<C-;>'] = { 'show_signature', 'hide_signature', 'fallback' },
       },
       appearance = {
         nerd_font_variant = 'mono',
@@ -15,6 +15,13 @@ return {
       signature = { enabled = true },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          path = {
+            enabled = function()
+              return vim.bo.filetype ~= 'copilot-chat'
+            end,
+          },
+        },
       },
       fuzzy = { implementation = 'prefer_rust_with_warning' },
     },
