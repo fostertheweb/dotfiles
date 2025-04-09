@@ -1,3 +1,4 @@
 use mini for statusline git info
+x 2025-04-08 put branch name in statusline, right of changes
 show remote status in right side of tmux status
 add count to lsp status, show warning and error icons

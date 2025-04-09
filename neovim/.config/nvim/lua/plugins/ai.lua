@@ -5,8 +5,18 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
+    event = {
+      'BufReadPost',
+      'BufNewFile',
+    },
     config = function()
-      require('supermaven-nvim').setup {}
+      require('supermaven-nvim').setup {
+        -- keymaps = {
+        --   accept_suggestion = '<C-f>',
+        --   clear_suggestion = '<C-k>',
+        --   accept_word = '<C-l>',
+        -- },
+      }
     end,
   },
   {

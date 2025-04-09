@@ -23,7 +23,7 @@ local function file_path_component()
   local dirs = vim.split(full_path, sep, { plain = true })
   local joined = table.concat(dirs, string.format '%%#NonText# 󰿟 ')
 
-  return string.format('%%#NonText# %s ', joined)
+  return string.format('%%#NonText# %s %s ', ' ', joined)
 end
 
 local function lsp_status()
@@ -32,14 +32,23 @@ local function lsp_status()
   })
   local error_count = counts[vim.diagnostic.severity.ERROR] or 0
   local warn_count = counts[vim.diagnostic.severity.WARN] or 0
+  local problem_count = error_count + warn_count
 
   if error_count > 0 then
-    return string.format('%%#DiagnosticSignError#%s', '! ')
-  elseif warn_count > 0 then
-    return string.format('%%#DiagnosticSignWarn#%s', '* ')
+    return string.format('%%#DiagnosticSignError#%s %d', '!', problem_count)
   else
-    return string.format('%%#DiagnosticSignOk#%s', '% ')
+    return string.format('%%#DiagnosticSignOk#%s', '  ')
   end
+end
+
+local function git_branch()
+  local branch = vim.fn.system 'git rev-parse --abbrev-ref HEAD'
+
+  if branch == 'HEAD' then
+    return ''
+  end
+
+  return string.format('   %s ', vim.trim(branch))
 end
 
 local function git_diff_component()
@@ -58,8 +67,8 @@ local function git_diff_component()
 end
 
 function M.statusline()
-  local left = git_diff_component() .. lsp_status()
-  local right = file_path_component()
+  local left = git_branch() .. git_diff_component()
+  local right = file_path_component() .. lsp_status()
   -- Use %=% to push right side to the far right.
   return left .. ' %=' .. right
 end
