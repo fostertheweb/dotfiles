@@ -2,16 +2,8 @@ local utils = require 'utils'
 local marks = require 'custom.marks'
 
 -- Write file on <Enter>
-vim.keymap.set('n', '<CR>', function()
-  if vim.bo.buftype == '' then
-    vim.cmd 'write!'
-    return ''
-  else
-    return '<CR>'
-  end
-end, { expr = true, silent = true })
-
-vim.keymap.set('n', '<C-s>', '<CMD>write!<CR>', {})
+vim.keymap.set('n', '<CR>', '<CMD>write!<CR>')
+vim.keymap.set('n', '<C-s>', '<CMD>write!<CR>')
 
 -- write and quit
 vim.keymap.set('n', '<C-x><leader>', '<CMD>wq!<CR>')

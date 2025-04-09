@@ -4,7 +4,14 @@ return {
     ft = { 'markdown', 'copilot-chat' },
   },
   {
+    'supermaven-inc/supermaven-nvim',
+    config = function()
+      require('supermaven-nvim').setup {}
+    end,
+  },
+  {
     'CopilotC-Nvim/CopilotChat.nvim',
+    enabled = true,
     dependencies = {
       {
         'zbirenbaum/copilot.lua',

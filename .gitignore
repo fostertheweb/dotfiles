@@ -8,3 +8,5 @@ neovim/.config/nvim/lazy-lock.json
 
 karabiner/.config/karabiner/automatic_backups/
 .aider*
+.termai*
+debug.log

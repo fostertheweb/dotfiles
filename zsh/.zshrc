@@ -67,7 +67,7 @@ export FZF_DEFAULT_OPTS="
   --color pointer:10,header:8
   --cycle
   --height ~100%
-  --layout reverse 
+  --layout reverse
   --tmux center
   --info hidden
   ${TMUX:+--border sharp}"
@@ -87,7 +87,6 @@ eval "$(zoxide init zsh)"
 alias oops="fuck"
 alias vim="nvim"
 alias n="nvim"
-# alias cat="bat"
 alias ls="eza -la"
 alias ll="eza -la"
 alias tree="eza --tree -a"
