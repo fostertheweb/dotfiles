@@ -23,7 +23,7 @@ local function file_path_component()
   local dirs = vim.split(full_path, sep, { plain = true })
   local joined = table.concat(dirs, string.format '%%#NonText# 󰿟 ')
 
-  return string.format('%%#NonText# %s %s ', ' ', joined)
+  return string.format('%%#Comment# %s %s ', ' ', joined)
 end
 
 local function lsp_status()

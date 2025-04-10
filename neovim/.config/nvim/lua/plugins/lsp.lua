@@ -91,33 +91,6 @@ return {
     end,
   },
   {
-    'lewis6991/hover.nvim',
-    enabled = false,
-    config = function()
-      require('hover').setup {
-        init = function()
-          require 'hover.providers.lsp'
-          require 'hover.providers.diagnostic'
-        end,
-        preview_opts = {
-          border = 'rounded',
-        },
-        preview_window = false,
-        title = true,
-      }
-
-      vim.keymap.set('n', 'K', require('hover').hover, { desc = 'Show hover' })
-      vim.keymap.set('n', '<C-p>', function()
-        ---@diagnostic disable-next-line: missing-parameter
-        require('hover').hover_switch 'previous'
-      end, { desc = 'hover.nvim (previous source)' })
-      vim.keymap.set('n', '<C-n>', function()
-        ---@diagnostic disable-next-line: missing-parameter
-        require('hover').hover_switch 'next'
-      end, { desc = 'hover.nvim (next source)' })
-    end,
-  },
-  {
     'oskarrrrrrr/symbols.nvim',
     config = function()
       local r = require 'symbols.recipes'

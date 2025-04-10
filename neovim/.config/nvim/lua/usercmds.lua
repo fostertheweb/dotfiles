@@ -1,3 +1,13 @@
+---@diagnostic disable: undefined-global
+vim.api.nvim_create_user_command('ProjectFiles', function()
+  require('snacks').picker.files {
+    hidden = true,
+    preview = function()
+      return false
+    end,
+  }
+end, {})
+
 vim.api.nvim_create_user_command('ESLintAsync', function()
   local bufnr = vim.api.nvim_get_current_buf()
   local filename = vim.api.nvim_buf_get_name(bufnr)

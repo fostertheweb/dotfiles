@@ -1,3 +1,1 @@
-use mini for statusline git info
 show remote status in right side of tmux status
-add count to lsp status, show warning and error icons

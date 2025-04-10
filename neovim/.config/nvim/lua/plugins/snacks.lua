@@ -14,7 +14,6 @@ return {
     input = {},
     layout = {},
     picker = {
-      enabled = false,
       layout = {
         preset = 'vscode',
       },
