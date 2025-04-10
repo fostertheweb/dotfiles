@@ -1,7 +1,7 @@
 local M = {}
 
-local diff_add_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignOk', link = false })
-local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticSignError', link = false })
+local diff_add_hl = vim.api.nvim_get_hl(0, { name = 'DiffAdd', link = false })
+local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiffDelete', link = false })
 
 vim.api.nvim_set_hl(0, 'SimpleLineGitDiffAdd', { fg = diff_add_hl.fg })
 vim.api.nvim_set_hl(0, 'SimpleLineGitDiffDel', { fg = diff_delete_hl.fg })
@@ -48,7 +48,7 @@ local function git_branch()
     return ''
   end
 
-  return string.format('   %s ', vim.trim(branch))
+  return string.format('%%#Comment#   %s ', vim.trim(branch))
 end
 
 local function git_diff_component()
@@ -68,7 +68,7 @@ end
 
 function M.statusline()
   local left = git_branch() .. git_diff_component()
-  local right = file_path_component() .. lsp_status()
+  local right = lsp_status() .. file_path_component()
   -- Use %=% to push right side to the far right.
   return left .. ' %=' .. right
 end

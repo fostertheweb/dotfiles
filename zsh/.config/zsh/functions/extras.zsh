@@ -37,3 +37,8 @@ EOF
   # TODO: fix app names with a space
   echo "$apps_list" | tr "," "\n" | sed 's/\.app$//' | awk '{$1=$1; print}' | fzf | xargs open -a
 }
+
+function prefix-api-key() {
+  local api_key="$(op read 'op://Private/Anthropic API Key/credential')"
+  ANTHROPIC_API_KEY=$api_key $1
+}

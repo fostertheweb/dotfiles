@@ -5,6 +5,7 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
+    enabled = true,
     event = {
       'BufReadPost',
       'BufNewFile',
@@ -12,11 +13,11 @@ return {
     config = function()
       require('supermaven-nvim').setup {
         ignore_filetypes = { 'copilot-chat' },
-        -- keymaps = {
-        --   accept_suggestion = '<C-f>',
-        --   clear_suggestion = '<C-k>',
-        --   accept_word = '<C-l>',
-        -- },
+        keymaps = {
+          accept_suggestion = '<C-f>',
+          clear_suggestion = '<C-k>',
+          accept_word = '<C-l>',
+        },
       }
     end,
   },
@@ -31,6 +32,15 @@ return {
           require('copilot').setup {
             suggestion = {
               enabled = false,
+              auto_trigger = true,
+              keymap = {
+                accept = '<C-f>',
+                accept_word = '<C-l>',
+                accept_line = false,
+                next = '<M-]>',
+                prev = '<M-[>',
+                dismiss = '<C-k>',
+              },
             },
           }
         end,
@@ -45,6 +55,7 @@ return {
           insert = '<C-j>',
         },
       },
+      model = 'copilot:claude-3.7-sonnet-thought',
     },
     config = function(_, opts)
       require('CopilotChat').setup(opts)
