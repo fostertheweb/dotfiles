@@ -22,7 +22,7 @@ function origin-status() {
   git fetch origin
 
   local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
-  read -r behind ahead <<<$(git rev-list --left-right --count HEAD...origin/$trunk)
+  read -r ahead behind <<<$(git rev-list --left-right --count HEAD...origin/$trunk)
   local output="$behind behind, $ahead ahead"
   local merge_dry_run=$(git merge --no-commit --no-ff --dry-run origin/main 2>&1)
 
