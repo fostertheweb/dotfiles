@@ -105,3 +105,40 @@ backspace = ['close-all-windows-but-current', 'mode main']
 if.app-id = 'com.electron.brain.fm'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.electron.brain.fm'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.linear'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'notion.id'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.cron.electron'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'notion.mail.id'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
+
+
