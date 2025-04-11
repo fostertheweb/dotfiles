@@ -75,7 +75,7 @@ return {
     {
       '<leader>h',
       function()
-        Snacks.picker.help { preview = false }
+        Snacks.picker.help { layout = 'default' }
       end,
       desc = 'Help',
     },
@@ -83,6 +83,20 @@ return {
       '<leader>/',
       function()
         Snacks.picker.lines { preview = false }
+      end,
+      desc = 'Find',
+    },
+    {
+      '<leader>,',
+      function()
+        Snacks.picker.lines { preview = false }
+      end,
+      desc = 'Find',
+    },
+    {
+      '<leader>.',
+      function()
+        Snacks.picker.recent() { preview = false }
       end,
       desc = 'Find',
     },
