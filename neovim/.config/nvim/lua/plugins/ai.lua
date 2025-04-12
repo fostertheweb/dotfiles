@@ -39,7 +39,7 @@ return {
                 accept_line = false,
                 next = '<M-]>',
                 prev = '<M-[>',
-                dismiss = '<C-k>',
+                dismiss = '<C-e>',
               },
             },
           }

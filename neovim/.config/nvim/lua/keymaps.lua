@@ -3,7 +3,7 @@ local marks = require 'custom.marks'
 
 -- Write file on <Enter>
 vim.keymap.set('n', '<CR>', '<CMD>write!<CR>')
-vim.keymap.set('n', '<C-s>', '<CMD>write!<CR>')
+vim.keymap.set('n', '<C-Space>', '<CMD>write!<CR>')
 
 -- write and quit
 vim.keymap.set('n', '<C-x><leader>', '<CMD>wq!<CR>')
