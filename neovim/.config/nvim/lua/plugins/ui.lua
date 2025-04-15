@@ -108,6 +108,12 @@ return {
           { 's', mode = { 'n', 'x' } },
           { '<C>', mode = { 'n' } },
         },
+        defer = function(ctx)
+          if vim.list_contains({ 'd', 'y' }, ctx.operator) then
+            return true
+          end
+          return vim.list_contains({ '<C-V>', 'V' }, ctx.mode)
+        end,
       }
       require('which-key').add {
         { '<leader>c', group = 'Copilot' },
