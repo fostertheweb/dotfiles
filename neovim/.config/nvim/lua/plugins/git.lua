@@ -47,7 +47,8 @@ return {
     },
   },
   {
-    'pwntester/octo.nvim',
+    'fostertheweb/octo.nvim',
+    branch = 'feat/snacks-checkout-pr',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
