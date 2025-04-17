@@ -1,5 +1,5 @@
 -- statusline
-vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
+vim.api.nvim_create_autocmd({ 'ColorScheme', 'WinEnter', 'BufEnter' }, {
   group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
   pattern = '*',
   callback = function()

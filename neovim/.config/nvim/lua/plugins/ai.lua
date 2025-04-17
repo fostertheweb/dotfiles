@@ -23,7 +23,7 @@ return {
   },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    enabled = true,
+    enabled = false,
     dependencies = {
       {
         'zbirenbaum/copilot.lua',

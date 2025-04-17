@@ -2,8 +2,37 @@ local utils = require 'utils'
 
 return {
   {
+    'utilyre/barbecue.nvim',
+    enabled = false,
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('barbecue').setup {
+        attach_navic = false,
+        create_autocmd = false,
+        show_modified = true,
+        show_navic = false,
+      }
+
+      vim.api.nvim_create_autocmd({
+        'WinResized',
+        'BufWinEnter',
+        'CursorHold',
+        'InsertLeave',
+        'BufModifiedSet',
+      }, {
+        group = vim.api.nvim_create_augroup('barbecue.updater', {}),
+        callback = function()
+          require('barbecue.ui').update()
+        end,
+      })
+    end,
+  },
+  {
     'b0o/incline.nvim',
-    enabled = true,
+    enabled = false,
     config = function()
       local devicons = require 'nvim-web-devicons'
 
@@ -57,6 +86,32 @@ return {
     event = 'VeryLazy',
   },
   {
+    'nvim-lualine/lualine.nvim',
+    enabled = false,
+    config = function()
+      require('lualine').setup {
+        options = {
+          icons_enabled = false,
+          theme = 'auto',
+          component_separators = '',
+          section_separators = '',
+        },
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+            },
+          },
+          lualine_b = { 'diagnostics' },
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = { 'branch', 'diff' },
+          lualine_z = {},
+        },
+      }
+    end,
+  },
+  {
     'alvarosevilla95/luatab.nvim',
     enabled = true,
     dependencies = {
@@ -91,7 +146,7 @@ return {
             g = true,
           },
         },
-        preset = 'classic',
+        preset = 'helix',
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },
