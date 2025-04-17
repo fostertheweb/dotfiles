@@ -45,7 +45,7 @@ return {
       desc = 'Files',
     },
     {
-      '<leader>f',
+      '<leader>/',
       function()
         Snacks.picker.grep { hidden = true, ignored = false, layout = 'default' }
       end,
@@ -80,25 +80,25 @@ return {
       desc = 'Help',
     },
     {
-      '<leader>/',
+      '<leader>f',
       function()
-        Snacks.picker.lines { preview = false }
+        Snacks.picker.smart { preview = false }
       end,
       desc = 'Find',
     },
     {
       '<leader>,',
       function()
-        Snacks.picker.lines { preview = false }
+        Snacks.picker.lsp_symbols { preview = false }
       end,
-      desc = 'Find',
+      desc = 'Symbols',
     },
     {
       '<leader>.',
       function()
         Snacks.picker.recent() { preview = false }
       end,
-      desc = 'Find',
+      desc = 'Recent Files',
     },
   },
 }

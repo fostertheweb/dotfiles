@@ -101,7 +101,7 @@ return {
             g = true,
           },
         },
-        preset = 'helix',
+        preset = 'classic',
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },

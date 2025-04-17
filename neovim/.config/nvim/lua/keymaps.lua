@@ -1,5 +1,4 @@
 local utils = require 'utils'
-local marks = require 'custom.marks'
 
 -- Write file on <Enter>
 vim.keymap.set('n', '<CR>', '<CMD>write!<CR>')
@@ -33,10 +32,6 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
-
--- Marks
-vim.keymap.set('n', 'gj', marks.goto_global_mark, { desc = 'Jump to global mark' })
-vim.keymap.set('n', 'M', marks.add_global_mark, { desc = 'Mark global' })
 
 -- Tab navigation
 vim.keymap.set('n', '<C-x>n', '<CMD>tabnext<CR>', { desc = 'Next tab' })
