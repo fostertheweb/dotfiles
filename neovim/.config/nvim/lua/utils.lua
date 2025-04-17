@@ -168,4 +168,16 @@ M.hex_to_ansi = function(hex)
   return string.format('\27[38;2;%d;%d;%dm', r, g, b)
 end
 
+M.get_colors = function(hl_group)
+  local hl = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
+
+  local guifg = string.format('#%06x', hl.fg or 0)
+  local guibg = string.format('#%06x', hl.bg or 0)
+
+  return {
+    guifg = guifg,
+    guibg = guibg,
+  }
+end
+
 return M
