@@ -11,6 +11,7 @@ end
 return {
   {
     'ezechukwu69/tui.nvim',
+    cond = not vim.g.vscode,
     config = function()
       setup_tui('BtopOpen', 'btop')
       setup_tui('Claude', 'claude')

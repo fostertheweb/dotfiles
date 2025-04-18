@@ -113,6 +113,7 @@ return {
   },
   {
     'alvarosevilla95/luatab.nvim',
+    cond = not vim.g.vscode,
     enabled = true,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
@@ -123,6 +124,7 @@ return {
   },
   {
     'folke/which-key.nvim',
+    cond = not vim.g.vscode,
     event = 'VimEnter',
     config = function()
       require('which-key').setup {
@@ -150,8 +152,8 @@ return {
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },
-          { 's', mode = { 'n', 'x' } },
-          { '<C>', mode = { 'n' } },
+          { 's',      mode = { 'n', 'x' } },
+          { '<C>',    mode = { 'n' } },
         },
         defer = function(ctx)
           if vim.list_contains({ 'd', 'y' }, ctx.operator) then

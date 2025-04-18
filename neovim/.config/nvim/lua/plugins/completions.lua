@@ -1,6 +1,7 @@
 return {
   {
     'saghen/blink.cmp',
+    cond = not vim.g.vscode,
     version = '1.*',
     opts = {
       keymap = {

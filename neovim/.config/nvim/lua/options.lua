@@ -1,6 +1,8 @@
 -- global statusline
-vim.o.laststatus = 3
-vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+if not vim.g.vscode then
+    vim.o.laststatus = 3
+    vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+end
 vim.opt.ruler = false
 
 -- Tab width

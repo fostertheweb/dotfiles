@@ -1,11 +1,19 @@
 -- statusline
-vim.api.nvim_create_autocmd({ 'ColorScheme', 'WinEnter', 'BufEnter' }, {
-  group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
-  pattern = '*',
-  callback = function()
-    vim.o.statusline = "%!v:lua.require('custom.statusline').statusline()"
-  end,
-})
+if not vim.g.vscode then
+  vim.api.nvim_create_autocmd({ 'ColorScheme', 'WinEnter', 'BufEnter' }, {
+    group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
+    pattern = '*',
+    callback = function()
+      vim.o.statusline = "%!v:lua.require('custom.statusline').statusline()"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    callback = function()
+      require('lint').try_lint()
+    end,
+  })
+end
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
@@ -29,11 +37,5 @@ vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-  end,
-})
-
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  callback = function()
-    require('lint').try_lint()
   end,
 })
