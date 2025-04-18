@@ -4,7 +4,14 @@ if not vim.g.vscode then
     group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
     pattern = '*',
     callback = function()
-      vim.o.statusline = "%!v:lua.require('custom.statusline').statusline()"
+      local win = vim.api.nvim_get_current_win()
+      local cfg = vim.api.nvim_win_get_config(win)
+
+      if cfg.relative ~= '' then
+        return
+      end
+
+      vim.o.statusline = require('custom.statusline').statusline()
     end,
   })
 

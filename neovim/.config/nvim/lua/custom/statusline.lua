@@ -4,14 +4,8 @@ local devicons = require 'nvim-web-devicons'
 
 local M = {}
 
-local diff_add_hl = vim.api.nvim_get_hl(0, { name = 'DiffAdd', link = false })
-local diff_delete_hl = vim.api.nvim_get_hl(0, { name = 'DiffDelete', link = false })
-local tabline_hl = vim.api.nvim_get_hl(0, { name = 'TabLine', link = false })
-
-vim.api.nvim_set_hl(0, 'SimpleLineGitDiffAdd', { fg = diff_add_hl.fg })
-vim.api.nvim_set_hl(0, 'SimpleLineGitDiffDel', { fg = diff_delete_hl.fg })
 vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg })
-vim.api.nvim_set_hl(0, 'StatusLine', { bg = tabline_hl.bg, bold = true })
+vim.api.nvim_set_hl(0, 'StatusLine', { bg = utils.get_colors('TabLine').bg })
 
 local function file_name_component()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
@@ -90,11 +84,11 @@ local function git_diff_component()
   ins = ins or '0'
   dels = dels or '0'
 
-  return string.format('%%#SimpleLineGitDiffAdd#+%s %%#SimpleLineGitDiffDel#-%s ', ins, dels)
+  return string.format('%%#DiffAdd#+%s %%#DiffDelete#-%s ', ins, dels)
 end
 
 function M.statusline()
-  local left = lsp_status() .. file_path_component() .. file_name_component()
+  local left = file_path_component() .. file_name_component() .. lsp_status()
   local right = git_branch() .. git_diff_component()
   -- Use %=% to push right side to the far right.
   return left .. ' %=' .. right

@@ -14,14 +14,6 @@ return {
           },
         },
       },
-      {
-        'luckasRanarison/tailwind-tools.nvim',
-        name = 'tailwind-tools',
-        build = ':UpdateRemotePlugins',
-        dependencies = {
-          'nvim-treesitter/nvim-treesitter',
-        },
-      },
     },
     config = function()
       require('mason').setup()
@@ -88,14 +80,6 @@ return {
           end
         end,
       })
-    end,
-  },
-  {
-    'oskarrrrrrr/symbols.nvim',
-    config = function()
-      local r = require 'symbols.recipes'
-      require('symbols').setup(r.DefaultFilters, r.AsciiSymbols, {})
-      vim.keymap.set('n', 'g0', '<cmd>Symbols<CR>')
     end,
   },
 }
