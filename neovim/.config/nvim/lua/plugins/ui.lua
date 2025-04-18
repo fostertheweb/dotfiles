@@ -152,8 +152,8 @@ return {
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },
-          { 's',      mode = { 'n', 'x' } },
-          { '<C>',    mode = { 'n' } },
+          { 's', mode = { 'n', 'x' } },
+          { '<C>', mode = { 'n' } },
         },
         defer = function(ctx)
           if vim.list_contains({ 'd', 'y' }, ctx.operator) then

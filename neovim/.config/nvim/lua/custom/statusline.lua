@@ -1,5 +1,4 @@
 local utils = require 'utils'
-
 local devicons = require 'nvim-web-devicons'
 
 local M = {}
