@@ -1,3 +1,20 @@
+local function is_cursor_on_diagnostic()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0) -- {line, col}, 1-based line
+  local line = cursor[1] - 1 -- diagnostics use 0-based line
+  local col = cursor[2]
+
+  local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
+
+  for _, diag in ipairs(diagnostics) do
+    if col >= diag.col and col <= diag.end_col then
+      return true
+    end
+  end
+
+  return false
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -45,7 +62,14 @@ return {
           map('g.', vim.lsp.buf.code_action, 'Code actions')
           map('g,', vim.lsp.buf.signature_help, 'Signature Help')
           map('g=', vim.lsp.buf.format, 'Format code')
-          map('L', vim.diagnostic.open_float, 'Show diagnostic')
+
+          map('K', function()
+            if is_cursor_on_diagnostic() then
+              vim.diagnostic.open_float()
+            else
+              vim.lsp.buf.hover()
+            end
+          end, 'Show diagnostic or LSP hover')
 
           local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then

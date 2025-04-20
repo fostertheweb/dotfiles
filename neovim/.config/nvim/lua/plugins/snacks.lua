@@ -62,7 +62,7 @@ return {
     {
       '<leader>df',
       function()
-        Snacks.picker.diagnostics()
+        Snacks.picker.diagnostics { layout = 'default' }
       end,
       desc = 'Find',
     },
