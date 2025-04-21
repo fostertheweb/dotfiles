@@ -3,7 +3,6 @@ local devicons = require 'nvim-web-devicons'
 
 local M = {}
 
-vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg })
 vim.api.nvim_set_hl(0, 'StatusLine', { bg = utils.get_colors('TabLine').bg })
 
 local function file_name_component()
@@ -17,7 +16,8 @@ local function file_name_component()
   local ft_icon, ft_color = devicons.get_icon_color(filename)
   local modified_fg = utils.get_colors('DiagnosticWarn').guifg
   vim.api.nvim_set_hl(0, 'SimpleLineFileIcon', { fg = ft_color })
-  vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true })
+  vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
+  vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true, bold = true })
 
   if modified then
     return string.format('%%#SimpleLineFilenameModified# %s %s ', '● ', filename)

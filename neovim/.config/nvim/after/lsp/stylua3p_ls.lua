@@ -1,16 +1,10 @@
-local util = require('lspconfig.util')
-
+---@brief
+---
+--- https://github.com/antonk52/lua-3p-language-servers
+---
+--- 3rd party Language Server for Stylua lua formatter
 return {
-  default_config = {
-    cmd = { 'stylua-3p-language-server' },
-    filetypes = { 'lua' },
-    root_dir = util.root_pattern('.stylua.toml', 'stylua.toml'),
-  },
-  docs = {
-    description = [[
-https://github.com/antonk52/lua-3p-language-servers
-
-3rd party Language Server for Stylua lua formatter
-]],
-  },
+  cmd = { 'stylua-3p-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.stylua.toml', 'stylua.toml' },
 }

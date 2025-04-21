@@ -101,5 +101,9 @@ return {
       end,
       desc = 'Recent Files',
     },
+    { "<leader>gb", function() Snacks.picker.git_branches({ layout = 'default' }) end, desc = "Branches" },
+    { "<leader>gs", function() Snacks.picker.git_status({ layout = 'default' }) end, desc = "Status" },
+    -- TODO: keymaps to copy SHA
+    { "<leader>gl", function() Snacks.picker.git_log({ layout = 'default' }) end, desc = "Log" },
   },
 }

@@ -1,5 +1,6 @@
 require 'autocmds'
 require 'options'
+require 'lsp'
 require 'keymaps'
 require 'usercmds'
 

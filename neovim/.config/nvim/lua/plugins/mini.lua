@@ -31,8 +31,8 @@ return {
       },
     }
     -- require('mini.git').setup()
-    -- require('mini.icons').setup {}
-    -- require('mini.icons').mock_nvim_web_devicons()
+    require('mini.icons').setup {}
+    require('mini.icons').mock_nvim_web_devicons()
 
     local notify_win_config = function()
       local has_statusline = vim.o.laststatus > 0

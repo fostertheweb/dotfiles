@@ -1,14 +1,8 @@
-local util = require 'lspconfig.util'
-
+---@brief
+---
+--- https://github.com/rubocop/rubocop
 return {
-  default_config = {
-    cmd = { 'rubocop', '--lsp' },
-    filetypes = { 'ruby' },
-    root_dir = util.root_pattern('Gemfile', '.git'),
-  },
-  docs = {
-    description = [[
-https://github.com/rubocop/rubocop
-    ]],
-  },
+  cmd = { 'rubocop', '--lsp' },
+  filetypes = { 'ruby' },
+  root_markers = { 'Gemfile', '.git' },
 }
