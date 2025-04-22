@@ -76,3 +76,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+local lsp_configs = {}
+
+for _, f in pairs(vim.api.nvim_get_runtime_file('after/lsp/*.lua', true)) do
+  local server_name = vim.fn.fnamemodify(f, ':t:r')
+  table.insert(lsp_configs, server_name)
+end
+
+vim.lsp.enable {
+  'ts_ls',
+  'lua_ls',
+  'cssls',
+  'html',
+  'jsonls',
+  'ruby_lsp',
+  'rubocop',
+}

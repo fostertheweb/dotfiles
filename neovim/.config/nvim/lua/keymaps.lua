@@ -7,6 +7,9 @@ vim.keymap.set('n', '<C-Space>', '<CMD>write!<CR>')
 -- write and quit
 vim.keymap.set('n', '<C-x><leader>', '<CMD>wq!<CR>')
 
+-- Terminal mode escape
+vim.keymap.set('t', '<C-]>', '<C-\\><C-n>')
+
 -- q to go back a word
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
 vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
@@ -70,7 +73,7 @@ end
 
 imap('<C-a>', utils.move_to_start_of_line, 'Go to line start')
 imap('<C-e>', utils.move_to_end_of_line, 'Go to line end')
-imap('<C-f>', utils.move_forward, 'Go forward')
+-- imap('<C-f>', utils.move_forward, 'Go forward')
 imap('<C-b>', utils.move_backward, 'Go backward')
 imap('<C-k>', utils.cut, 'Cut to line end')
 imap('<C-y>', function()

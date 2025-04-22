@@ -39,6 +39,9 @@ EOF
 }
 
 function prefix-api-key() {
-  local api_key="$(op read 'op://Private/Anthropic API Key/credential')"
-  ANTHROPIC_API_KEY=$api_key $1
+  local anthropic="$(op read 'op://Private/Anthropic API/credential')"
+  local openai="$(op read 'op://Private/OpenAI API/credential')"
+  local deepseek="$(op read 'op://Private/DeepSeek API/credential')"
+  OPENAI_API_KEY=$openai ANTHROPIC_API_KEY=$anthropic DEEPSEEK_API_KEY=$deepseek $1
 }
+

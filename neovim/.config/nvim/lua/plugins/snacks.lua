@@ -101,9 +101,52 @@ return {
       end,
       desc = 'Recent Files',
     },
-    { "<leader>gb", function() Snacks.picker.git_branches({ layout = 'default' }) end, desc = "Branches" },
-    { "<leader>gs", function() Snacks.picker.git_status({ layout = 'default' }) end, desc = "Status" },
+    {
+      '<leader>gb',
+      function()
+        Snacks.picker.git_branches { layout = 'default' }
+      end,
+      desc = 'Branches',
+    },
+    {
+      '<leader>gs',
+      function()
+        Snacks.picker.git_status {
+          actions = {
+            git_unstage = require('custom.picker').git_unstage,
+            git_discard = require('custom.picker').git_discard,
+          },
+          layout = {
+            preset = 'default',
+            hidden = { 'input' },
+          },
+          focus = 'list',
+          win = {
+            list = {
+              keys = {
+                ['s'] = { 'git_stage', mode = { 'n' } },
+                ['u'] = { 'git_unstage', mode = { 'n' } },
+                ['!'] = { 'git_discard', mode = { 'n' } },
+                ['c'] = {
+                  function()
+                    vim.cmd 'Git commit'
+                  end,
+                  mode = { 'n' },
+                },
+              },
+            },
+          },
+        }
+      end,
+      desc = 'Status',
+    },
     -- TODO: keymaps to copy SHA
-    { "<leader>gl", function() Snacks.picker.git_log({ layout = 'default' }) end, desc = "Log" },
+    {
+      '<leader>gl',
+      function()
+        Snacks.picker.git_log { layout = 'default' }
+      end,
+      desc = 'Log',
+    },
   },
 }

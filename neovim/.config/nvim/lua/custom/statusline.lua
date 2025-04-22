@@ -7,11 +7,7 @@ vim.api.nvim_set_hl(0, 'StatusLine', { bg = utils.get_colors('TabLine').bg })
 
 local function file_name_component()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
-
-  if filename == '' then
-    filename = ' [No Name]'
-  end
-
+  filename = (filename ~= '' and filename) or '[No Name]'
   local modified = vim.bo[0].modified
   local ft_icon, ft_color = devicons.get_icon_color(filename)
   local modified_fg = utils.get_colors('DiagnosticWarn').guifg
@@ -21,6 +17,10 @@ local function file_name_component()
 
   if modified then
     return string.format('%%#SimpleLineFilenameModified# %s %s ', '● ', filename)
+  end
+
+  if filename == '[No Name]' then
+    return string.format('%%#Comment# %s  %s ', ft_icon, filename)
   end
 
   return string.format('%%#SimpleLineFileIcon# %s  %%#SimpleLineFilename#%s ', ft_icon, filename)
@@ -42,6 +42,16 @@ local function file_path_component()
   local sep = package.config:sub(1, 1) -- get system's path separator
   local dirs = vim.split(full_path, sep, { plain = true })
   local joined = table.concat(dirs, string.format '%%#Comment# 󰿟 ')
+
+  if vim.bo[0].buftype == 'terminal' then
+    return ''
+  end
+
+  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+
+  if filename == '' then
+    return ''
+  end
 
   return string.format('%%#Comment# %s %s 󰿟', ' ', joined)
 end

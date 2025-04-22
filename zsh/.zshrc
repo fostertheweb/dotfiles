@@ -18,11 +18,16 @@ setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 
 autoload -U add-zsh-hook
+autoload -U compinit && compinit
 
 # zsh plugins
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
+
+# fzf-tab configuration
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 # pnpm
 export PNPM_HOME="/Users/jonathan/Library/pnpm"
