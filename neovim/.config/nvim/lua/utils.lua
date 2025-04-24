@@ -142,6 +142,7 @@ M.git_commit = function()
 end
 
 M.git_push = function()
+  vim.notify = require('mini.notify').notify
   local output = vim.fn.system 'git push'
 
   if vim.v.shell_error ~= 0 then
