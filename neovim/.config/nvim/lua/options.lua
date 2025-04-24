@@ -4,6 +4,8 @@ if not vim.g.vscode then
   vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
 end
 
+vim.o.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
+
 vim.opt.ruler = false
 
 -- Tab width

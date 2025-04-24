@@ -28,6 +28,7 @@ return {
           icon_width = 3,
         },
       },
+      terminal = {},
       win = {
         input = {
           keys = {

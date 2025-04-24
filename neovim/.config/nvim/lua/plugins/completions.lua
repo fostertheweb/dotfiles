@@ -1,7 +1,7 @@
 return {
   {
     'saghen/blink.cmp',
-    enabled = true,
+    enabled = false,
     cond = not vim.g.vscode,
     version = '1.*',
     opts = {
@@ -13,7 +13,10 @@ return {
       appearance = {
         nerd_font_variant = 'mono',
       },
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        documentation = { auto_show = false },
+        menu = { auto_show = true },
+      },
       signature = { enabled = true },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },

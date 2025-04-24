@@ -17,6 +17,27 @@ return {
     opts = {},
   },
   {
+    'rachartier/tiny-code-action.nvim',
+    cond = not vim.g.vscode,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    event = 'LspAttach',
+    opts = {
+      backend = 'delta',
+      picker = {
+        'snacks',
+        opts = {
+          layout = {
+            preset = 'default',
+            hidden = { 'input' },
+          },
+          focus = 'list',
+        },
+      },
+    },
+  },
+  {
     'tpope/vim-sleuth',
     cond = not vim.g.vscode,
   },

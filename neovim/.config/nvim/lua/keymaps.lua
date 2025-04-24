@@ -79,3 +79,7 @@ imap('<C-k>', utils.cut, 'Cut to line end')
 imap('<C-y>', function()
   utils.paste()
 end, 'Yank from " register')
+
+vim.keymap.set('n', 'g.', function()
+  require('tiny-code-action').code_action()
+end, { desc = 'Code actions', noremap = true, silent = true })

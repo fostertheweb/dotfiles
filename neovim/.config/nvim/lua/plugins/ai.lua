@@ -1,5 +1,22 @@
 return {
   {
+    'GeorgesAlkhouri/nvim-aider',
+    cmd = 'Aider',
+    keys = {
+      { '<leader>a/', '<cmd>Aider toggle<cr>', desc = 'Toggle' },
+      { '<leader>as', '<cmd>Aider send<cr>', desc = 'Send to context', mode = { 'n', 'v' } },
+      { '<leader>ac', '<cmd>Aider command<cr>', desc = 'Commands' },
+      { '<leader>ab', '<cmd>Aider buffer<cr>', desc = 'Send buffer' },
+      { '<leader>a+', '<cmd>Aider add<cr>', desc = 'Add file' },
+      { '<leader>a-', '<cmd>Aider drop<cr>', desc = 'Drop file' },
+      { '<leader>ar', '<cmd>Aider add readonly<cr>', desc = 'Add read-only' },
+    },
+    dependencies = {
+      'folke/snacks.nvim',
+    },
+    config = true,
+  },
+  {
     'MeanderingProgrammer/render-markdown.nvim',
     cond = not vim.g.vscode,
     ft = { 'markdown', 'copilot-chat' },
