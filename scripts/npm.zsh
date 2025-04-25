@@ -8,4 +8,5 @@ npm install -g @astrojs/language-server \
 	typescript \
 	typescript-language-server \
 	vscode-langservers-extracted \
-	@openai/codex
+	@openai/codex \
+	markdownlint-cli

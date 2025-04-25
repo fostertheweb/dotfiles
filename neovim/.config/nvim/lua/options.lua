@@ -5,6 +5,8 @@ if not vim.g.vscode then
 end
 
 vim.o.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
+vim.opt.termguicolors = true
+vim.cmd.hi 'Comment gui=none'
 
 vim.opt.ruler = false
 

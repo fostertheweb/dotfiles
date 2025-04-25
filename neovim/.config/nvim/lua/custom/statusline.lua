@@ -15,6 +15,10 @@ local function file_name_component()
   vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
   vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true, bold = true })
 
+  if ft_icon == nil then
+    ft_icon = ''
+  end
+
   if modified then
     return string.format('%%#SimpleLineFilenameModified# %s %s ', '● ', filename)
   end
