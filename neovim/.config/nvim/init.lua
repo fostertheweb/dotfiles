@@ -19,14 +19,14 @@ require('lazy').setup {
 
 -- Default theme settings
 vim.o.background = 'dark'
-vim.cmd 'colorscheme kanagawa-dragon'
+vim.cmd 'colorscheme farout'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if require('utils').is_dark_mode() then
-  vim.cmd 'colorscheme kanagawa-dragon'
+  vim.cmd 'colorscheme farout'
 else
-  vim.cmd 'colorscheme falcon'
+  vim.cmd 'colorscheme sonokai'
 end
 
 -- vim: ts=2 sts=2 sw=2 et
