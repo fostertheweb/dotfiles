@@ -5,9 +5,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
 
-# credential
-# export ANTHROPIC_API_KEY="$(op read 'op://Private/Anthropic API Key/credential')"
-
 # history configuration
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=99999
@@ -17,14 +14,17 @@ export SAVEHIST=$HISTSIZE
 setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 
+# zsh-completions
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
 autoload -U add-zsh-hook
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit -i
 
 # zsh plugins
+source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
 
 # fzf-tab configuration
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
