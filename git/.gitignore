@@ -1,4 +1,8 @@
-.aider
 *.swp
 *.swo
+.DS_Store
+.aider*
+.termai*
+.opencode*
 .idea
+debug.log
