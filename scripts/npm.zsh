@@ -2,6 +2,7 @@
 
 npm install -g @astrojs/language-server \
 	@biomejs/biome \
+	eslint \
 	prettier \
 	svelte-language-server \
 	@tailwindcss/language-server \

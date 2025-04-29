@@ -14,12 +14,6 @@ if not vim.g.vscode then
       vim.o.statusline = require('custom.statusline').statusline()
     end,
   })
-
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-    callback = function()
-      require('lint').try_lint()
-    end,
-  })
 end
 
 vim.api.nvim_create_autocmd('TextYankPost', {
