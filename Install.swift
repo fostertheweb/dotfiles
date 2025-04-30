@@ -12,6 +12,11 @@ let checkmark = "\u{2713}"
 let cross = "\u{2717}"
 let alert = "\u{26A0}"
 
+let ignoredDirectories = [
+  ".git", ".gitignore", ".aider", ".termai", ".todo", ".ropeproject", ".gitmodules", ".opencode",
+  "scripts", ".jj",
+]
+
 func step(_ message: String, command: String) {
   let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧"]
   let queue = DispatchQueue.global(qos: .userInteractive)
