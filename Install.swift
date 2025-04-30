@@ -17,48 +17,6 @@ let ignoredDirectories = [
   "scripts", ".jj",
 ]
 
-func getProjectDirectories() -> [String] {
-  let fileManager = FileManager.default
-  let currentPath = fileManager.currentDirectoryPath
-  guard let contents = try? fileManager.contentsOfDirectory(atPath: currentPath) else {
-    return []
-  }
-  return contents.filter { name in
-    var isDir: ObjCBool = false
-    let fullPath = "\(currentPath)/\(name)"
-    return fileManager.fileExists(atPath: fullPath, isDirectory: &isDir)
-      && isDir.boolValue
-      && !ignoredDirectories.contains(name)
-  }.sorted()
-}
-
-func promptToggleOptions(options: [String]) -> [String] {
-  var selected = Set<Int>()
-  while true {
-    print("\nToggle options (selected marked with [x]):")
-    for (i, option) in options.enumerated() {
-      let mark = selected.contains(i) ? "[x]" : "[ ]"
-      print("\(i+1). \(mark) \(option)")
-    }
-    print("Enter numbers to toggle (e.g. 1 3 5), or press Enter to finish:")
-    guard let input = readLine(), !input.trimmingCharacters(in: .whitespaces).isEmpty else {
-      break
-    }
-    let numbers = input.split(separator: " ").compactMap { Int($0) }
-    for n in numbers {
-      let idx = n - 1
-      if idx >= 0 && idx < options.count {
-        if selected.contains(idx) {
-          selected.remove(idx)
-        } else {
-          selected.insert(idx)
-        }
-      }
-    }
-  }
-  return selected.sorted().map { options[$0] }
-}
-
 func step(_ message: String, command: String) {
   let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧"]
   let queue = DispatchQueue.global(qos: .userInteractive)
@@ -98,12 +56,6 @@ func step(_ message: String, command: String) {
 
   try? process.run()
   process.waitUntilExit()
-}
-
-let projectDirs = getProjectDirectories()
-if !projectDirs.isEmpty {
-  let selectedDirs = promptToggleOptions(options: projectDirs)
-  print("\nSelected directories: \(selectedDirs.joined(separator: ", "))")
 }
 
 step("Update Homebrew", command: "brew update")

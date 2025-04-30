@@ -68,4 +68,6 @@ vim.lsp.enable {
   'rubocop',
   -- rustup component
   'rust_analyzer',
+  -- system
+  'sourcekit',
 }
