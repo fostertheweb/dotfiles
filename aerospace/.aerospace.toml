@@ -97,6 +97,7 @@ alt-shift-semicolon = 'mode service'
 # https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 r = ['reload-config', 'mode main']
+
 # Reset layout
 esc = ['flatten-workspace-tree', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
@@ -142,4 +143,7 @@ run = 'move-node-to-workspace 2'
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 2'
 
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace 0'
 
