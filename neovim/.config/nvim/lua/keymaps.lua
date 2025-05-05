@@ -1,5 +1,10 @@
 local utils = require 'utils'
 
+-- Tab to accept completion
+vim.keymap.set('i', '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-y>' or '<Tab>'
+end, { expr = true, noremap = true })
+
 -- Write file on <Enter>
 vim.keymap.set('n', '<CR>', '<CMD>write!<CR>')
 vim.keymap.set('n', '<C-Space>', '<CMD>write!<CR>')
@@ -63,22 +68,6 @@ vim.keymap.set('n', '<leader>qo', '<CMD>copen<CR>', { desc = 'Open quickfix list
 vim.keymap.set('n', '<leader>qq', '<CMD>cclose<CR>', { desc = 'Close quickfix list' })
 vim.keymap.set('n', '<leader>qn', '<CMD>cnext<CR>', { desc = 'Next quickfix item' })
 vim.keymap.set('n', '<leader>qp', '<CMD>cprev<CR>', { desc = 'Previous quickfix item' })
-
--- Emacs style insert mode movement
-local imap = function(keys, fn, desc)
-  vim.keymap.set('i', keys, function()
-    fn()
-  end, { desc = desc })
-end
-
-imap('<C-a>', utils.move_to_start_of_line, 'Go to line start')
-imap('<C-e>', utils.move_to_end_of_line, 'Go to line end')
--- imap('<C-f>', utils.move_forward, 'Go forward')
-imap('<C-b>', utils.move_backward, 'Go backward')
-imap('<C-k>', utils.cut, 'Cut to line end')
-imap('<C-y>', function()
-  utils.paste()
-end, 'Yank from " register')
 
 vim.keymap.set('n', 'g.', function()
   require('tiny-code-action').code_action()
