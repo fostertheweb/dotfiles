@@ -4,10 +4,10 @@ set -euo pipefail
 eval "$(op signin)"
 
 typeset -A OP_CREDENTIALS=(
-  ANTHROPTIC_API_KEY "op://Private/API Credentials/Anthropic"
-  OPENAI_API_KEY "op://Private/API Credentials/OpenAI"
-  DEEPSEEK_API_KEY "op://Private/API Credentials/DeepSeek"
-  OPENROUTER_API_KEY "op://Private/API Credentials/OpenRouter"
+  ANTHROPTIC_API_KEY "Private/API Credentials/Anthropic"
+  OPENAI_API_KEY "Private/API Credentials/OpenAI"
+  DEEPSEEK_API_KEY "Private/API Credentials/DeepSeek"
+  OPENROUTER_API_KEY "Private/API Credentials/OpenRouter"
 )
 
 ENV_FILE="${HOME}/.api-credentials"
