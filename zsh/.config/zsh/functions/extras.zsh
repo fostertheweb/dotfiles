@@ -38,15 +38,3 @@ EOF
   echo "$apps_list" | tr "," "\n" | sed 's/\.app$//' | awk '{$1=$1; print}' | fzf | xargs open -a
 }
 
-function prefix-api-key() {
-  local anthropic="$(op read 'op://Private/Anthropic API/credential')"
-  local openai="$(op read 'op://Private/OpenAI API/credential')"
-  local deepseek="$(op read 'op://Private/DeepSeek API/credential')"
-  local openrouter="$(op read 'op://Private/OpenRouter API/credential')"
-  OPENAI_API_KEY=$openai \
-  ANTHROPIC_API_KEY=$anthropic \
-  DEEPSEEK_API_KEY=$deepseek \
-  OPENROUTER_API_KEY=$openrouter \
-  $@
-}
-

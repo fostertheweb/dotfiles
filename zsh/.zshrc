@@ -102,7 +102,7 @@ alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias lf="OPENER=nvim lf"
-alias ai="prefix-api-key aider"
+alias ai="aider"
 
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
