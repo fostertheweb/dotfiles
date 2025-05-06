@@ -55,3 +55,6 @@ brew "borders"
 tap "jesseduffield/lazydocker"
 brew "lazydocker"
 
+tap "rakalex/mac-brightnessctl"
+brew "mac-brightnessctl"
+
