@@ -1,0 +1,4 @@
+model: gpt-4.1-nano
+auto-commits: false
+lint: true
+watch-files: true
