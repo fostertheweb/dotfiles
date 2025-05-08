@@ -1,3 +1,5 @@
-model: gpt-4.1-nano
 auto-commits: false
+dark-mode: true
+editor-model: gpt-4.1-nano
+model: o3-mini
 watch-files: true
