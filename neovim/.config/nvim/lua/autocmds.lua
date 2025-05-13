@@ -1,6 +1,6 @@
 -- statusline
 if not vim.g.vscode then
-  vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter', 'WinEnter', 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
+  vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter', 'WinEnter', 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI', 'TermOpen' }, {
     group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
     pattern = '*',
     callback = function()

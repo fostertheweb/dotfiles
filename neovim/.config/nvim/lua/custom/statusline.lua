@@ -27,6 +27,12 @@ local function file_name_component()
     return string.format('%%#Comment# %s  %s ', ft_icon, filename)
   end
 
+  if vim.bo.buftype == 'terminal' then
+    ft_icon, ft_color = devicons.get_icon_color 'term://zsh'
+    filename = vim.fn.bufname('%'):match('[^:]+$'):gsub('^%d+:', '')
+    return string.format('%%#SimpleLineFileIcon# %s  %s ', ft_icon, filename)
+  end
+
   return string.format('%%#SimpleLineFileIcon# %s  %%#SimpleLineFilename#%s ', ft_icon, filename)
 end
 
@@ -67,6 +73,10 @@ local function lsp_status()
   local error_count = counts[vim.diagnostic.severity.ERROR] or 0
   local warn_count = counts[vim.diagnostic.severity.WARN] or 0
   local problem_count = error_count + warn_count
+
+  if vim.bo.buftype == 'terminal' then
+    return ''
+  end
 
   if error_count > 0 then
     return string.format('%%#DiagnosticSignError#%s%d', '!', problem_count)
