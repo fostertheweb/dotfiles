@@ -6,7 +6,6 @@ vim.keymap.set('i', '<Tab>', function()
 end, { expr = true, noremap = true })
 
 -- Write file on <Enter>
-vim.keymap.set('n', '<CR>', '<CMD>write!<CR>')
 vim.keymap.set('n', '<C-Space>', '<CMD>write!<CR>')
 
 -- write and quit
@@ -57,6 +56,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- G, Git commands
+vim.keymap.set('n', '<C-g>', '<CMD>term gitu<CR>', { desc = 'Open gitu' })
 vim.keymap.set('n', '<leader>gA', utils.git_add_all, { desc = 'Stage all changes' })
 vim.keymap.set('n', '<leader>gC', utils.git_commit, { desc = 'Commit message' })
 vim.keymap.set('n', '<leader>gP', utils.git_push, { desc = 'Push' })

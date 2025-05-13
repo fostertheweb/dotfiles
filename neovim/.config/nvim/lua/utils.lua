@@ -143,7 +143,7 @@ end
 
 M.git_push = function()
   vim.notify = require('mini.notify').make_notify()
-  local output = vim.fn.system 'git push'
+  local output = vim.fn.system 'git push --porcelain'
 
   if vim.v.shell_error ~= 0 then
     vim.notify 'Failed to push to remote'

@@ -13,6 +13,7 @@ export SAVEHIST=$HISTSIZE
 
 setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
+setopt monitor
 
 # zsh-completions
 FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
