@@ -30,27 +30,23 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'startinsert',
 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'Start terminal buffer in insert mode',
-  pattern = 'term://*',
-  command = 'startinsert',
-})
-
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Terminal buffer appearence',
   pattern = '*',
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+    vim.cmd 'startinsert'
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufHidden', 'TermClose' }, {
-  pattern = 'term://*',
+vim.api.nvim_create_autocmd('TermClose', {
+  pattern = '*',
   callback = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    if vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]:match 'Process exited' then
-      vim.cmd 'silent! bd!'
-    end
+    vim.schedule(function()
+      if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 then
+        vim.cmd('bdelete! ' .. vim.fn.expand '<abuf>')
+      end
+    end)
   end,
 })

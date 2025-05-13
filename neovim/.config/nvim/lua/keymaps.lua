@@ -39,6 +39,7 @@ vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
+vim.keymap.set('v', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection' })
 
 -- Tab navigation
 vim.keymap.set('n', '<C-x>n', '<CMD>tabnext<CR>', { desc = 'Next tab' })
@@ -58,8 +59,8 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix 
 -- G, Git commands
 vim.keymap.set('n', '<C-g>', '<CMD>term gitu<CR>', { desc = 'Open gitu' })
 vim.keymap.set('n', '<leader>gA', utils.git_add_all, { desc = 'Stage all changes' })
-vim.keymap.set('n', '<leader>gC', utils.git_commit, { desc = 'Commit message' })
-vim.keymap.set('n', '<leader>gP', utils.git_push, { desc = 'Push' })
+vim.keymap.set('n', '<leader>gC', '<CMD>Git commit<CR>', { desc = 'Commit' })
+vim.keymap.set('n', '<leader>gP', '<CMD>Git push<CR>', { desc = 'Push' })
 vim.keymap.set('n', '<leader>gL', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
 
