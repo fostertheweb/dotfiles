@@ -10,7 +10,6 @@
       "actions" : [
         {
           "key" : "s",
-          "label" : "",
           "type" : "application",
           "value" : "/Applications/Safari.app"
         },
@@ -28,31 +27,26 @@
         },
         {
           "key" : "m",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Messages.app"
         },
         {
           "key" : "p",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Podcasts.app"
         },
         {
           "key" : "n",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Notes.app"
         },
         {
           "key" : "c",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Calendar.app"
         },
         {
           "key" : "r",
-          "label" : "",
           "type" : "application",
           "value" : "/System/Applications/Reminders.app"
         }
@@ -63,43 +57,36 @@
     },
     {
       "key" : " ",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/Raycast.app"
     },
     {
       "key" : "b",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/Brain.fm.app"
     },
     {
       "key" : "c",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/ChatGPT.app"
     },
     {
       "key" : ",",
-      "label" : "",
       "type" : "application",
       "value" : "/System/Applications/System Settings.app"
     },
     {
       "key" : "f",
-      "label" : "",
       "type" : "folder",
       "value" : "/Users/jonathan"
     },
     {
       "key" : "1",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/1Password.app"
     },
     {
       "key" : "z",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/Zen Browser.app"
     }
