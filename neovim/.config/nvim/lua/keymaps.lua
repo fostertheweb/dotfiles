@@ -5,11 +5,10 @@ vim.keymap.set('i', '<Tab>', function()
   return vim.fn.pumvisible() == 1 and '<C-y>' or '<Tab>'
 end, { expr = true, noremap = true })
 
--- Write file on <Enter>
-vim.keymap.set('n', '<C-Space>', '<CMD>write!<CR>')
+vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
 
 -- write and quit
-vim.keymap.set('n', '<C-x><leader>', '<CMD>wq!<CR>')
+vim.keymap.set('n', '<leader>W', '<CMD>wq!<CR>', { desc = 'Write and quit' })
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-]>', '<C-\\><C-n>')
