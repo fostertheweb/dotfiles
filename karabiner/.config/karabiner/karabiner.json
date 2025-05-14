@@ -5,39 +5,14 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Spacebar normal on single press, Control on press and hold",
+                        "description": "Hold Spacebar for Right Control",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "right_control",
-                                        "lazy": false
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Spacebar normal on single press, F16 on press and hold",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f16",
-                                        "lazy": true
-                                    }
-                                ],
+                                "to": [{ "key_code": "right_control" }],
                                 "to_if_alone": [{ "key_code": "spacebar" }],
                                 "type": "basic"
                             }
