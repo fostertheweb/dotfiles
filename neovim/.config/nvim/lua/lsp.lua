@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- map('gri', vim.lsp.buf.implementation, 'Go to implementation')
     map('gt', vim.lsp.buf.type_definition, 'Go to type definition')
     map('grs', vim.lsp.buf.document_symbol, 'Document symbols')
-    -- map('g.', vim.lsp.buf.code_action, 'Code actions')
+    map('g.', vim.lsp.buf.code_action, 'Code actions')
     map('g,', vim.lsp.buf.signature_help, 'Signature Help')
     map('g=', vim.lsp.buf.format, 'Format code')
 
@@ -61,6 +61,7 @@ vim.lsp.enable {
   'cssls',
   'html',
   'jsonls',
+  'tailwindcss',
   -- brew
   'lua_ls',
   -- gem

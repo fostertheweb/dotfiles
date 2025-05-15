@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 function create-zellij-cwd-session() {
-  zellij -s $(basename $(pwd))
+  zellij attach --create $(basename $(pwd))
 }
 
 function zellij-create-or-attach() {
@@ -15,21 +15,16 @@ function zellij-create-or-attach() {
     return 0
   fi
 
-  if tmux has-session -t "=$session_name" 2>/dev/null; then
+  if zellij ls | grep "$session_name" 2>/dev/null; then
     if [[ -n "$ZELLIJ" ]]; then
-      if [[ "$session_name" != "$(tmux display-message -p '#S')" ]]; then
-        tmux switch-client -t "$session_name"
-      fi
+      zellij action launch-or-focus-plugin zellij:session-manager --floating
+      return 0
     else
-      tmux attach-session -t "$session_name"
+      zellij attach "$session_name"
     fi
   else
-    if [[ -n "$ZELLIJ" ]]; then
-      tmux new-session -d -s "$session_name" -c "$dir"
-      tmux switch-client -t "$session_name"
-    else
-      tmux new-session -s "$session_name" -c "$dir"
-    fi
+    cd "$dir"
+    zellij attach --create "$session_name"
   fi
 }
 
@@ -46,7 +41,12 @@ function zellij-find-and-create-or-attach() {
 }
 
 function zellij-list-and-attach() {
-  local sessions="$(tmux list-session 2>/dev/null)"
+  if [[ -n "$ZELLIJ" ]]; then
+    zellij action launch-or-focus-plugin zellij:session-manager --floating
+    return 0
+  fi
+
+  local sessions="$(zellij list-sessions 2>/dev/null)"
   local chosen_session
 
   if [[ -z "$sessions" || (-n "$ZELLIJ" && $(echo "$sessions" | wc -l) -eq 1) ]]; then
@@ -59,12 +59,5 @@ function zellij-list-and-attach() {
     return 0
   fi
 
-  if [[ -n "$ZELLIJ" ]]; then
-    local current_session="$(tmux display-message -p '#S')"
-    if [[ "$chosen_session" != "$current_session" ]]; then
-      tmux switch-client -t "$chosen_session"
-    fi
-  else
-    tmux attach-session -t "$chosen_session"
-  fi
+  zellij attach "$chosen_session"
 }

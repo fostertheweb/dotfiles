@@ -30,6 +30,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [mode.main.binding]
 # Open up terminal with alt + enter
 # alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+alt-shift-z = 'mode zen'
 
 # https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-s = 'layout tiles accordion'
@@ -147,3 +148,5 @@ run = 'move-node-to-workspace 2'
 if.app-id = 'com.apple.finder'
 run = 'move-node-to-workspace 0'
 
+[mode.zen.binding]
+alt-shift-z = 'mode main'

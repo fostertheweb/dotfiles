@@ -6,6 +6,7 @@
                 "rules": [
                     {
                         "description": "Hold Spacebar for Right Control",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -14,7 +15,7 @@
                                 },
                                 "parameters": {
                                     "basic.to_delayed_action_delay_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
+                                    "basic.to_if_held_down_threshold_milliseconds": 100
                                 },
                                 "to_delayed_action": { "to_if_canceled": [{ "key_code": "spacebar" }] },
                                 "to_if_alone": [
@@ -53,12 +54,12 @@
             "selected": true,
             "simple_modifications": [
                 {
-                    "from": { "key_code": "left_control" },
-                    "to": [{ "key_code": "f13" }]
-                },
-                {
                     "from": { "key_code": "right_command" },
                     "to": [{ "key_code": "escape" }]
+                },
+                {
+                    "from": { "key_code": "left_control" },
+                    "to": [{ "key_code": "f13" }]
                 }
             ],
             "virtual_hid_keyboard": {

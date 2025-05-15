@@ -18,6 +18,7 @@ return {
   },
   {
     'rachartier/tiny-code-action.nvim',
+    enabled = false,
     cond = not vim.g.vscode,
     dependencies = {
       'nvim-lua/plenary.nvim',

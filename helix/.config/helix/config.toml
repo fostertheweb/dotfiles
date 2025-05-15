@@ -1,8 +1,7 @@
-theme = "kanagawa-dragon"
+theme = "gruvbox"
 
 [editor]
 cursorline = true
-line-number = "relative"
 true-color = true
 end-of-line-diagnostics = "hint"
 

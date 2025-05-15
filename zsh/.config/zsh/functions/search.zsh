@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 function grep-cwd() {
-  local selection=$(ag --hidden . | fzf -e -i)
+  local selection=$(ag --hidden --ignore .git -g . | fzf -e -i)
 
   if [[ -n "$selection" ]]; then
     local file=$(echo "$selection" | sed -E 's/^([^:]*):([0-9]*):.*/\1/')

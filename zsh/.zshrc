@@ -21,6 +21,9 @@ FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 autoload -U add-zsh-hook
 autoload -Uz compinit && compinit -i
 
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 # zsh plugins
 source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -110,6 +113,7 @@ source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 source "$ZSH_CONFIG/functions/tmux.zsh"
+source "$ZSH_CONFIG/functions/zellij.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
 
