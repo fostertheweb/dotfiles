@@ -112,8 +112,7 @@ source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
-source "$ZSH_CONFIG/functions/tmux.zsh"
-source "$ZSH_CONFIG/functions/zellij.zsh"
+source "$ZSH_CONFIG/functions/aerospace.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
 
