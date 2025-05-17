@@ -28,6 +28,7 @@ window-theme = "auto"
 
 keybind = super+e=esc:e
 keybind = super+/=esc:/
+keybind = super+-=esc:-
 keybind = super+o=esc:o
 keybind = super+f=esc:f
 keybind = super+s=esc:s
