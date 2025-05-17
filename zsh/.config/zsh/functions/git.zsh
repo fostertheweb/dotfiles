@@ -19,6 +19,10 @@ function select-git-branch() {
 }
 
 function origin-status() {
+  if [[ -n $1 ]]; then
+    z $1
+  fi
+
   git fetch origin
 
   local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')

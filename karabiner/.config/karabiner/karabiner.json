@@ -5,26 +5,26 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Hold Spacebar for Right Control",
+                        "description": "Left Command F13 alone, Command when held",
                         "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "left_command",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "parameters": {
-                                    "basic.to_delayed_action_delay_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 100
+                                    "basic.to_delayed_action_delay_milliseconds": 300,
+                                    "basic.to_if_held_down_threshold_milliseconds": 50
                                 },
-                                "to_delayed_action": { "to_if_canceled": [{ "key_code": "spacebar" }] },
+                                "to_delayed_action": { "to_if_canceled": [{ "key_code": "left_command" }] },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
-                                        "key_code": "spacebar"
+                                        "key_code": "f13"
                                     }
                                 ],
-                                "to_if_held_down": [{ "key_code": "right_control" }],
+                                "to_if_held_down": [{ "key_code": "left_command" }],
                                 "type": "basic"
                             }
                         ]
@@ -58,7 +58,7 @@
                     "to": [{ "key_code": "escape" }]
                 },
                 {
-                    "from": { "key_code": "left_control" },
+                    "from": { "key_code": "right_option" },
                     "to": [{ "key_code": "f13" }]
                 }
             ],

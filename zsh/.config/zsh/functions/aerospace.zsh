@@ -12,7 +12,13 @@ function select-git-project() {
 
 function create-named-workspace() {
   local dir
-  dir=${1:-$(pwd)}
+
+  if [[ -z $1 ]]; then
+    return 0
+  fi
+
+  dir=$1
+
   aerospace workspace $(basename $dir)
   open -na "Ghostty.app" $dir
 }

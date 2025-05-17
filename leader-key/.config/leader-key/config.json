@@ -89,6 +89,11 @@
       "key" : "z",
       "type" : "application",
       "value" : "/Applications/Zen Browser.app"
+    },
+    {
+      "key" : "w",
+      "type" : "url",
+      "value" : "raycast://extensions/theherk/zoxide-git-projects/find"
     }
   ],
   "type" : "group"

@@ -37,7 +37,7 @@ bindkey -s '\e-' 'ranger^M'
 
 # cmd-s
 # Create zellij session
-bindkey -s '\es' 'create-named-workspace^M'
+bindkey -s '\es' 'create-named-workspace $(pwd)^M'
 
 # cmd-d
 # Go to dotfiles
