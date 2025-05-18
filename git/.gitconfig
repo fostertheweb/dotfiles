@@ -15,7 +15,7 @@
     verbose = true
 
 [core]
-    excludesfile = /Users/fostertheweb/.gitignore
+    excludesFile = ~/.gitignore
     pager = delta
 	editor = nvim
 
