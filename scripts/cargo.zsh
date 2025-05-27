@@ -1,4 +1,5 @@
 #! /usr/bin/env zsh
 
 cargo install --locked bacon \
-	bacon-ls
+	bacon-ls \
+	rusty-man
