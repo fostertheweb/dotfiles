@@ -61,3 +61,15 @@ function zellij-list-and-attach() {
 
   zellij attach "$chosen_session"
 }
+
+# ctrl-t
+# List current sessions and attach
+bindkey -s '^T' 'zellij-list-and-attach^M'
+
+# cmd-o
+# Find project and create or attach
+bindkey -s '\eo' 'zellij-find-and-create-or-attach^M'
+
+# cmd-s
+# Create zellij session
+bindkey -s '\es' 'create-zellij-cwd-session^M'

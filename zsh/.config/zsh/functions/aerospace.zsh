@@ -80,3 +80,15 @@ function list-workspaces-and-goto-or-create() {
   fi
 
 }
+
+# ctrl-t
+# List current sessions and attach
+bindkey -s '^T' 'list-workspaces-and-goto-or-create^M'
+
+# cmd-o
+# Find project and create or attach
+bindkey -s '\eo' 'find-and-create-or-goto-workspace^M'
+
+# cmd-s
+# Create new session
+bindkey -s '\es' 'create-named-workspace $(pwd)^M'

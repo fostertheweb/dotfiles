@@ -11,17 +11,9 @@ bindkey -s '^Z' 'fg^M'
 # Jump to last directory
 bindkey -s '^o' 'cd -^M'
 
-# ctrl-t
-# List current sessions and attach
-bindkey -s '^T' 'list-workspaces-and-goto-or-create^M'
-
 # ctrl-g
 # open gitu
 bindkey -s '^g' 'gitu^M'
-
-# cmd-o
-# Find project and create or attach
-bindkey -s '\eo' 'find-and-create-or-goto-workspace^M'
 
 # cmd-f
 # Find file with fzf
@@ -34,10 +26,6 @@ bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
 # cmd -
 # Open ranger file manager
 bindkey -s '\e-' 'ranger^M'
-
-# cmd-s
-# Create zellij session
-bindkey -s '\es' 'create-named-workspace $(pwd)^M'
 
 # cmd-d
 # Go to dotfiles

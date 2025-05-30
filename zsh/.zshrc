@@ -4,6 +4,7 @@ export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
+export SESSION_MANAGER="zellij"
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -112,7 +113,18 @@ source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
-source "$ZSH_CONFIG/functions/aerospace.zsh"
+
+if [[ -z $SESSION_MANAGER ]]; then
+  echo "Session manager not configured."
+elif [[ $SESSION_MANAGER == "tmux" ]]; then
+  source "$ZSH_CONFIG/functions/tmux.zsh"
+elif [[ $SESSION_MANAGER == "aerospace" ]]; then
+  source "$ZSH_CONFIG/functions/aerospace.zsh"
+elif [[ $SESSION_MANAGER == "zellij" ]]; then
+  source "$ZSH_CONFIG/functions/zellij.zsh"
+else
+  echo "Session manager not configured."
+fi
 
 source "$ZSH_CONFIG/keybinds.zsh"
 

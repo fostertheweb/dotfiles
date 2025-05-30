@@ -73,3 +73,15 @@ function tmux-list-and-attach() {
     tmux attach-session -t "$chosen_session"
   fi
 }
+
+# ctrl-t
+# List current sessions and attach
+bindkey -s '^T' 'tmux-list-and-attach^M'
+
+# cmd-o
+# Find project and create or attach
+bindkey -s '\eo' 'tmux-find-and-create-or-attach^M'
+
+# cmd-s
+# Create tmux session
+bindkey -s '\es' 'create-tmux-cwd-session^M'
