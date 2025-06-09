@@ -1,0 +1,6 @@
+[user]
+name = "Jonathan Foster"
+email = "fostertheweb@gmail.com"
+
+[ui]
+default-command = "status"
