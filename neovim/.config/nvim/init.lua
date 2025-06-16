@@ -24,9 +24,9 @@ vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if require('utils').is_dark_mode() then
-  vim.cmd 'colorscheme darkvoid'
+  vim.cmd 'colorscheme ashen'
 else
-  vim.cmd 'colorscheme darcubox'
+  vim.cmd 'colorscheme darkvoid'
 end
 
 -- vim: ts=2 sts=2 sw=2 et
