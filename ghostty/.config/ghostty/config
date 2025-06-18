@@ -13,12 +13,12 @@ cursor-style = block
 cursor-style-blink = false
 
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = dark:"gruber-darker",light:"Monokai Pro Ristretto"
+theme = gruber-darker
 
 window-colorspace = display-p3
 window-padding-balance = true
