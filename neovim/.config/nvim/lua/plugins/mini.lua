@@ -23,7 +23,7 @@ return {
         go_in_plus = 'l',
       },
       windows = {
-        preview = true,
+        preview = false,
         max_number = 3,
         width_focus = 30,
         width_nofocus = 30,

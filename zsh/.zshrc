@@ -111,6 +111,7 @@ alias ai="aider"
 
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
+source "$ZSH_CONFIG/functions/jobs.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 

@@ -1,14 +1,16 @@
 -- global statusline
-if not vim.g.vscode then
-  vim.o.laststatus = 3
-  vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
-end
+-- if not vim.g.vscode then
+--   vim.o.laststatus = 3
+--   vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+-- end
+
+vim.o.laststatus = 0
 
 vim.o.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
-vim.opt.ruler = false
+vim.opt.ruler = true
 
 -- Tab width
 vim.opt.tabstop = 2
@@ -59,3 +61,22 @@ vim.opt.hlsearch = true
 
 -- completion popup menu
 vim.opt.pumheight = 20
+
+vim.opt.hidden = true
+vim.opt.errorbells = false
+vim.opt.backspace = 'indent,eol,start'
+vim.opt.autochdir = false
+vim.opt.iskeyword:append '-'
+vim.opt.path:append '**'
+vim.opt.wildignore:append {
+  'target/*',
+  'node_modules/*',
+  'dist/*',
+  '.git/*',
+  '.jj/*',
+  '.vscode/*',
+}
+vim.opt.selection = 'exclusive'
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false

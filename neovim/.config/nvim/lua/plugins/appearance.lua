@@ -1,12 +1,5 @@
 return {
   {
-    'mvllow/modes.nvim',
-    enabled = false,
-    config = function()
-      require('modes').setup()
-    end,
-  },
-  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     cond = not vim.g.vscode,

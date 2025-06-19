@@ -2,37 +2,8 @@ local utils = require 'utils'
 
 return {
   {
-    'utilyre/barbecue.nvim',
-    enabled = false,
-    dependencies = {
-      'SmiteshP/nvim-navic',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('barbecue').setup {
-        attach_navic = false,
-        create_autocmd = false,
-        show_modified = true,
-        show_navic = false,
-      }
-
-      vim.api.nvim_create_autocmd({
-        'WinResized',
-        'BufWinEnter',
-        'CursorHold',
-        'InsertLeave',
-        'BufModifiedSet',
-      }, {
-        group = vim.api.nvim_create_augroup('barbecue.updater', {}),
-        callback = function()
-          require('barbecue.ui').update()
-        end,
-      })
-    end,
-  },
-  {
     'b0o/incline.nvim',
-    enabled = false,
+    enabled = true,
     config = function()
       local devicons = require 'nvim-web-devicons'
 
@@ -50,9 +21,9 @@ return {
           },
           overlap = {
             borders = true,
-            statusline = false,
-            tabline = false,
-            winbar = false,
+            statusline = true,
+            tabline = true,
+            winbar = true,
           },
           placement = {
             horizontal = 'right',
@@ -78,49 +49,12 @@ return {
               guifg = modified and modified_fg or utils.get_colors('Normal').guifg,
             },
             ' ',
-            guibg = utils.get_colors('FloatShadow').guibg,
+            guibg = utils.get_colors('Normal').guibg,
           }
         end,
       }
     end,
     event = 'VeryLazy',
-  },
-  {
-    'nvim-lualine/lualine.nvim',
-    enabled = false,
-    config = function()
-      require('lualine').setup {
-        options = {
-          icons_enabled = false,
-          theme = 'auto',
-          component_separators = '',
-          section_separators = '',
-        },
-        sections = {
-          lualine_a = {
-            {
-              'mode',
-            },
-          },
-          lualine_b = { 'diagnostics' },
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = { 'branch', 'diff' },
-          lualine_z = {},
-        },
-      }
-    end,
-  },
-  {
-    'alvarosevilla95/luatab.nvim',
-    cond = not vim.g.vscode,
-    enabled = true,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('luatab').setup {}
-    end,
   },
   {
     'folke/which-key.nvim',

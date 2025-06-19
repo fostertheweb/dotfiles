@@ -1,20 +1,20 @@
 -- statusline
-if not vim.g.vscode then
-  vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter', 'WinEnter', 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI', 'TermOpen' }, {
-    group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
-    pattern = '*',
-    callback = function()
-      local win = vim.api.nvim_get_current_win()
-      local cfg = vim.api.nvim_win_get_config(win)
+-- if not vim.g.vscode then
+--   vim.api.nvim_create_autocmd({ 'ColorScheme', 'VimEnter', 'WinEnter', 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI', 'TermOpen' }, {
+--     group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
+--     pattern = '*',
+--     callback = function()
+--       local win = vim.api.nvim_get_current_win()
+--       local cfg = vim.api.nvim_win_get_config(win)
 
-      if cfg.relative ~= '' then
-        return
-      end
+--       if cfg.relative ~= '' then
+--         return
+--       end
 
-      vim.o.statusline = require('custom.statusline').statusline()
-    end,
-  })
-end
+--       vim.o.statusline = require('custom.statusline').statusline()
+--     end,
+--   })
+-- end
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
