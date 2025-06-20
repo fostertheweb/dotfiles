@@ -40,13 +40,6 @@ return {
   },
   keys = {
     {
-      '<leader>p',
-      function()
-        Snacks.picker.files { hidden = true, preview = false }
-      end,
-      desc = 'Files',
-    },
-    {
       '<leader>/',
       function()
         Snacks.picker.grep { hidden = true, ignored = false, layout = 'default' }
@@ -54,7 +47,7 @@ return {
       desc = 'Search',
     },
     {
-      '<leader><leader>',
+      '<leader>b',
       function()
         Snacks.picker.buffers { layout = 'select' }
       end,
@@ -82,11 +75,11 @@ return {
       desc = 'Help',
     },
     {
-      '<leader>f',
+      '<leader>p',
       function()
-        Snacks.picker.smart { preview = false }
+        Snacks.picker.smart { hidden = true, preview = false }
       end,
-      desc = 'Find',
+      desc = 'Pick',
     },
     {
       '<leader>,',

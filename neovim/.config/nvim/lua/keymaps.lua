@@ -44,6 +44,10 @@ vim.keymap.set('v', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection
 vim.keymap.set('n', '<C-x>n', '<CMD>tabnext<CR>', { desc = 'Next tab' })
 vim.keymap.set('n', '<C-x>p', '<CMD>tabprev<CR>', { desc = 'Previous tab' })
 
+-- Buffer navigation
+vim.keymap.set('n', '<C-f>', ':bn<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-b>', ':bp<cr>', { desc = 'Previous previous' })
+
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -54,6 +58,11 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- D, Diagnostic keymaps
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
+
+vim.keymap.set('n', '<leader>f', ':find ', { desc = 'Find' })
+vim.keymap.set('n', '<leader><leader>', ':b ', { desc = 'Buffers' })
+
+vim.keymap.set('n', '<C-J>', '<CMD>term lazyjj<CR>', { desc = 'Open lazyjj' })
 
 -- G, Git commands
 vim.keymap.set('n', '<C-g>', '<CMD>term gitu<CR>', { desc = 'Open gitu' })

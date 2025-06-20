@@ -15,6 +15,10 @@ bindkey -s '^o' 'cd -^M'
 # open gitu
 bindkey -s '^g' 'gitu^M'
 
+# ctrl-J
+# open lazyjj
+bindkey -s '^[[106;6u' 'lazyjj^M'
+
 # cmd-f
 # Find file with fzf
 bindkey -s '\ef' 'find-file^M'

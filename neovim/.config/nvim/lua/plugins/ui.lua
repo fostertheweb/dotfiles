@@ -9,7 +9,7 @@ return {
 
       require('incline').setup {
         hide = {
-          cursorline = 'focused_win',
+          cursorline = false,
           focused_win = false,
           only_win = false,
         },
@@ -27,7 +27,7 @@ return {
           },
           placement = {
             horizontal = 'right',
-            vertical = 'top',
+            vertical = 'bottom',
           },
         },
         render = function(props)
