@@ -71,12 +71,12 @@ vim.opt.path:append '**'
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:full,full'
 vim.opt.wildignore:append {
-  '**/target/**',
-  '**node_modules/**',
-  '**/dist/**',
-  '.git/**',
-  '.jj/**',
-  '.vscode/**',
+  '*/target/*',
+  '*/node_modules/*',
+  '*/dist/*',
+  '*/.git/*',
+  '*/.jj/*',
+  '*/.vscode/*',
 }
 vim.opt.selection = 'exclusive'
 vim.opt.backup = false
