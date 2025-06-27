@@ -16,7 +16,6 @@ return {
         textobject = 'g/',
       },
     }
-    -- require('mini.diff').setup()
     require('mini.files').setup {
       mappings = {
         go_in = '',
@@ -45,14 +44,6 @@ return {
         config = notify_win_config,
       },
     }
-
-    -- require('mini.pairs').setup {
-    --   modes = { insert = true, command = true, terminal = false },
-    --   skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-    --   skip_ts = { 'string' },
-    --   skip_unbalanced = true,
-    --   markdown = true,
-    -- }
 
     require('mini.surround').setup()
 

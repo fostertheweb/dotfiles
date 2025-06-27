@@ -82,7 +82,7 @@ return {
       desc = 'Pick',
     },
     {
-      '<leader>,',
+      '<leader>k',
       function()
         Snacks.picker.lsp_symbols { preview = false }
       end,
