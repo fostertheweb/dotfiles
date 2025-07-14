@@ -4,7 +4,7 @@ export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
-export SESSION_MANAGER="zellij"
+export SESSION_MANAGER="jobctl"
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -107,16 +107,17 @@ alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias lf="OPENER=nvim lf"
-alias ai="aider"
+alias ai="opencode"
 
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
-source "$ZSH_CONFIG/functions/jobs.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
 if [[ -z $SESSION_MANAGER ]]; then
   echo "Session manager not configured."
+elif [[ $SESSION_MANAGER == "jobctl" ]]; then
+  source "$ZSH_CONFIG/functions/jobs.zsh"
 elif [[ $SESSION_MANAGER == "tmux" ]]; then
   source "$ZSH_CONFIG/functions/tmux.zsh"
 elif [[ $SESSION_MANAGER == "aerospace" ]]; then
