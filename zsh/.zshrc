@@ -4,7 +4,7 @@ export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
-export SESSION_MANAGER="jobctl"
+export SESSION_MANAGER="jobs"
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -116,7 +116,7 @@ source "$ZSH_CONFIG/functions/search.zsh"
 
 if [[ -z $SESSION_MANAGER ]]; then
   echo "Session manager not configured."
-elif [[ $SESSION_MANAGER == "jobctl" ]]; then
+elif [[ $SESSION_MANAGER == "jobs" ]]; then
   source "$ZSH_CONFIG/functions/jobs.zsh"
 elif [[ $SESSION_MANAGER == "tmux" ]]; then
   source "$ZSH_CONFIG/functions/tmux.zsh"
