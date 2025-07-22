@@ -50,7 +50,6 @@ return {
               guifg = modified and modified_fg or utils.get_colors('Normal').guifg,
             },
             ' ',
-            guibg = utils.get_colors('Whitespace').guifg,
           }
         end,
       }
