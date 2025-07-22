@@ -11,8 +11,8 @@ return {
       require('incline').setup {
         hide = {
           cursorline = false,
-          focused_win = false,
-          only_win = false,
+          focused_win = true,
+          only_win = true,
         },
         window = {
           padding = 0,
@@ -21,14 +21,14 @@ return {
             vertical = 0,
           },
           overlap = {
-            borders = true,
+            borders = false,
             statusline = true,
-            tabline = true,
-            winbar = true,
+            tabline = false,
+            winbar = false,
           },
           placement = {
-            horizontal = 'right',
-            vertical = 'bottom',
+            horizontal = 'left',
+            vertical = 'top',
           },
         },
         render = function(props)
@@ -50,7 +50,7 @@ return {
               guifg = modified and modified_fg or utils.get_colors('Normal').guifg,
             },
             ' ',
-            guibg = utils.get_colors('Normal').guibg,
+            guibg = utils.get_colors('Whitespace').guifg,
           }
         end,
       }
@@ -83,7 +83,7 @@ return {
             g = true,
           },
         },
-        preset = 'helix',
+        preset = 'classic',
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },

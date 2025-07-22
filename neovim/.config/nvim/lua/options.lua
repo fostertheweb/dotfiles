@@ -1,10 +1,8 @@
 -- global statusline
--- if not vim.g.vscode then
---   vim.o.laststatus = 3
---   vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
--- end
-
-vim.o.laststatus = 0
+if not vim.g.vscode then
+  vim.o.laststatus = 3
+  vim.o.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+end
 
 vim.o.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
 vim.opt.termguicolors = true

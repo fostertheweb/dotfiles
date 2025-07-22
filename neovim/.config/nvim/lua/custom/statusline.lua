@@ -107,7 +107,7 @@ local function git_diff_component()
   ins = ins or '0'
   dels = dels or '0'
 
-  return string.format('%%#DiffAdd#+%s %%#DiffDelete#-%s ', ins, dels)
+  return string.format('%%#DiagnosticOk#+%s %%#DiagnosticError#-%s ', ins, dels)
 end
 
 function M.statusline()
