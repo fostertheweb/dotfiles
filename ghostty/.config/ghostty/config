@@ -30,6 +30,7 @@ keybind = super+e=esc:e
 keybind = super+/=esc:/
 keybind = super+-=esc:-
 keybind = super+o=esc:o
+keybind = super+i=esc:i
 keybind = super+f=esc:f
 keybind = super+s=esc:s
 keybind = super+g=esc:g

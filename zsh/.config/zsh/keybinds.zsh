@@ -35,6 +35,10 @@ bindkey -s '\e-' 'ranger^M'
 # Go to dotfiles
 bindkey -s '\ed' 'cd $HOME/.dotfiles^M'
 
+# cmd-i
+# launch opencode
+bindkey -s '\ei' 'opencode^M'
+
 # cmd-/
 # Grep in cwd
 bindkey -s '\e/' 'grep-cwd^M'
