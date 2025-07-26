@@ -41,7 +41,7 @@ function create-or-goto-workspace() {
 
     windows=$(aerospace list-windows --workspace $session_name)
 
-    if [[ -z $windows || $(echo $windows | wc -l) -eq 1 ]]; then
+    if [[ -z $windows ]]; then
       open -na "Ghostty.app" $dir
     fi
   else
