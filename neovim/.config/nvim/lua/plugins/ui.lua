@@ -57,6 +57,30 @@ return {
     event = 'VeryLazy',
   },
   {
+    'stevearc/quicker.nvim',
+    event = 'FileType qf',
+    cond = not vim.g.vscode,
+    config = function()
+      require('quicker').setup {
+        opts = {
+          buflisted = false,
+          number = false,
+          relativenumber = false,
+          signcolumn = 'auto',
+          winfixheight = true,
+          wrap = false,
+        },
+        borders = {
+          vert = '|',
+        },
+        keys = {
+          { '<C-j>', '<CR>', desc = 'Ctrl-j to accept' },
+        },
+        trim_leading_whitespace = 'all',
+      }
+    end,
+  },
+  {
     'folke/which-key.nvim',
     cond = not vim.g.vscode,
     event = 'VimEnter',

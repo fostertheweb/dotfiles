@@ -1,10 +1,5 @@
 return {
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    cond = not vim.g.vscode,
-    ft = { 'markdown' },
-  },
-  {
     'supermaven-inc/supermaven-nvim',
     enabled = true,
     cond = not vim.g.vscode,

@@ -29,7 +29,6 @@ return {
         width_preview = 80,
       },
     }
-    require('mini.git').setup()
     require('mini.icons').setup {}
     require('mini.icons').mock_nvim_web_devicons()
 
@@ -45,6 +44,7 @@ return {
       },
     }
 
+    require('mini.pick').setup()
     require('mini.surround').setup()
 
     vim.keymap.set('n', '-', function()

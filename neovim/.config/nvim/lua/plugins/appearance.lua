@@ -1,27 +1,8 @@
 return {
   {
-    'stevearc/quicker.nvim',
-    event = 'FileType qf',
+    'MeanderingProgrammer/render-markdown.nvim',
     cond = not vim.g.vscode,
-    config = function()
-      require('quicker').setup {
-        opts = {
-          buflisted = false,
-          number = false,
-          relativenumber = false,
-          signcolumn = 'auto',
-          winfixheight = true,
-          wrap = false,
-        },
-        borders = {
-          vert = '|',
-        },
-        keys = {
-          { '<C-j>', '<CR>', desc = 'Ctrl-j to accept' },
-        },
-        trim_leading_whitespace = 'all',
-      }
-    end,
+    ft = { 'markdown' },
   },
   {
     'folke/todo-comments.nvim',
