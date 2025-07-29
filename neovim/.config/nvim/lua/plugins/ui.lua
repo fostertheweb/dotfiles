@@ -18,16 +18,27 @@ return {
         },
         keymaps = {
           ['<C-j>'] = 'actions.select',
-          ['l'] = 'actions.select',
-          ['h'] = 'actions.parent',
-          ['q'] = { 'actions.close', mode = 'n' },
-          ['<Esc>'] = { 'actions.close', mode = 'n' },
         },
         skip_confirm_for_simple_edits = true,
         view_options = {
           show_hidden = true,
         },
       }
+
+      vim.api.nvim_create_autocmd('BufWinEnter', {
+        pattern = '*',
+        callback = function(args)
+          if vim.bo[args.buf].filetype == 'oil' then
+            local win_config = vim.api.nvim_win_get_config(0)
+            if win_config.relative ~= '' then
+              vim.keymap.set('n', 'q', require('oil').close, { buffer = args.buf })
+              vim.keymap.set('n', '<Esc>', require('oil').close, { buffer = args.buf })
+              vim.keymap.set('n', 'h', '<CMD>Oil<CR>', { buffer = args.buf })
+              vim.keymap.set('n', 'l', require('oil').select, { buffer = args.buf })
+            end
+          end
+        end,
+      })
 
       vim.keymap.set('n', '-', require('oil').open_float, { desc = 'Open parent directory' })
     end,
