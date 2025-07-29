@@ -3,6 +3,7 @@ if not vim.g.vscode then
   vim.opt.statusline = "%!v:lua.require'custom.statusline'.statusline()"
 end
 
+vim.opt.winborder = 'single'
 vim.opt.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'

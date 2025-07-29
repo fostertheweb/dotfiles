@@ -7,6 +7,7 @@ return {
     config = function()
       require('oil').setup {
         float = {
+          border = 'single',
           max_height = 20,
           override = function(defaults)
             defaults['col'] = 0
@@ -18,6 +19,7 @@ return {
         keymaps = {
           ['<C-j>'] = 'actions.select',
           ['l'] = 'actions.select',
+          ['h'] = 'actions.parent',
           ['q'] = { 'actions.close', mode = 'n' },
           ['<Esc>'] = { 'actions.close', mode = 'n' },
         },
@@ -146,6 +148,7 @@ return {
           { 's', mode = { 'n', 'x' } },
           { '<C>', mode = { 'n' } },
         },
+        win = { border = 'single' },
         defer = function(ctx)
           if vim.list_contains({ 'd', 'y' }, ctx.operator) then
             return true
