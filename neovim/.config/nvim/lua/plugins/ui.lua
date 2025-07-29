@@ -2,6 +2,38 @@ local utils = require 'utils'
 
 return {
   {
+    'stevearc/oil.nvim',
+    config = function()
+      require('oil').setup {
+        float = {
+          max_height = 20,
+          override = function(defaults)
+            defaults['col'] = 0
+            defaults['row'] = 0
+            defaults['width'] = 40
+            return defaults
+          end,
+        },
+        keymaps = {
+          ['<C-j>'] = 'actions.select',
+          ['l'] = 'actions.select',
+          ['q'] = { 'actions.close', mode = 'n' },
+          ['<Esc>'] = { 'actions.close', mode = 'n' },
+        },
+        skip_confirm_for_simple_edits = true,
+        view_options = {
+          show_hidden = true,
+        },
+      }
+
+      vim.keymap.set('n', '-', require('oil').open_float, { desc = 'Open parent directory' })
+    end,
+    dependencies = {
+      { 'echasnovski/mini.icons', opts = {}, 'benomahony/oil-git.nvim' },
+    },
+    lazy = false,
+  },
+  {
     'b0o/incline.nvim',
     enabled = true,
     cond = not vim.g.vscode,

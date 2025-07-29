@@ -28,8 +28,8 @@ bindkey -s '\ef' 'find-file^M'
 bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
 
 # cmd -
-# Open ranger file manager
-bindkey -s '\e-' 'ranger^M'
+# Open oil.nvim as file manager
+bindkey -s '\e-' 'nvim -c "Oil"^M'
 
 # cmd-d
 # Go to dotfiles
