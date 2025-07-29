@@ -4,6 +4,7 @@ if not vim.g.vscode then
     'ColorScheme',
     'VimEnter',
     'WinEnter',
+    'WinClosed',
     'BufEnter',
     'BufWritePost',
     'TermOpen',
