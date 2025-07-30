@@ -1,6 +1,7 @@
 return {
   {
     'sudo-tee/opencode.nvim',
+    cond = not vim.g.vscode,
     config = function()
       require('opencode').setup {}
     end,
@@ -11,7 +12,6 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
-    enabled = true,
     cond = not vim.g.vscode,
     event = {
       'BufReadPost',

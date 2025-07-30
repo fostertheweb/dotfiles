@@ -82,13 +82,6 @@ return {
       desc = 'Pick',
     },
     {
-      '<leader>k',
-      function()
-        Snacks.picker.lsp_symbols { preview = false }
-      end,
-      desc = 'Symbols',
-    },
-    {
       '<leader>.',
       function()
         Snacks.picker.recent() { preview = false }

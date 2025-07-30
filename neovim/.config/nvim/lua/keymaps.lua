@@ -56,7 +56,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- D, Diagnostic keymaps
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
-vim.keymap.set('n', '<leader>f', ':find ', { desc = 'Find' })
 vim.keymap.set('n', '<leader><leader>', ':b ', { desc = 'Buffers' })
 
 -- G, Git commands
