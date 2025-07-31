@@ -17,6 +17,14 @@ let ignoredDirectories = [
   "scripts", ".jj",
 ]
 
+func askUser(_ question: String) -> Bool {
+  print("\(question) [y/N]: ", terminator: "")
+  fflush(stdout)
+  
+  guard let input = readLine()?.lowercased() else { return false }
+  return input == "y" || input == "yes"
+}
+
 func step(_ message: String, command: String) {
   let spinners = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧"]
   let queue = DispatchQueue.global(qos: .userInteractive)
@@ -58,13 +66,33 @@ func step(_ message: String, command: String) {
   process.waitUntilExit()
 }
 
-step("Update Homebrew", command: "brew update")
-step("Install from Brewfile", command: "brew bundle")
-step("Install npm globals", command: "zsh ./scripts/npm.zsh")
-step("Install cargo bins", command: "zsh ./scripts/cargo.zsh")
-step("Write macOS Defaults", command: "zsh ./scripts/defaults.zsh")
-step("Set API Credentials", command: "zsh ./scripts/set-api-keys.zsh")
-step("Link Configurations", command: "stow ghostty karabiner neovim ranger starship tig tmux zsh")
+if askUser("Update Homebrew?") {
+  step("Update Homebrew", command: "brew update")
+}
+
+if askUser("Install from Brewfile?") {
+  step("Install from Brewfile", command: "brew bundle")
+}
+
+if askUser("Install npm globals?") {
+  step("Install npm globals", command: "zsh ./scripts/npm.zsh")
+}
+
+if askUser("Install cargo bins?") {
+  step("Install cargo bins", command: "zsh ./scripts/cargo.zsh")
+}
+
+if askUser("Write macOS Defaults?") {
+  step("Write macOS Defaults", command: "zsh ./scripts/defaults.zsh")
+}
+
+if askUser("Set API Credentials?") {
+  step("Set API Credentials", command: "zsh ./scripts/set-api-keys.zsh")
+}
+
+if askUser("Link Configurations?") {
+  step("Link Configurations", command: "stow ghostty karabiner neovim ranger starship tig tmux zsh")
+}
 
 print("\r")
 print("\r[Setup Complete]")
