@@ -23,7 +23,7 @@ return {
   },
   {
     'b0o/incline.nvim',
-    enabled = true,
+    enabled = false,
     cond = not vim.g.vscode,
     config = function()
       local devicons = require 'nvim-web-devicons'

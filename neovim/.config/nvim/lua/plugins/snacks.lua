@@ -54,11 +54,11 @@ return {
       desc = 'Buffers',
     },
     {
-      '<leader>df',
+      '<leader>k',
       function()
         Snacks.picker.diagnostics { layout = 'default' }
       end,
-      desc = 'Find',
+      desc = 'Problems',
     },
     {
       '<leader>u',
