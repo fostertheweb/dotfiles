@@ -1,47 +1,19 @@
 return {
   {
-    'sudo-tee/opencode.nvim',
+    'NickvanDyke/opencode.nvim',
     cond = not vim.g.vscode,
-    config = function()
-      require('opencode').setup {
-        preferred_picker = 'snacks',
-        default_global_keymaps = false,
-        keymap = {
-          window = {
-            next_message = ']]',
-            prev_message = '[[',
-            prev_prompt_history = '<up>',
-            next_prompt_history = '<down>',
-            submit = '<C-j>',
-            submit_insert = '<C-j>',
-            switch_mode = '<C-s>',
-          },
-        },
-      }
-
-      vim.keymap.set('n', '<leader>oo', require('opencode.api').toggle, { desc = 'Toggle' })
-      vim.keymap.set('n', '<leader>os', require('opencode.api').select_session, { desc = 'Sessions' })
-      vim.keymap.set('n', '<leader>od', require('opencode.api').diff_open, { desc = 'Diff' })
-      -- revert all last promopt
-
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'opencode_input', 'opencode_output' },
-        callback = function()
-          vim.keymap.set('n', 'gd', require('opencode.api').diff_open, { desc = 'Diff' })
-        end,
-      })
-
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'opencode_diff' },
-        callback = function()
-          -- ]c [c kemaps for next/prev diff
-          -- revert this files
-        end,
-      })
-    end,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'folke/snacks.nvim' },
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle embedded opencode', },
+      { '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n', },
+      { '<leader>oa', function() require('opencode').ask('@selection: ') end, desc = 'Ask opencode about selection', mode = 'v', },
+      { '<leader>op', function() require('opencode').select_prompt() end, desc = 'Select prompt', mode = { 'n', 'v', }, },
+      { '<leader>on', function() require('opencode').command('session_new') end, desc = 'New session', },
+      { '<leader>oy', function() require('opencode').command('messages_copy') end, desc = 'Copy last message', },
+      { '<S-C-u>',    function() require('opencode').command('messages_half_page_up') end, desc = 'Scroll messages up', },
+      { '<S-C-d>',    function() require('opencode').command('messages_half_page_down') end, desc = 'Scroll messages down', },
     },
   },
   {

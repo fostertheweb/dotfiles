@@ -43,7 +43,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Options
 vim.lsp.inlay_hint.enable()
-vim.diagnostic.config { virtual_text = true }
+vim.diagnostic.config {
+  update_in_insert = true,
+  virtual_text = true,
+}
 
 vim.lsp.enable {
   -- npm
