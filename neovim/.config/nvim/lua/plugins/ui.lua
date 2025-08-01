@@ -6,16 +6,7 @@ return {
     cond = not vim.g.vscode,
     config = function()
       require('oil').setup {
-        float = {
-          border = 'single',
-          max_height = 20,
-          override = function(defaults)
-            defaults['col'] = 0
-            defaults['row'] = 0
-            defaults['width'] = 40
-            return defaults
-          end,
-        },
+        default_file_explorer = false,
         keymaps = {
           ['<C-j>'] = 'actions.select',
         },
@@ -24,23 +15,6 @@ return {
           show_hidden = true,
         },
       }
-
-      vim.api.nvim_create_autocmd('BufWinEnter', {
-        pattern = '*',
-        callback = function(args)
-          if vim.bo[args.buf].filetype == 'oil' then
-            local win_config = vim.api.nvim_win_get_config(0)
-            if win_config.relative ~= '' then
-              vim.keymap.set('n', 'q', require('oil').close, { buffer = args.buf })
-              vim.keymap.set('n', '<Esc>', require('oil').close, { buffer = args.buf })
-              vim.keymap.set('n', 'h', '<CMD>Oil<CR>', { buffer = args.buf })
-              vim.keymap.set('n', 'l', require('oil').select, { buffer = args.buf })
-            end
-          end
-        end,
-      })
-
-      vim.keymap.set('n', '-', require('oil').open_float, { desc = 'Open parent directory' })
     end,
     dependencies = {
       { 'echasnovski/mini.icons', opts = {}, 'benomahony/oil-git.nvim' },

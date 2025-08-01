@@ -16,6 +16,28 @@ return {
           textobject = 'g/',
         },
       }
+
+      require('mini.files').setup {
+        mappings = {
+          go_in = '',
+          go_in_plus = 'l',
+        },
+        windows = {
+          preview = false,
+          max_number = 3,
+          width_focus = 30,
+          width_nofocus = 30,
+          width_preview = 80,
+        },
+      }
+
+      vim.keymap.set('n', '-', function()
+        local buf_name = vim.api.nvim_buf_get_name(0)
+        local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
+        require('mini.files').open(path)
+        require('mini.files').reveal_cwd()
+      end, { desc = 'Open file explorer' })
+
       require('mini.icons').setup {}
       require('mini.icons').mock_nvim_web_devicons()
 
