@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end
 
+    map('gd', vim.lsp.buf.definition, 'Go to definition')
     map('g.', vim.lsp.buf.code_action, 'Code actions')
     map('gk', vim.lsp.buf.signature_help, 'Signature Help')
     map('g=', vim.lsp.buf.format, 'Format code')
