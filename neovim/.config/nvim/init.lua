@@ -19,7 +19,7 @@ require('lazy').setup {
 
 -- Default theme settings
 vim.o.background = 'dark'
-vim.cmd 'colorscheme minisummer'
+vim.cmd 'colorscheme vague'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 

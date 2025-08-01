@@ -1,0 +1,32 @@
+return {
+  {
+    'ficcdaf/ashen.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  { 'aliqyan-21/darkvoid.nvim', lazy = false, priority = 1000 },
+  {
+    'thallada/farout.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
+    'blazkowolf/gruber-darker.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      italic = {
+        strings = false,
+      },
+    },
+  },
+  { 'savq/melange-nvim' },
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  { 'vague2k/vague.nvim' },
+  {
+    'shoenot/witchesbrew.nvim',
+    priority = 1000,
+  },
+}
