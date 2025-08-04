@@ -1,81 +1,4 @@
-local utils = require 'utils'
-
 return {
-  {
-    'stevearc/oil.nvim',
-    cond = not vim.g.vscode,
-    config = function()
-      require('oil').setup {
-        default_file_explorer = false,
-        keymaps = {
-          ['<C-j>'] = 'actions.select',
-        },
-        skip_confirm_for_simple_edits = true,
-        view_options = {
-          show_hidden = true,
-        },
-      }
-    end,
-    dependencies = {
-      { 'echasnovski/mini.icons', opts = {}, 'benomahony/oil-git.nvim' },
-    },
-    lazy = false,
-  },
-  {
-    'b0o/incline.nvim',
-    enabled = false,
-    cond = not vim.g.vscode,
-    config = function()
-      local devicons = require 'nvim-web-devicons'
-
-      require('incline').setup {
-        hide = {
-          cursorline = false,
-          focused_win = true,
-          only_win = true,
-        },
-        window = {
-          padding = 0,
-          margin = {
-            horizontal = 0,
-            vertical = 0,
-          },
-          overlap = {
-            borders = false,
-            statusline = true,
-            tabline = false,
-            winbar = false,
-          },
-          placement = {
-            horizontal = 'left',
-            vertical = 'top',
-          },
-        },
-        render = function(props)
-          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
-
-          if filename == '' then
-            filename = ' [No Name]'
-          end
-
-          local modified = vim.bo[props.buf].modified
-          local ft_icon, ft_color = devicons.get_icon_color(filename)
-          local modified_fg = utils.get_colors('DiagnosticWarn').guifg
-
-          return {
-            modified and { ' ●  ', guifg = modified_fg } or ft_icon and { ' ', ft_icon, '  ', guifg = ft_color } or '',
-            {
-              filename,
-              gui = modified and 'bold,italic' or 'bold',
-              guifg = modified and modified_fg or utils.get_colors('Normal').guifg,
-            },
-            ' ',
-          }
-        end,
-      }
-    end,
-    event = 'VeryLazy',
-  },
   {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
@@ -142,9 +65,8 @@ return {
         end,
       }
       require('which-key').add {
-        { '<leader>c', group = 'Copilot' },
-        { '<leader>d', group = 'Diagnostic' },
         { '<leader>g', group = 'Git' },
+        { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'Quickfix' },
         { '<leader>t', group = 'Test' },
       }

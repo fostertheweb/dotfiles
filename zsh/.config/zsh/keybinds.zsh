@@ -28,8 +28,8 @@ bindkey -s '\ef' 'find-file^M'
 bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
 
 # cmd -
-# Open oil.nvim as file manager
-bindkey -s '\e-' 'nvim -c "Oil"^M'
+# Open walk to navigate files
+bindkey -s '\e-' 'walk^M'
 
 # cmd-d
 # Go to dotfiles

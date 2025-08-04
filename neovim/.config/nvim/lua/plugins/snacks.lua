@@ -1,4 +1,22 @@
 ---@diagnostic disable: undefined-global
+
+local mini_layout = {
+  preview = false,
+  layout = {
+    backdrop = false,
+    border = 'single',
+    box = 'vertical',
+    col = 0,
+    row = -2,
+    height = 0.4,
+    width = 0.5,
+    title = '{title}',
+    title_pos = 'left',
+    { win = 'input', height = 1, border = 'none' },
+    { win = 'list', border = 'none' },
+  },
+}
+
 return {
   'folke/snacks.nvim',
   cond = not vim.g.vscode,
@@ -15,9 +33,7 @@ return {
     input = {},
     layout = {},
     picker = {
-      layout = {
-        preset = 'vscode',
-      },
+      layout = mini_layout,
       matcher = {
         frecency = true,
       },
@@ -77,16 +93,34 @@ return {
     {
       '<leader>p',
       function()
-        Snacks.picker.smart { hidden = true, preview = false }
+        Snacks.picker.smart { hidden = true, preview = false, layout = mini_layout }
       end,
       desc = 'Pick',
     },
     {
       '<leader>.',
       function()
-        Snacks.picker.recent() { preview = false }
+        Snacks.picker.recent { preview = false }
       end,
       desc = 'Recent Files',
+    },
+    {
+      '<C-Space>',
+      function()
+        Snacks.terminal.toggle('opencode', {
+          position = 'right',
+          float = true,
+          win = {
+            style = 'terminal',
+            width = 0.46,
+            height = 0.999,
+            border = 'single',
+            row = 0,
+            col = 0.54,
+          },
+        })
+      end,
+      mode = { 't', 'n', 'x', 'v' },
     },
   },
 }

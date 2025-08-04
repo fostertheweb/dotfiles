@@ -51,7 +51,6 @@ return {
           config = notify_win_config,
         },
       }
-      require('mini.pick').setup()
     end
 
     require('mini.surround').setup()

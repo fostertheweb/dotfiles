@@ -11,6 +11,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-x>c', utils.close_tab_or_quit, { desc = 'Close 
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-]>', '<C-\\><C-n>')
+vim.keymap.set('t', '<C-x>c', '<C-\\><C-n><CMD>quit<CR>')
 
 -- q to go back a word
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
@@ -49,14 +50,15 @@ vim.keymap.set('n', '<C-b>', ':bp<cr>', { desc = 'Previous previous' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
+-- page down/up
+vim.keymap.set('t', '<S-C-u>', '<PageUp>')
+vim.keymap.set('t', '<S-C-d>', '<PageDown>')
+
+vim.keymap.set('n', '<leader><leader>', ':b ', { desc = 'Buffers' })
+
 -- Move selected line up/down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
-
--- D, Diagnostic keymaps
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
-
-vim.keymap.set('n', '<leader><leader>', ':b ', { desc = 'Buffers' })
 
 -- G, Git commands
 vim.keymap.set('n', '<C-g>', '<CMD>term gitu<CR>', { desc = 'Open gitu' })
