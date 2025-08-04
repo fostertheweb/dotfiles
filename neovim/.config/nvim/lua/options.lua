@@ -1,6 +1,7 @@
 if not vim.g.vscode then
   vim.opt.laststatus = 3 -- global statusline
   vim.opt.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+  vim.splitkeep = 'screen'
 end
 
 vim.opt.winborder = 'single'

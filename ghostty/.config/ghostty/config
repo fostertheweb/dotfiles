@@ -18,7 +18,7 @@ macos-titlebar-style = hidden
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = "Kanagawa Wave"
+theme = "Banana Blueberry"
 
 window-colorspace = display-p3
 window-padding-balance = true

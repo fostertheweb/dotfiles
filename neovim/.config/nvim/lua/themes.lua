@@ -24,7 +24,7 @@ return {
   },
   { 'savq/melange-nvim' },
   { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'vague2k/vague.nvim' },
+  { 'vague2k/vague.nvim', opts = { transparent = true } },
   {
     'shoenot/witchesbrew.nvim',
     priority = 1000,
