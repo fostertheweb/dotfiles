@@ -112,8 +112,8 @@ return {
           float = true,
           win = {
             style = 'terminal',
-            width = 0.46,
-            height = 0.999,
+            width = 0.5,
+            height = 0.95,
             border = 'single',
             row = 0,
             col = 0.54,
