@@ -72,7 +72,7 @@ return {
     {
       '<leader>k',
       function()
-        Snacks.picker.diagnostics { layout = 'default' }
+        Snacks.picker.diagnostics { layout = 'ivy', preview = false }
       end,
       desc = 'Problems',
     },
@@ -86,21 +86,21 @@ return {
     {
       '<leader>h',
       function()
-        Snacks.picker.help { layout = 'default' }
+        Snacks.picker.help()
       end,
       desc = 'Help',
     },
     {
       '<leader>p',
       function()
-        Snacks.picker.smart { hidden = true, preview = false, layout = mini_layout }
+        Snacks.picker.smart { hidden = true }
       end,
       desc = 'Pick',
     },
     {
       '<leader>.',
       function()
-        Snacks.picker.recent { preview = false }
+        Snacks.picker.recent()
       end,
       desc = 'Recent Files',
     },

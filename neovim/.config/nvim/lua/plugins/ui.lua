@@ -49,12 +49,12 @@ return {
             g = true,
           },
         },
-        preset = 'classic',
+        preset = 'helix',
         sort = { 'manual' },
         triggers = {
           { '<auto>', mode = 'nxso' },
-          { 's', mode = { 'n', 'x' } },
-          { '<C>', mode = { 'n' } },
+          { 's', mode = { 'n', 'x', 'v' } },
+          { '<C>', mode = { 'n', 'i', 'v', 'x' } },
         },
         win = { border = 'single' },
         defer = function(ctx)
