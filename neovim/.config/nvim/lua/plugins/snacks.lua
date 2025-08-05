@@ -108,15 +108,13 @@ return {
       '<C-Space>',
       function()
         Snacks.terminal.toggle('opencode', {
-          position = 'right',
           float = true,
           win = {
-            style = 'terminal',
             width = 0.5,
-            height = 0.95,
-            border = 'single',
+            height = 0.99,
+            border = 'left',
             row = 0,
-            col = 0.54,
+            col = 0.5,
           },
         })
       end,
