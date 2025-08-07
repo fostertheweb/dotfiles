@@ -6,10 +6,15 @@
     "context7": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
+        "opencode",
+        "x",
         "@upstash/context7-mcp"
       ],
+      "enabled": true
+    },
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp",
       "enabled": true
     }
   }
