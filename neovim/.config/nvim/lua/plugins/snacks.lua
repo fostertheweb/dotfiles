@@ -63,7 +63,7 @@ return {
       desc = 'Search',
     },
     {
-      '<leader>b',
+      '<leader><leader>',
       function()
         Snacks.picker.buffers { layout = 'select' }
       end,

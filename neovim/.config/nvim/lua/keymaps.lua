@@ -7,11 +7,10 @@ end, { expr = true, noremap = true })
 
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
 vim.keymap.set('n', '<C-x>s', '<CMD>wq!<CR>', { desc = 'Write and quit' })
-vim.keymap.set({ 'n', 'v' }, '<C-x>c', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<C-x>c', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
 
 -- Terminal mode escape
-vim.keymap.set('t', '<C-]>', '<C-\\><C-n>')
-vim.keymap.set('t', '<C-x>c', '<C-\\><C-n><CMD>quit<CR>')
+vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 
 -- q to go back a word
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
@@ -38,13 +37,9 @@ vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
 vim.keymap.set('v', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
 
--- Tab navigation
-vim.keymap.set('n', '<C-x>n', '<CMD>tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', '<C-x>p', '<CMD>tabprev<CR>', { desc = 'Previous tab' })
-
 -- Buffer navigation
-vim.keymap.set('n', '<C-f>', ':bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<C-b>', ':bp<cr>', { desc = 'Previous previous' })
+vim.keymap.set('n', '<C-w>n', '<CMD>bn<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-w>p', '<CMD>bp<CR>', { desc = 'Previous buffer' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -53,8 +48,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- page down/up
 vim.keymap.set('t', '<S-C-u>', '<PageUp>')
 vim.keymap.set('t', '<S-C-d>', '<PageDown>')
-
-vim.keymap.set('n', '<leader><leader>', ':b ', { desc = 'Buffers' })
 
 -- Move selected line up/down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
