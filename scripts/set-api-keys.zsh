@@ -9,6 +9,7 @@ typeset -A OP_CREDENTIALS=(
   GEMINI_API_KEY "Private/API Credentials/Gemini"
   OPENAI_API_KEY "Private/API Credentials/OpenAI"
   OPENROUTER_API_KEY "Private/API Credentials/OpenRouter"
+  GITHUB_PERSONAL_ACCESS_TOKEN "Private/API Credentials/GitHub MCP"
 )
 
 ENV_FILE="${HOME}/.api-credentials"
