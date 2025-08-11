@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+# Fish will automatically load the tmux-list-and-attach function from functions/
+tmux-list-and-attach

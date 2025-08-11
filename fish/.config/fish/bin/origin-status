@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+# Fish will automatically load the origin-status function from functions/
+origin-status

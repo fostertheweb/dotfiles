@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-global
 vim.api.nvim_create_user_command('ProjectFiles', function()
-  require('snacks').picker.files {
+  require('snacks').picker.smart {
     hidden = true,
     preview = function()
       return false
