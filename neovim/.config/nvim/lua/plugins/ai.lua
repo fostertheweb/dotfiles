@@ -1,7 +1,6 @@
 return {
   {
     'NickvanDyke/opencode.nvim',
-    cond = not vim.g.vscode,
     dependencies = { 'folke/snacks.nvim' },
     opts = {
       auto_reload = true,
@@ -22,7 +21,6 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
-    cond = not vim.g.vscode,
     event = {
       'BufReadPost',
       'BufNewFile',

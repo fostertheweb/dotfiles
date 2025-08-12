@@ -19,7 +19,6 @@ local mini_layout = {
 
 return {
   'folke/snacks.nvim',
-  cond = not vim.g.vscode,
   opts = {
     bufdelete = {},
     indent = {

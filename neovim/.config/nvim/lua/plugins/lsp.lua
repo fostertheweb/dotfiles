@@ -1,7 +1,6 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    cond = not vim.g.vscode,
   },
   {
     'dmmulroy/ts-error-translator.nvim',

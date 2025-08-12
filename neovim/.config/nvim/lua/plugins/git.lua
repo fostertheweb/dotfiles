@@ -1,14 +1,12 @@
 return {
   {
     'sindrets/diffview.nvim',
-    cond = not vim.g.vscode,
     config = function()
       vim.keymap.set('n', '<leader>gd', '<CMD>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>', { desc = 'Diff' })
     end,
   },
   {
     'lewis6991/gitsigns.nvim',
-    cond = not vim.g.vscode,
     enabled = true,
     opts = {
       signs = {
@@ -50,7 +48,6 @@ return {
   },
   {
     'pwntester/octo.nvim',
-    cond = not vim.g.vscode,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',

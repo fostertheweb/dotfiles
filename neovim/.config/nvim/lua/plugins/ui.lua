@@ -2,7 +2,6 @@ return {
   {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
-    cond = not vim.g.vscode,
     config = function()
       require('quicker').setup {
         opts = {
@@ -25,7 +24,6 @@ return {
   },
   {
     'folke/which-key.nvim',
-    cond = not vim.g.vscode,
     event = 'VimEnter',
     config = function()
       require('which-key').setup {

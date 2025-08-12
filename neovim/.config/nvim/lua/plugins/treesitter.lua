@@ -1,6 +1,5 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  cond = not vim.g.vscode,
   dependencies = {
     'JoosepAlviste/nvim-ts-context-commentstring',
   },

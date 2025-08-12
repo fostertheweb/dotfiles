@@ -1,32 +1,30 @@
 -- statusline
-if not vim.g.vscode then
-  vim.api.nvim_create_autocmd({
-    'ColorScheme',
-    'VimEnter',
-    'WinEnter',
-    'WinClosed',
-    'BufEnter',
-    'BufWritePost',
-    'TermOpen',
-    'TermClose',
-    'TextChanged',
-    'TextChangedI',
-  }, {
-    group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
-    pattern = '*',
-    callback = function()
-      local win = vim.api.nvim_get_current_win()
-      local cfg = vim.api.nvim_win_get_config(win)
+vim.api.nvim_create_autocmd({
+  'ColorScheme',
+  'VimEnter',
+  'WinEnter',
+  'WinClosed',
+  'BufEnter',
+  'BufWritePost',
+  'TermOpen',
+  'TermClose',
+  'TextChanged',
+  'TextChangedI',
+}, {
+  group = vim.api.nvim_create_augroup('ActiveStatusline', { clear = true }),
+  pattern = '*',
+  callback = function()
+    local win = vim.api.nvim_get_current_win()
+    local cfg = vim.api.nvim_win_get_config(win)
 
-      if cfg.relative ~= '' or (vim.bo.buftype == 'terminal' and vim.fn.winnr '$' == 1) then
-        return
-      end
+    if cfg.relative ~= '' or (vim.bo.buftype == 'terminal' and vim.fn.winnr '$' == 1) then
+      return
+    end
 
-      vim.o.statusline = require('custom.statusline').statusline()
-      vim.o.laststatus = 3
-    end,
-  })
-end
+    vim.o.statusline = require('custom.statusline').statusline()
+    vim.o.laststatus = 3
+  end,
+})
 
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Terminal buffer appearence',
