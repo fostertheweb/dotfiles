@@ -26,6 +26,16 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
+vim.api.nvim_create_autocmd('TabClosed', {
+  desc = 'Tab closed, return to terminal buffer',
+  pattern = '*',
+  callback = function()
+    if vim.bo.buftype == 'terminal' then
+      vim.cmd 'startinsert'
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Terminal buffer appearence',
   pattern = '*',
