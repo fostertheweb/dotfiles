@@ -2,6 +2,16 @@ return {
   {
     'sindrets/diffview.nvim',
     config = function()
+      require('diffview').setup {
+        view = {
+          merge_tool = {
+            layout = 'diff1_plain',
+            disable_diagnostics = true,
+            winbar_info = true,
+          },
+        },
+      }
+
       vim.keymap.set('n', '<leader>gd', '<CMD>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>', { desc = 'Diff' })
       vim.keymap.set('n', '<leader>gm', '<CMD>DiffviewOpen<CR>', { desc = 'Merge' })
       vim.keymap.set('n', '<leader>gf', '<CMD>DiffviewFileHistory %<CR>', { desc = 'File history' })
