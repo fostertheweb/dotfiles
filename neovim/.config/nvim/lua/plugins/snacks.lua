@@ -125,7 +125,7 @@ return {
         Snacks.terminal.toggle('gitu', {
           win = {
             width = vim.o.columns,
-            height = vim.o.lines,
+            height = vim.o.lines - 1,
             border = 'none',
             row = 0,
             col = 0,
