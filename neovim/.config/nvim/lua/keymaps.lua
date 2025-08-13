@@ -7,7 +7,9 @@ end, { expr = true, noremap = true })
 
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
 vim.keymap.set('n', '<C-x>s', '<CMD>wq!<CR>', { desc = 'Write and quit' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<C-S-q>', utils.close_tab_or_quit, { desc = 'Close tab or quit' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader><BS>', function()
+  utils.close_tab_or_quit(vim.api.nvim_get_current_buf())
+end, { desc = 'Close tab or quit' })
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
