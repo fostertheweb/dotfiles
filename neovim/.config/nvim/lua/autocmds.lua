@@ -66,13 +66,13 @@ vim.api.nvim_create_autocmd({ 'WinNew', 'WinClosed', 'BufWinEnter' }, {
 vim.api.nvim_create_autocmd('TermClose', {
   pattern = '*',
   callback = function()
-    vim.schedule(function()
+    vim.defer_fn(function()
       local bufname = vim.fn.expand '<afile>'
       if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 and bufname == '' then
         vim.cmd('bdelete! ' .. vim.fn.expand '<abuf>')
-        vim.cmd 'redraw!'
+        -- vim.cmd 'redraw!'
       end
-    end)
+    end, 5)
   end,
 })
 
