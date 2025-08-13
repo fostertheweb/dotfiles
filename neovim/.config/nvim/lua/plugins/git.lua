@@ -3,6 +3,8 @@ return {
     'sindrets/diffview.nvim',
     config = function()
       vim.keymap.set('n', '<leader>gd', '<CMD>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>', { desc = 'Diff' })
+      vim.keymap.set('n', '<leader>gm', '<CMD>DiffviewOpen<CR>', { desc = 'Merge' })
+      vim.keymap.set('n', '<leader>gf', '<CMD>DiffviewFileHistory %<CR>', { desc = 'File history' })
     end,
   },
   {
@@ -25,6 +27,18 @@ return {
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
+
+        map('n', '<leader>gK', function()
+          gitsigns.reset_hunk()
+        end, { desc = 'Discard hunk' })
+
+        map('n', '<leader>gs', function()
+          gitsigns.stage_hunk()
+        end, { desc = 'Stage hunk' })
+
+        map('n', '<leader>gq', function()
+          gitsigns.setqflist 'all'
+        end, { desc = 'Quickfix  hunks' })
 
         -- Next change
         map('n', ']c', function()
