@@ -23,13 +23,6 @@ return {
     end,
   },
   {
-    'alvarosevilla95/luatab.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('luatab').setup()
-    end,
-  },
-  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()

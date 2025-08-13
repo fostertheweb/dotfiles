@@ -4,6 +4,8 @@ require 'lsp'
 require 'keymaps'
 require 'usercmds'
 
+local util = require 'utils'
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
@@ -22,5 +24,11 @@ vim.o.background = 'dark'
 vim.cmd 'colorscheme ashen'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
+
+if util.is_dark_mode() then
+  vim.cmd 'colorscheme ashen'
+else
+  vim.cmd 'colorscheme melange'
+end
 
 -- vim: ts=2 sts=2 sw=2 et

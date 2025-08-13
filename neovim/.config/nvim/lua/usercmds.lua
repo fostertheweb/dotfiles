@@ -2,9 +2,7 @@
 vim.api.nvim_create_user_command('ProjectFiles', function()
   require('snacks').picker.smart {
     hidden = true,
-    preview = function()
-      return false
-    end,
+    preview = false,
   }
 end, {})
 

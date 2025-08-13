@@ -39,11 +39,10 @@ vim.api.nvim_create_autocmd('TabClosed', {
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Terminal buffer appearence',
   pattern = '*',
-  callback = function(ev)
+  callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     if vim.fn.winnr '$' == 1 then
-      vim.bo[ev.buf].modeline = false
       vim.o.laststatus = 0
     end
     vim.cmd 'startinsert'
@@ -89,10 +88,7 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Start commit editor in insert mode',
   pattern = { 'gitcommit', 'gitrebase', 'gitconfig', 'COMMIT_EDITMSG' },
   callback = function(ev)
-    -- vim.defer_fn(function()
     vim.bo[ev.buf].bufhidden = 'wipe'
-    vim.bo[ev.buf].swapfile = false
     vim.cmd 'startinsert'
-    -- end, 100)
   end,
 })
