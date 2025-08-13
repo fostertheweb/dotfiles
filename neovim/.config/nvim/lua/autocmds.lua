@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd('TermClose', {
         vim.cmd('bdelete! ' .. vim.fn.expand '<abuf>')
         vim.cmd 'redraw!'
       end
-    end, 5)
+    end, 100)
   end,
 })
 
