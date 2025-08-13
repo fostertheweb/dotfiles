@@ -39,10 +39,11 @@ vim.api.nvim_create_autocmd('TabClosed', {
 vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'Terminal buffer appearence',
   pattern = '*',
-  callback = function()
+  callback = function(ev)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     if vim.fn.winnr '$' == 1 then
+      vim.bo[ev.buf].modeline = false
       vim.o.laststatus = 0
     end
     vim.cmd 'startinsert'
@@ -91,7 +92,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.defer_fn(function()
       vim.bo[ev.buf].bufhidden = 'wipe'
       vim.bo[ev.buf].swapfile = false
-      vim.bo[ev.buf].modeline = false
       vim.cmd 'startinsert'
     end, 100)
   end,
