@@ -64,13 +64,14 @@ vim.api.nvim_create_autocmd({ 'WinNew', 'WinClosed', 'BufWinEnter' }, {
 })
 
 vim.api.nvim_create_autocmd('TermClose', {
-  pattern = '*',
+  pattern = '',
   callback = function()
-    vim.schedule(function()
-      if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 then
+    vim.defer_fn(function()
+      local bufname = vim.fn.expand '<afile>'
+      if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 and bufname == '' then
         vim.cmd('bdelete! ' .. vim.fn.expand '<abuf>')
       end
-    end)
+    end, 10)
   end,
 })
 
@@ -82,7 +83,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FileType', 'TabNew' }, {
+vim.api.nvim_create_autocmd('FileType', {
   desc = 'Start commit editor in insert mode',
   pattern = { 'gitcommit', 'COMMIT_EDITMSG' },
   callback = function()
