@@ -9,6 +9,11 @@ return {
             disable_diagnostics = true,
             winbar_info = true,
           },
+          file_history = {
+            layout = 'diff2_vertical',
+            disable_diagnostics = false,
+            winbar_info = false,
+          },
         },
       }
 
