@@ -33,7 +33,7 @@ return {
           else
             gitsigns.nav_hunk 'next'
           end
-        end, { desc = 'Next git change' })
+        end, { desc = 'Next change' })
 
         -- Previous change
         map('n', '[c', function()
@@ -42,7 +42,7 @@ return {
           else
             gitsigns.nav_hunk 'prev'
           end
-        end, { desc = 'Previous git change' })
+        end, { desc = 'Previous change' })
       end,
     },
   },

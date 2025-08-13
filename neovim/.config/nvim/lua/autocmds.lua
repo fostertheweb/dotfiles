@@ -82,8 +82,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+vim.api.nvim_create_autocmd({ 'FileType', 'TabNew' }, {
   desc = 'Start commit editor in insert mode',
-  pattern = 'gitcommit',
-  command = 'startinsert',
+  pattern = { 'gitcommit', 'COMMIT_EDITMSG' },
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd 'startinsert'
+    end, 100)
+  end,
 })
