@@ -67,7 +67,8 @@ vim.api.nvim_create_autocmd('TermClose', {
   pattern = '*',
   callback = function()
     vim.defer_fn(function()
-      if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 then
+      local bufname = vim.fn.expand '<afile>'
+      if vim.bo.buftype == 'terminal' and vim.v.shell_error == 0 and bufname == '' then
         vim.cmd('bdelete! ' .. vim.fn.expand '<abuf>')
         vim.cmd 'redraw!'
       end
