@@ -20,12 +20,12 @@ bindkey -s '^g' 'gitu^M'
 bindkey -s '^[[106;6u' 'lazyjj^M'
 
 # cmd-f
-# Find file with fzf
-bindkey -s '\ef' 'find-file^M'
+# Open nvim with picker in cwd
+bindkey -s '\ef' 'nvim -c "ProjectFiles"^M'
 
 # cmd-e
-# Open cwd in nvim
-bindkey -s '\ee' 'nvim -c "ProjectFiles"^M'
+# Open nvim
+bindkey -s '\ee' 'nvim^M'
 
 # cmd -
 # Open walk to navigate files
