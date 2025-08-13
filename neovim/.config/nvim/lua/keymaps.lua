@@ -56,7 +56,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- G, Git commands
-vim.keymap.set('n', '<C-g>', '<CMD>term gitu<CR>', { desc = 'Open gitu' })
+vim.keymap.set('n', '<C-g>', function()
+  local cmd = { os.getenv 'SHELL' or 'zsh', '-lc', 'gitu' }
+  vim.fn.termopen(cmd, { env = { GIT_EDITOR = vim.env.GIT_EDITOR } })
+end, { desc = 'Open gitu' })
 vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
 

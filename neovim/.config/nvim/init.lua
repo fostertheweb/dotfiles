@@ -1,3 +1,18 @@
+do
+  if (vim.v.servername or '') == '' then
+    local sock = vim.fn.stdpath 'run' .. '/nvim-' .. vim.fn.getpid() .. '.sock'
+    vim.fn.serverstart(sock)
+  end
+end
+
+vim.env.GIT_EDITOR = table.concat({
+  'nvr',
+  '--servername',
+  vim.v.servername,
+  '--remote-tab-wait',
+  "+'set bufhidden=wipe'",
+}, ' ')
+
 require 'autocmds'
 require 'options'
 require 'lsp'

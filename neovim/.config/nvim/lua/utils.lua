@@ -35,7 +35,7 @@ M.close_tab_or_quit = function(bufnr)
   else
     vim.cmd 'quit'
   end
-  
+
   if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
     vim.api.nvim_buf_delete(bufnr, { force = false })
   end

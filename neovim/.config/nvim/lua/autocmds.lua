@@ -86,9 +86,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Start commit editor in insert mode',
-  pattern = { 'gitcommit', 'COMMIT_EDITMSG' },
-  callback = function()
+  pattern = { 'gitcommit', 'gitrebase', 'gitconfig', 'COMMIT_EDITMSG' },
+  callback = function(ev)
     vim.defer_fn(function()
+      vim.bo[ev.buf].bufhidden = 'wipe'
+      vim.bo[ev.buf].swapfile = false
+      vim.bo[ev.buf].modeline = false
       vim.cmd 'startinsert'
     end, 100)
   end,

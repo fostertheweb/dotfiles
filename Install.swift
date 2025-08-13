@@ -20,7 +20,7 @@ let ignoredDirectories = [
 func askUser(_ question: String) -> Bool {
   print("\(question) [y/N]: ", terminator: "")
   fflush(stdout)
-  
+
   guard let input = readLine()?.lowercased() else { return false }
   return input == "y" || input == "yes"
 }
@@ -80,6 +80,10 @@ if askUser("Install npm globals?") {
 
 if askUser("Install cargo bins?") {
   step("Install cargo bins", command: "zsh ./scripts/cargo.zsh")
+}
+
+if askUser("Install python packages?") {
+  step("Install python packages", command: "zsh ./scripts/pip.zsh")
 }
 
 if askUser("Write macOS Defaults?") {
