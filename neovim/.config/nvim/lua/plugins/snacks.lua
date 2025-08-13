@@ -119,5 +119,20 @@ return {
       end,
       mode = { 't', 'n', 'x', 'v' },
     },
+    {
+      '<C-g>',
+      function()
+        Snacks.terminal.toggle('gitu', {
+          win = {
+            width = vim.o.columns,
+            height = vim.o.lines,
+            border = 'none',
+            row = 0,
+            col = 0,
+          },
+        })
+      end,
+      mode = 'n',
+    },
   },
 }
