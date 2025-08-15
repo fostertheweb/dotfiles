@@ -35,6 +35,7 @@ return {
         },
       }
 
+      vim.keymap.set('n', '<C-i>', '<C-i>')
       vim.keymap.set('n', '<S-Tab>', '<CMD>CybuLastusedPrev<CR>')
       vim.keymap.set('n', '<Tab>', '<CMD>CybuLastusedNext<CR>')
     end,
