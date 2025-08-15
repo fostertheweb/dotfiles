@@ -11,7 +11,7 @@ function grep-cwd() {
 }
 
 function find-file() {
-  local selection=$(fzf)
+  local selection=$(fd --type f --hidden --exclude .git | fzf --keep-right --header '  Open in neovim')
 
   if [[ -n "$selection" ]]; then
     $EDITOR $selection

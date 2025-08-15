@@ -20,8 +20,8 @@ bindkey -s '^g' 'gitu^M'
 bindkey -s '^[[106;6u' 'lazyjj^M'
 
 # cmd-f
-# Open nvim with picker in cwd
-bindkey -s '\ef' 'nvim -c "ProjectFiles"^M'
+# Open fzf in cwd
+bindkey -s '\ef' 'find-file^M'
 
 # cmd-e
 # Open nvim
