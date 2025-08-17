@@ -108,7 +108,7 @@ local function git_diff_component()
   return string.format('%%#DiagnosticOk#+%s %%#DiagnosticError#-%s ', ins, dels)
 end
 
-function M.statusline()
+function M.active()
   vim.api.nvim_set_hl(0, 'StatusLine', { bg = utils.get_colors('NormalNC').bg })
 
   local left = file_path_component() .. file_name_component() .. lsp_status()

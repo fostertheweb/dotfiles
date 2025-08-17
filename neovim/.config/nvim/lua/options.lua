@@ -1,7 +1,5 @@
-vim.opt.laststatus = 3 -- global statusline
-vim.opt.statusline = "%!v:lua.require'custom.statusline'.statusline()"
+vim.o.laststatus = 3
 vim.splitkeep = 'screen'
-
 vim.opt.winborder = 'single'
 vim.opt.completeopt = 'menu,menuone,popup,fuzzy,noinsert'
 vim.opt.termguicolors = true
