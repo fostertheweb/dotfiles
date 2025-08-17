@@ -7,28 +7,64 @@ local function file_name_component()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   filename = (filename ~= '' and filename) or '[No Name]'
   local modified = vim.bo[0].modified
-  local ft_icon, ft_color = devicons.get_icon_color(filename)
-  local modified_fg = utils.get_colors('DiagnosticWarn').guifg
+  local filetype = vim.bo[0].filetype
+  local buftype = vim.bo[0].buftype
+
+  local ft_icon, ft_color
+
+  -- For terminals, use the filetype (e.g., 'zsh', 'bash') to get icon
+  if buftype == 'terminal' then
+    if filetype ~= '' then
+      ft_icon, ft_color = devicons.get_icon_color_by_filetype(filetype)
+    end
+    if not ft_icon then
+      ft_icon, ft_color = devicons.get_icon_color 'terminal'
+    end
+    filename = vim.fn.bufname('%'):match '[^:]+$' or 'terminal'
+    if filename and filename:match '^%d+:' then
+      filename = filename:gsub('^%d+:', '')
+    end
+  -- For special buffer types, try filetype first
+  elseif buftype ~= '' then
+    if filetype ~= '' then
+      ft_icon, ft_color = devicons.get_icon_color_by_filetype(filetype)
+    end
+    if not ft_icon then
+      ft_icon, ft_color = devicons.get_icon_color(filename)
+    end
+  else
+    -- Normal files: try filename first, fallback to filetype
+    ft_icon, ft_color = devicons.get_icon_color(filename)
+    if not ft_icon and filetype ~= '' then
+      ft_icon, ft_color = devicons.get_icon_color_by_filetype(filetype)
+    end
+  end
+
+  local modified_fg = utils.get_colors('MiniIconsOrange').guifg
   vim.api.nvim_set_hl(0, 'SimpleLineFileIcon', { fg = ft_color })
   vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
   vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true, bold = true })
 
   if ft_icon == nil then
-    ft_icon = ''
-  end
-
-  if modified then
-    return string.format('%%#SimpleLineFilenameModified# %s %s ', '● ', filename)
+    ft_icon = ''
   end
 
   if filename == '[No Name]' then
     return string.format('%%#Comment# %s  %s ', ft_icon, filename)
   end
 
+  if buftype == 'terminal' then
+    return string.format('%%#SimpleLineFileIcon# %s  %s ', ft_icon, filename)
+  end
+
   if vim.bo.buftype == 'terminal' then
     ft_icon, ft_color = devicons.get_icon_color 'term://zsh'
     filename = vim.fn.bufname('%'):match('[^:]+$'):gsub('^%d+:', '')
     return string.format('%%#SimpleLineFileIcon# %s  %s ', ft_icon, filename)
+  end
+
+  if modified then
+    return string.format('%%#SimpleLineFilenameModified# %s %s ', '●', filename)
   end
 
   return string.format('%%#SimpleLineFileIcon# %s  %%#SimpleLineFilename#%s ', ft_icon, filename)
@@ -70,17 +106,11 @@ local function lsp_status()
   })
   local error_count = counts[vim.diagnostic.severity.ERROR] or 0
   local warn_count = counts[vim.diagnostic.severity.WARN] or 0
-  local problem_count = error_count + warn_count
 
-  if vim.bo.buftype == 'terminal' then
-    return ''
-  end
+  local errors = string.format('%%#DiagnosticError#%s%d', '  ', error_count)
+  local warnings = string.format('%%#DiagnosticWarn#%s%d', '  ', warn_count)
 
-  if error_count > 0 then
-    return string.format('%%#DiagnosticSignError#%s%d', '!', problem_count)
-  else
-    return string.format('%%#DiagnosticSignOk#%s', '  ')
-  end
+  return table.concat { (error_count > 0 and errors) or '', ' ', (warn_count > 0 and warnings) or '' }
 end
 
 local function git_branch()
