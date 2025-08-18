@@ -1,5 +1,4 @@
 ---@diagnostic disable: undefined-global
-
 local mini_layout = {
   preview = false,
   layout = {
@@ -133,6 +132,18 @@ return {
         })
       end,
       mode = 'n',
+    },
+    {
+      '<leader><BS>',
+      function()
+        if #vim.api.nvim_list_tabpages() > 1 then
+          vim.cmd 'tabclose'
+        else
+          Snacks.bufdelete()
+        end
+      end,
+      mode = 'n',
+      desc = 'Close tab or delete',
     },
   },
 }

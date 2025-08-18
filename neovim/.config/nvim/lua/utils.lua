@@ -29,18 +29,6 @@ M.is_dark_mode = function()
   return true
 end
 
-M.close_tab_or_quit = function(bufnr)
-  if #vim.api.nvim_list_tabpages() > 1 then
-    vim.cmd 'tabclose'
-  else
-    vim.cmd 'quit'
-  end
-
-  if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
-    vim.api.nvim_buf_delete(bufnr, { force = false })
-  end
-end
-
 M.get_colors = function(hl_group)
   local hl = vim.api.nvim_get_hl(0, { name = hl_group, link = false })
 

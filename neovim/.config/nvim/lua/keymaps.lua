@@ -6,10 +6,7 @@ vim.keymap.set('i', '<Tab>', function()
 end, { expr = true, noremap = true })
 
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
-vim.keymap.set('n', '<C-x>s', '<CMD>wq!<CR>', { desc = 'Write and quit' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader><BS>', function()
-  utils.close_tab_or_quit(vim.api.nvim_get_current_buf())
-end, { desc = 'Close tab or quit' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', ':wq', { desc = ':wq' })
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
@@ -24,7 +21,6 @@ vim.keymap.set({ 'n', 'v' }, 'B', 'Q')
 
 -- Clear search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<C-[>', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')

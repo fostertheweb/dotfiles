@@ -1,3 +1,5 @@
+local utils = require 'utils'
+
 return {
   {
     'smoka7/hop.nvim',
@@ -63,6 +65,29 @@ return {
         ctermfg = 45,
         cterm = { bold = true, underline = true },
       })
+    end,
+  },
+  {
+    'tripplyons/stacker.nvim',
+    event = 'BufEnter',
+    config = function()
+      local stacker = require 'stacker'
+      stacker.setup {
+        use_storage = true,
+      }
+
+      vim.api.nvim_set_hl(0, 'TabLine', { bg = utils.get_colors('NormalNC').bg })
+      vim.api.nvim_set_hl(0, 'WinBar', { bg = utils.get_colors('NormalNC').bg })
+
+      for i = 1, 9 do
+        vim.keymap.set('n', '<leader>' .. i, function()
+          stacker.navigate(i)
+        end)
+      end
+
+      vim.keymap.set('n', '<leader>0', function()
+        stacker.navigate(10)
+      end)
     end,
   },
 }
