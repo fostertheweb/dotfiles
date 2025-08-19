@@ -31,4 +31,5 @@ else
   vim.cmd 'colorscheme melange'
 end
 
+vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
 -- vim: ts=2 sts=2 sw=2 et

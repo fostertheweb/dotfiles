@@ -1,4 +1,4 @@
-local statusline = require 'custom.statusline'
+-- local statusline = require 'custom.statusline'
 
 return {
   'echasnovski/mini.nvim',
@@ -53,12 +53,12 @@ return {
       },
     }
 
-    require('mini.statusline').setup {
-      content = {
-        active = statusline.active,
-        inactive = nil,
-      },
-    }
+    -- require('mini.statusline').setup {
+    --   content = {
+    --     active = statusline.active,
+    --     inactive = nil,
+    --   },
+    -- }
     require('mini.surround').setup()
   end,
 }

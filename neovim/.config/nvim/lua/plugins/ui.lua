@@ -1,5 +1,11 @@
 return {
   {
+    'eduardo-antunes/plainline',
+    config = function()
+      require('plainline').setup 'emacs'
+    end,
+  },
+  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     config = function()
