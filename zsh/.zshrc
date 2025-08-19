@@ -25,12 +25,6 @@ autoload -Uz compinit && compinit -i
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
-# zsh plugins
-source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-
 # fzf-tab configuration
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
@@ -44,15 +38,9 @@ esac
 # deno
 export PATH="$HOME/.deno/bin:$PATH"
 
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/Users/jonathan/.zsh/completions:"* ]]; then export FPATH="/Users/jonathan/.zsh/completions:$FPATH"; fi
-
 # go
 export GOPATH="$HOME/Developer/go"
 export PATH="$GOPATH/bin:$PATH"
-
-# ruby
-eval "$(rbenv init - zsh)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -67,8 +55,6 @@ export BAT_THEME=ansi
 # man page colors
 export MANPAGER="less -sR --use-color -Dd+r -Du+b"
 
-# fzf shell integration
-source <(fzf --zsh)
 # Disable fzf Ctrl-T binding
 export FZF_CTRL_T_COMMAND=""
 # Open in tmux popup if on tmux, otherwise use --height mode
@@ -97,6 +83,9 @@ eval "$(thefuck --alias)"
 # zoxide
 eval "$(zoxide init zsh)"
 
+# ruby
+eval "$(rbenv init - zsh)"
+
 alias oops="fuck"
 alias vim="nvim"
 alias n="nvim"
@@ -109,24 +98,21 @@ alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias lf="OPENER=nvim lf"
 alias ai="opencode"
 
+source "$ZSH_CONFIG/keybinds.zsh"
+
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/jobs.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
-if [[ -z $SESSION_MANAGER ]]; then
-  echo "Session manager not configured."
-elif [[ $SESSION_MANAGER == "tmux" ]]; then
-  source "$ZSH_CONFIG/functions/tmux.zsh"
-elif [[ $SESSION_MANAGER == "aerospace" ]]; then
-  source "$ZSH_CONFIG/functions/aerospace.zsh"
-elif [[ $SESSION_MANAGER == "zellij" ]]; then
-  source "$ZSH_CONFIG/functions/zellij.zsh"
-else
-  echo "Session manager not configured."
-fi
+# fzf shell integration
+source <(fzf --zsh)
 
-source "$ZSH_CONFIG/keybinds.zsh"
+# zsh plugins
+source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 add-zsh-hook chpwd load-nvmrc
