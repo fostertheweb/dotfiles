@@ -5,6 +5,12 @@ return {
     priority = 1000,
     opts = {},
   },
+  {
+    'mitch1000/backpack.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   { 'aliqyan-21/darkvoid.nvim', lazy = false, priority = 1000 },
   {
     'thallada/farout.nvim',
