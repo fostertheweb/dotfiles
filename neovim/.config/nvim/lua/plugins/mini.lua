@@ -53,12 +53,6 @@ return {
       },
     }
 
-    -- require('mini.statusline').setup {
-    --   content = {
-    --     active = statusline.active,
-    --     inactive = nil,
-    --   },
-    -- }
     require('mini.surround').setup()
   end,
 }

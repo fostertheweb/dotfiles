@@ -1,6 +1,7 @@
 return {
   {
     'eduardo-antunes/plainline',
+    enabled = false,
     config = function()
       require('plainline').setup 'emacs'
     end,

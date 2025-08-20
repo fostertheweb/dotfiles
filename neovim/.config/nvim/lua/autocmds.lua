@@ -1,4 +1,14 @@
+vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'BufWritePost', 'LspAttach', 'DiagnosticChanged' }, {
+  group = vim.api.nvim_create_augroup('GlobalStatusline', { clear = true }),
+  callback = function()
+    vim.cmd 'redrawstatus'
+  end,
+})
+
+local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
+
 vim.api.nvim_create_autocmd('TabClosed', {
+  group = term_group,
   desc = 'Tab closed, return to terminal buffer',
   pattern = '*',
   callback = function()
@@ -9,6 +19,7 @@ vim.api.nvim_create_autocmd('TabClosed', {
 })
 
 vim.api.nvim_create_autocmd('TermOpen', {
+  group = term_group,
   desc = 'Terminal buffer appearence',
   pattern = '*',
   callback = function()
@@ -19,6 +30,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 })
 
 vim.api.nvim_create_autocmd('TermClose', {
+  group = term_group,
   pattern = '*',
   callback = function()
     vim.schedule(function()
