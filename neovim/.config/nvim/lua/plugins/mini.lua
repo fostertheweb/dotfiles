@@ -1,5 +1,3 @@
--- local statusline = require 'custom.statusline'
-
 return {
   'echasnovski/mini.nvim',
   config = function()

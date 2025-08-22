@@ -1,12 +1,16 @@
 return {
   {
-    'ficcdaf/ashen.nvim',
+    'Mofiqul/adwaita.nvim',
     lazy = false,
     priority = 1000,
-    opts = {},
+    config = function()
+      vim.g.adwaita_darker = true
+      vim.g.adwaita_disable_cursorline = false
+      vim.g.adwaita_transparent = false
+    end,
   },
   {
-    'mitch1000/backpack.nvim',
+    'ficcdaf/ashen.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
@@ -18,19 +22,8 @@ return {
     priority = 1000,
     opts = {},
   },
-  {
-    'blazkowolf/gruber-darker.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      italic = {
-        strings = false,
-      },
-    },
-  },
   { 'savq/melange-nvim' },
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'vague2k/vague.nvim', opts = { transparent = true } },
+  { 'vague2k/vague.nvim', opts = {} },
   {
     'shoenot/witchesbrew.nvim',
     priority = 1000,

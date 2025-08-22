@@ -68,6 +68,13 @@ return {
       desc = 'Buffers',
     },
     {
+      '<leader>r',
+      function()
+        Snacks.picker.lsp_symbols { layout = 'ivy' }
+      end,
+      desc = 'Problems',
+    },
+    {
       '<leader>k',
       function()
         Snacks.picker.diagnostics { layout = 'ivy', preview = false }
@@ -89,12 +96,20 @@ return {
       desc = 'Help',
     },
     {
-      '<leader>p',
+      '<leader>f',
       function()
         Snacks.picker.smart { hidden = true }
       end,
-      desc = 'Pick',
+      desc = 'Files',
     },
+    {
+      '<leader>gg',
+      function()
+        Snacks.picker.git_status()
+      end,
+      desc = 'Changes',
+    },
+
     {
       '<leader>.',
       function()

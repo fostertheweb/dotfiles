@@ -18,7 +18,7 @@ M.file_path_component = function()
 
   local sep = package.config:sub(1, 1) -- get system's path separator
   local dirs = vim.split(full_path, sep, { plain = true })
-  local joined = table.concat(dirs, string.format '%%#Comment# 󰿟 ')
+  local joined = table.concat(dirs, string.format '%%#Whitespace# 󰿟 ')
 
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
 
@@ -26,14 +26,13 @@ M.file_path_component = function()
     return ''
   end
 
-  return string.format('%%#Comment# %s %s 󰿟', ' ', joined)
+  return string.format('%%#Whitespace# %s %s 󰿟', ' ', joined)
 end
 
-M.file_name_component = function()
+M.file_name_component_1 = function()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   filename = (filename ~= '' and filename) or '[No Name]'
   local modified = vim.bo[0].modified
-  local buftype = vim.bo[0].buftype
 
   local modified_fg = utils.get_colors('MiniIconsOrange').guifg
   vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
@@ -50,7 +49,7 @@ M.file_name_component = function()
   return string.format('%%#SimpleLineFilename#%s', filename)
 end
 
-local function file_name_component()
+M.file_name_component = function()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   filename = (filename ~= '' and filename) or '[No Name]'
   local modified = vim.bo[0].modified
@@ -101,20 +100,20 @@ local function file_name_component()
   end
 
   if buftype == 'terminal' then
-    return string.format('%%#SimpleLineFileIcon# %s  %s ', ft_icon, filename)
+    return string.format('%%#SimpleLineFileIcon#%s  %s ', ft_icon, filename)
   end
 
   if vim.bo.buftype == 'terminal' then
     ft_icon, ft_color = devicons.get_icon_color 'term://zsh'
     filename = vim.fn.bufname('%'):match('[^:]+$'):gsub('^%d+:', '')
-    return string.format('%%#SimpleLineFileIcon# %s  %s ', ft_icon, filename)
+    return string.format('%%#SimpleLineFileIcon#%s  %s ', ft_icon, filename)
   end
 
   if modified then
-    return string.format('%%#SimpleLineFilenameModified# %s %s ', '●', filename)
+    return string.format('%%#SimpleLineFilenameModified#%s %s ', ' ', filename)
   end
 
-  return string.format('%%#SimpleLineFileIcon# %s  %%#SimpleLineFilename#%s ', ft_icon, filename)
+  return string.format('%%#SimpleLineFileIcon#%s  %%#SimpleLineFilename#%s ', ft_icon, filename)
 end
 
 local function file_path_component()

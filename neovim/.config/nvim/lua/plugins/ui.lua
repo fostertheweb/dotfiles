@@ -1,8 +1,8 @@
 local utils = require 'utils'
 
 return {
-
   {
+
     'eduardo-antunes/plainline',
     enabled = false,
     config = function()
@@ -49,7 +49,6 @@ return {
           section_separators = { left = ' ', right = ' ' },
           disabled_filetypes = {
             quickfix = {},
-
             statusline = {},
             terminmal = {},
             winbar = {},
@@ -73,7 +72,6 @@ return {
               'Filetype',
               'CursorMoved',
               'CursorMovedI',
-              'ModeChanged',
             },
           },
         },
@@ -82,21 +80,21 @@ return {
             {
               "require'custom.statusline'.file_path_component()",
               serperator = '',
+              padding = { left = 1, right = 0 },
             },
             {
               "require'custom.statusline'.file_name_component()",
               padding = { left = 0, right = 0 },
               serperator = '',
             },
-            {
-
-              'filetype',
-              colored = true,
-              icon_only = true,
-              icon = { align = 'right' },
-              padding = { left = 0, right = 1 },
-              separator = '',
-            },
+            -- {
+            --   'filetype',
+            --   colored = true,
+            --   icon_only = true,
+            --   icon = { align = 'right' },
+            --   padding = { left = 0, right = 1 },
+            --   separator = '',
+            -- },
             {
               'diagnostics',
               sections = { 'error', 'warn' },
@@ -107,13 +105,10 @@ return {
           lualine_x = {},
           lualine_y = {},
           lualine_z = {
-            -- {
-            --   'lsp_status',
-            --   icons_enabled = false,
-            -- },
             {
               'branch',
               icon = ' ',
+              separator = '',
             },
             {
               'diff',
