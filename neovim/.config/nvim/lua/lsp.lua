@@ -50,7 +50,7 @@ vim.diagnostic.config {
 
 vim.lsp.enable {
   -- npm
-  'ts_ls',
+  'vtsls',
   'cssls',
   'html',
   'jsonls',

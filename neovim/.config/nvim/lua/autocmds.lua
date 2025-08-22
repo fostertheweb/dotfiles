@@ -1,10 +1,3 @@
-vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'BufWritePost', 'LspAttach', 'DiagnosticChanged' }, {
-  group = vim.api.nvim_create_augroup('GlobalStatusline', { clear = true }),
-  callback = function()
-    vim.cmd 'redrawstatus'
-  end,
-})
-
 local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
 
 vim.api.nvim_create_autocmd('TabClosed', {

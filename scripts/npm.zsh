@@ -7,6 +7,7 @@ npm install -g @astrojs/language-server \
 	svelte-language-server \
 	@tailwindcss/language-server \
 	typescript \
+	@vtsls/language-server \
 	typescript-language-server \
 	vscode-langservers-extracted \
 	@openai/codex \
