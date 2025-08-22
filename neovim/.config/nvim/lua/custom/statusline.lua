@@ -3,6 +3,53 @@ local devicons = require 'nvim-web-devicons'
 
 local M = {}
 
+M.file_path_component = function()
+  local full_path = vim.fn.expand '%:p:h'
+
+  if full_path == '' then
+    return ''
+  end
+
+  local cwd = vim.fn.getcwd()
+
+  if full_path:sub(1, #cwd) == cwd then
+    full_path = full_path:sub(#cwd + 2) -- +2 to remove the slash as well
+  end
+
+  local sep = package.config:sub(1, 1) -- get system's path separator
+  local dirs = vim.split(full_path, sep, { plain = true })
+  local joined = table.concat(dirs, string.format '%%#Comment# 󰿟 ')
+
+  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+
+  if filename == '' then
+    return ''
+  end
+
+  return string.format('%%#Comment# %s %s 󰿟', ' ', joined)
+end
+
+M.file_name_component = function()
+  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+  filename = (filename ~= '' and filename) or '[No Name]'
+  local modified = vim.bo[0].modified
+  local buftype = vim.bo[0].buftype
+
+  local modified_fg = utils.get_colors('MiniIconsOrange').guifg
+  vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
+  vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true, bold = true })
+
+  if filename == '[No Name]' then
+    return string.format('%%#Comment#%s', filename)
+  end
+
+  if modified then
+    return string.format('%%#SimpleLineFilenameModified#%s', filename)
+  end
+
+  return string.format('%%#SimpleLineFilename#%s', filename)
+end
+
 local function file_name_component()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   filename = (filename ~= '' and filename) or '[No Name]'

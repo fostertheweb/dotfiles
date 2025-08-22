@@ -1,5 +1,4 @@
 vim.o.laststatus = 3 -- Global statusline
-vim.o.statusline = '%!v:lua.require("custom.statusline").active()'
 vim.splitkeep = 'screen' -- Keep screen position when splitting
 vim.opt.winborder = 'single' -- Single line window borders
 vim.opt.completeopt = 'menu,menuone,popup,fuzzy,noinsert' -- Completion menu behavior

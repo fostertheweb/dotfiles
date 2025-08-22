@@ -1,9 +1,143 @@
+local utils = require 'utils'
+
 return {
+
   {
     'eduardo-antunes/plainline',
     enabled = false,
     config = function()
       require('plainline').setup 'emacs'
+    end,
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local custom_theme = {
+        normal = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+        insert = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+        visual = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+        replace = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+        command = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+        inactive = {
+          a = { bg = utils.get_colors('Normal').bg },
+          z = { bg = utils.get_colors('Normal').bg },
+        },
+      }
+
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = custom_theme,
+          component_separators = { left = ' ', right = ' ' },
+
+          section_separators = { left = ' ', right = ' ' },
+          disabled_filetypes = {
+            quickfix = {},
+
+            statusline = {},
+            terminmal = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = true,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+              'WinEnter',
+              'BufEnter',
+              'BufWritePost',
+              'SessionLoadPost',
+              'FileChangedShellPost',
+              'VimResized',
+              'Filetype',
+              'CursorMoved',
+              'CursorMovedI',
+              'ModeChanged',
+            },
+          },
+        },
+        sections = {
+          lualine_a = {
+            {
+              "require'custom.statusline'.file_path_component()",
+              serperator = '',
+            },
+            {
+              "require'custom.statusline'.file_name_component()",
+              padding = { left = 0, right = 0 },
+              serperator = '',
+            },
+            {
+
+              'filetype',
+              colored = true,
+              icon_only = true,
+              icon = { align = 'right' },
+              padding = { left = 0, right = 1 },
+              separator = '',
+            },
+            {
+              'diagnostics',
+              sections = { 'error', 'warn' },
+            },
+          },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {
+            -- {
+            --   'lsp_status',
+            --   icons_enabled = false,
+            -- },
+            {
+              'branch',
+              icon = ' ',
+            },
+            {
+              'diff',
+              diff_color = {
+                added = 'DiagnosticOk',
+                modified = 'MiniIconsOrange',
+                removed = 'DiagnosticError',
+              },
+            },
+          },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      }
     end,
   },
   {
