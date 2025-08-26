@@ -15,6 +15,14 @@ return {
     priority = 1000,
     opts = {},
   },
+  { 'Koalhack/darcubox-nvim' },
+  {
+    'timmypidashev/darkbox.nvim',
+    lazy = false,
+    config = function()
+      require('darkbox').load()
+    end,
+  },
   { 'aliqyan-21/darkvoid.nvim', lazy = false, priority = 1000 },
   {
     'thallada/farout.nvim',
@@ -24,6 +32,8 @@ return {
   },
   { 'savq/melange-nvim' },
   { 'vague2k/vague.nvim', opts = {} },
+  { 'S-Spektrum-M/odyssey.nvim' },
+  'abreujp/scholar.nvim',
   {
     'shoenot/witchesbrew.nvim',
     priority = 1000,
