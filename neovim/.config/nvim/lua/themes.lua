@@ -30,6 +30,7 @@ return {
     priority = 1000,
     opts = {},
   },
+  { 'chris-montero/LateForLunch-nvim', dependencies = { 'rktjmp/lush.nvim' } },
   { 'savq/melange-nvim' },
   { 'vague2k/vague.nvim', opts = {} },
   { 'S-Spektrum-M/odyssey.nvim' },
