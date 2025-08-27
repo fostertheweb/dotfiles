@@ -21,12 +21,11 @@ require('lazy').setup {
 
 -- Default theme settings
 vim.o.background = 'dark'
-vim.cmd 'colorscheme adwaita'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if util.is_dark_mode() then
-  vim.cmd 'colorscheme adwaita'
+  vim.cmd 'colorscheme farout'
 else
   vim.cmd 'colorscheme melange'
 end

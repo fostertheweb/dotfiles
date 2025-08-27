@@ -18,7 +18,7 @@ macos-titlebar-style = hidden
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = dark:"Adwaita Dark",light:Melange_dark
+theme = dark:farout,light:Melange_dark
 
 window-colorspace = display-p3
 window-padding-balance = true
