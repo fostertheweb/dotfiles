@@ -1,4 +1,7 @@
 ---@diagnostic disable: undefined-global
+
+local utils = require 'utils'
+
 local mini_layout = {
   preview = false,
   layout = {
@@ -42,15 +45,24 @@ return {
           icon_width = 3,
         },
       },
-      terminal = {},
+      actions = {
+        cursor_start = utils.move_to_start_of_line,
+        cursor_end = utils.move_to_end_of_line,
+        kill_line = utils.cut,
+      },
       win = {
         input = {
           keys = {
             ['<C-j>'] = { 'confirm', mode = { 'n', 'i' } },
+            ['<C-a>'] = { 'cursor_start', mode = { 'i' } },
+            ['<C-e>'] = { 'cursor_end', mode = { 'i' } },
+            ['<C-k>'] = { 'kill_line', mode = { 'i' } },
           },
         },
       },
     },
+    terminal = {},
+    win = {},
   },
   keys = {
     {
@@ -68,16 +80,30 @@ return {
       desc = 'Buffers',
     },
     {
-      '<leader>r',
+      '<leader>fs',
       function()
-        Snacks.picker.lsp_symbols { layout = 'ivy' }
+        Snacks.picker.lsp_workspace_symbols()
       end,
-      desc = 'Problems',
+      desc = 'Workspace Symbols',
+    },
+    {
+      '<leader>fo',
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = 'Document Symbols',
+    },
+    {
+      '<leader>fr',
+      function()
+        Snacks.picker.lsp_references { layout = 'default' }
+      end,
+      desc = 'References',
     },
     {
       '<leader>k',
       function()
-        Snacks.picker.diagnostics { layout = 'ivy', preview = false }
+        Snacks.picker.diagnostics() -- { layout = 'ivy_split', preview = false }
       end,
       desc = 'Problems',
     },
@@ -96,7 +122,7 @@ return {
       desc = 'Help',
     },
     {
-      '<leader>f',
+      '<leader>p',
       function()
         Snacks.picker.smart { hidden = true }
       end,

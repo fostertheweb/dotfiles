@@ -36,8 +36,8 @@ vim.keymap.set('v', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
 
 -- Buffer navigation
-vim.keymap.set('n', '<C-w>n', '<CMD>bn<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<C-w>p', '<CMD>bp<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<C-w>f', '<CMD>bn<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-w>b', '<CMD>bp<CR>', { desc = 'Previous buffer' })
 
 -- Center cursor after page down/up
 vim.keymap.set('n', '<C-d>', '<C-d>zz')

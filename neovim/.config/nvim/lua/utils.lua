@@ -41,4 +41,44 @@ M.get_colors = function(hl_group)
   }
 end
 
+M.cut = function()
+  local current_line = vim.api.nvim_get_current_line()
+  local cursor_col = vim.api.nvim_win_get_cursor(0)[2]
+  -- Get the text from the cursor to the end of the line
+  local cut_text = current_line:sub(cursor_col + 1)
+  -- Update the line to remove the cut text
+  vim.api.nvim_set_current_line(current_line:sub(1, cursor_col))
+  -- Store the cut text in a register
+  vim.fn.setreg('"', cut_text)
+end
+
+M.move_to_end_of_line = function()
+  local line_number = vim.api.nvim_win_get_cursor(0)[1]
+  local bufnr = 0
+  local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
+
+  if #lines > 0 then
+    local line_length = #lines[1]
+    vim.api.nvim_win_set_cursor(bufnr, { line_number, line_length })
+  end
+end
+
+M.move_to_start_of_line = function()
+  local cursor_position = vim.api.nvim_win_get_cursor(0)
+  local bufnr = 0
+  local line_number = cursor_position[1]
+  local lines = vim.api.nvim_buf_get_lines(bufnr, line_number - 1, line_number, false)
+
+  if #lines > 0 then
+    local current_column = cursor_position[2]
+    local start_column = lines[1]:find '%S'
+
+    if current_column == start_column - 1 and current_column ~= 0 then
+      vim.api.nvim_win_set_cursor(bufnr, { line_number, 0 })
+    else
+      vim.api.nvim_win_set_cursor(bufnr, { line_number, start_column and (start_column - 1) or 0 })
+    end
+  end
+end
+
 return M

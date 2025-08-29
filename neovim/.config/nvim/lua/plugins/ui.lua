@@ -199,6 +199,7 @@ return {
         end,
       }
       require('which-key').add {
+        { '<leader>f', group = 'Find' },
         { '<leader>g', group = 'Git' },
         { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'Quickfix' },
