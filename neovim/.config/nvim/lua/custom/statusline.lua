@@ -184,13 +184,4 @@ local function git_diff_component()
   return string.format('%%#DiagnosticOk#+%s %%#DiagnosticError#-%s ', ins, dels)
 end
 
-function M.active()
-  vim.api.nvim_set_hl(0, 'StatusLine', { bg = utils.get_colors('NormalNC').bg })
-
-  local left = file_path_component() .. file_name_component() .. lsp_status()
-  local right = git_branch() .. git_diff_component()
-  -- Use %=% to push right side to the far right.
-  return left .. ' %=' .. right
-end
-
 return M
