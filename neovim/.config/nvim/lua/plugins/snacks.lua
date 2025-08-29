@@ -43,6 +43,7 @@ return {
       formatters = {
         file = {
           filename_first = true,
+          truncate = 60,
           icon_width = 3,
         },
       },

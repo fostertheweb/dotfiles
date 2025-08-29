@@ -6,7 +6,7 @@ vim.keymap.set('i', '<Tab>', function()
 end, { expr = true, noremap = true })
 
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', ':wq', { desc = ':wq' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', '<CMD>wq<CR>', { desc = ':wq' })
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
