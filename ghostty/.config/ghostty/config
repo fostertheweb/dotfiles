@@ -1,7 +1,7 @@
 adjust-cell-height = 35%
 adjust-cursor-thickness = 3
 
-font-family = "ZedMono Nerd Font Mono"
+font-family = "IosevkaTerm Nerd Font"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
