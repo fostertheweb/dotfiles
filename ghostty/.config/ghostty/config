@@ -1,7 +1,7 @@
 adjust-cell-height = 35%
 adjust-cursor-thickness = 3
 
-font-family = "IosevkaTerm Nerd Font"
+font-family = "ZedMono Nerd Font Mono"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
@@ -38,6 +38,7 @@ keybind = super+r=esc:r
 keybind = super+d=esc:d
 keybind = super+y=esc:y
 keybind = super+u=esc:u
+keybind = super+j=esc:j
 keybind = super+shift+p=esc:P
 
 keybind = ctrl+shift+h=csi:104;6u
