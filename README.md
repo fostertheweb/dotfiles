@@ -13,5 +13,18 @@ cd ~/.dotfiles
 ```
 
 ```bash
-./Install.swift
+./install.js
 ```
+
+### Requirements
+
+- [Bun](https://bun.sh) - Install via Homebrew: `brew install bun`
+- [Stow](https://www.gnu.org/software/stow/) - Install via Homebrew: `brew install stow`
+
+### Features
+
+- 🔍 **Smart Configuration Detection** - Automatically discovers available configuration packages
+- 📊 **Status Display** - Shows which configurations are currently linked
+- ⚡ **Interactive Setup** - Prompts for each setup step with clear feedback
+- 🎨 **Enhanced UI** - Colored output with spinners and status indicators
+- 🔗 **Symlink Validation** - Checks existing symlink status before operations
