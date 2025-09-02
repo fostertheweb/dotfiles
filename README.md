@@ -12,13 +12,16 @@ git clone git@github.com:fostertheweb/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
+## Install Script
+
 ```bash
 ./install.js
+
 ```
 
 ### Requirements
 
-- [Bun](https://bun.sh) - Install via Homebrew: `brew install bun`
+- [Bun](https://bun.sh) - Install via Homebrew: `brew install oven-sh/bun/bun`
 - [Stow](https://www.gnu.org/software/stow/) - Install via Homebrew: `brew install stow`
 
 ### Features
