@@ -51,3 +51,9 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.cmd 'startinsert'
   end,
 })
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Update path via fd for find command',
+  pattern = '*',
+  command = 'UpdatePath',
+})
