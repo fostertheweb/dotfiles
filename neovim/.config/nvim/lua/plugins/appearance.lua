@@ -3,6 +3,7 @@ return {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {
       anti_conceal = { enabled = false },
+      completions = { lsp = { enabled = true } },
       file_types = { 'markdown' },
     },
     ft = { 'markdown' },

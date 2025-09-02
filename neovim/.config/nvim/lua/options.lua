@@ -30,7 +30,7 @@ vim.opt.errorbells = false -- Disable error bells
 vim.opt.backspace = 'indent,eol,start' -- Allow backspace over everything
 vim.opt.autochdir = false -- Don't change directory automatically
 vim.opt.iskeyword:append '-' -- Treat hyphen as part of word
-vim.opt.path:append '**' -- Search recursively in subdirectories
+vim.opt.path:append ',**' -- Search recursively in subdirectories
 vim.opt.wildmenu = true -- Enhanced command line completion
 vim.opt.wildmode = 'longest:full,full' -- Command completion behavior
 vim.opt.wildignore:append {
