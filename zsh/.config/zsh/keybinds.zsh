@@ -57,3 +57,6 @@ bindkey -s '\ey' 'run-app^M'
 
 # cmd-u
 bindkey -s '\eu' 'git pull^M'
+
+# cmd-j
+bindkey -s '\ej' 'journal^M'

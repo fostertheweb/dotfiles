@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+source "$ZSH_CONFIG/functions/journal.zsh"
+
+create-or-open-journal-entry

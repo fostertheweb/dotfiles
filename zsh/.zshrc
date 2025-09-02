@@ -95,6 +95,7 @@ alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias todo="$ZSH_CONFIG/bin/todo-cwd"
+alias journal="$ZSH_CONFIG/bin/journal"
 alias lf="OPENER=nvim lf"
 alias ai="opencode"
 
