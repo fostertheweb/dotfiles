@@ -51,6 +51,9 @@ vim.keymap.set('t', '<S-C-d>', '<PageDown>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
+-- F, builtin find
+vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
+
 -- G, Git commands
 vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
 vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
