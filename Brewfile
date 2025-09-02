@@ -1,6 +1,7 @@
 brew "asciinema"
 brew "bat"
 brew "btop"
+brew "oven-sh/bun/bun"
 brew "colima"
 brew "difftastic"
 brew "docker"
