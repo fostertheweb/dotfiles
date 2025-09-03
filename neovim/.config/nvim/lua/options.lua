@@ -1,7 +1,7 @@
 vim.o.laststatus = 3 -- Global statusline
 vim.splitkeep = 'screen' -- Keep screen position when splitting
 vim.opt.winborder = 'single' -- Single line window borders
-vim.opt.completeopt = 'menu,menuone,popup,fuzzy,noinsert' -- Completion menu behavior
+vim.opt.completeopt = 'menuone,noselect,fuzzy,nosort' -- Completion menu behavior
 vim.opt.termguicolors = true -- Enable 24-bit RGB colors
 vim.opt.tabstop = 2 -- Number of spaces for tab character
 vim.g.mapleader = ' ' -- Set leader key to space
@@ -17,7 +17,7 @@ vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence
 vim.opt.inccommand = 'split' -- Preview substitutions live
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.pumheight = 20 -- completion popup menu
+vim.opt.pumheight = 10 -- completion popup menu
 vim.opt.iskeyword:append '-' -- Treat hyphen as part of word
 vim.opt.path:append ',**' -- Search recursively in subdirectories
 vim.opt.swapfile = false -- Don't create swap files
