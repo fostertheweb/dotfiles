@@ -2,7 +2,6 @@ local utils = require 'utils'
 
 return {
   {
-
     'eduardo-antunes/plainline',
     enabled = false,
     config = function()
@@ -87,14 +86,6 @@ return {
               padding = { left = 0, right = 0 },
               serperator = '',
             },
-            -- {
-            --   'filetype',
-            --   colored = true,
-            --   icon_only = true,
-            --   icon = { align = 'right' },
-            --   padding = { left = 0, right = 1 },
-            --   separator = '',
-            -- },
             {
               'diagnostics',
               sections = { 'error', 'warn' },
