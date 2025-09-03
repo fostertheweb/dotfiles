@@ -1,0 +1,255 @@
+#!/usr/bin/env bun
+
+import { $ } from "bun";
+import { readdir, lstat, readlink, existsSync } from "fs";
+import { readdir as readdirAsync, readlink as readlinkAsync } from "fs/promises";
+import { resolve, join, dirname, relative } from "path";
+import { homedir } from "os";
+
+const colors = {
+  red: "\u{001B}[0;31m",
+  green: "\u{001B}[0;32m",
+  yellow: "\u{001B}[0;33m",
+  cyan: "\u{001B}[0;36m",
+  reset: "\u{001B}[0m",
+};
+
+const symbols = {
+  checkmark: "\u{2713}",
+  cross: "\u{2717}",
+  alert: "\u{26A0}",
+  linked: "✓",
+  notLinked: "○",
+};
+
+const ignoredDirectories = [
+  ".git",
+  ".gitignore",
+  ".aider",
+  ".termai",
+  ".todo",
+  ".ropeproject",
+  ".gitmodules",
+  ".opencode",
+  "scripts",
+  ".jj",
+];
+
+function askUser(question) {
+  return new Promise((resolve) => {
+    process.stdout.write(`${question} [y/N]: `);
+
+    process.stdin.resume();
+    process.stdin.setEncoding("utf8");
+
+    process.stdin.once("data", (data) => {
+      process.stdin.pause();
+
+      const answer = data.toString().toLowerCase().trim();
+      console.log(answer);
+      resolve(answer === "y" || answer === "yes");
+    });
+  });
+}
+
+async function getStowPackages() {
+  const ignoredDirectories = ["scripts"];
+
+  try {
+    const entries = await readdirAsync(".", { withFileTypes: true });
+
+    return entries
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .filter((name) => !ignoredDirectories.includes(name))
+      .filter((name) => !name.startsWith("."));
+  } catch (error) {
+    console.error(
+      `${colors.red}${symbols.alert} Error reading directories: ${error.message}${colors.reset}`,
+    );
+    return [];
+  }
+}
+
+async function isStowed(packageName) {
+  try {
+    const dotfilesDir = process.cwd();
+    const packagePath = join(dotfilesDir, packageName);
+    
+    // Check if package directory exists
+    if (!existsSync(packagePath)) {
+      return false;
+    }
+    
+    // Get all files and directories recursively
+    const entries = await readdirAsync(packagePath, { recursive: true, withFileTypes: true });
+    const dirsToCheck = new Set();
+    const filesToCheck = new Set();
+    
+    // Collect all directory paths and individual files
+    for (const entry of entries) {
+      if (entry.isFile()) {
+        const fullPath = join(entry.parentPath || entry.path || packagePath, entry.name);
+        const relativePath = relative(packagePath, fullPath);
+        const relativeDir = relative(packagePath, dirname(fullPath));
+        
+        if (relativeDir !== '.' && relativeDir !== '') {
+          // File in a subdirectory - check the directory
+          dirsToCheck.add(relativeDir);
+        } else {
+          // File directly in package root - check the individual file
+          filesToCheck.add(relativePath);
+        }
+      }
+    }
+    
+    // Check directory-level symlinks (for .config directories, etc.)
+    for (const relativeDir of dirsToCheck) {
+      const sourcePath = join(packagePath, relativeDir);
+      const targetPath = join(homedir(), relativeDir);
+      
+      try {
+        const linkTarget = await readlinkAsync(targetPath);
+        const resolvedTarget = resolve(dirname(targetPath), linkTarget);
+        
+        if (resolvedTarget === sourcePath) {
+          return true;
+        }
+      } catch {
+        continue;
+      }
+    }
+    
+    // Check individual file symlinks (for .gitconfig, .tigrc, etc.)
+    for (const relativeFile of filesToCheck) {
+      const sourcePath = join(packagePath, relativeFile);
+      const targetPath = join(homedir(), relativeFile);
+      
+      try {
+        const linkTarget = await readlinkAsync(targetPath);
+        const resolvedTarget = resolve(dirname(targetPath), linkTarget);
+        
+        if (resolvedTarget === sourcePath) {
+          return true;
+        }
+      } catch {
+        continue;
+      }
+    }
+    
+    // Check all individual files (including those in subdirectories)
+    // This handles cases where stow creates individual file symlinks instead of directory symlinks
+    for (const entry of entries) {
+      if (entry.isFile()) {
+        const fullPath = join(entry.parentPath || entry.path || packagePath, entry.name);
+        const relativePath = relative(packagePath, fullPath);
+        const targetPath = join(homedir(), relativePath);
+        
+        try {
+          const linkTarget = await readlinkAsync(targetPath);
+          const resolvedTarget = resolve(dirname(targetPath), linkTarget);
+          
+          if (resolvedTarget === fullPath) {
+            return true;
+          }
+        } catch {
+          continue;
+        }
+      }
+    }
+    
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function getStowStatus() {
+  const packages = await getStowPackages();
+  const status = {};
+
+  for (const pkg of packages) {
+    status[pkg] = await isStowed(pkg);
+  }
+
+  return status;
+}
+
+async function step(message, command) {
+  console.log(`${message}...`);
+
+  try {
+    const result = await $`${command}`.quiet();
+
+    if (result.exitCode === 0) {
+      console.log(
+        `${message}: ${colors.green}${symbols.checkmark}${colors.reset}`,
+      );
+    } else {
+      console.log(`${message}: ${colors.red}${symbols.cross}${colors.reset}`);
+      if (result.stderr) {
+        console.log(
+          `${colors.red}${symbols.alert} ${result.stderr}${colors.reset}`,
+        );
+      }
+    }
+  } catch (error) {
+    console.log(`${message}: ${colors.red}${symbols.cross}${colors.reset}`);
+    console.log(
+      `${colors.red}${symbols.alert} ${error.message}${colors.reset}`,
+    );
+  }
+}
+
+async function main() {
+  console.log("\nCurrent Configuration Status:");
+  const stowStatus = await getStowStatus();
+  for (const [pkg, isLinked] of Object.entries(stowStatus)) {
+    const status = isLinked
+      ? `${colors.green}${symbols.linked} linked${colors.reset}`
+      : `${colors.yellow}${symbols.notLinked} not linked${colors.reset}`;
+    console.log(`  ${pkg}: ${status}`);
+  }
+  console.log("");
+
+  if (await askUser("Update Homebrew?")) {
+    await step("Update Homebrew", "brew update");
+  }
+
+  if (await askUser("Install from Brewfile?")) {
+    await step("Install from Brewfile", "brew bundle");
+  }
+
+  if (await askUser("Install npm globals?")) {
+    await step("Install npm globals", "zsh ./scripts/npm.zsh");
+  }
+
+  if (await askUser("Install cargo bins?")) {
+    await step("Install cargo bins", "zsh ./scripts/cargo.zsh");
+  }
+
+  if (await askUser("Install python packages?")) {
+    await step("Install python packages", "zsh ./scripts/pip.zsh");
+  }
+
+  if (await askUser("Write macOS Defaults?")) {
+    await step("Write macOS Defaults", "zsh ./scripts/defaults.zsh");
+  }
+
+  if (await askUser("Set API Credentials?")) {
+    await step("Set API Credentials", "zsh ./scripts/set-api-keys.zsh");
+  }
+
+  if (await askUser("Link Configurations?")) {
+    const packages = await getStowPackages();
+    const packageList = packages.join(" ");
+    await step("Link Configurations", `stow ${packageList}`);
+  }
+
+  console.log("\n[Setup Complete]");
+  process.exit(0);
+}
+
+main().catch(console.error);
+
+// vim: set ft=javascript

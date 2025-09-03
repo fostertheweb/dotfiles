@@ -15,7 +15,7 @@ cd ~/.dotfiles
 ## Install Script
 
 ```bash
-./install.js
+./install
 
 ```
 
