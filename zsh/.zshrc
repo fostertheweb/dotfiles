@@ -88,7 +88,7 @@ eval "$(rbenv init - zsh)"
 
 alias oops="fuck"
 alias vim="nvim"
-alias n="nvim"
+alias ed="nvim"
 alias ls="eza -la"
 alias ll="eza -la"
 alias tree="eza --tree -a"
@@ -98,6 +98,7 @@ alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias journal="$ZSH_CONFIG/bin/journal"
 alias lf="OPENER=nvim lf"
 alias ai="opencode"
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 source "$ZSH_CONFIG/keybinds.zsh"
 
