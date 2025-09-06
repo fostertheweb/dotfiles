@@ -97,6 +97,10 @@ return {
           lualine_y = {},
           lualine_z = {
             {
+              'copilot',
+              show_colors = true,
+            },
+            {
               'branch',
               icon = ' ',
               separator = '',
