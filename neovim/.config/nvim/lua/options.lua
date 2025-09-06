@@ -20,6 +20,7 @@ vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below
 vim.opt.pumheight = 10 -- completion popup menu
 vim.opt.iskeyword:append '-' -- Treat hyphen as part of word
 vim.opt.path:append ',**' -- Search recursively in subdirectories
+vim.opt.splitright = true
 vim.opt.swapfile = false -- Don't create swap files
 vim.opt.wildmode = 'longest:full,full' -- Command completion behavior
 vim.opt.wildignore:append {
