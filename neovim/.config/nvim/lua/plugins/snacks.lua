@@ -146,22 +146,6 @@ return {
       desc = 'Recent Files',
     },
     {
-      '<C-Space>',
-      function()
-        Snacks.terminal.toggle('opencode', {
-          float = true,
-          win = {
-            width = 0.5,
-            height = 0.99,
-            border = 'left',
-            row = 0,
-            col = 0.5,
-          },
-        })
-      end,
-      mode = { 't', 'n', 'x', 'v' },
-    },
-    {
       '<C-g>',
       function()
         Snacks.terminal.toggle('gitu', {
@@ -174,7 +158,7 @@ return {
           },
         })
       end,
-      mode = 'n',
+      mode = { 'n', 't' },
     },
     {
       '<leader><BS>',
