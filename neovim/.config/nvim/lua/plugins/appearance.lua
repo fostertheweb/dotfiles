@@ -4,9 +4,9 @@ return {
     opts = {
       anti_conceal = { enabled = false },
       completions = { lsp = { enabled = true } },
-      file_types = { 'markdown', 'Avante' },
+      file_types = { 'markdown' },
     },
-    ft = { 'markdown', 'Avante' },
+    ft = { 'markdown' },
   },
   {
     'folke/todo-comments.nvim',
