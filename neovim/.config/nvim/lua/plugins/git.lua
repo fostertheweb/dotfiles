@@ -4,13 +4,19 @@ return {
     config = function()
       require('diffview').setup {
         view = {
+          default = {
+            -- Config for changed files, and staged files in diff views.
+            layout = 'diff2_horizontal',
+            disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
+            winbar_info = false, -- See |diffview-config-view.x.winbar_info|
+          },
           merge_tool = {
             layout = 'diff1_plain',
             disable_diagnostics = true,
             winbar_info = true,
           },
           file_history = {
-            layout = 'diff2_vertical',
+            layout = 'diff2_horizontal',
             disable_diagnostics = false,
             winbar_info = false,
           },

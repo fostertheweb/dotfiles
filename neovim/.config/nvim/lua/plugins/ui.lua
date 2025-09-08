@@ -1,5 +1,3 @@
-local utils = require 'utils'
-
 return {
   {
     'eduardo-antunes/plainline',
@@ -14,28 +12,52 @@ return {
     config = function()
       local custom_theme = {
         normal = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
         insert = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
         visual = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
         replace = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
         command = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
         inactive = {
-          a = { bg = utils.get_colors('Normal').bg },
-          z = { bg = utils.get_colors('Normal').bg },
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
+          x = { bg = 'NONE' },
+          y = { bg = 'NONE' },
+          z = { bg = 'NONE' },
         },
       }
 
@@ -53,7 +75,7 @@ return {
             winbar = {},
           },
           ignore_focus = {},
-          always_divide_middle = true,
+          always_divide_middle = false,
           always_show_tabline = true,
           globalstatus = true,
           refresh = {
@@ -98,7 +120,7 @@ return {
           lualine_z = {
             {
               'copilot',
-              show_colors = true,
+              show_colors = false,
             },
             {
               'branch',
@@ -114,14 +136,6 @@ return {
               },
             },
           },
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { 'filename' },
-          lualine_x = { 'location' },
-          lualine_y = {},
-          lualine_z = {},
         },
         tabline = {},
         winbar = {},

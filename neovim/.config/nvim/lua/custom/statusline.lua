@@ -29,26 +29,6 @@ M.file_path_component = function()
   return string.format('%%#Whitespace# %s %s 󰿟', ' ', joined)
 end
 
-M.file_name_component_1 = function()
-  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
-  filename = (filename ~= '' and filename) or '[No Name]'
-  local modified = vim.bo[0].modified
-
-  local modified_fg = utils.get_colors('MiniIconsOrange').guifg
-  vim.api.nvim_set_hl(0, 'SimpleLineFilename', { fg = utils.get_colors('Normal').fg, bold = true })
-  vim.api.nvim_set_hl(0, 'SimpleLineFilenameModified', { fg = modified_fg, italic = true, bold = true })
-
-  if filename == '[No Name]' then
-    return string.format('%%#Comment#%s', filename)
-  end
-
-  if modified then
-    return string.format('%%#SimpleLineFilenameModified#%s', filename)
-  end
-
-  return string.format('%%#SimpleLineFilename#%s', filename)
-end
-
 M.file_name_component = function()
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   filename = (filename ~= '' and filename) or '[No Name]'
@@ -116,60 +96,7 @@ M.file_name_component = function()
   return string.format('%%#SimpleLineFileIcon#%s  %%#SimpleLineFilename#%s ', ft_icon, filename)
 end
 
-local function file_path_component()
-  local full_path = vim.fn.expand '%:p:h'
-
-  if full_path == '' then
-    return ''
-  end
-
-  local cwd = vim.fn.getcwd()
-
-  if full_path:sub(1, #cwd) == cwd then
-    full_path = full_path:sub(#cwd + 2) -- +2 to remove the slash as well
-  end
-
-  local sep = package.config:sub(1, 1) -- get system's path separator
-  local dirs = vim.split(full_path, sep, { plain = true })
-  local joined = table.concat(dirs, string.format '%%#Comment# 󰿟 ')
-
-  if vim.bo[0].buftype == 'terminal' then
-    return ''
-  end
-
-  local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
-
-  if filename == '' then
-    return ''
-  end
-
-  return string.format('%%#Comment# %s %s 󰿟', ' ', joined)
-end
-
-local function lsp_status()
-  local counts = vim.diagnostic.count(nil, {
-    severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
-  })
-  local error_count = counts[vim.diagnostic.severity.ERROR] or 0
-  local warn_count = counts[vim.diagnostic.severity.WARN] or 0
-
-  local errors = string.format('%%#DiagnosticError#%s%d', '  ', error_count)
-  local warnings = string.format('%%#DiagnosticWarn#%s%d', '  ', warn_count)
-
-  return table.concat { (error_count > 0 and errors) or '', ' ', (warn_count > 0 and warnings) or '' }
-end
-
-local function git_branch()
-  local branch = vim.fn.system 'git rev-parse --abbrev-ref HEAD'
-
-  if branch == 'HEAD' then
-    return ''
-  end
-
-  return string.format('%%#Comment#   %s ', vim.trim(branch))
-end
-
-local function git_diff_component()
+M.git_diff_component = function()
   local output = vim.fn.system 'git diff --shortstat HEAD'
 
   if output == '' then

@@ -25,9 +25,9 @@ vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 if util.is_dark_mode() then
-  vim.cmd 'colorscheme farout'
+  vim.cmd 'colorscheme darcubox'
 else
-  vim.cmd 'colorscheme melange'
+  vim.cmd 'colorscheme darkvoid'
 end
 
 vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
