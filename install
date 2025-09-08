@@ -2,7 +2,10 @@
 
 import { $ } from "bun";
 import { readdir, lstat, readlink, existsSync } from "fs";
-import { readdir as readdirAsync, readlink as readlinkAsync } from "fs/promises";
+import {
+  readdir as readdirAsync,
+  readlink as readlinkAsync,
+} from "fs/promises";
 import { resolve, join, dirname, relative } from "path";
 import { homedir } from "os";
 
@@ -75,25 +78,31 @@ async function isStowed(packageName) {
   try {
     const dotfilesDir = process.cwd();
     const packagePath = join(dotfilesDir, packageName);
-    
+
     // Check if package directory exists
     if (!existsSync(packagePath)) {
       return false;
     }
-    
+
     // Get all files and directories recursively
-    const entries = await readdirAsync(packagePath, { recursive: true, withFileTypes: true });
+    const entries = await readdirAsync(packagePath, {
+      recursive: true,
+      withFileTypes: true,
+    });
     const dirsToCheck = new Set();
     const filesToCheck = new Set();
-    
+
     // Collect all directory paths and individual files
     for (const entry of entries) {
       if (entry.isFile()) {
-        const fullPath = join(entry.parentPath || entry.path || packagePath, entry.name);
+        const fullPath = join(
+          entry.parentPath || entry.path || packagePath,
+          entry.name,
+        );
         const relativePath = relative(packagePath, fullPath);
         const relativeDir = relative(packagePath, dirname(fullPath));
-        
-        if (relativeDir !== '.' && relativeDir !== '') {
+
+        if (relativeDir !== "." && relativeDir !== "") {
           // File in a subdirectory - check the directory
           dirsToCheck.add(relativeDir);
         } else {
@@ -102,16 +111,16 @@ async function isStowed(packageName) {
         }
       }
     }
-    
+
     // Check directory-level symlinks (for .config directories, etc.)
     for (const relativeDir of dirsToCheck) {
       const sourcePath = join(packagePath, relativeDir);
       const targetPath = join(homedir(), relativeDir);
-      
+
       try {
         const linkTarget = await readlinkAsync(targetPath);
         const resolvedTarget = resolve(dirname(targetPath), linkTarget);
-        
+
         if (resolvedTarget === sourcePath) {
           return true;
         }
@@ -119,16 +128,16 @@ async function isStowed(packageName) {
         continue;
       }
     }
-    
+
     // Check individual file symlinks (for .gitconfig, .tigrc, etc.)
     for (const relativeFile of filesToCheck) {
       const sourcePath = join(packagePath, relativeFile);
       const targetPath = join(homedir(), relativeFile);
-      
+
       try {
         const linkTarget = await readlinkAsync(targetPath);
         const resolvedTarget = resolve(dirname(targetPath), linkTarget);
-        
+
         if (resolvedTarget === sourcePath) {
           return true;
         }
@@ -136,19 +145,22 @@ async function isStowed(packageName) {
         continue;
       }
     }
-    
+
     // Check all individual files (including those in subdirectories)
     // This handles cases where stow creates individual file symlinks instead of directory symlinks
     for (const entry of entries) {
       if (entry.isFile()) {
-        const fullPath = join(entry.parentPath || entry.path || packagePath, entry.name);
+        const fullPath = join(
+          entry.parentPath || entry.path || packagePath,
+          entry.name,
+        );
         const relativePath = relative(packagePath, fullPath);
         const targetPath = join(homedir(), relativePath);
-        
+
         try {
           const linkTarget = await readlinkAsync(targetPath);
           const resolvedTarget = resolve(dirname(targetPath), linkTarget);
-          
+
           if (resolvedTarget === fullPath) {
             return true;
           }
@@ -157,7 +169,7 @@ async function isStowed(packageName) {
         }
       }
     }
-    
+
     return false;
   } catch (error) {
     return false;
