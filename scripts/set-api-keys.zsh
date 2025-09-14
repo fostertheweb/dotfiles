@@ -5,6 +5,7 @@ eval "$(op signin)"
 
 typeset -A OP_CREDENTIALS=(
   ANTHROPTIC_API_KEY "Private/API Credentials/Anthropic"
+  CONTEXT7_API_KEY "Private/API Credentials/Context7"
   DEEPSEEK_API_KEY "Private/API Credentials/DeepSeek"
   GEMINI_API_KEY "Private/API Credentials/Gemini"
   OPENAI_API_KEY "Private/API Credentials/OpenAI"
