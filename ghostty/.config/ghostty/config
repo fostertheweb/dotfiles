@@ -1,5 +1,7 @@
 adjust-cell-height = 35%
+adjust-cursor-height = 0
 adjust-cursor-thickness = 2
+adjust-icon-height = 0
 
 font-family = "IosevkaTerm Nerd Font"
 font-feature = -calt
