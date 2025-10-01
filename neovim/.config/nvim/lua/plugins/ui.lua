@@ -1,5 +1,96 @@
 return {
   {
+    'ahkohd/buffer-sticks.nvim',
+    event = 'VeryLazy',
+    keys = {
+      {
+        '<leader>j',
+        function()
+          require('buffer-sticks').jump()
+        end,
+        desc = 'Jump to buffer',
+      },
+    },
+    config = function()
+      local sticks = require 'buffer-sticks'
+      sticks.setup {
+        transparent = true,
+        filter = { buftypes = { 'terminal' } },
+        highlights = {
+          active = { link = 'Statement' },
+          inactive = { link = 'Whitespace' },
+          active_modified = { link = 'Constant' },
+          inactive_modified = { link = 'Constant' },
+          label = { link = 'Comment' },
+        },
+      }
+      sticks.show()
+    end,
+  },
+  {
+    'b0o/incline.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'SmiteshP/nvim-navic',
+    },
+    event = 'VeryLazy',
+    config = function()
+      -- Create custom highlight groups for transparent background
+      vim.api.nvim_set_hl(0, 'InclineNormalTransparent', {
+        fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg,
+        bg = 'NONE',
+      })
+
+      local navic = require 'nvim-navic'
+
+      require('incline').setup {
+        hide = {
+          cursorline = true,
+        },
+        highlight = {
+          groups = {
+            InclineNormal = 'InclineNormalTransparent',
+            InclineNormalNC = 'InclineNormalTransparent',
+          },
+        },
+        window = {
+          padding = 1,
+          margin = { vertical = 0, horizontal = 1 },
+          placement = {
+            horizontal = 'left',
+            vertical = 'bottom',
+          },
+        },
+        render = function(props)
+          if props.focused then
+            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
+            if filename == '' then
+              filename = '[No Name]'
+            end
+            local modified = vim.bo[props.buf].modified
+            local res = {
+              { filename, gui = modified and 'italic,bold' or '' },
+              guibg = 'NONE',
+            }
+            if props.focused then
+              for _, item in ipairs(navic.get_data(props.buf) or {}) do
+                table.insert(res, {
+                  { ' ➜ ', group = 'NavicSeparator' },
+                  { item.icon, ' ', group = 'NavicIcons' .. item.type },
+                  { item.name, group = 'NavicText' },
+                })
+              end
+            end
+            table.insert(res, ' ')
+            return res
+          end
+
+          return nil
+        end,
+      }
+    end,
+  },
+  {
     'eduardo-antunes/plainline',
     enabled = false,
     config = function()
@@ -8,6 +99,7 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
+    enabled = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local custom_theme = {

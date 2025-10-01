@@ -15,12 +15,13 @@ cursor-style = block
 cursor-style-blink = false
 
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+macos-window-buttons = hidden
 
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = dark:"Adwaita Dark",light:darkvoid
+theme = darcubox
 
 window-colorspace = display-p3
 window-padding-balance = true

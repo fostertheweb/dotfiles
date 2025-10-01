@@ -1,5 +1,10 @@
 local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
 
+vim.api.nvim_create_autocmd('VimEnter', {
+  pattern = '*',
+  command = 'set title',
+})
+
 vim.api.nvim_create_autocmd('TabClosed', {
   group = term_group,
   desc = 'Tab closed, return to terminal buffer',

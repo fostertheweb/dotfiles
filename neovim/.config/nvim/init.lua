@@ -4,7 +4,7 @@ require 'lsp'
 require 'keymaps'
 require 'usercmds'
 
-local util = require 'utils'
+-- local util = require 'utils'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
@@ -24,11 +24,11 @@ vim.o.background = 'dark'
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
-if util.is_dark_mode() then
-  vim.cmd 'colorscheme darcubox'
-else
-  vim.cmd 'colorscheme darkvoid'
-end
+-- if util.is_dark_mode() then
+vim.cmd 'colorscheme darcubox'
+-- else
+-- vim.cmd 'colorscheme kanagawa'
+-- end
 
 vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
 -- vim: ts=2 sts=2 sw=2 et

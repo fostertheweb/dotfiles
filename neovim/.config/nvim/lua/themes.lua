@@ -9,8 +9,8 @@ return {
   },
   'ficcdaf/ashen.nvim',
   { 'Koalhack/darcubox-nvim', laze = false, priority = 1000 },
-  { 'aliqyan-21/darkvoid.nvim', lazy = false, priority = 1000 },
   'thallada/farout.nvim',
+  { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
   'savq/melange-nvim',
   'nyoom-engineering/oxocarbon.nvim',
   {

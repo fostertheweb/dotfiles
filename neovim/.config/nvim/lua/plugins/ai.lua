@@ -1,6 +1,7 @@
 return {
   {
     'zbirenbaum/copilot.lua',
+    enabled = false,
     dependencies = { 'AndreM222/copilot-lualine' },
     config = function()
       require('copilot').setup {
@@ -15,7 +16,7 @@ return {
   },
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    enabled = true,
+    enabled = false,
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
     },
@@ -71,7 +72,7 @@ return {
   },
   {
     'NickvanDyke/opencode.nvim',
-    enabled = true,
+    enabled = false,
     dependencies = { 'folke/snacks.nvim' },
     opts = {
       auto_reload = true,
