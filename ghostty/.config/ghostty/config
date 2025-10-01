@@ -3,11 +3,11 @@ adjust-cursor-height = 0
 adjust-cursor-thickness = 2
 adjust-icon-height = 0
 
-font-family = "IosevkaTerm Nerd Font"
+font-family = "BerkeleyMono Nerd Font"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
-font-size = 16
+font-size = 14
 
 fullscreen = false
 
@@ -21,7 +21,7 @@ macos-window-buttons = hidden
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = darcubox
+theme = "Kanagawa Wave"
 
 window-colorspace = display-p3
 window-padding-balance = true

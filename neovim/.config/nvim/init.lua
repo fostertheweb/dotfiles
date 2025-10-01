@@ -25,7 +25,7 @@ vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
 -- if util.is_dark_mode() then
-vim.cmd 'colorscheme darcubox'
+vim.cmd 'colorscheme kanagawa'
 -- else
 -- vim.cmd 'colorscheme kanagawa'
 -- end

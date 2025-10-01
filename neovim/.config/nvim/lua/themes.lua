@@ -10,7 +10,22 @@ return {
   'ficcdaf/ashen.nvim',
   { 'Koalhack/darcubox-nvim', laze = false, priority = 1000 },
   'thallada/farout.nvim',
-  { 'rebelot/kanagawa.nvim', lazy = false, priority = 1000 },
+  {
+    'rebelot/kanagawa.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = 'none',
+            },
+          },
+        },
+      },
+    },
+  },
   'savq/melange-nvim',
   'nyoom-engineering/oxocarbon.nvim',
   {
