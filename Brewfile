@@ -54,7 +54,7 @@ brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 
 cask "1password-cli"
-cask "font-iosevka-nerd-font"
+cask "font-iosevka-term-nerd-font"
 cask "font-zed-mono-nerd-font"
 cask "karabiner-elements"
 cask "nikitabobko/tap/aerospace"

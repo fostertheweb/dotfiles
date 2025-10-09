@@ -3,7 +3,7 @@ adjust-cursor-height = 0
 adjust-cursor-thickness = 2
 adjust-icon-height = 0
 
-font-family = "BerkeleyMono Nerd Font"
+font-family = "ZedMono Nerd Font Mono"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
