@@ -2,6 +2,7 @@
 
 npm install -g @astrojs/language-server \
 	@biomejs/biome \
+	branchlet \
 	eslint_d \
 	prettier \
 	svelte-language-server \
