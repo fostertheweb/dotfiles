@@ -124,7 +124,7 @@ return {
           lualine_a = {
             {
               'navic',
-              serperator = '',
+              separator = '',
               padding = { left = 1, right = 0 },
             },
           },
@@ -139,6 +139,7 @@ return {
             },
             {
               'branch',
+              color = 'Comment',
               icon = '',
               separator = '',
             },
@@ -162,9 +163,6 @@ return {
   {
     'SmiteshP/nvim-navic',
     config = function()
-      vim.api.nvim_set_hl(0, 'NavicText', { default = true, bg = 'NONE', fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg })
-      vim.api.nvim_set_hl(0, 'NavicSeparator', { default = true, bg = 'NONE', fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg })
-
       require('nvim-navic').setup {
         click = true,
         highlight = true,
