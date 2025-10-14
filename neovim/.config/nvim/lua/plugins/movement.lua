@@ -13,6 +13,7 @@ return {
   },
   {
     'ghillb/cybu.nvim',
+    enabled = false,
     config = function()
       require('cybu').setup {
         display_time = 500,

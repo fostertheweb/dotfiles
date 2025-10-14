@@ -28,79 +28,11 @@ return {
     end,
   },
   {
-    'b0o/incline.nvim',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'SmiteshP/nvim-navic',
-    },
-    event = 'VeryLazy',
-    config = function()
-      -- Create custom highlight groups for transparent background
-      vim.api.nvim_set_hl(0, 'InclineNormalTransparent', {
-        fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg,
-        bg = 'NONE',
-      })
-
-      local navic = require 'nvim-navic'
-
-      require('incline').setup {
-        hide = {
-          cursorline = true,
-        },
-        highlight = {
-          groups = {
-            InclineNormal = 'InclineNormalTransparent',
-            InclineNormalNC = 'InclineNormalTransparent',
-          },
-        },
-        window = {
-          padding = 1,
-          margin = { vertical = 0, horizontal = 1 },
-          placement = {
-            horizontal = 'left',
-            vertical = 'bottom',
-          },
-        },
-        render = function(props)
-          if props.focused then
-            local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
-            if filename == '' then
-              filename = '[No Name]'
-            end
-            local modified = vim.bo[props.buf].modified
-            local res = {
-              { filename, gui = modified and 'italic,bold' or '' },
-              guibg = 'NONE',
-            }
-            if props.focused then
-              for _, item in ipairs(navic.get_data(props.buf) or {}) do
-                table.insert(res, {
-                  { ' ➜ ', group = 'NavicSeparator' },
-                  { item.icon, ' ', group = 'NavicIcons' .. item.type },
-                  { item.name, group = 'NavicText' },
-                })
-              end
-            end
-            table.insert(res, ' ')
-            return res
-          end
-
-          return nil
-        end,
-      }
-    end,
-  },
-  {
-    'eduardo-antunes/plainline',
-    enabled = false,
-    config = function()
-      require('plainline').setup 'emacs'
-    end,
-  },
-  {
     'nvim-lualine/lualine.nvim',
-    enabled = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    enabled = true,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     config = function()
       local custom_theme = {
         normal = {
@@ -191,18 +123,9 @@ return {
         sections = {
           lualine_a = {
             {
-              "require'custom.statusline'.file_path_component()",
+              'navic',
               serperator = '',
               padding = { left = 1, right = 0 },
-            },
-            {
-              "require'custom.statusline'.file_name_component()",
-              padding = { left = 0, right = 0 },
-              serperator = '',
-            },
-            {
-              'diagnostics',
-              sections = { 'error', 'warn' },
             },
           },
           lualine_b = {},
@@ -211,12 +134,12 @@ return {
           lualine_y = {},
           lualine_z = {
             {
-              'copilot',
-              show_colors = false,
+              'diagnostics',
+              sections = { 'error', 'warn' },
             },
             {
               'branch',
-              icon = ' ',
+              icon = '',
               separator = '',
             },
             {
@@ -233,6 +156,19 @@ return {
         winbar = {},
         inactive_winbar = {},
         extensions = {},
+      }
+    end,
+  },
+  {
+    'SmiteshP/nvim-navic',
+    config = function()
+      vim.api.nvim_set_hl(0, 'NavicText', { default = true, bg = 'NONE', fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg })
+      vim.api.nvim_set_hl(0, 'NavicSeparator', { default = true, bg = 'NONE', fg = vim.api.nvim_get_hl(0, { name = 'Comment' }).fg })
+
+      require('nvim-navic').setup {
+        click = true,
+        highlight = true,
+        separator = ' ➜ ',
       }
     end,
   },
@@ -305,16 +241,6 @@ return {
         { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'Quickfix' },
         { '<leader>t', group = 'Test' },
-        { '<leader>0', hidden = true },
-        { '<leader>1', hidden = true },
-        { '<leader>2', hidden = true },
-        { '<leader>3', hidden = true },
-        { '<leader>4', hidden = true },
-        { '<leader>5', hidden = true },
-        { '<leader>6', hidden = true },
-        { '<leader>7', hidden = true },
-        { '<leader>8', hidden = true },
-        { '<leader>9', hidden = true },
       }
     end,
   },
