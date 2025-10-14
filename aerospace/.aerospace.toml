@@ -111,6 +111,10 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
 if.app-id = 'com.linear'
 run = 'move-node-to-workspace 3'
 
@@ -125,6 +129,14 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'notion.mail.id'
 run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 8'
 
 [mode.zen.binding]
 alt-shift-z = 'mode main'
