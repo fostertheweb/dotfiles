@@ -9,6 +9,12 @@ return {
   },
   'ficcdaf/ashen.nvim',
   { 'Koalhack/darcubox-nvim', laze = false, priority = 1000 },
+  {
+    'lucasadelino/conifer.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {},
+  },
   'thallada/farout.nvim',
   {
     'rebelot/kanagawa.nvim',
