@@ -1,6 +1,7 @@
 return {
   {
     'sindrets/diffview.nvim',
+    enabled = false,
     config = function()
       require('diffview').setup {
         view = {
@@ -28,9 +29,9 @@ return {
       vim.keymap.set('n', '<leader>gf', '<CMD>DiffviewFileHistory %<CR>', { desc = 'File history' })
     end,
   },
+  { 'akinsho/git-conflict.nvim', version = '*', config = true },
   {
     'lewis6991/gitsigns.nvim',
-    enabled = true,
     opts = {
       signs = {
         add = { text = '┃' },
