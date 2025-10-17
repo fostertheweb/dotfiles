@@ -1,4 +1,5 @@
 return {
+  { 'p00f/alabaster.nvim' },
   {
     'Mofiqul/adwaita.nvim',
     config = function()

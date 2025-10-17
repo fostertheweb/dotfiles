@@ -16,7 +16,7 @@ local mini_layout = {
     title_pos = 'left',
     { win = 'input', height = 1, border = 'none' },
     { win = 'list', border = 'none' },
-    -- { win = 'preview', border = 'none', width = 1, height = 1 },
+    { win = 'preview', border = 'none', width = 1, height = 1 },
   },
 }
 
