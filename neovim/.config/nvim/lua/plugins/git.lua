@@ -59,9 +59,7 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require('octo').setup {
-        picker = 'snacks',
-      }
+      require('octo').setup {}
       vim.treesitter.language.register('markdown', 'octo')
       vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
     end,
