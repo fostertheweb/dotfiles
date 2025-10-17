@@ -36,3 +36,19 @@ function origin-status() {
 
   echo $output
 }
+
+function pull-requests() {
+  local pr_data selected_pr pr_number files
+
+  pr_data=$(gh pr list --json additions,author,files,deletions,id,number,title,url,createdAt,headRefName,headRepository)
+
+  selected_pr=$(echo "$pr_data" | jq -r '.[] | "#\(.number) \(.title) @\(.author.login) +\(.additions)/-\(.deletions)"' | fzf --prompt="Select PR: ")
+
+  if [[ -n "$selected_pr" ]]; then
+    pr_number=$(echo "$selected_pr" | grep -o '^#[0-9]*' | sed 's/#//')
+
+    files=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[].path')
+
+    echo "$files" | fzf --prompt="Select file: "
+  fi
+}
