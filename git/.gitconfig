@@ -23,6 +23,7 @@
     # use n and N to move between diff sections
     navigate = true 
     light = false
+    line-numbers = true
 
 [diff]
     algorithm = histogram
