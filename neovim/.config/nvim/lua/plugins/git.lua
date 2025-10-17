@@ -1,34 +1,4 @@
 return {
-  {
-    'sindrets/diffview.nvim',
-    enabled = false,
-    config = function()
-      require('diffview').setup {
-        view = {
-          default = {
-            -- Config for changed files, and staged files in diff views.
-            layout = 'diff2_horizontal',
-            disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
-            winbar_info = false, -- See |diffview-config-view.x.winbar_info|
-          },
-          merge_tool = {
-            layout = 'diff1_plain',
-            disable_diagnostics = true,
-            winbar_info = true,
-          },
-          file_history = {
-            layout = 'diff2_horizontal',
-            disable_diagnostics = false,
-            winbar_info = false,
-          },
-        },
-      }
-
-      vim.keymap.set('n', '<leader>gd', '<CMD>DiffviewOpen origin/HEAD...HEAD --imply-local<CR>', { desc = 'Diff' })
-      vim.keymap.set('n', '<leader>gm', '<CMD>DiffviewOpen<CR>', { desc = 'Merge' })
-      vim.keymap.set('n', '<leader>gf', '<CMD>DiffviewFileHistory %<CR>', { desc = 'File history' })
-    end,
-  },
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
   {
     'lewis6991/gitsigns.nvim',
@@ -94,6 +64,17 @@ return {
       }
       vim.treesitter.language.register('markdown', 'octo')
       vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
+    end,
+  },
+  {
+    'axkirillov/unified.nvim',
+    config = function()
+      require('unified').setup()
+
+      vim.keymap.set('n', '<leader>rr', function()
+        local dog = require('unified.command').run 'origin/HEAD'
+        vim.notify(dog)
+      end, { desc = 'Pull Requests' })
     end,
   },
 }

@@ -16,20 +16,21 @@
 
 [core]
     excludesFile = ~/.gitignore
-    pager = delta
-	editor = nvim
+    editor = nvim
 
-[delta]
-    # use n and N to move between diff sections
-    navigate = true 
-    light = false
-    line-numbers = true
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
 [diff]
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
+    ; algorithm = histogram
+    ; colorMoved = plain
+    ; mnemonicPrefix = true
+    ; renames = true
+    external = difft
+    tool = difftastic
+
+[difftool]
+    prompt = false
 
 [fetch]
     prune = true
@@ -52,18 +53,18 @@
 [init]
     defaultBranch = main
 
-[interactive]
-    diffFilter = delta --color-only
-
 [merge]
-    conflictstyle = zdiff3
+    ; conflictstyle = zdiff3
     tool = nvim
 
 [mergetool]
     prompt = false
 
 [mergetool "nvim"]
-    cmd = nvim -f -c "DiffviewOpen"
+    cmd = nvim -f -c "GitConflictListQf"
+
+[pager]
+    difftool = true
 
 [push]
     default = simple

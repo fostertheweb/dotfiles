@@ -96,9 +96,8 @@ alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias journal="$ZSH_CONFIG/bin/journal"
-alias lf="OPENER=nvim lf"
 alias ai="opencode"
-alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+alias merge="nvim -c GitConflictListQf"
 
 source "$ZSH_CONFIG/keybinds.zsh"
 
