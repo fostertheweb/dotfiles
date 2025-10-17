@@ -29,7 +29,7 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    enabled = true,
+    enabled = false,
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
@@ -195,6 +195,7 @@ return {
   },
   {
     'folke/which-key.nvim',
+    enabled = false,
     event = 'VimEnter',
     config = function()
       require('which-key').setup {
