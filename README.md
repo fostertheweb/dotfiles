@@ -1,6 +1,7 @@
 # fostertheweb's dotfiles
 
-<img width="1512" height="982" alt="Screenshot 2025-08-14 at 17 03 53" src="https://github.com/user-attachments/assets/8f9258ad-1efc-43a1-94d7-ccfda35bec2d" />
+<img width="1512" height="982" alt="Screenshot 2025-10-18 at 01 18 30" src="https://github.com/user-attachments/assets/72b53a3d-2c8d-4f44-b630-72aa56d41d27" />
+
 
 ## Setup
 
