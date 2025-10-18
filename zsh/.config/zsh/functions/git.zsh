@@ -38,17 +38,45 @@ function origin-status() {
 }
 
 function pull-requests() {
-  local pr_data selected_pr pr_number files
+  local pr_data selected_pr pr_number repo_name
 
-  pr_data=$(gh pr list --json additions,author,files,deletions,id,number,title,url,createdAt,headRefName,headRepository)
+  pr_data=$(gh pr list --json additions,author,files,deletions,id,number,title,url,createdAt,headRefName,headRepository,body)
 
-  selected_pr=$(echo "$pr_data" | jq -r '.[] | "#\(.number) \(.title) @\(.author.login) +\(.additions)/-\(.deletions)"' | fzf --prompt="Select PR: ")
+  selected_pr=$(echo "$pr_data" | jq -r '.[] | "\u001b[36m#\(.number)\u001b[0m \(.title) \u001b[33m@\(.author.login)\u001b[0m \u001b[32m+\(.additions)\u001b[0m/\u001b[31m-\(.deletions)\u001b[0m"' | fzf --prompt="Pull Requests: " --ansi)
 
   if [[ -n "$selected_pr" ]]; then
     pr_number=$(echo "$selected_pr" | grep -o '^#[0-9]*' | sed 's/#//')
+    repo_name=$(basename "$(pwd)")
 
-    files=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[].path')
+    git fetch origin pull/$pr_number/head:pr-$pr_number
+    git worktree add ../$repo_name@pr-$pr_number pr-$pr_number
+    cd ../$repo_name@pr-$pr_number
 
-    echo "$files" | fzf --prompt="Select file: "
+    # Create temporary PR file with metadata
+    local pr_file="/tmp/pr-$pr_number.pr"
+    local pr_info=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber))')
+    
+    cat > "$pr_file" << EOF
+# PR #$(echo "$pr_info" | jq -r '.number'): $(echo "$pr_info" | jq -r '.title')
+
+## Author: @$(echo "$pr_info" | jq -r '.author.login')
+
+## Description
+$(echo "$pr_info" | jq -r '.body // "No description provided"')
+
+## Files Changed ($(echo "$pr_info" | jq -r '.files | length'))
+$(echo "$pr_info" | jq -r '.files[] | "- `\(.filename)`"')
+
+## Stats
+- **Additions:** +$(echo "$pr_info" | jq -r '.additions')
+- **Deletions:** -$(echo "$pr_info" | jq -r '.deletions')
+- **URL:** $(echo "$pr_info" | jq -r '.url')
+EOF
+
+    # Extract files for quickfix and open nvim with both PR file and quickfix  
+    local temp_qf="/tmp/pr-$pr_number-qf.txt"
+    echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.filename):1: \(.filename)"' > "$temp_qf"
+    
+    nvim "$pr_file" -c "cgetfile $temp_qf" -c "copen"
   fi
 }

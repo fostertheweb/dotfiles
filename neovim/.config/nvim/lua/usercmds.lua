@@ -88,3 +88,19 @@ local function update_path_with_fd()
 end
 
 vim.api.nvim_create_user_command('UpdatePath', update_path_with_fd, {})
+
+vim.api.nvim_create_user_command('PRReview', function()
+  vim.schedule(function()
+    local ok, gitsigns = pcall(require, 'gitsigns')
+    if not ok then
+      vim.notify('Gitsigns not available', vim.log.levels.ERROR)
+      return
+    end
+
+    gitsigns.change_base 'origin/HEAD'
+    gitsigns.toggle_linehl()
+    gitsigns.setqflist()
+
+    vim.cmd 'copen'
+  end)
+end, {})

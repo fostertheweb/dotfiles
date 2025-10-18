@@ -1,3 +1,6 @@
+vim.env.GIT_EXTERNAL_DIFF = nil
+vim.opt.diffexpr = ''
+
 require 'autocmds'
 require 'options'
 require 'lsp'
