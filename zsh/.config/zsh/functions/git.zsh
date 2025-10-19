@@ -52,31 +52,66 @@ function pull-requests() {
     git worktree add ../$repo_name@pr-$pr_number pr-$pr_number
     cd ../$repo_name@pr-$pr_number
 
-    # Create temporary PR file with metadata
+    # Create temporary PR file with Lua rendering
     local pr_file="/tmp/pr-$pr_number.pr"
     local pr_info=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber))')
-    
-    cat > "$pr_file" << EOF
-# PR #$(echo "$pr_info" | jq -r '.number'): $(echo "$pr_info" | jq -r '.title')
 
-## Author: @$(echo "$pr_info" | jq -r '.author.login')
+    # Create Lua script that renders directly to buffer
+    cat >"/tmp/render_pr.lua" <<'LUA'
+local json_str = vim.fn.system('echo ' .. vim.fn.shellescape(vim.g.pr_json))
+local json = vim.fn.json_decode(json_str)
 
-## Description
-$(echo "$pr_info" | jq -r '.body // "No description provided"')
+-- Create new buffer
+vim.cmd('enew')
+vim.bo.filetype = 'pr'
 
-## Files Changed ($(echo "$pr_info" | jq -r '.files | length'))
-$(echo "$pr_info" | jq -r '.files[] | "- `\(.filename)`"')
+local lines = {}
 
-## Stats
-- **Additions:** +$(echo "$pr_info" | jq -r '.additions')
-- **Deletions:** -$(echo "$pr_info" | jq -r '.deletions')
-- **URL:** $(echo "$pr_info" | jq -r '.url')
-EOF
+-- Header
+table.insert(lines, string.format("PR #%d: %s", json.number, json.title))
+table.insert(lines, string.rep("=", 60))
+table.insert(lines, "")
 
-    # Extract files for quickfix and open nvim with both PR file and quickfix  
+-- Author
+table.insert(lines, string.format("Author: @%s", json.author.login))
+table.insert(lines, "")
+
+-- Description
+table.insert(lines, "Description:")
+table.insert(lines, string.rep("-", 20))
+local body = json.body or "No description provided"
+if body ~= vim.NIL then
+    for line in body:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
+end
+table.insert(lines, "")
+
+-- Files
+table.insert(lines, string.format("Files Changed (%d):", #json.files))
+table.insert(lines, string.rep("-", 20))
+for _, file in ipairs(json.files) do
+    table.insert(lines, string.format("  %s (+%d/-%d)", file.path, file.additions, file.deletions))
+end
+table.insert(lines, "")
+
+-- Stats
+table.insert(lines, "Statistics:")
+table.insert(lines, string.rep("-", 20))
+table.insert(lines, string.format("  Additions: +%d", json.additions))
+table.insert(lines, string.format("  Deletions: -%d", json.deletions))
+table.insert(lines, string.format("  URL: %s", json.url))
+
+-- Set buffer content
+vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+vim.bo.modified = false
+LUA
+
+    # Extract files for quickfix
     local temp_qf="/tmp/pr-$pr_number-qf.txt"
-    echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.filename):1: \(.filename)"' > "$temp_qf"
-    
-    nvim "$pr_file" -c "cgetfile $temp_qf" -c "copen"
+    echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.path):1: \(.path)"' >"$temp_qf"
+
+    # Open with quickfix and PRReview after everything loads
+    nvim -c "let g:pr_json='$(echo "$pr_info" | sed "s/'/'\\''/g")'" -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen" -c "autocmd VimEnter * ++once PRReview"
   fi
 }

@@ -97,10 +97,17 @@ vim.api.nvim_create_user_command('PRReview', function()
       return
     end
 
-    gitsigns.change_base 'origin/HEAD'
-    gitsigns.toggle_linehl()
-    gitsigns.setqflist()
+    -- Change base and wait for it to complete
+    gitsigns.change_base('origin/HEAD', function()
+      -- Enable visual enhancements after base change completes
+      gitsigns.toggle_linehl(true)
+      gitsigns.toggle_word_diff(true)
+      gitsigns.toggle_deleted(true)
 
-    vim.cmd 'copen'
+      -- Populate quickfix with all changes
+      gitsigns.setqflist 'all'
+
+      vim.notify('PR review mode enabled', vim.log.levels.INFO)
+    end)
   end)
 end, {})
