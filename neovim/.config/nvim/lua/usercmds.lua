@@ -89,8 +89,76 @@ end
 
 vim.api.nvim_create_user_command('UpdatePath', update_path_with_fd, {})
 
+-- PR file highlight groups
+local function setup_pr_highlights()
+  local highlights = {
+    -- Core PR elements
+    { 'PRTitle', { fg = '#ffffff', bold = true } },
+    { 'PRNumber', { fg = '#8b949e', italic = true } },
+    { 'PRState', { fg = '#238636', bold = true } },
+    { 'PRStateClosed', { fg = '#da3633', bold = true } },
+    { 'PRStateDraft', { fg = '#8b949e', bold = true } },
+    
+    -- User/assignee bubbles
+    { 'PRUser', { fg = '#ffffff', bg = '#21262d', bold = true } },
+    { 'PRUserBorder', { fg = '#30363d' } },
+    
+    -- Labels
+    { 'PRLabel', { fg = '#ffffff', bg = '#1f6feb', bold = true } },
+    { 'PRLabelBorder', { fg = '#388bfd' } },
+    
+    -- Stats and metadata
+    { 'PRStats', { fg = '#8b949e' } },
+    { 'PRStatsGreen', { fg = '#238636' } },
+    { 'PRStatsRed', { fg = '#da3633' } },
+    
+    -- Section headers
+    { 'PRSection', { fg = '#f0f6fc', bold = true } },
+    
+    -- Description and body text
+    { 'PRBody', { fg = '#e6edf3' } },
+    { 'PRBodyDim', { fg = '#8b949e' } },
+    
+    -- Timeline elements
+    { 'PRTimeline', { fg = '#656d76' } },
+    { 'PRTimelineIcon', { fg = '#8b949e' } },
+  }
+  
+  for _, hl in ipairs(highlights) do
+    vim.api.nvim_set_hl(0, hl[1], hl[2])
+  end
+end
+
+-- Utility functions for creating bubble elements
+local function create_bubble(text, hl_group, border_hl)
+  return {
+    { '  ', border_hl or hl_group },
+    { text, hl_group },
+    { '  ', border_hl or hl_group },
+  }
+end
+
+local function create_user_bubble(username)
+  return create_bubble('@' .. username, 'PRUser', 'PRUserBorder')
+end
+
+local function create_label_bubble(label)
+  return create_bubble(label, 'PRLabel', 'PRLabelBorder')
+end
+
+local function create_stats_text(additions, deletions)
+  return {
+    { '+' .. additions, 'PRStatsGreen' },
+    { ' ', 'PRStats' },
+    { '-' .. deletions, 'PRStatsRed' },
+  }
+end
+
 vim.api.nvim_create_user_command('PRReview', function()
   vim.notify('PR Review', vim.log.levels.INFO)
+
+  -- Set up highlights
+  setup_pr_highlights()
 
   -- Refresh gitsigns first to ensure it detects the worktree properly
   -- vim.cmd 'Gitsigns refresh'
@@ -103,14 +171,27 @@ vim.api.nvim_create_user_command('PRReview', function()
   vim.cmd 'Gitsigns toggle_word_diff true'
 end, {})
 
--- Auto-enable PR review mode for git-tracked files in worktrees
+-- Auto-enable PR review mode for git-tracked files with changes in worktrees
 vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     -- Check if we're in a git worktree (has .git file, not directory)
     if vim.fn.filereadable '.git' == 1 then
-      vim.defer_fn(function()
-        vim.cmd 'PRReview'
-      end, 500)
+      local bufname = vim.api.nvim_buf_get_name(0)
+      -- Skip if buffer is not a regular file or is a special buffer type
+      if bufname == '' or vim.bo.buftype ~= '' then
+        return
+      end
+      
+      -- Check if the file has changes using git diff
+      local cmd = 'git diff --name-only origin/HEAD | grep -Fx ' .. vim.fn.shellescape(vim.fn.fnamemodify(bufname, ':~:.'), 1)
+      local result = vim.fn.system(cmd)
+      
+      -- Only enable PRReview if the file has changes
+      if vim.v.shell_error == 0 and result:match('%S') then
+        vim.defer_fn(function()
+          vim.cmd 'PRReview'
+        end, 500)
+      end
     end
   end,
 })
