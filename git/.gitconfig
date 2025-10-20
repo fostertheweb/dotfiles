@@ -1,7 +1,7 @@
 [alias]
     st = status -s
     blame = blame -C -C -C
-    diff = diff.external=difft diff --word-diff
+    d = -c diff.external=difft diff --word-diff
     lol = log --oneline --decorate
     graph = log --oneline --graph --decorate --all
 
