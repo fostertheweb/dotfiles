@@ -52,26 +52,20 @@ function pull-requests() {
     git worktree add ../$repo_name@pr-$pr_number pr-$pr_number
     cd ../$repo_name@pr-$pr_number
 
-    # Create temporary PR file with Lua rendering
     local pr_file="/tmp/pr-$pr_number.pr"
     local pr_info=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber))')
 
-    # Create enhanced Lua script with safe virtual text rendering
-    # Create simple loader script that uses the neovim module
     cat >"/tmp/render_pr.lua" <<LUA
--- Load the PR renderer module and render the PR
-local pr_renderer = require('pr_renderer')
-pr_renderer.render_pr($pr_number)
+-- Load the PR Review module and render the PR
+local m = require('custom.review')
+m.render_pr($pr_number)
 LUA
 
-    # Extract files for quickfix
     local temp_qf="/tmp/pr-$pr_number-qf.txt"
     echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.path):1: +\(.additions) Additions -\(.deletions) Deletions"' >"$temp_qf"
 
-    # Write PR info to temp file for safe reading
     echo "$pr_info" >"/tmp/pr-$pr_number-info.json"
 
-    # Open with quickfix and PRReview after everything loads
     nvim -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen 5"
   fi
 }
