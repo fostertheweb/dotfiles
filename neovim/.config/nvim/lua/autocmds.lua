@@ -75,17 +75,8 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'pr',
   callback = function()
-    vim.bo.filetype = 'markdown'
     vim.wo.wrap = true
     vim.wo.linebreak = true
-    
-    -- Ensure render-markdown is loaded and enabled for this buffer
-    vim.schedule(function()
-      local ok, render_markdown = pcall(require, 'render-markdown')
-      if ok then
-        render_markdown.enable()
-      end
-    end)
   end,
 })
 

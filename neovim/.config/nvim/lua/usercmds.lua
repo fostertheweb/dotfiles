@@ -90,24 +90,27 @@ end
 vim.api.nvim_create_user_command('UpdatePath', update_path_with_fd, {})
 
 vim.api.nvim_create_user_command('PRReview', function()
-  vim.schedule(function()
-    local ok, gitsigns = pcall(require, 'gitsigns')
-    if not ok then
-      vim.notify('Gitsigns not available', vim.log.levels.ERROR)
-      return
-    end
+  vim.notify('PR Review', vim.log.levels.INFO)
 
-    -- Change base and wait for it to complete
-    gitsigns.change_base('origin/HEAD', function()
-      -- Enable visual enhancements after base change completes
-      gitsigns.toggle_linehl(true)
-      gitsigns.toggle_word_diff(true)
-      gitsigns.toggle_deleted(true)
+  -- Refresh gitsigns first to ensure it detects the worktree properly
+  -- vim.cmd 'Gitsigns refresh'
 
-      -- Populate quickfix with all changes
-      gitsigns.setqflist 'all'
+  -- Chain the operations with delays to avoid race conditions
+  vim.cmd 'Gitsigns change_base origin/HEAD'
 
-      vim.notify('PR review mode enabled', vim.log.levels.INFO)
-    end)
-  end)
+  vim.cmd 'Gitsigns toggle_linehl true'
+  vim.cmd 'Gitsigns toggle_deleted true'
+  vim.cmd 'Gitsigns toggle_word_diff true'
 end, {})
+
+-- Auto-enable PR review mode for git-tracked files in worktrees
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function()
+    -- Check if we're in a git worktree (has .git file, not directory)
+    if vim.fn.filereadable '.git' == 1 then
+      vim.defer_fn(function()
+        vim.cmd 'PRReview'
+      end, 500)
+    end
+  end,
+})
