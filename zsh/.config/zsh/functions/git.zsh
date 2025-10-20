@@ -112,6 +112,6 @@ LUA
     echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.path):1: \(.path)"' >"$temp_qf"
 
     # Open with quickfix and PRReview after everything loads
-    nvim -c "let g:pr_json='$(echo "$pr_info" | sed "s/'/'\\''/g")'" -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen" -c "autocmd VimEnter * ++once PRReview"
+    nvim -c "let g:pr_json='$(echo "$pr_info" | sed "s/'/'\\''/g")'" -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen 5"
   fi
 }
