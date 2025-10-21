@@ -81,4 +81,23 @@ M.move_to_start_of_line = function()
   end
 end
 
+M.toggle_quickfix = function()
+  local quickfix_open = false
+  
+  -- Check if quickfix list is open by looking at all windows
+  for _, win in pairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.api.nvim_buf_get_option(buf, 'buftype') == 'quickfix' then
+      quickfix_open = true
+      break
+    end
+  end
+  
+  if quickfix_open then
+    vim.cmd('cclose')
+  else
+    vim.cmd('copen')
+  end
+end
+
 return M
