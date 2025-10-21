@@ -12,36 +12,6 @@ return {
     end,
   },
   {
-    'ghillb/cybu.nvim',
-    enabled = false,
-    config = function()
-      require('cybu').setup {
-        display_time = 500,
-        behavior = {
-          mode = {
-            last_used = {
-              update_on = 'text_changed',
-            },
-          },
-        },
-        style = {
-          padding = 2,
-          separator = '  ',
-          highlights = {
-            current_buffer = 'Normal',
-            adjacent_buffers = 'Comment',
-            background = 'CybuBackground',
-            border = 'CybuBorder',
-          },
-        },
-      }
-
-      vim.keymap.set('n', '<C-i>', '<C-i>')
-      vim.keymap.set('n', '<S-Tab>', '<CMD>CybuLastusedPrev<CR>')
-      vim.keymap.set('n', '<Tab>', '<CMD>CybuLastusedNext<CR>')
-    end,
-  },
-  {
     'jinh0/eyeliner.nvim',
     config = function()
       require('eyeliner').setup {

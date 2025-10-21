@@ -71,21 +71,6 @@ return {
     end,
   },
   {
-    'NickvanDyke/opencode.nvim',
-    enabled = false,
-    dependencies = { 'folke/snacks.nvim' },
-    opts = {
-      auto_reload = true,
-    },
-    -- stylua: ignore
-    keys = {
-      { '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n', },
-      { '<leader>oa', function() require('opencode').ask('@selection: ') end, desc = 'Ask opencode about selection', mode = 'v', },
-      { '<leader>op', function() require('opencode').select() end, desc = 'Select prompt', mode = { 'n', 'v', }, },
-      { '<leader>oy', function() require('opencode').command('messages_copy') end, desc = 'Copy last message', },
-    },
-  },
-  {
     'supermaven-inc/supermaven-nvim',
     event = {
       'BufReadPost',
