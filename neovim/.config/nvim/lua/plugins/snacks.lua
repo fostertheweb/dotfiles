@@ -138,11 +138,11 @@ return {
       desc = 'Changes',
     },
     {
-      '<leader>qf',
+      '<leader>fq',
       function()
         Snacks.picker.qflist()
       end,
-      desc = 'Find',
+      desc = 'Quickfix',
     },
     {
       '<leader>.',
