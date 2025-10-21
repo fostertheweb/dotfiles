@@ -1,5 +1,6 @@
 local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
 
+-- Ensure Ghostty shows current file
 vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*',
   command = 'set title',
