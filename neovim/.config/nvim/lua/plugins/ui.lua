@@ -50,4 +50,5 @@ return {
       }
     end,
   },
+  'lewis6991/whatthejump.nvim',
 }
