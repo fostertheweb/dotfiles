@@ -1,10 +1,10 @@
+zmodload zsh/zprof
+
 bindkey -e
 
 export EDITOR=nvim
-export PATH="$HOME/.local/bin:$PATH"
 export DOTFILES_PREFIX="$HOME/.dotfiles"
 export ZSH_CONFIG="$HOME/.config/zsh"
-export SESSION_MANAGER="aerospace"
 
 # history configuration
 export HISTFILE=$HOME/.zsh_history
@@ -16,17 +16,23 @@ setopt HIST_FIND_NO_DUPS
 setopt SHARE_HISTORY
 setopt monitor
 
-# zsh-completions
+# homebrew zsh-completions
 FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
 autoload -U add-zsh-hook
-autoload -Uz compinit && compinit -i
 
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit -i
+else
+  compinit -C
+fi
 
 # fzf-tab configuration
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
+
+# nvm - lazy loading functions in node.zsh
+export NVM_DIR="$HOME/.nvm"
 
 # pnpm
 export PNPM_HOME="/Users/jonathan/Library/pnpm"
@@ -35,20 +41,11 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# deno
-export PATH="$HOME/.deno/bin:$PATH"
-
 # go
 export GOPATH="$HOME/Developer/go"
-export PATH="$GOPATH/bin:$PATH"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# OCaml
-[[ ! -r '/Users/jonathan/.opam/opam-init/init.zsh' ]] || source '/Users/jonathan/.opam/opam-init/init.zsh' >/dev/null 2>/dev/null
+# update PATH
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$GOPATH/bin:$HOME/.deno/bin:$PATH"
 
 export BAT_THEME=ansi
 
@@ -99,8 +96,6 @@ alias journal="$ZSH_CONFIG/bin/journal"
 alias ai="opencode"
 alias merge="nvim -c GitConflictListQf"
 
-source "$ZSH_CONFIG/keybinds.zsh"
-
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/jobs.zsh"
@@ -108,13 +103,33 @@ source "$ZSH_CONFIG/functions/node.zsh"
 source "$ZSH_CONFIG/functions/opencode.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
-# fzf shell integration
-source <(fzf --zsh)
+source "$ZSH_CONFIG/keybinds.zsh"
 
-# zsh plugins
-source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Essential plugins loaded immediately (needed for interactive use)
+source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-add-zsh-hook chpwd load-nvmrc
+_lazy_load_plugins() {
+  if [[ -z "$_PLUGINS_LOADED" ]]; then
+    source <(fzf --zsh)
+    source $HOME/.local/share/zsh/plugins/fzf-tab.plugin.zsh
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+    export _PLUGINS_LOADED=1
+  fi
+}
+
+# For interactive shells, set up lazy loading
+# Load plugins after first prompt is shown
+# For non-interactive shells, load immediately
+if [[ $- == *i* ]]; then
+  _lazy_load_once() {
+    _lazy_load_plugins
+    add-zsh-hook -d precmd _lazy_load_once
+    unfunction _lazy_load_once 2>/dev/null
+  }
+  add-zsh-hook precmd _lazy_load_once
+else
+  _lazy_load_plugins
+fi
+
+# Show profiling info on demand with `zprof` command
