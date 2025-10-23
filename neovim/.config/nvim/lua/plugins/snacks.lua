@@ -105,7 +105,7 @@ return {
     {
       '<leader>k',
       function()
-        Snacks.picker.diagnostics() -- { layout = 'ivy_split', preview = false }
+        Snacks.picker.diagnostics()
       end,
       desc = 'Problems',
     },

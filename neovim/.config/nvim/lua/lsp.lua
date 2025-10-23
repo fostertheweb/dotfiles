@@ -51,6 +51,7 @@ vim.diagnostic.config {
 
 vim.lsp.enable {
   -- npm
+  'copilot',
   'vtsls',
   'cssls',
   'html',

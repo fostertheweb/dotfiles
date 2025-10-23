@@ -71,7 +71,25 @@ return {
     end,
   },
   {
+    'folke/sidekick.nvim',
+    opts = {},
+    keys = {
+      {
+        '<C-f>',
+        function()
+          if not require('sidekick').nes_jump_or_apply() then
+            return '<C-f>'
+          end
+        end,
+        mode = { 'i', 'n' },
+        expr = true,
+        desc = 'Accept suggestion',
+      },
+    },
+  },
+  {
     'supermaven-inc/supermaven-nvim',
+    enabled = false,
     event = {
       'BufReadPost',
       'BufNewFile',

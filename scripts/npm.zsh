@@ -1,6 +1,7 @@
 #! /usr/bin/env zsh
 
 npm install -g @astrojs/language-server \
+	@github/copilot-language-server \
 	@biomejs/biome \
 	branchlet \
 	eslint_d \
