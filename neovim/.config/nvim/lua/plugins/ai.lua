@@ -72,13 +72,14 @@ return {
   },
   {
     'folke/sidekick.nvim',
+    enabled = false,
     opts = {},
     keys = {
       {
-        '<C-f>',
+        '<Tab>',
         function()
           if not require('sidekick').nes_jump_or_apply() then
-            return '<C-f>'
+            return '<Tab>'
           end
         end,
         mode = { 'i', 'n' },
@@ -89,7 +90,7 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
-    enabled = false,
+    enabled = true,
     event = {
       'BufReadPost',
       'BufNewFile',

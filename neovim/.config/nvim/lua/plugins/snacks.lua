@@ -138,6 +138,13 @@ return {
       desc = 'Changes',
     },
     {
+      '<leader>gr',
+      function()
+        Snacks.picker.git_diff { base = 'origin/HEAD' }
+      end,
+      desc = 'Review diff',
+    },
+    {
       '<leader>fq',
       function()
         Snacks.picker.qflist()

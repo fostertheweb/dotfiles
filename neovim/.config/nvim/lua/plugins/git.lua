@@ -51,7 +51,7 @@ return {
         picker = 'snacks',
       }
       vim.treesitter.language.register('markdown', 'octo')
-      vim.keymap.set('n', '<leader>gr', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
+      vim.keymap.set('n', '<leader>gp', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
     end,
   },
 }
