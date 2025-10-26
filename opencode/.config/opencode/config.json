@@ -3,6 +3,15 @@
   "theme": "system",
   "model": "github-copilot/claude-sonnet-4",
   "mcp": {
+    "apple": {
+      "type": "local",
+      "command": [
+        "opencode",
+        "x",
+        "@kimsungwhee/apple-docs-mcp"
+      ],
+      "enabled": true
+    },
     "context7": {
       "type": "local",
       "command": [
