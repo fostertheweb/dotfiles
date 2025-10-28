@@ -1,5 +1,14 @@
 {
   "servers": {
+    "apple": {
+      "type": "local",
+      "command": [
+        "opencode",
+        "x",
+        "@kimsungwhee/apple-docs-mcp"
+      ],
+      "enabled": true
+    },
     "context7": {
       "type": "streamable-http",
       "url": "https://mcp.context7.com/mcp"
