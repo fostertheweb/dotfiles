@@ -31,8 +31,9 @@ fi
 # fzf-tab configuration
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
-# nvm - lazy loading functions in node.zsh
+# nvm
 export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # pnpm
 export PNPM_HOME="/Users/jonathan/Library/pnpm"
@@ -104,6 +105,9 @@ source "$ZSH_CONFIG/functions/opencode.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
+
+add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # Essential plugins loaded immediately (needed for interactive use)
 source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
