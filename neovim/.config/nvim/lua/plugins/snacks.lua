@@ -9,14 +9,14 @@ local mini_layout = {
     border = 'single',
     box = 'vertical',
     col = 0,
-    row = -1,
+    row = -2,
     height = 0.4,
     width = 0.5,
     title = '{title}',
     title_pos = 'left',
     { win = 'input', height = 1, border = 'none' },
     { win = 'list', border = 'none' },
-    { win = 'preview', border = 'none', width = 1, height = 1 },
+    -- { win = 'preview', border = 'none', width = 1, height = 1 },
   },
 }
 

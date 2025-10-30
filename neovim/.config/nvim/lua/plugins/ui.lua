@@ -28,6 +28,130 @@ return {
     end,
   },
   {
+    'nvim-lualine/lualine.nvim',
+    enabled = true,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      local custom_theme = {
+        normal = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+        insert = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+        visual = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+        replace = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+        command = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+        inactive = {
+          a = { bg = 'NONE' },
+          z = { bg = 'NONE' },
+        },
+      }
+
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = custom_theme,
+          component_separators = { left = ' ', right = ' ' },
+
+          section_separators = { left = ' ', right = ' ' },
+          disabled_filetypes = {
+            quickfix = {},
+            statusline = {},
+            terminmal = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = false,
+          always_show_tabline = true,
+          globalstatus = true,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+              'WinEnter',
+              'BufEnter',
+              'BufWritePost',
+              'SessionLoadPost',
+              'FileChangedShellPost',
+              'VimResized',
+              'Filetype',
+              'CursorMoved',
+              'CursorMovedI',
+            },
+          },
+        },
+        sections = {
+          lualine_a = {
+            {
+              'navic',
+              separator = '',
+              padding = { left = 1, right = 0 },
+            },
+          },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {
+            {
+              'diagnostics',
+              sections = { 'error', 'warn' },
+            },
+            {
+              'branch',
+              color = 'Comment',
+              icon = '',
+              separator = '',
+            },
+            {
+              'diff',
+              diff_color = {
+                added = 'DiagnosticOk',
+                modified = 'MiniIconsOrange',
+                removed = 'DiagnosticError',
+              },
+            },
+            {
+              'copilot',
+              show_colors = true,
+              show_loading = true,
+            },
+          },
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
+      }
+    end,
+  },
+  {
+    'SmiteshP/nvim-navic',
+    config = function()
+      require('nvim-navic').setup {
+        click = true,
+        highlight = true,
+        separator = ' ➜ ',
+      }
+    end,
+  },
+  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     config = function()

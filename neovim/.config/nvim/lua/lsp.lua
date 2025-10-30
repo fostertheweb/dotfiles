@@ -23,6 +23,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
     end
 
+    if client:supports_method 'textDocument/documentSymbol' then
+      require('nvim-navic').attach(client, event.buf)
+    end
+
     local map = function(keys, func, desc)
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end

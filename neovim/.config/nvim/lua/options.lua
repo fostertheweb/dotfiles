@@ -1,4 +1,4 @@
-vim.o.laststatus = 0 -- Hide statusline
+vim.o.laststatus = 3 -- Global statusline
 vim.splitkeep = 'screen' -- Keep screen position when splitting
 vim.opt.winborder = 'single' -- Single line window borders
 vim.opt.completeopt = 'menuone,noselect,fuzzy,nosort' -- Completion menu behavior
