@@ -1,7 +1,7 @@
 return {
   {
     'zbirenbaum/copilot.lua',
-    enabled = false,
+    enabled = true,
     dependencies = { 'AndreM222/copilot-lualine' },
     config = function()
       require('copilot').setup {
@@ -9,7 +9,7 @@ return {
           enabled = false,
         },
         suggestion = {
-          enabled = false,
+          enabled = true,
         },
       }
     end,
@@ -90,7 +90,7 @@ return {
   },
   {
     'supermaven-inc/supermaven-nvim',
-    enabled = true,
+    enabled = false,
     event = {
       'BufReadPost',
       'BufNewFile',
@@ -105,5 +105,14 @@ return {
         },
       }
     end,
+  },
+  {
+    'piersolenski/wtf.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'folke/snacks.nvim',
+    },
+    opts = {},
   },
 }

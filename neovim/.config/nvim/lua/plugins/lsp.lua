@@ -6,13 +6,4 @@ return {
       require('ts-error-translator').setup()
     end,
   },
-  {
-    'piersolenski/wtf.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'folke/snacks.nvim',
-    },
-    opts = {},
-  },
 }
