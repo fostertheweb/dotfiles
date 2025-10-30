@@ -1,9 +1,10 @@
 [alias]
-    st = status -s
+    conflicts = diff --check --relative
     blame = blame -C -C -C
     d = -c diff.external=difft diff --word-diff
-    lol = log --oneline --decorate
     graph = log --oneline --graph --decorate --all
+    lol = log --oneline --decorate
+    st = status -s
 
 [branch]
     sort = -committerdate
