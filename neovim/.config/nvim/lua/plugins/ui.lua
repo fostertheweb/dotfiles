@@ -127,11 +127,6 @@ return {
                 removed = 'DiagnosticError',
               },
             },
-            {
-              'copilot',
-              show_colors = true,
-              show_loading = true,
-            },
           },
         },
         tabline = {},
