@@ -34,7 +34,7 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "caps_lock",
+                                    "key_code": "f13",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -59,6 +59,10 @@
                 },
                 {
                     "from": { "key_code": "right_option" },
+                    "to": [{ "key_code": "caps_lock" }]
+                },
+                {
+                    "from": { "key_code": "caps_lock" },
                     "to": [{ "key_code": "f13" }]
                 }
             ],
