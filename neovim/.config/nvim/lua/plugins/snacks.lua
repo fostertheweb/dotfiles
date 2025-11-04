@@ -24,6 +24,7 @@ return {
   'folke/snacks.nvim',
   opts = {
     bufdelete = {},
+    gh = {},
     indent = {
       only_scope = true,
       only_current = true,
@@ -161,7 +162,7 @@ return {
     {
       '<C-g>',
       function()
-        Snacks.terminal.toggle('gitu', {
+        Snacks.terminal.toggle('git add -i', {
           win = {
             width = vim.o.columns,
             height = vim.o.lines - 1,
