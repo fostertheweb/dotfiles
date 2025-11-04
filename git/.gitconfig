@@ -55,14 +55,13 @@
     defaultBranch = main
 
 [merge]
-    ; conflictstyle = zdiff3
-    tool = nvim
+    tool = nvimdiff
 
 [mergetool]
     prompt = false
 
-[mergetool "nvim"]
-    cmd = nvim -f -c "GitConflictListQf"
+[mergetool "nvimdiff"]
+    layout = BASE,LOCAL + BASE,REMOTE + MERGED
 
 [pager]
     difftool = true
