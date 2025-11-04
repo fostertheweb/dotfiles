@@ -40,6 +40,7 @@ ctrl-alt-k = 'join-with up'
 ctrl-alt-l = 'join-with right'
 
 alt-f = 'layout floating tiling'
+alt-shift-f = """exec-and-forget aerospace layout floating && sleep 0.2 && open -g 'raycast://extensions/raycast/window-management/reasonable-size' || aerospace layout tiling"""
 alt-z = 'fullscreen'
 
 # https://nikitabobko.github.io/AeroSpace/commands#focus
