@@ -35,6 +35,12 @@ return {
       },
     },
   },
+  {
+    'Kaikacy/Lemons.nvim',
+    version = '*',
+    lazy = false,
+    priority = 1000,
+  },
   'savq/melange-nvim',
   'nyoom-engineering/oxocarbon.nvim',
   {
