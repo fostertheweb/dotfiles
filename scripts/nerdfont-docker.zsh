@@ -23,7 +23,7 @@ if [ ! -d "$OUTPUT_DIR" ]; then
 fi
 
 # Run the docker command
-docker run --rm -v "$INPUT_DIR:/in:Z" -v "$OUTPUT_DIR:/out:Z" nerdfonts/patcher --complete
+container run --rm -v "$INPUT_DIR:/in" -v "$OUTPUT_DIR:/out" nerdfonts/patcher --complete
 
 # Check if the command was successful
 if [ $? -eq 0 ]; then
