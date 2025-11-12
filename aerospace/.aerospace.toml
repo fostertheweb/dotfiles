@@ -1,7 +1,11 @@
 start-at-login = true
 
 after-login-command = []
-after-startup-command = ['exec-and-forget borders']
+after-startup-command = ['exec-and-forget borders', 'exec-and-forget sketchybar']
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -16,7 +20,7 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 8
 outer.bottom = 8
-outer.top = 8
+outer.top = 44
 outer.right = 8
 
 [exec]
