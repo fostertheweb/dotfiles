@@ -64,3 +64,13 @@ vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR D
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>q', utils.toggle_quickfix, { desc = 'Quickfix list' })
+vim.keymap.set('n', '<CR>', function()
+  if utils.is_qf_open() then
+    local ok = pcall(vim.cmd, 'cnext')
+    if not ok then
+      vim.cmd 'cfirst'
+    end
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false)
+  end
+end, { desc = 'Next quickfix item' })

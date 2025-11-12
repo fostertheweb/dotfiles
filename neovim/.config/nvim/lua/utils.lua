@@ -83,7 +83,7 @@ end
 
 M.toggle_quickfix = function()
   local quickfix_open = false
-  
+
   -- Check if quickfix list is open by looking at all windows
   for _, win in pairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -92,12 +92,23 @@ M.toggle_quickfix = function()
       break
     end
   end
-  
+
   if quickfix_open then
-    vim.cmd('cclose')
+    vim.cmd 'cclose'
   else
-    vim.cmd('copen')
+    vim.cmd 'copen'
   end
+end
+
+M.is_qf_open = function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+    if ft == 'qf' then
+      return true
+    end
+  end
+  return false
 end
 
 return M
