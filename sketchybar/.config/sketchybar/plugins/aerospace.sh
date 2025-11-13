@@ -6,12 +6,12 @@ source "$CONFIG_DIR/colors.sh"
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
   sketchybar --set $NAME background.drawing=on \
     background.color=$GRAY_TRANSPARENT \
-    icon.color=$ACCENT \
+    icon.color=$WHITE \
     label.color=$ACCENT
 else
   sketchybar --set $NAME background.drawing=off \
-    icon.color=$GRAY \
-    label.color=$GRAY
+    icon.color=$INACTIVE \
+    label.color=$INACTIVE
 fi
 
 apps=$(aerospace list-windows --workspace $1 2>/dev/null | awk -F' \\| ' '{print $2}' | sort -u)
