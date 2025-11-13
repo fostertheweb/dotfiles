@@ -8,6 +8,7 @@ export SECONDARY_ACCENT_TRANSPARENT=0x44d8cfbe
 
 export BAR_COLOR=0x44d8cfbe
 export ITEM_BG_COLOR=0xee242426
+export INACTIVE=0x88e5e5e9
 
 export WHITE=0xffffffff
 export BLACK=0xff000000
