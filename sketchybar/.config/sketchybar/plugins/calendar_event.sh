@@ -52,7 +52,7 @@ fi
 
 sketchybar --set "$NAME" \
   icon="󰃮" \
-  icon.color="$RED" \
+  icon.color="$ORANGE" \
   icon.padding_left=10 \
   icon.padding_right=10 \
   label="$LABEL" \

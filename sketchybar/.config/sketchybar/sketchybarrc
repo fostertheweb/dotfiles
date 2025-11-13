@@ -6,7 +6,7 @@ source "$CONFIG_DIR/colors.sh"
 
 sketchybar --bar position=top \
   height=36 \
-  blur_radius=5
+  blur_radius=10
 
 default=(
   padding_left=0
@@ -25,7 +25,7 @@ default=(
 sketchybar --default "${default[@]}"
 
 sketchybar --add event aerospace_workspace_change
-sketchybar --add event aerospace_focus_change
+# sketchybar --add event aerospace_focus_change
 
 for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
   sketchybar --add item space.$sid left \

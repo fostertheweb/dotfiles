@@ -1,7 +1,7 @@
 return {
   {
     'zbirenbaum/copilot.lua',
-    enabled = false,
+    enabled = true,
     dependencies = { 'AndreM222/copilot-lualine' },
     config = function()
       require('copilot').setup {
