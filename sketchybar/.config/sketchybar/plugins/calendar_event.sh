@@ -15,10 +15,10 @@ CURRENT_MINUTES=$(echo "$CURRENT_TIME" | awk -F: '{print $1*60 + $2}')
 if [ -n "$OUTPUT" ] && [ "$OUTPUT" != "" ]; then
   # Create temporary file to process events
   TEMP_FILE=$(mktemp)
-  echo "$OUTPUT" > "$TEMP_FILE"
-  
+  echo "$OUTPUT" >"$TEMP_FILE"
+
   CURRENT_EVENT_TITLE=""
-  
+
   while IFS= read -r line; do
     if echo "$line" | grep -q '^•'; then
       # This is a title line
@@ -26,11 +26,11 @@ if [ -n "$OUTPUT" ] && [ "$OUTPUT" != "" ]; then
     elif echo "$line" | grep -q '^[[:space:]]*[0-9][0-9]:[0-9][0-9]'; then
       # This is a time line
       EVENT_TIME=$(echo "$line" | grep -o '^[[:space:]]*[0-9][0-9]:[0-9][0-9]' | xargs)
-      
+
       if [ -n "$EVENT_TIME" ] && [ -n "$CURRENT_EVENT_TITLE" ]; then
         EVENT_START_MINUTES=$(echo "$EVENT_TIME" | awk -F: '{print $1*60 + $2}')
         TIME_DIFF=$((CURRENT_MINUTES - EVENT_START_MINUTES))
-        
+
         # Show this event if it hasn't started yet or began <= 5 minutes ago
         if [ $TIME_DIFF -le 5 ]; then
           EVENT_LABEL="$EVENT_TIME $CURRENT_EVENT_TITLE"
@@ -39,8 +39,8 @@ if [ -n "$OUTPUT" ] && [ "$OUTPUT" != "" ]; then
       fi
       CURRENT_EVENT_TITLE=""
     fi
-  done < "$TEMP_FILE"
-  
+  done <"$TEMP_FILE"
+
   rm -f "$TEMP_FILE"
 fi
 

@@ -4,7 +4,9 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 source "$CONFIG_DIR/colors.sh"
 
-sketchybar --bar position=top height=36 blur_radius=30 color=$BAR_COLOR
+sketchybar --bar position=top \
+  height=36 \
+  blur_radius=5
 
 default=(
   padding_left=0
@@ -29,7 +31,6 @@ for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
   sketchybar --add item space.$sid left \
     --subscribe space.$sid aerospace_workspace_change \
     --set space.$sid \
-    background.color=$SECONDARY_ACCENT \
     background.corner_radius=5 \
     background.height=25 \
     background.drawing=on \
@@ -38,7 +39,6 @@ for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
     y_offset=1 \
     icon="$sid" \
     icon.font="SF Pro:Bold:12.0" \
-    icon.highlight_color=$WHITE \
     label.drawing=off \
     label.font="sketchybar-app-font:Regular:14.0" \
     label.y_offset=-1 \
@@ -46,8 +46,11 @@ for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
     script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
-sketchybar --add item chevron left \
-  --set chevron icon= label.drawing=off
+# sketchybar --add item front_app_icon left \
+#   --subscribe front_app_icon front_app_switched \
+#   --set front_app_icon background.image.scale=0.57 \
+#   background.drawing=on \
+#   script="$PLUGIN_DIR/front_app.sh"
 
 sketchybar --add item clock right \
   --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
@@ -62,7 +65,7 @@ sketchybar --add item clock right \
   icon.font="Hack Nerd Font:Regular:12.0" \
   label.color="$WHITE" \
   background.drawing=on \
-  background.color="$SECONDARY_ACCENT_TRANSPARENT" \
+  background.color="$GRAY_TRANSPARENT" \
   background.corner_radius=8 \
   background.height=25
 

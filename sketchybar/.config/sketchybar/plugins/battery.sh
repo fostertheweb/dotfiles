@@ -12,11 +12,11 @@ fi
 case "${PERCENTAGE}" in
 9[0-9] | 100)
   ICON=""
-  COLOR=$GREY
+  COLOR=$GRAY
   ;;
 [6-8][0-9])
   ICON=""
-  COLOR=$GREY
+  COLOR=$GRAY
   ;;
 [3-5][0-9])
   ICON=""
@@ -34,8 +34,7 @@ esac
 
 if [[ "$CHARGING" != "" ]]; then
   ICON="󱐋"
-  COLOR=$GREY
+  COLOR=$GREEN
 fi
 
 sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="${PERCENTAGE}%" label.color="$COLOR"
-
