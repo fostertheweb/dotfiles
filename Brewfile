@@ -59,6 +59,7 @@ brew "zsh-syntax-highlighting"
 
 cask "1password-cli"
 cask "font-iosevka-term-nerd-font"
+cask "font-sketchybar-app-font"
 cask "font-zed-mono-nerd-font"
 cask "karabiner-elements"
 cask "nikitabobko/tap/aerospace"
