@@ -31,7 +31,7 @@ sketchybar --add event aerospace_workspace_change
 
 for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
   sketchybar --add item space.$sid left \
-    --subscribe space.$sid aerospace_workspace_change \
+    --subscribe space.$sid aerospace_workspace_change space_windows_change \
     --set space.$sid \
     background.color="$GRAY_TRANSPARENT" \
     background.corner_radius=5 \
@@ -39,24 +39,12 @@ for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
     background.padding_left=6 \
     background.padding_right=6 \
     y_offset=1 \
-    label.drawing=off \
+    label.drawing=on \
     icon="$sid" \
     icon.drawing=on \
     icon.font="SF Pro:Bold:12.0" \
     click_script="aerospace workspace $sid" \
     script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-
-  apps=$(aerospace list-windows --workspace $sid 2>/dev/null | awk -F' \\| ' '{print $2}' | sort -u)
-
-  if [ -n "$apps" ]; then
-    for app in $apps; do
-      sketchybar --add item app.$app left \
-        --subscribe app.$app front_app_switched aerospace_workspace_change \
-        --set app.$app \
-        script="$PLUGIN_DIR/apps.sh $app $sid" \
-        y_offset=1
-    done
-  fi
 done
 
 sketchybar --add item clock right \

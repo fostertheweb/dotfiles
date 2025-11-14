@@ -3,7 +3,7 @@
 ### START-OF-ICON-MAP
 function __icon_map() {
   case "$1" in
-  "Activity Monitor" | "Aktivitätsanzeige")
+  "Activity Monitor")
     icon_result=":activity_monitor:"
     ;;
   "Accents")
@@ -51,7 +51,7 @@ function __icon_map() {
   "Calculator" | "Calculette" | "Rechner")
     icon_result=":calculator:"
     ;;
-  "Calendar" | "日历" | "Fantastical" | "Cron" | "Amie" | "Calendrier" | "カレンダー" | "Notion Calendar" | "Kalender")
+  "Calendar" | "Notion Calendar")
     icon_result=":calendar:"
     ;;
   "Claude")
@@ -60,10 +60,10 @@ function __icon_map() {
   "Clop")
     icon_result=":maccy_clip:"
     ;;
-  "Code" | "Code - Insiders" | "Visual Studio Code")
+  "Code" | "Visual Studio Code")
     icon_result=":code:"
     ;;
-  "Color Picker" | "数码测色计")
+  "Color Picker")
     icon_result=":color_picker:"
     ;;
   "Compressor")
@@ -150,7 +150,7 @@ function __icon_map() {
   "Godot")
     icon_result=":godot:"
     ;;
-  "Chromium" | "Google Chrome" | "Google Chrome Canary")
+  "Google Chrome")
     icon_result=":google_chrome:"
     ;;
   "GrandPerspective")
@@ -219,10 +219,10 @@ function __icon_map() {
   "MainStage")
     icon_result=":logicpro:"
     ;;
-  "Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "Superhuman" | "Spark" | "邮件" | "メール")
+  "Mail")
     icon_result=":mail:"
     ;;
-  "Maps" | "Google Maps" | "マップ" | "Karten")
+  "Maps")
     icon_result=":maps:"
     ;;
   "Mela")
