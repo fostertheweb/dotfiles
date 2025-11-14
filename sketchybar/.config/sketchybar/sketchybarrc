@@ -3,10 +3,13 @@
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 source "$CONFIG_DIR/colors.sh"
+source "$PLUGIN_DIR/icon_map.sh"
 
-sketchybar --bar position=top \
-  height=36 \
+bar=(
+  position=top
+  height=36
   blur_radius=10
+)
 
 default=(
   padding_left=0
@@ -22,35 +25,39 @@ default=(
   background.padding_left=0
   background.padding_right=0
 )
-sketchybar --default "${default[@]}"
+sketchybar --bar "${bar[@]}" --default "${default[@]}"
 
 sketchybar --add event aerospace_workspace_change
-# sketchybar --add event aerospace_focus_change
 
 for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
   sketchybar --add item space.$sid left \
     --subscribe space.$sid aerospace_workspace_change \
     --set space.$sid \
+    background.color="$GRAY_TRANSPARENT" \
     background.corner_radius=5 \
     background.height=25 \
-    background.drawing=on \
     background.padding_left=6 \
     background.padding_right=6 \
     y_offset=1 \
-    icon="$sid" \
-    icon.font="SF Pro:Bold:12.0" \
     label.drawing=off \
-    label.font="sketchybar-app-font:Regular:14.0" \
-    label.y_offset=-1 \
+    icon="$sid" \
+    icon.drawing=on \
+    icon.font="SF Pro:Bold:12.0" \
     click_script="aerospace workspace $sid" \
     script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-done
 
-# sketchybar --add item front_app_icon left \
-#   --subscribe front_app_icon front_app_switched \
-#   --set front_app_icon background.image.scale=0.57 \
-#   background.drawing=on \
-#   script="$PLUGIN_DIR/front_app.sh"
+  apps=$(aerospace list-windows --workspace $sid 2>/dev/null | awk -F' \\| ' '{print $2}' | sort -u)
+
+  if [ -n "$apps" ]; then
+    for app in $apps; do
+      sketchybar --add item app.$app left \
+        --subscribe app.$app front_app_switched aerospace_workspace_change \
+        --set app.$app \
+        script="$PLUGIN_DIR/apps.sh $app $sid" \
+        y_offset=1
+    done
+  fi
+done
 
 sketchybar --add item clock right \
   --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \

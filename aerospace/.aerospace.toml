@@ -72,12 +72,12 @@ alt-9 = 'workspace 9'
 alt-0 = 'workspace 0'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-0 = 'move-node-to-workspace 0'
+alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
+alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
+alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
+alt-shift-0 = 'move-node-to-workspace 0 --focus-follows-window'
 
 # https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-n = 'workspace next'
@@ -109,39 +109,39 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 1 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 1 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 2 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.linear'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 3 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'notion.id'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 3 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 3 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'notion.mail.id'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 3 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Music'
-run = 'move-node-to-workspace 8'
+run = 'move-node-to-workspace 8 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 8'
+run = 'move-node-to-workspace 8 --focus-follows-window'
 
 [mode.zen.binding]
 alt-shift-z = 'mode main'
