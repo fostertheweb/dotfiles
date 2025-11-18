@@ -15,6 +15,11 @@ return {
         indent = { enable = true },
       }
 
+      require('treesitter-context').setup {
+        max_lines = 3,
+        trim_scope = 'inner',
+      }
+
       require('ts_context_commentstring').setup {
         enable_autocmd = false,
       }
