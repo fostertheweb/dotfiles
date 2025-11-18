@@ -161,7 +161,7 @@ return {
     {
       '<C-g>',
       function()
-        Snacks.terminal.toggle('git add -i', {
+        Snacks.terminal.toggle('gitu', {
           win = {
             width = vim.o.columns,
             height = vim.o.lines - 1,

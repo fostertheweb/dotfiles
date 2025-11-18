@@ -3,7 +3,9 @@ vim.o.showmode = false
 vim.o.ruler = false
 vim.splitkeep = 'screen' -- Keep screen position when splitting
 vim.opt.winborder = 'single' -- Single line window borders
-vim.opt.completeopt = 'menuone,noselect,fuzzy,nosort' -- Completion menu behavior
+-- vim.opt.completeopt = 'menuone,noselect,fuzzy,nosort' -- Completion menu behavior
+vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
+vim.opt.shortmess:append 'c'
 vim.opt.termguicolors = true -- Enable 24-bit RGB colors
 vim.opt.tabstop = 2 -- Number of spaces for tab character
 vim.g.mapleader = ' ' -- Set leader key to space

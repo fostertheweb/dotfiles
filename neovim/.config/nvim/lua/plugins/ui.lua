@@ -23,6 +23,9 @@ return {
           inactive_modified = { link = 'Constant' },
           label = { link = 'Comment' },
         },
+        preview = {
+          enabled = false,
+        },
       }
       sticks.show()
     end,
@@ -50,5 +53,4 @@ return {
       }
     end,
   },
-  'lewis6991/whatthejump.nvim',
 }

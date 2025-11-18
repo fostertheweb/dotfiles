@@ -30,7 +30,7 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock to Backspace on single press, Control on press and hold",
+                        "description": "Caps Lock to F13 on single press, Control on press and hold",
                         "manipulators": [
                             {
                                 "from": {
@@ -43,7 +43,7 @@
                                         "lazy": true
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "delete_or_backspace" }],
+                                "to_if_alone": [{ "key_code": "f13" }],
                                 "type": "basic"
                             }
                         ]
@@ -54,16 +54,16 @@
             "selected": true,
             "simple_modifications": [
                 {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "f13" }]
+                },
+                {
                     "from": { "key_code": "right_command" },
                     "to": [{ "key_code": "escape" }]
                 },
                 {
                     "from": { "key_code": "right_option" },
                     "to": [{ "key_code": "caps_lock" }]
-                },
-                {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "f13" }]
                 }
             ],
             "virtual_hid_keyboard": {

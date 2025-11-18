@@ -33,13 +33,15 @@ for sid in $(echo -e "1\n2\n3\n8\n9\n0"); do
   sketchybar --add item space.$sid left \
     --subscribe space.$sid aerospace_workspace_change space_windows_change \
     --set space.$sid \
-    background.color="$GRAY_TRANSPARENT" \
+    background.color="$ACCENT_TRANSPARENT" \
     background.corner_radius=5 \
     background.height=25 \
     background.padding_left=6 \
     background.padding_right=6 \
     y_offset=1 \
-    label.drawing=on \
+    label.drawing=off \
+    label.font="sketchybar-app-font:Regular:14.0" \
+    label.y_offset=-1 \
     icon="$sid" \
     icon.drawing=on \
     icon.font="SF Pro:Bold:12.0" \
