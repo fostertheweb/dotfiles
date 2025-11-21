@@ -57,6 +57,8 @@ vim.lsp.enable {
   'jsonls',
   'tailwindcss',
   'eslint',
+  -- pkg
+  'gopls',
   -- brew
   'lua_ls',
   -- gem
