@@ -15,10 +15,6 @@ bindkey -s '^o' 'cd -^M'
 # open gitu
 bindkey -s '^g' 'gitu^M'
 
-# ctrl-J
-# open lazyjj
-bindkey -s '^[[106;6u' 'lazyjj^M'
-
 # cmd-f
 # Open fzf in cwd
 bindkey -s '\ef' 'find-file^M'
@@ -42,10 +38,6 @@ bindkey -s '\ei' 'opencode^M'
 # cmd-/
 # Grep in cwd
 bindkey -s '\e/' 'grep-cwd^M'
-
-# cmd-shift-p
-# Run zsh function
-bindkey -s '\eP' 'run-zsh-fn^M'
 
 # cmd-r
 # Source zshrc
