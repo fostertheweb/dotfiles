@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+if [[ "$(whoami)" == "jonathan.foster" ]]; then
+	active_color=0xffFEE3E3
+else
+	active_color=0xffcf9dff
+fi
+
 options=(
 	style=round
 	width=8.0
 	hidpi=on
-	active_color=0xffFEE3E3
+	active_color="$active_color"
 	inactive_color=0x00000000
 )
 
