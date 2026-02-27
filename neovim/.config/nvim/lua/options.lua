@@ -1,4 +1,4 @@
-vim.o.laststatus = 0 -- Hide statusline
+vim.o.laststatus = 3 -- Global statusline
 vim.o.showmode = false
 vim.o.ruler = false
 vim.splitkeep = 'screen' -- Keep screen position when splitting
