@@ -1,0 +1,32 @@
+# Eyes Dark - Grayscale theme
+# Converted from eyes.nvim theme
+
+# ANSI Colors (0-15)
+palette = 0=#000000
+palette = 1=#505050
+palette = 2=#606060
+palette = 3=#707070
+palette = 4=#808080
+palette = 5=#909090
+palette = 6=#A0A0A0
+palette = 7=#A0A0A0
+palette = 8=#404040
+palette = 9=#505050
+palette = 10=#606060
+palette = 11=#707070
+palette = 12=#808080
+palette = 13=#909090
+palette = 14=#A0A0A0
+palette = 15=#A0A0A0
+
+# Foreground and Background
+foreground = #A0A0A0
+background = #000000
+
+# Cursor colors
+cursor-color = #A0A0A0
+cursor-text = #000000
+
+# Selection colors
+selection-foreground = #A0A0A0
+selection-background = #303030

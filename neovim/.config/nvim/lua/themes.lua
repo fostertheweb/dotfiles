@@ -1,13 +1,4 @@
 return {
-  { 'p00f/alabaster.nvim' },
-  {
-    'Mofiqul/adwaita.nvim',
-    config = function()
-      vim.g.adwaita_darker = true
-      vim.g.adwaita_disable_cursorline = false
-      vim.g.adwaita_transparent = false
-    end,
-  },
   'ficcdaf/ashen.nvim',
   { 'Koalhack/darcubox-nvim', laze = false, priority = 1000 },
   {
@@ -18,6 +9,7 @@ return {
       transparent = false,
     },
   },
+  'amedoeyes/eyes.nvim',
   'thallada/farout.nvim',
   {
     'rebelot/kanagawa.nvim',
@@ -42,11 +34,12 @@ return {
     priority = 1000,
   },
   'savq/melange-nvim',
-  'nyoom-engineering/oxocarbon.nvim',
+  'yorickpeterse/vim-paper',
   {
     'rose-pine/neovim',
     name = 'rose-pine',
   },
+  'SebastianZaha/nvim-solar-paper',
   'sainnhe/sonokai',
   'vague2k/vague.nvim',
   'shoenot/witchesbrew.nvim',

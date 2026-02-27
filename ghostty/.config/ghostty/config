@@ -21,7 +21,7 @@ macos-window-buttons = hidden
 shell-integration-features = no-cursor,title
 
 title = ""
-theme = "Kanagawa Wave"
+theme = light:paper,dark:eyes-dark
 
 window-colorspace = display-p3
 window-padding-balance = true
