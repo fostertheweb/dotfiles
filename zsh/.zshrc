@@ -86,6 +86,7 @@ eval "$(rbenv init - zsh)"
 
 alias oops="fuck"
 alias vim="nvim"
+alias nvimdiff="nvim -d"
 alias ed="nvim"
 alias ls="eza -la"
 alias ll="eza -la"
