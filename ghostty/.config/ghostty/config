@@ -1,13 +1,13 @@
-adjust-cell-height = 35%
+adjust-cell-height = 30%
 adjust-cursor-height = 0
 adjust-cursor-thickness = 2
 adjust-icon-height = 0
 
-font-family = "IosevkaTerm Nerd Font Mono"
+font-family = "BerkeleyMono Nerd Font"
 font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
-font-size = 16
+font-size = 14
 
 fullscreen = false
 
