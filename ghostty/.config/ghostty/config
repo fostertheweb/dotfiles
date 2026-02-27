@@ -15,8 +15,7 @@ cursor-style = block
 cursor-style-blink = false
 
 macos-titlebar-proxy-icon = hidden
-macos-titlebar-style = tabs
-macos-window-buttons = hidden
+macos-titlebar-style = native
 
 shell-integration-features = no-cursor,title
 
