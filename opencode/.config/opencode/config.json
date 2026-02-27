@@ -1,18 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "kanagawa",
-  "model": "anthropic/claude-sonnet-4-5",
+  "model": "github-copilot/claude-sonnet-4.5",
   "autoupdate": true,
   "mcp": {
-    "apple": {
-      "type": "local",
-      "command": [
-        "opencode",
-        "x",
-        "@kimsungwhee/apple-docs-mcp"
-      ],
-      "enabled": true
-    },
     "context7": {
       "type": "local",
       "command": [
