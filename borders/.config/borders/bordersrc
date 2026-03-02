@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 if [[ "$(whoami)" == "jonathan.foster" ]]; then
-	active_color=0xffFEE3E3
-else
 	active_color=0xffcf9dff
+else
+	active_color=0xffFEE3E3
 fi
 
 options=(
