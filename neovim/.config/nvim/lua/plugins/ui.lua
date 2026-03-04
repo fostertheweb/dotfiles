@@ -54,7 +54,7 @@ return {
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
-          lualine_y = { 'branch', 'diff' },
+          lualine_y = { { 'branch', icon = ''}, 'diff' },
           lualine_z = { 'progress', 'location' },
         },
         inactive_sections = {},
