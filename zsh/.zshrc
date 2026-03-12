@@ -97,6 +97,7 @@ alias todo="$ZSH_CONFIG/bin/todo-cwd"
 alias journal="$ZSH_CONFIG/bin/journal"
 alias ai="opencode"
 alias merge="nvim -c GitConflictListQf"
+alias ghdash="$ZSH_CONFIG/bin/gh-dash-worktree"
 
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
@@ -106,6 +107,7 @@ source "$ZSH_CONFIG/functions/opencode.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
+source "$ZSH_CONFIG/themes.zsh"
 
 add-zsh-hook chpwd load-nvmrc
 # load-nvmrc

@@ -3,6 +3,7 @@
 
 Brewfile.lock.json
 neovim/.config/nvim/lazy-lock.json
+ghostty/.config/ghostty/config
 
 **/__pycache__
 

@@ -23,16 +23,22 @@ require('lazy').setup {
 }
 
 -- Default theme settings
-vim.o.background = 'dark'
 vim.opt.termguicolors = true
-vim.cmd 'colorscheme eyes'
 vim.cmd.hi 'Comment gui=none'
 
-if utils.is_dark_mode() then
+local username = os.getenv 'USER'
+
+if username == 'jonathan.foster' then
   vim.o.background = 'dark'
+  vim.cmd 'colorscheme melange'
 else
-  vim.o.background = 'light'
-  vim.cmd 'colorscheme paper'
+  if utils.is_dark_mode() then
+    vim.o.background = 'dark'
+    vim.cmd 'colorscheme eyes'
+  else
+    vim.o.background = 'light'
+    vim.cmd 'colorscheme paper'
+  end
 end
 
 -- vim: ts=2 sts=2 sw=2 et

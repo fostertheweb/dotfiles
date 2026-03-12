@@ -1,0 +1,50 @@
+adjust-cell-height = 30%
+adjust-cursor-height = 0
+adjust-cursor-thickness = 2
+adjust-icon-height = 0
+
+font-family = {{TERMINAL_FONT_FAMILY}}
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
+font-size = {{TERMINAL_FONT_SIZE}}
+
+fullscreen = false
+
+cursor-style = block
+cursor-style-blink = false
+
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = native
+
+shell-integration-features = no-cursor,title
+
+title = ""
+theme = {{GHOSTTY_THEME}}
+
+window-colorspace = display-p3
+window-padding-balance = true
+window-padding-x = 8
+window-padding-y = 4
+window-theme = "auto"
+
+keybind = super+e=esc:e
+keybind = super+/=esc:/
+keybind = super+-=esc:-
+keybind = super+o=esc:o
+keybind = super+i=esc:i
+keybind = super+f=esc:f
+keybind = super+s=esc:s
+keybind = super+g=esc:g
+keybind = super+r=esc:r
+keybind = super+d=esc:d
+keybind = super+y=esc:y
+keybind = super+u=esc:u
+keybind = super+j=esc:j
+
+keybind = ctrl+shift+h=csi:104;6u
+keybind = ctrl+shift+j=csi:106;6u
+keybind = ctrl+shift+k=csi:107;6u
+keybind = ctrl+shift+l=csi:108;6u
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
