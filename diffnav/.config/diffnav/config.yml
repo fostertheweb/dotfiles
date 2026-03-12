@@ -1,0 +1,6 @@
+ui:
+  hideHeader: false
+  hideFooter: false
+  showFileTree: true
+  sideBySide: false
+

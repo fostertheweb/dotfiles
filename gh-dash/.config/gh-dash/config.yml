@@ -1,0 +1,15 @@
+pager:
+  diff: diffnav
+
+prSections:
+  - title: "My Pull Requests"
+    filters: "is:open author:@me"
+  - title: "Needs My Review"
+    filters: "is:open review-requested:@me"
+  - title: "Involved"
+    filters: "is:open involves:@me -author:@me"
+
+keybindings:
+  prs:
+    - key: T
+      command: gh enhance -R {{.RepoName}} {{.PrNumber}}
