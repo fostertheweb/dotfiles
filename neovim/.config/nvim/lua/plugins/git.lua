@@ -40,18 +40,4 @@ return {
       }
     end,
   },
-  {
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('octo').setup {
-        picker = 'snacks',
-      }
-      vim.treesitter.language.register('markdown', 'octo')
-      vim.keymap.set('n', '<leader>gp', '<CMD>Octo pr list<CR>', { desc = 'Pull Requests' })
-    end,
-  },
 }

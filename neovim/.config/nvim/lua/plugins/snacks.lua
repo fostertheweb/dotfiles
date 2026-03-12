@@ -23,7 +23,6 @@ return {
   'folke/snacks.nvim',
   opts = {
     bufdelete = {},
-    gh = {},
     indent = {
       only_scope = true,
       only_current = true,
