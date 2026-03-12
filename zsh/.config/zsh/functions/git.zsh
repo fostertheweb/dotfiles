@@ -69,3 +69,21 @@ LUA
     nvim -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen 5"
   fi
 }
+
+function open-dash-worktree() {
+  local repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
+  local worktree="../$repo_name@pr-review"
+
+  if [[ ! -d "$worktree" ]]; then
+    local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
+    local current=$(git branch --show-current)
+    if [[ "$current" == "$trunk" ]]; then
+      git worktree add -b "local-pr-review" "$worktree" "$trunk"
+    else
+      git worktree add "$worktree" "$trunk"
+    fi
+  fi
+
+  cd "$worktree" && gh dash
+}
+

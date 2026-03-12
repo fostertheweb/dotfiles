@@ -11,6 +11,10 @@ bindkey -s '^Z' 'fg^M'
 # Jump to last directory
 bindkey -s '^o' 'cd -^M'
 
+# cmd+g
+# open gh dash in worktree
+bindkey -s '\eg' 'ghdash^M'
+
 # ctrl-g
 # open gitu
 bindkey -s '^g' 'gitu^M'
