@@ -244,6 +244,10 @@ async function main() {
     await step("Install python packages", "zsh ./scripts/pip.zsh");
   }
 
+  if (await askUser("Install gh extensions?")) {
+    await step("Install gh extensions", "zsh ./scripts/gh.zsh");
+  }
+
   if (await askUser("Write macOS Defaults?")) {
     await step("Write macOS Defaults", "zsh ./scripts/defaults.zsh");
   }
