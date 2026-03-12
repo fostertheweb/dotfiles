@@ -25,7 +25,7 @@ bindkey -s '\ee' 'nvim^M'
 
 # cmd -
 # Open walk to navigate files
-bindkey -s '\e-' 'walk^M'
+bindkey -s '\e-' 'spf^M'
 
 # cmd-d
 # Go to dotfiles
