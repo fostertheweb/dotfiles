@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+export ENHANCE_THEME=medallion
+
 if [[ "$(whoami)" == "jonathan.foster" ]]; then
 	# work computer
 	export BORDERS_COLOR=0xffcf9dff
