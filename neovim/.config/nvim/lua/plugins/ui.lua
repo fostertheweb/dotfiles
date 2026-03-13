@@ -54,7 +54,7 @@ return {
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
-          lualine_y = { { 'branch', icon = ''}, 'diff' },
+          lualine_y = { { 'branch', icon = '' }, 'diff' },
           lualine_z = { 'progress', 'location' },
         },
         inactive_sections = {},
@@ -83,38 +83,5 @@ return {
         trim_leading_whitespace = 'all',
       }
     end,
-  },
-  {
-    'sschleemilch/slimline.nvim',
-    enabled = false,
-    opts = {
-      style = 'fg',
-      bold = true,
-      components = {
-        left = {
-          'mode',
-          'path',
-          'git',
-        },
-        center = {},
-        right = {
-          'diagnostics',
-          'progress',
-        },
-      },
-      configs = {
-        path = {
-          directory = false,
-          hl = {
-            primary = 'Label',
-          },
-        },
-        git = {
-          hl = {
-            primary = 'Function',
-          },
-        },
-      },
-    },
   },
 }

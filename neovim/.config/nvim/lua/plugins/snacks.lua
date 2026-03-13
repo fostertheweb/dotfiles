@@ -78,7 +78,6 @@ return {
       function()
         Snacks.picker.buffers { layout = 'select' }
       end,
-      desc = 'Buffers',
     },
     {
       '<leader>fs',
