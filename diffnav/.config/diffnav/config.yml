@@ -1,5 +1,5 @@
 ui:
-  hideHeader: false
+  hideHeader: true
   hideFooter: false
   showFileTree: true
   sideBySide: false
