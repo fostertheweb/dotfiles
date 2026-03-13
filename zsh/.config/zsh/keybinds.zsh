@@ -12,7 +12,7 @@ bindkey -s '^Z' 'fg^M'
 bindkey -s '^o' 'cd -^M'
 
 # cmd+g
-# open gh dash in worktree
+# open pr list in worktree
 bindkey -s '\eg' 'ghdash^M'
 
 # ctrl-g
