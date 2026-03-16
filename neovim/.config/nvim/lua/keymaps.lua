@@ -55,12 +55,8 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
 
 -- G, Git commands
-vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line' })
-vim.keymap.set('n', '<leader>gq', function()
-  vim.cmd 'cexpr system("git diff --check --relative")'
-  vim.cmd 'copen'
-end, { desc = 'Quickfix conflicts' })
-vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'Open GitHub PR Diff' })
+vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle blame' })
+vim.keymap.set('n', '<leader>gx', utils.open_pr_diff, { desc = 'PR blame line' })
 
 -- Q, Quickfix list
 vim.keymap.set('n', '<leader>q', utils.toggle_quickfix, { desc = 'Quickfix list' })

@@ -21,7 +21,7 @@ return {
             vim.keymap.set(mode, l, r, opts)
           end
 
-          map('n', '<leader>gD', gitsigns.diffthis)
+          map('n', '<leader>gD', gitsigns.diffthis, { desc = 'Diff' })
 
           map('n', ']c', function()
             if vim.wo.diff then

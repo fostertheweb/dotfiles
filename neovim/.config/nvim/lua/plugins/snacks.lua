@@ -24,6 +24,7 @@ return {
   opts = {
     bufdelete = {},
     gh = {},
+    image = {},
     indent = {
       only_scope = true,
       only_current = true,
@@ -139,9 +140,12 @@ return {
     {
       '<leader>gd',
       function()
-        Snacks.picker.git_diff { group = true, base = 'origin/HEAD' }
+        Snacks.picker.git_diff {
+          group = true,
+          base = 'origin/HEAD',
+        }
       end,
-      desc = 'Diff',
+      desc = 'Changes',
     },
     {
       '<leader>fq',
