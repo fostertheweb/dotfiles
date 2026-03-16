@@ -23,6 +23,7 @@ return {
   'folke/snacks.nvim',
   opts = {
     bufdelete = {},
+    gh = {},
     indent = {
       only_scope = true,
       only_current = true,
@@ -129,18 +130,18 @@ return {
       desc = 'Files',
     },
     {
-      '<leader>gg',
+      '<leader>gs',
       function()
         Snacks.picker.git_status()
       end,
-      desc = 'Changes',
+      desc = 'Status',
     },
     {
-      '<leader>gr',
+      '<leader>gd',
       function()
-        Snacks.picker.git_diff { base = 'origin/HEAD' }
+        Snacks.picker.git_diff { group = true, base = 'origin/HEAD' }
       end,
-      desc = 'Review diff',
+      desc = 'Diff',
     },
     {
       '<leader>fq',
@@ -182,6 +183,35 @@ return {
       end,
       mode = 'n',
       desc = 'Close tab or delete',
+    },
+    {
+      '<leader>gw',
+      function()
+        local gh_data = vim.b.snacks_gh
+
+        if gh_data and gh_data.type == 'pr' then
+          local url = string.format('https://github.com/%s/pull/%s', gh_data.repo, gh_data.number)
+          vim.ui.open(url)
+        else
+          local pr_number = vim.fn.system("gh pr view --json number --jq '.number' 2>/dev/null"):gsub('%s+', '')
+
+          if pr_number ~= '' then
+            local repo = vim.fn.system('gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null'):gsub('%s+', '')
+            local url = string.format('https://github.com/%s/pull/%s/changes', repo, pr_number)
+
+            vim.ui.open(url)
+            vim.notify('Opening PR #' .. pr_number .. ' diff view', vim.log.levels.INFO)
+          else
+            Snacks.gitbrowse {
+              what = 'file',
+              line_start = vim.api.nvim_win_get_cursor(0)[1],
+              line_end = vim.api.nvim_win_get_cursor(0)[1],
+            }
+          end
+        end
+      end,
+      mode = 'n',
+      desc = 'Open on GitHub',
     },
   },
 }

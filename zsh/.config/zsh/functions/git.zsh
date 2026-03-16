@@ -1,23 +1,5 @@
 #!/usr/bin/env zsh
 
-function create-worktree() {
-  if [[ -z "$1" ]]; then
-    echo "Error: New worktree name required" >&2
-    return 1
-  fi
-
-  local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
-  local worktree=$(pwd | sed "s/$(basename "$(pwd)")/$(basename $(pwd))@$1/")
-  git worktree add $worktree $trunk
-  cd $worktree
-  git status
-}
-
-function select-git-branch() {
-  local fzf_cmd="fzf --keep-right --border-label \" Checkout Branch \" --prompt \" : \""
-  git branch -v | eval $fzf_cmd | sed -E 's/^[* ]+([a-zA-Z0-9_-]+).*/\1/' | xargs git checkout
-}
-
 function origin-status() {
   if [[ -n $1 ]]; then
     z $1
@@ -38,36 +20,29 @@ function origin-status() {
 }
 
 function pull-requests() {
-  local pr_data selected_pr pr_number repo_name
+  local repo_name="$1"
+  local pr_number="$2"
+  local worktree=$(get-or-create-worktree)
 
-  pr_data=$(gh pr list --json additions,author,files,deletions,id,number,title,url,createdAt,headRefName,headRepository,body)
+  cd "$worktree"
 
-  selected_pr=$(echo "$pr_data" | jq -r '.[] | "\u001b[36m#\(.number)\u001b[0m \(.title) \u001b[33m@\(.author.login)\u001b[0m \u001b[32m+\(.additions)\u001b[0m/\u001b[31m-\(.deletions)\u001b[0m"' | fzf --prompt="Pull Requests: " --ansi)
+  gh pr checkout "$pr_number" 2>/dev/null || {
+    git fetch origin "pull/$pr_number/head:pr-$pr_number"
+    git checkout "pr-$pr_number" 2>/dev/null || git checkout -b "pr-$pr_number"
+  }
 
-  if [[ -n "$selected_pr" ]]; then
-    pr_number=$(echo "$selected_pr" | grep -o '^#[0-9]*' | sed 's/#//')
-    repo_name=$(basename "$(pwd)")
+  local repo_full
 
-    git fetch origin pull/$pr_number/head:pr-$pr_number
-    git worktree add ../$repo_name@pr-$pr_number pr-$pr_number
-    cd ../$repo_name@pr-$pr_number
-
-    local pr_file="/tmp/pr-$pr_number.pr"
-    local pr_info=$(echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber))')
-
-    cat >"/tmp/render_pr.lua" <<LUA
--- Load the PR Review module and render the PR
-local m = require('custom.review')
-m.render_pr($pr_number)
-LUA
-
-    local temp_qf="/tmp/pr-$pr_number-qf.txt"
-    echo "$pr_data" | jq -r --arg num "$pr_number" '.[] | select(.number == ($num | tonumber)) | .files[] | "./\(.path):1: +\(.additions) Additions -\(.deletions) Deletions"' >"$temp_qf"
-
-    echo "$pr_info" >"/tmp/pr-$pr_number-info.json"
-
-    nvim -c "luafile /tmp/render_pr.lua" -c "cgetfile $temp_qf" -c "copen 5"
+  if [[ "$repo_name" == *"/"* ]]; then
+    repo_full="$repo_name"
+  else
+    repo_full=$(git remote get-url origin 2>/dev/null | sed -E 's|.*/([^/]+/[^/]+)(\.git)?$|\1|')
+    if [[ -z "$repo_full" ]]; then
+      repo_full="$repo_name"
+    fi
   fi
+
+  nvim -c "Gitsigns change_base origin/main true" "gh://$repo_full/pr/$pr_number"
 }
 
 function get-or-create-worktree() {

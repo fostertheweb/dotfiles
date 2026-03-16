@@ -2,12 +2,12 @@ pager:
   diff: diffnav
 
 prSections:
-  - title: "Needs My Review"
-    filters: "sort:updated-desc is:pr is:open review-requested:@me"
   - title: "Involved"
     filters: "sort:updated-desc is:open involves:@me -author:@me"
   - title: "My Pull Requests"
     filters: "is:open author:@me"
+  - title: "Needs My Review"
+    filters: "sort:updated-desc is:pr is:open review-requested:@me"
 
 repoPaths:
   myprizepicks/*: ~/Developer/Source/*
@@ -16,3 +16,7 @@ keybindings:
   prs:
     - key: T
       command: gh enhance -R {{.RepoName}} {{.PrNumber}}
+    - key: R
+      command: >
+        zsh -ic 'source ~/.config/zsh/functions/git.zsh && 
+        pull-requests {{.RepoName}} {{.PrNumber}}'
