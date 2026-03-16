@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "google/gemini-2.5-flash",
+  "model": "{{DEFAULT_MODEL}}",
   "autoupdate": false,
   "mcp": {
     "context7": {
