@@ -107,7 +107,7 @@ source "$ZSH_CONFIG/functions/opencode.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
-source "$ZSH_CONFIG/themes.zsh"
+source "$ZSH_CONFIG/config.zsh"
 
 add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
