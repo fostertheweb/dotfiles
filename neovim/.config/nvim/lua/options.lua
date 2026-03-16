@@ -65,7 +65,7 @@ vim.opt.iskeyword:append '-'
 vim.opt.path:append '**'
 vim.opt.selection = 'inclusive'
 vim.opt.mouse = 'a'
-vim.opt.clipboard:append 'unnamedplus' -- Use system clipboard
+vim.opt.clipboard = ''
 vim.opt.modifiable = true -- Allow buffer modifications
 vim.opt.encoding = 'utf-8'
 vim.opt.shortmess:append 'c'
