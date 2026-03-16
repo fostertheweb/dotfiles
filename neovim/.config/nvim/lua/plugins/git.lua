@@ -21,6 +21,8 @@ return {
             vim.keymap.set(mode, l, r, opts)
           end
 
+          map('n', '<leader>gD', gitsigns.diffthis)
+
           map('n', ']c', function()
             if vim.wo.diff then
               vim.cmd.normal { ']c', bang = true }
