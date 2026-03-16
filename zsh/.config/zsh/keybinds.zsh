@@ -11,9 +11,13 @@ bindkey -s '^Z' 'fg^M'
 # Jump to last directory
 bindkey -s '^o' 'cd -^M'
 
+# cmd+r
+# open pr review worktree
+bindkey -s '\er' 'cd $(get-or-create-worktree)^M'
+
 # cmd+g
-# open pr list in worktree
-bindkey -s '\eg' 'ghdash^M'
+# open gh dash
+bindkey -s '\eg' 'gh dash^M'
 
 # ctrl-g
 # open gitu
@@ -43,9 +47,9 @@ bindkey -s '\ei' 'opencode^M'
 # Grep in cwd
 bindkey -s '\e/' 'grep-cwd^M'
 
-# cmd-r
+# cmd-s
 # Source zshrc
-bindkey -s '\er' 'source $HOME/.zshrc^M'
+bindkey -s '\es' 'source $HOME/.zshrc^M'
 
 # cmd-y
 # Run GUI application

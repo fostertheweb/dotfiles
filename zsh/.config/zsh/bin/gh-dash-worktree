@@ -1,5 +1,0 @@
-#!/usr/bin/env zsh
-
-source "$ZSH_CONFIG/functions/git.zsh"
-
-open-dash-worktree

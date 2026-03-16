@@ -70,7 +70,7 @@ LUA
   fi
 }
 
-function open-dash-worktree() {
+function get-or-create-worktree() {
   local repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
   local worktree="../$repo_name@pr-review"
 
@@ -84,6 +84,6 @@ function open-dash-worktree() {
     fi
   fi
 
-  cd "$worktree" && gh dash
+  echo "$worktree"
 }
 
