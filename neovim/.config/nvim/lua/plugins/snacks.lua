@@ -201,7 +201,10 @@ return {
 
           if pr_number ~= '' then
             local repo = vim.fn.system('gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null'):gsub('%s+', '')
-            local url = string.format('https://github.com/%s/pull/%s/changes', repo, pr_number)
+            local filepath = vim.fn.system('git ls-files --full-name ' .. vim.fn.expand '%:p'):gsub('\n', '')
+            local hash = vim.fn.system("printf '%s' '" .. filepath .. "' | shasum -a 256 | cut -d' ' -f1"):gsub('%s+', '')
+            local line = vim.api.nvim_win_get_cursor(0)[1]
+            local url = string.format('https://github.com/%s/pull/%s/changes#diff-%sR%s', repo, pr_number, hash, line)
 
             vim.ui.open(url)
             vim.notify('Opening PR #' .. pr_number .. ' diff view', vim.log.levels.INFO)
