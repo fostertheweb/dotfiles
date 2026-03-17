@@ -14,7 +14,6 @@ function create-or-open-journal-entry() {
     cat >"$file_path" <<EOF
 # $current_date
 
-## Tasks
 - [ ] 
 
 EOF

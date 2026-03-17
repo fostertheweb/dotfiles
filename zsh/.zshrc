@@ -95,6 +95,7 @@ alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias ai="opencode"
 alias merge="nvim -c GitConflictListQf"
+alias journal="$ZSH_CONFIG/bin/journal"
 
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
