@@ -135,4 +135,9 @@ M.is_qf_open = function()
   return false
 end
 
+M.is_work_computer = function()
+  local username = os.getenv 'USER'
+  return username == 'jonathan.foster'
+end
+
 return M

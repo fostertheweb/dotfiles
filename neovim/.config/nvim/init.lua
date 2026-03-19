@@ -26,9 +26,7 @@ require('lazy').setup {
 vim.opt.termguicolors = true
 vim.cmd.hi 'Comment gui=none'
 
-local username = os.getenv 'USER'
-
-if username == 'jonathan.foster' then
+if utils.is_work_computer() then
   vim.o.background = 'dark'
   vim.cmd 'colorscheme melange'
 else

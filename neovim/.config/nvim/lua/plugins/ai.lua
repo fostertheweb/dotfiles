@@ -1,3 +1,6 @@
+local utils = require 'utils'
+local default_agent = utils.is_work_computer() and 'claude' or 'copilot'
+
 return {
   {
     'zbirenbaum/copilot.lua',
@@ -28,6 +31,9 @@ return {
     opts = {
       cli = {
         picker = 'snacks',
+        tools = {
+          amp = { cmd = { 'amp' }, url = 'https://ampcode.com/' },
+        },
       },
       nes = {
         enabled = false,
@@ -37,7 +43,10 @@ return {
       {
         '<C-.>',
         function()
-          require('sidekick.cli').toggle { name = 'claude', focus = true }
+          require('sidekick.cli').toggle {
+            name = default_agent,
+            focus = true,
+          }
         end,
         desc = 'Sidekick Toggle',
         mode = { 'n', 't', 'i', 'x' },
@@ -45,7 +54,10 @@ return {
       {
         '<leader>at',
         function()
-          require('sidekick.cli').send { msg = '{this}' }
+          require('sidekick.cli').send {
+            name = default_agent,
+            msg = '{this}',
+          }
         end,
         mode = { 'x', 'n' },
         desc = 'Send This',
@@ -53,14 +65,20 @@ return {
       {
         '<leader>af',
         function()
-          require('sidekick.cli').send { msg = '{file}' }
+          require('sidekick.cli').send {
+            name = default_agent,
+            msg = '{file}',
+          }
         end,
         desc = 'Send File',
       },
       {
         '<leader>av',
         function()
-          require('sidekick.cli').send { msg = '{selection}' }
+          require('sidekick.cli').send {
+            name = default_agent,
+            msg = '{selection}',
+          }
         end,
         mode = { 'x' },
         desc = 'Send Visual Selection',
@@ -68,7 +86,9 @@ return {
       {
         '<leader>ap',
         function()
-          require('sidekick.cli').prompt()
+          require('sidekick.cli').prompt {
+            name = default_agent,
+          }
         end,
         mode = { 'n', 'x' },
         desc = 'Sidekick Select Prompt',
