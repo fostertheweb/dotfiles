@@ -1,39 +1,5 @@
 return {
   {
-    'ThePrimeagen/99',
-    config = function()
-      local _99 = require '99'
-
-      _99.setup {
-        tmp_dir = './tmp',
-        completion = {
-          files = {
-            enabled = true,
-            max_file_size = 102400,
-            max_files = 5000,
-            exclude = { '.env', '.env.*', 'node_modules', '.git' },
-          },
-          source = 'native',
-        },
-        md_files = {
-          'AGENT.md',
-        },
-      }
-
-      vim.keymap.set('v', '<leader>9v', function()
-        _99.visual()
-      end)
-
-      vim.keymap.set('n', '<leader>9x', function()
-        _99.stop_all_requests()
-      end)
-
-      vim.keymap.set('n', '<leader>9s', function()
-        _99.search()
-      end)
-    end,
-  },
-  {
     'zbirenbaum/copilot.lua',
     enabled = true,
     dependencies = { 'AndreM222/copilot-lualine' },
@@ -58,7 +24,60 @@ return {
     end,
   },
   {
+    'folke/sidekick.nvim',
+    opts = {
+      cli = {
+        picker = 'snacks',
+      },
+      nes = {
+        enabled = false,
+      },
+    },
+    keys = {
+      {
+        '<C-.>',
+        function()
+          require('sidekick.cli').toggle { name = 'claude', focus = true }
+        end,
+        desc = 'Sidekick Toggle',
+        mode = { 'n', 't', 'i', 'x' },
+      },
+      {
+        '<leader>at',
+        function()
+          require('sidekick.cli').send { msg = '{this}' }
+        end,
+        mode = { 'x', 'n' },
+        desc = 'Send This',
+      },
+      {
+        '<leader>af',
+        function()
+          require('sidekick.cli').send { msg = '{file}' }
+        end,
+        desc = 'Send File',
+      },
+      {
+        '<leader>av',
+        function()
+          require('sidekick.cli').send { msg = '{selection}' }
+        end,
+        mode = { 'x' },
+        desc = 'Send Visual Selection',
+      },
+      {
+        '<leader>ap',
+        function()
+          require('sidekick.cli').prompt()
+        end,
+        mode = { 'n', 'x' },
+        desc = 'Sidekick Select Prompt',
+      },
+    },
+  },
+  {
     'piersolenski/wtf.nvim',
+    enabled = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'MunifTanjim/nui.nvim',
