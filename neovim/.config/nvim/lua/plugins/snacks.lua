@@ -188,37 +188,5 @@ return {
       mode = 'n',
       desc = 'Close tab or delete',
     },
-    {
-      '<leader>gw',
-      function()
-        local gh_data = vim.b.snacks_gh
-
-        if gh_data and gh_data.type == 'pr' then
-          local url = string.format('https://github.com/%s/pull/%s', gh_data.repo, gh_data.number)
-          vim.ui.open(url)
-        else
-          local pr_number = vim.fn.system("gh pr view --json number --jq '.number' 2>/dev/null"):gsub('%s+', '')
-
-          if pr_number ~= '' then
-            local repo = vim.fn.system('gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null'):gsub('%s+', '')
-            local filepath = vim.fn.system('git ls-files --full-name ' .. vim.fn.expand '%:p'):gsub('\n', '')
-            local hash = vim.fn.system("printf '%s' '" .. filepath .. "' | shasum -a 256 | cut -d' ' -f1"):gsub('%s+', '')
-            local line = vim.api.nvim_win_get_cursor(0)[1]
-            local url = string.format('https://github.com/%s/pull/%s/changes#diff-%sR%s', repo, pr_number, hash, line)
-
-            vim.ui.open(url)
-            vim.notify('Opening PR #' .. pr_number .. ' diff view', vim.log.levels.INFO)
-          else
-            Snacks.gitbrowse {
-              what = 'file',
-              line_start = vim.api.nvim_win_get_cursor(0)[1],
-              line_end = vim.api.nvim_win_get_cursor(0)[1],
-            }
-          end
-        end
-      end,
-      mode = 'n',
-      desc = 'Open on GitHub',
-    },
   },
 }
