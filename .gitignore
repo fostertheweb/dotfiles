@@ -4,9 +4,6 @@
 Brewfile.lock.json
 neovim/.config/nvim/lazy-lock.json
 ghostty/.config/ghostty/config
-opencode/.config/opencode/config.json
-
-**/__pycache__
 
 karabiner/.config/karabiner/automatic_backups/
 
