@@ -5,6 +5,7 @@ return {
       anti_conceal = { enabled = false },
       completions = { lsp = { enabled = true } },
       file_types = { 'markdown' },
+      only_render_image_at_cursor = true,
     },
     ft = { 'markdown' },
   },

@@ -32,7 +32,7 @@ if utils.is_work_computer() then
 else
   if utils.is_dark_mode() then
     vim.o.background = 'dark'
-    vim.cmd 'colorscheme eyes'
+    vim.cmd 'colorscheme ashen'
   else
     vim.o.background = 'light'
     vim.cmd 'colorscheme paper'
