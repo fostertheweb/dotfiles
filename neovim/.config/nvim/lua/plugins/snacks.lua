@@ -133,7 +133,9 @@ return {
     {
       '<leader>gs',
       function()
-        Snacks.picker.git_status()
+        Snacks.picker.git_status {
+          layout = 'default',
+        }
       end,
       desc = 'Status',
     },
@@ -143,6 +145,7 @@ return {
         Snacks.picker.git_diff {
           group = true,
           base = 'origin/HEAD',
+          layout = 'default',
         }
       end,
       desc = 'Changes',
@@ -161,21 +164,21 @@ return {
       end,
       desc = 'Recent Files',
     },
-    {
-      '<C-g>',
-      function()
-        Snacks.terminal.toggle('gitu', {
-          win = {
-            width = vim.o.columns,
-            height = vim.o.lines - 1,
-            border = 'none',
-            row = 0,
-            col = 0,
-          },
-        })
-      end,
-      mode = { 'n', 't' },
-    },
+    -- {
+    --   '<C-g>',
+    --   function()
+    --     Snacks.terminal.toggle('gitu', {
+    --       win = {
+    --         width = vim.o.columns,
+    --         height = vim.o.lines - 1,
+    --         border = 'none',
+    --         row = 0,
+    --         col = 0,
+    --       },
+    --     })
+    --   end,
+    --   mode = { 'n', 't' },
+    -- },
     {
       '<leader><BS>',
       function()
