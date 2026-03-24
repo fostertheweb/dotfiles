@@ -42,7 +42,7 @@ function pull-requests() {
     fi
   fi
 
-  nvim -c "Gitsigns change_base origin/main true" "gh://$repo_full/pr/$pr_number"
+  nvim -c "DiffOriginMain" "gh://$repo_full/pr/$pr_number"
 }
 
 function get-or-create-worktree() {
@@ -61,4 +61,3 @@ function get-or-create-worktree() {
 
   echo "$worktree"
 }
-

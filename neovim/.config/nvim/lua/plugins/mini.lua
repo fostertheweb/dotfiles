@@ -73,6 +73,30 @@ return {
       },
     }
 
+    local MiniDiff = require 'mini.diff'
+    MiniDiff.setup {}
+
+    vim.api.nvim_create_user_command('DiffOriginMain', function()
+      MiniDiff.setup {
+        mappings = {
+          apply = '',
+          reset = '',
+          textobject = '',
+        },
+        source = {
+          attach = function(buf_id)
+            local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf_id), ':.')
+            local ref = vim.fn.system { 'git', 'show', 'origin/main:' .. path }
+            if vim.v.shell_error == 0 then
+              MiniDiff.set_ref_text(buf_id, ref)
+            else
+              return false
+            end
+          end,
+        },
+      }
+    end, {})
+
     require('mini.files').setup {
       mappings = {
         go_in = '',
@@ -86,6 +110,8 @@ return {
         width_preview = 80,
       },
     }
+
+    -- require('mini.git').setup {}
 
     vim.keymap.set('n', '-', function()
       local buf_name = vim.api.nvim_buf_get_name(0)
