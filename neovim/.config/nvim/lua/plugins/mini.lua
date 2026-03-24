@@ -74,15 +74,16 @@ return {
     }
 
     local MiniDiff = require 'mini.diff'
-    MiniDiff.setup {}
+    MiniDiff.setup {
+      mappings = {
+        apply = '',
+        reset = '',
+        textobject = '',
+      },
+    }
 
     vim.api.nvim_create_user_command('DiffOriginMain', function()
       MiniDiff.setup {
-        mappings = {
-          apply = '',
-          reset = '',
-          textobject = '',
-        },
         source = {
           attach = function(buf_id)
             local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf_id), ':.')
