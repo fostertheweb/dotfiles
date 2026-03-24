@@ -16,7 +16,10 @@ keybindings:
   prs:
     - key: T
       command: gh enhance -R {{.RepoName}} {{.PrNumber}}
-    - key: R
+    - key: N
       command: >
         zsh -ic 'source ~/.config/zsh/functions/git.zsh && 
         pull-requests {{.RepoName}} {{.PrNumber}}'
+    - key: P
+      command: gh pr diff {{.PrNumber}} | claude --append-system-prompt "Review the following code changes for any potential bugs, code against repo standards and best practices."
+
