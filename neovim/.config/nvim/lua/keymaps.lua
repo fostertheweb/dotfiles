@@ -60,6 +60,3 @@ vim.keymap.set('n', '<leader>gc', '<CMD>Git commit<CR>', { desc = 'Commit' })
 -- vim.keymap.set('n', '<leader>gb', '<CMD>Gitsigns toggle_current_line_blame<CR>', { desc = 'Toggle blame' })
 vim.keymap.set('n', '<leader>gb', '<CMD>Git blame<CR>', { desc = 'Blame' })
 vim.keymap.set('n', '<leader>gw', utils.open_pr_diff, { desc = 'GitHub PR Diff' })
-
--- Q, Quickfix list
-vim.keymap.set('n', '<leader>q', utils.toggle_quickfix, { desc = 'Quickfix list' })

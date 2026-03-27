@@ -11,7 +11,7 @@ local mini_layout = {
     col = 0,
     row = -2,
     height = 0.4,
-    width = 0.5,
+    width = 0.6,
     title = '{title}',
     title_pos = 'left',
     { win = 'input', height = 1, border = 'none' },
@@ -21,6 +21,8 @@ local mini_layout = {
 
 return {
   'folke/snacks.nvim',
+  lazy = false,
+  priority = 1000,
   opts = {
     bufdelete = {},
     gh = {},
@@ -66,6 +68,13 @@ return {
     },
     terminal = {},
     win = {},
+    styles = {
+      input = {
+        relative = 'cursor',
+        row = -3,
+        col = 0,
+      },
+    },
   },
   keys = {
     {
@@ -164,29 +173,10 @@ return {
       end,
       desc = 'Recent Files',
     },
-    -- {
-    --   '<C-g>',
-    --   function()
-    --     Snacks.terminal.toggle('gitu', {
-    --       win = {
-    --         width = vim.o.columns,
-    --         height = vim.o.lines - 1,
-    --         border = 'none',
-    --         row = 0,
-    --         col = 0,
-    --       },
-    --     })
-    --   end,
-    --   mode = { 'n', 't' },
-    -- },
     {
       '<leader><BS>',
       function()
-        if #vim.api.nvim_list_tabpages() > 1 then
-          vim.cmd 'tabclose'
-        else
-          Snacks.bufdelete()
-        end
+        Snacks.bufdelete()
       end,
       mode = 'n',
       desc = 'Close tab or delete',
