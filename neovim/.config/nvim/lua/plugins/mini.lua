@@ -18,6 +18,13 @@ return {
 
     require('mini.completion').setup {}
 
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'snacks_input', 'snacks_picker_input' },
+      callback = function(args)
+        vim.b[args.buf].minicompletion_disable = true
+      end,
+    })
+
     local imap_expr = function(lhs, rhs)
       vim.keymap.set('i', lhs, rhs, { expr = true })
     end
