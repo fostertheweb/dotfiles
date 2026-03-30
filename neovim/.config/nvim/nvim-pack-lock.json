@@ -108,6 +108,14 @@
       "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
       "src": "https://github.com/dmmulroy/ts-error-translator.nvim"
     },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth"
+    },
     "witchesbrew.nvim": {
       "rev": "c900def9a41e50d37b5470d0b085a996d634863b",
       "src": "https://github.com/shoenot/witchesbrew.nvim"

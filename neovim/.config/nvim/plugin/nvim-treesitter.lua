@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
-  -- 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-  -- 'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
+  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+  'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
 }
 -- require('nvim-treesitter.configs').setup {
 --   auto_install = true,
@@ -22,12 +22,14 @@ vim.pack.add {
 --   indent = { enable = true },
 -- }
 
+require('nvim-treesitter-textobjects').setup {}
+
 require('treesitter-context').setup {
   max_lines = 3,
   trim_scope = 'inner',
 }
 
--- require('ts_context_commentstring').setup {}
+require('ts_context_commentstring').setup {}
 
 -- vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
 --   callback = function()

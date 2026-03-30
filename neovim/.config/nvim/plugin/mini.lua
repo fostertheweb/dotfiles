@@ -64,6 +64,7 @@ miniclue.setup {
   },
 
   clues = {
+    { mode = 'n', keys = '<Leader>a', desc = '+AI' },
     { mode = 'n', keys = '<Leader>f', desc = '+Find' },
     { mode = 'n', keys = '<Leader>t', desc = '+Test' },
     { mode = 'n', keys = '<Leader>g', desc = '+Git' },
