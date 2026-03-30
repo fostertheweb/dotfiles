@@ -1,8 +1,12 @@
-return {
-  'mfussenegger/nvim-lint',
-  event = { 'BufReadPre', 'BufNewFile' },
-  config = function()
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+  once = true,
+  callback = function()
+    vim.pack.add { 'https://github.com/mfussenegger/nvim-lint' }
+
     local lint = require 'lint'
+
+    -- lint.setup()
+
     lint.linters_by_ft = {
       markdown = { 'markdownlint' },
       javascript = { 'eslint_d' },
@@ -13,7 +17,6 @@ return {
     }
 
     local function has_config_file()
-      local ft = vim.bo.filetype
       local config_files = {
         '.eslintrc.js',
         '.eslintrc.json',
@@ -47,4 +50,4 @@ return {
       end,
     })
   end,
-}
+})

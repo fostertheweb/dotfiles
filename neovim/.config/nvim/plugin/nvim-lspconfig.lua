@@ -1,3 +1,10 @@
+vim.pack.add {
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/dmmulroy/ts-error-translator.nvim',
+}
+
+require('ts-error-translator').setup()
+
 local function is_cursor_on_diagnostic()
   local bufnr = vim.api.nvim_get_current_buf()
   local cursor = vim.api.nvim_win_get_cursor(0)
@@ -43,14 +50,48 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Options
+vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
 vim.lsp.inlay_hint.enable()
 vim.diagnostic.config {
   update_in_insert = true,
   virtual_text = true,
 }
 
+vim.lsp.config('vtsls', {
+  settings = {
+    typescript = {
+      preferences = {
+        includePackageJsonAutoImports = 'on',
+      },
+    },
+  },
+})
+
+vim.lsp.config('copilot', {
+  cmd = { 'copilot-language-server', '--stdio' },
+  init_options = {
+    editorInfo = {
+      name = 'Neovim',
+      version = tostring(vim.version()),
+    },
+    editorPluginInfo = {
+      name = 'Neovim',
+      version = tostring(vim.version()),
+    },
+  },
+})
+
+vim.lsp.inline_completion.enable()
+
+vim.keymap.set('i', '<C-f>', function()
+  if not vim.lsp.inline_completion.get() then
+    return '<C-f>'
+  end
+end, { expr = true, desc = 'Accept the current inline completion' })
+
 vim.lsp.enable {
   -- npm
+  'copilot',
   'vtsls',
   'cssls',
   'html',
