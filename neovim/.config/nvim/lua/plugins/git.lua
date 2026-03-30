@@ -1,5 +1,7 @@
 return {
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+  },
   { 'akinsho/git-conflict.nvim', config = true },
   {
     'lewis6991/gitsigns.nvim',
