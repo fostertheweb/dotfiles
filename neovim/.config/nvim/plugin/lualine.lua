@@ -19,7 +19,21 @@ require('lualine').setup {
     globalstatus = true,
   },
   sections = {
-    lualine_a = { 'filename', 'diagnostics' },
+    lualine_a = {
+      {
+      'filetype',
+        colored = true,   -- Displays filetype icon in color if set to true
+        icon_only = true, -- Display only an icon for filetype
+        icon = { align = 'right' }, -- Display filetype icon on the right hand side
+    },
+    {
+      'filename',
+      file_status = true,      -- Displays file status (readonly status, modified status)
+      path = 1,                -- 0: Just the filename
+      shorting_target = 40
+      },
+      'diagnostics'
+    },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},

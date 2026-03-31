@@ -4,6 +4,10 @@
       "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
       "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
     },
+    "conform.nvim": {
+      "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "conifer.nvim": {
       "rev": "1ca7ac8879c346d7f6d5c1b1dbf4f49c5cbd6f8a",
       "src": "https://github.com/lucasadelino/conifer.nvim"

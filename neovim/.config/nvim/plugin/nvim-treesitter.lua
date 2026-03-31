@@ -15,6 +15,7 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
   'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
   'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
+  'https://github.com/windwp/nvim-ts-autotag',
 }
 
 require('nvim-treesitter.config').setup {
@@ -36,7 +37,6 @@ require('ts_context_commentstring').setup {
 
 vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
   callback = function()
-    vim.pack.add { 'https://github.com/windwp/nvim-ts-autotag' }
     require('nvim-ts-autotag').setup()
   end,
 })
