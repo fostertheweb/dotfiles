@@ -1,7 +1,7 @@
-vim.g.mapleader = ' '      -- Set leader key to space
-vim.g.maplocalleader = ' ' -- Set local leader key to space
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-vim.opt.laststatus = 3 -- Global statusline
+vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.ruler = false
 vim.opt.termguicolors = true
