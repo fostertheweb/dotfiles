@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
 
     local lint = require 'lint'
 
-    -- lint.setup()
+    lint.setup()
 
     lint.linters_by_ft = {
       markdown = { 'markdownlint' },

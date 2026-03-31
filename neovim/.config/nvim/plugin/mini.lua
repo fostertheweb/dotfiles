@@ -3,9 +3,9 @@ vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
 require('mini.comment').setup {
   options = {
     ignore_blank_line = true,
-    -- custom_commentstring = function()
-      -- return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
-    -- end,
+    custom_commentstring = function()
+      return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
+    end,
   },
   mappings = {
     comment = 'g/',

@@ -1,4 +1,4 @@
-vim.g.mapleader = ' ' -- Set leader key to space
+vim.g.mapleader = ' '      -- Set leader key to space
 vim.g.maplocalleader = ' ' -- Set local leader key to space
 
 vim.opt.laststatus = 3 -- Global statusline
@@ -94,8 +94,6 @@ vim.opt.wildignore:append {
   '*/.vscode/*',
 }
 
-local utils = require 'utils'
-
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', '<CMD>wq<CR>', { desc = ':wq' })
 
@@ -144,9 +142,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- F, builtin find
 vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
-
--- G, Git commands
-vim.keymap.set('n', '<leader>gw', utils.open_pr_diff, { desc = 'GitHub PR Diff' })
 
 require('vim._core.ui2').enable {
   enable = true, -- Whether to enable or disable the UI.

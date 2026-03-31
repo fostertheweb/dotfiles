@@ -16,11 +16,12 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
   'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
 }
--- require('nvim-treesitter.configs').setup {
---   auto_install = true,
---   highlight = { enable = true },
---   indent = { enable = true },
--- }
+
+require('nvim-treesitter.config').setup {
+  auto_install = true,
+  highlight = { enable = true },
+  indent = { enable = true },
+}
 
 require('nvim-treesitter-textobjects').setup {}
 
@@ -29,11 +30,13 @@ require('treesitter-context').setup {
   trim_scope = 'inner',
 }
 
-require('ts_context_commentstring').setup {}
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+}
 
--- vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
---   callback = function()
---     vim.pack.add 'https://github.com/windwp/nvim-ts-autotag'
---     require('nvim-ts-autotag').setup()
---   end,
--- })
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+  callback = function()
+    vim.pack.add { 'https://github.com/windwp/nvim-ts-autotag' }
+    require('nvim-ts-autotag').setup()
+  end,
+})
