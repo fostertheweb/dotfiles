@@ -63,6 +63,11 @@ require('snacks').setup {
         },
       },
     },
+    previewers = {
+      diff = {
+        style = "syntax",
+      }
+    }
   },
   terminal = {},
   win = {},
@@ -88,7 +93,7 @@ vim.keymap.set('n', '<leader>fs', function()
 end, { desc = 'Workspace Symbols' })
 
 vim.keymap.set('n', '<leader>fo', function()
-  --         Snacks.picker.lsp_symbols()
+  Snacks.picker.lsp_symbols()
 end, { desc = 'Document Symbols' })
 
 vim.keymap.set('n', '<leader>fr', function()
@@ -118,7 +123,7 @@ vim.keymap.set('n', '<leader>gs', function()
 end, { desc = 'Status' })
 
 vim.keymap.set('n', '<leader>gd', function()
-  snacks.picker.git_diff {
+  Snacks.picker.git_diff {
     group = true,
     base = 'origin/head',
     layout = 'default',
