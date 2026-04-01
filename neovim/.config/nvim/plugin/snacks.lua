@@ -65,9 +65,9 @@ require('snacks').setup {
     },
     previewers = {
       diff = {
-        style = "syntax",
-      }
-    }
+        style = 'syntax',
+      },
+    },
   },
   terminal = {},
   win = {},
@@ -103,10 +103,6 @@ end, { desc = 'References' })
 vim.keymap.set('n', '<leader>k', function()
   Snacks.picker.diagnostics()
 end, { desc = 'Problems' })
-
-vim.keymap.set('n', '<leader>u', function()
-  Snacks.picker.undo { layout = 'default' }
-end, { desc = 'Undo' })
 
 vim.keymap.set('n', '<leader>h', function()
   Snacks.picker.help()

@@ -1,6 +1,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.ruler = false
@@ -94,45 +97,52 @@ vim.opt.wildignore:append {
   '*/.vscode/*',
 }
 
+require('vim._core.ui2').enable {
+  enable = true,
+}
+
+-- Built-in plugins
+vim.cmd.packadd 'nvim.undotree'
+
+vim.keymap.set('n', '<leader>u', '<CMD>Undotree<CR>', { desc = 'Undo tree' })
+vim.keymap.set('n', '<leader>m', '<CMD>messages<CR>', { desc = 'Messages' })
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', '<CMD>wq<CR>', { desc = ':wq' })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Terminal mode escape
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 
--- q to go back a word
+-- Swap b and q behavior
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
 vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
 
--- use b for macros
+-- Use b for macros
 vim.keymap.set({ 'n', 'v' }, 'b', 'q')
 vim.keymap.set({ 'n', 'v' }, 'B', 'Q')
-
--- Clear search
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 
--- Go home, start of text, EOL
+-- Line movements
 vim.keymap.set({ 'n', 'v' }, 'gh', '0', { desc = 'Go to beginning of line' })
 vim.keymap.set({ 'n', 'v' }, 'gs', '^', { desc = 'Go to start of text' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
 vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
-vim.keymap.set('v', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
-
--- Buffer navigation
 vim.keymap.set('n', '<C-w>f', '<CMD>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-w>b', '<CMD>bp<CR>', { desc = 'Previous buffer' })
 
--- Center cursor after page down/up
+-- Yank stuff
+vim.keymap.set('x', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection' })
+vim.keymap.set('x', '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
+
+-- Center cursor after page up/down
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
--- page down/up
+-- Page up/down
 vim.keymap.set('t', '<S-C-u>', '<PageUp>')
 vim.keymap.set('t', '<S-C-d>', '<PageDown>')
 
@@ -140,32 +150,8 @@ vim.keymap.set('t', '<S-C-d>', '<PageDown>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
--- F, builtin find
+-- Built-in find
 vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
-
-require('vim._core.ui2').enable {
-  enable = true, -- Whether to enable or disable the UI.
-  msg = { -- Options related to the message module.
-    ---@type 'cmd'|'msg' Default message target, either in the
-    ---cmdline or in a separate ephemeral message window.
-    ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
-    ---or table mapping |ui-messages| kinds and triggers to a target.
-    targets = 'cmd',
-    cmd = { -- Options related to messages in the cmdline window.
-      height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
-    },
-    dialog = { -- Options related to dialog window.
-      height = 0.5, -- Maximum height.
-    },
-    msg = { -- Options related to msg window.
-      height = 0.5, -- Maximum height.
-      timeout = 4000, -- Time a message is visible in the message window.
-    },
-    pager = { -- Options related to message window.
-      height = 1, -- Maximum height.
-    },
-  },
-}
 
 local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
 
