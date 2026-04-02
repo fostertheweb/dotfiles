@@ -97,6 +97,8 @@ alias ai="opencode"
 alias merge="nvim -c GitConflictListQf"
 alias journal="$ZSH_CONFIG/bin/journal"
 
+source "$HOME/.config/broot/launcher/bash/br"
+
 source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/jobs.zsh"
@@ -139,4 +141,3 @@ fi
 
 # Show profiling info on demand with `zprof` command
 
-source /Users/jonathan/.config/broot/launcher/bash/br
