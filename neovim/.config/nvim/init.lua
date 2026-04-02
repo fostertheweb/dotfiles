@@ -113,13 +113,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Terminal mode escape
 vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
 
--- Swap b and q behavior
+-- Swap b with q
 vim.keymap.set({ 'n', 'v' }, 'q', 'b')
 vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
 
--- Use b for macros
-vim.keymap.set({ 'n', 'v' }, 'b', 'q')
-vim.keymap.set({ 'n', 'v' }, 'B', 'Q')
+-- Use m to record macros
+vim.keymap.set({ 'n', 'v' }, 'm', 'q')
 
 -- Override s default behavior
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
