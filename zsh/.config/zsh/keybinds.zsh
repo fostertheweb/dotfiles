@@ -32,7 +32,7 @@ bindkey -s '\ef' 'find-file^M'
 bindkey -s '\ee' 'nvim^M'
 
 # cmd -
-# Open walk to navigate files
+# Open superfile to navigate files
 bindkey -s '\e-' 'spf^M'
 
 # cmd-d
