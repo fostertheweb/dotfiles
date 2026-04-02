@@ -138,3 +138,5 @@ else
 fi
 
 # Show profiling info on demand with `zprof` command
+
+source /Users/jonathan/.config/broot/launcher/bash/br

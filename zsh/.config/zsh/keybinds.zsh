@@ -32,8 +32,8 @@ bindkey -s '\ef' 'find-file^M'
 bindkey -s '\ee' 'nvim^M'
 
 # cmd -
-# Open superfile to navigate files
-bindkey -s '\e-' 'spf^M'
+# Open broot to navigate files
+bindkey -s '\e-' 'br^M'
 
 # cmd-d
 # Go to dotfiles

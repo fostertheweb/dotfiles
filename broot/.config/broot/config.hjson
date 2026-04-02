@@ -1,0 +1,5 @@
+show_hidden: true
+special_paths: {
+    ".git": { "show": "never" }
+    "node_modules": { "show": "never" }
+}
