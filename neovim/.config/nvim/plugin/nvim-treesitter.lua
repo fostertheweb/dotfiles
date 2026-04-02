@@ -35,8 +35,4 @@ require('ts_context_commentstring').setup {
   enable_autocmd = false,
 }
 
-vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
-  callback = function()
-    require('nvim-ts-autotag').setup()
-  end,
-})
+require('nvim-ts-autotag').setup()

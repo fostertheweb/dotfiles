@@ -100,6 +100,14 @@ vim.keymap.set('n', '<leader>fr', function()
   Snacks.picker.lsp_references { layout = 'default' }
 end, { desc = 'References' })
 
+vim.keymap.set({ 'n', 'x' }, '<leader>fw', function()
+  Snacks.picker.grep_word { hidden = true, ignored = false }
+end, { desc = 'Word' })
+
+vim.keymap.set('n', '<leader>f<leader>', function()
+  Snacks.picker.resume()
+end, { desc = 'Resume' })
+
 vim.keymap.set('n', '<leader>k', function()
   Snacks.picker.diagnostics()
 end, { desc = 'Problems' })
@@ -130,7 +138,7 @@ vim.keymap.set('n', '<leader>fq', function()
   Snacks.picker.qflist()
 end, { desc = 'Quickfix' })
 
-vim.keymap.set('n', '<leader>.', function()
+vim.keymap.set('n', '<leader>f.', function()
   Snacks.picker.recent()
 end, { desc = 'Recent Files' })
 

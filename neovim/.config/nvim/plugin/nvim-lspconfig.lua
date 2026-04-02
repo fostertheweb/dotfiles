@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     map('gd', vim.lsp.buf.definition, 'Go to definition')
     map('g.', vim.lsp.buf.code_action, 'Code actions')
-    map('gk', vim.lsp.buf.signature_help, 'Signature Help')
     map('g=', vim.lsp.buf.format, 'Format code')
 
     map('K', function()
