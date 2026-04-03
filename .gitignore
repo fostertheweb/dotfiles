@@ -9,6 +9,6 @@ broot/.config/broot/skins
 
 karabiner/.config/karabiner/automatic_backups/
 
-/.opencode*
+.ruby-lsp
 
 debug.log
