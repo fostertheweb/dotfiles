@@ -91,6 +91,13 @@ miniclue.setup {
   },
 }
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'fugitive',
+  callback = function(args)
+    vim.b[args.buf].miniclue_disable = true
+  end,
+})
+
 local MiniDiff = require 'mini.diff'
 MiniDiff.setup {
   mappings = {
