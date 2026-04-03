@@ -2,11 +2,13 @@
 .DS_Store
 
 Brewfile.lock.json
-neovim/.config/nvim/lazy-lock.json
 ghostty/.config/ghostty/config
+
+broot/.config/broot/launcher
+broot/.config/broot/skins
 
 karabiner/.config/karabiner/automatic_backups/
 
-/.opencode*
+.ruby-lsp
 
 debug.log

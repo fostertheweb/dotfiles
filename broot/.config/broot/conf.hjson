@@ -1,0 +1,9 @@
+imports: [
+    verbs.hjson
+]
+default_flags: -ghI
+special_paths: {
+    ".git": { "show": "never" }
+    "node_modules": { "show": "never" }
+}
+true_colors: true
