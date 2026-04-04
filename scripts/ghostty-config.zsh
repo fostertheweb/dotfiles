@@ -6,11 +6,11 @@ OUTPUT_FILE="${GHOSTTY_DIR}/config"
 
 : ${TERMINAL_FONT_FAMILY:="BerkeleyMono Nerd Font"}
 : ${TERMINAL_FONT_SIZE:="14"}
-: ${GHOSTTY_THEME:="light:paper,dark:eyes-dark"}
+: ${GHOSTTY_THEME:="light:jellybeans-light,dark:conifer"}
 
 if [[ ! -f "$TEMPLATE_FILE" ]]; then
-    echo "Error: Template file not found at $TEMPLATE_FILE"
-    exit 1
+	echo "Error: Template file not found at $TEMPLATE_FILE"
+	exit 1
 fi
 
 echo "Building Ghostty config with:"
@@ -26,6 +26,6 @@ config_content="${config_content//\{\{TERMINAL_FONT_SIZE\}\}/$TERMINAL_FONT_SIZE
 config_content="${config_content//\{\{GHOSTTY_THEME\}\}/$GHOSTTY_THEME}"
 
 # Write the output file
-echo "$config_content" > "$OUTPUT_FILE"
+echo "$config_content" >"$OUTPUT_FILE"
 
 echo "✓ Config file generated at: $OUTPUT_FILE"

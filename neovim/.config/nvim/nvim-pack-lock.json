@@ -32,6 +32,10 @@
       "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
       "src": "https://github.com/smoka7/hop.nvim"
     },
+    "jellybeans.nvim": {
+      "rev": "f75e0cfba0cdf3b7530301df8375367c29fbd310",
+      "src": "https://github.com/wtfox/jellybeans.nvim"
+    },
     "lualine.nvim": {
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"

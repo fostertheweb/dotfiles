@@ -3,9 +3,10 @@ local utils = require 'utils'
 vim.pack.add {
   'https://github.com/lucasadelino/conifer.nvim',
   'https://github.com/amedoeyes/eyes.nvim',
+  'https://github.com/wtfox/jellybeans.nvim',
   'https://github.com/savq/melange-nvim',
   'https://github.com/thallada/farout.nvim',
-  'https://github.com/shoenot/witchesbrew.nvim'
+  'https://github.com/shoenot/witchesbrew.nvim',
 }
 
 require('conifer').setup {
@@ -24,7 +25,6 @@ else
     vim.cmd 'colorscheme conifer'
   else
     vim.o.background = 'light'
-    vim.cmd 'colorscheme minisummer'
+    vim.cmd 'colorscheme jellybeans'
   end
 end
-
