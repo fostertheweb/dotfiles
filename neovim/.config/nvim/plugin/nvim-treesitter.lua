@@ -18,11 +18,25 @@ vim.pack.add {
   'https://github.com/windwp/nvim-ts-autotag',
 }
 
-require('nvim-treesitter.config').setup {
-  auto_install = true,
-  highlight = { enable = true },
-  indent = { enable = true },
+local ensureInstalled = {
+  'css',
+  'go',
+  'html',
+  'json',
+  'lua',
+  'markdown',
+  'ruby',
+  'rust',
+  'typescript',
 }
+local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+local parsersToInstall = vim
+  .iter(ensureInstalled)
+  :filter(function(parser)
+    return not vim.tbl_contains(alreadyInstalled, parser)
+  end)
+  :totable()
+require('nvim-treesitter').install(parsersToInstall)
 
 require('nvim-treesitter-textobjects').setup {}
 
