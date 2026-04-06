@@ -22,11 +22,14 @@ local ensureInstalled = {
   'css',
   'go',
   'html',
+  'javascript',
   'json',
+  'jsx',
   'lua',
   'markdown',
   'ruby',
   'rust',
+  'tsx',
   'typescript',
 }
 local alreadyInstalled = require('nvim-treesitter.config').get_installed()
