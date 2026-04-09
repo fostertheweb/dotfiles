@@ -28,6 +28,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client:supports_method 'textDocument/completion' then
       vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+      vim.bo[event.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+      local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('mini.completion').get_lsp_capabilities())
+      vim.lsp.config('*', { capabilities = capabilities })
     end
 
     local map = function(keys, func, desc)

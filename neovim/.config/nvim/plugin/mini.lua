@@ -73,9 +73,6 @@ miniclue.setup {
     -- Window commands
     { mode = 'n', keys = '<C-w>' },
 
-    -- Ug
-    { mode = 'n', keys = 'U' },
-
     -- `z` key
     { mode = 'n', keys = 'z' },
     { mode = 'x', keys = 'z' },
@@ -85,7 +82,7 @@ miniclue.setup {
     { mode = 'n', keys = '<Leader>a', desc = '+AI' },
     { mode = 'n', keys = '<Leader>f', desc = '+Find' },
     { mode = 'n', keys = '<Leader>t', desc = '+Test' },
-    { mode = 'n', keys = 'U', desc = '+Git' },
+    { mode = 'n', keys = '<Leader>g', desc = '+Git' },
     miniclue.gen_clues.g(),
     miniclue.gen_clues.marks(),
     miniclue.gen_clues.registers(),
