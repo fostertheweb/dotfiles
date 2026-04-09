@@ -1,6 +1,7 @@
 local utils = require 'utils'
 
 vim.pack.add {
+  'https://github.com/zitrocode/carvion.nvim',
   'https://github.com/lucasadelino/conifer.nvim',
   'https://github.com/amedoeyes/eyes.nvim',
   'https://github.com/wtfox/jellybeans.nvim',

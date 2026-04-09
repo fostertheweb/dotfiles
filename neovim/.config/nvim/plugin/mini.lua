@@ -158,10 +158,4 @@ end, { desc = 'Open file explorer' })
 require('mini.icons').setup {}
 require('mini.icons').mock_nvim_web_devicons()
 
-require('mini.notify').setup {
-  window = {
-    config = { anchor = 'NE', col = vim.o.columns, row = 0 },
-  },
-}
-
 require('mini.surround').setup()

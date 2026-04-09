@@ -51,6 +51,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+vim.api.nvim_create_autocmd('LspProgress', {
+  callback = function(ev)
+    local value = ev.data.params.value
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    vim.api.nvim_echo({ { value.kind == 'end' and '✓' or '◐' } }, false, {
+      id = 'lsp.' .. ev.data.client_id,
+      kind = 'progress',
+      source = 'vim.lsp',
+      title = ('[%s] %s'):format(client.name, value.title),
+      status = value.kind ~= 'end' and 'running' or 'success',
+      percent = value.percentage,
+    })
+  end,
+})
+
 -- Options
 vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
 vim.lsp.inlay_hint.enable()
