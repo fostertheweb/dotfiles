@@ -17,7 +17,17 @@ require('mini.comment').setup {
   },
 }
 
-require('mini.completion').setup {}
+require('mini.completion').setup {
+  lsp_completion = {
+    source_func = 'omnifunc',
+    auto_setup = true,
+  },
+  fallback_action = '<C-x><C-o>',
+  mappings = {
+    scroll_down = '<C-j>',
+    scroll_up = '<C-k>',
+  },
+}
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'snacks_input', 'snacks_picker_input' },
@@ -63,6 +73,9 @@ miniclue.setup {
     -- Window commands
     { mode = 'n', keys = '<C-w>' },
 
+    -- Ug
+    { mode = 'n', keys = 'U' },
+
     -- `z` key
     { mode = 'n', keys = 'z' },
     { mode = 'x', keys = 'z' },
@@ -72,7 +85,7 @@ miniclue.setup {
     { mode = 'n', keys = '<Leader>a', desc = '+AI' },
     { mode = 'n', keys = '<Leader>f', desc = '+Find' },
     { mode = 'n', keys = '<Leader>t', desc = '+Test' },
-    { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+    { mode = 'n', keys = 'U', desc = '+Git' },
     miniclue.gen_clues.g(),
     miniclue.gen_clues.marks(),
     miniclue.gen_clues.registers(),
