@@ -1,5 +1,3 @@
----@diagnostic disable: undefined-global
-
 local utils = require 'utils'
 
 local mini_layout = {
@@ -145,5 +143,3 @@ end, { desc = 'Recent Files' })
 vim.keymap.set('n', '<leader><BS>', function()
   Snacks.bufdelete()
 end, { desc = 'Delete buffer' })
-
-vim.keymap.set('n', '<leader>gw', utils.open_pr_diff, { desc = 'GitHub PR Diff' })

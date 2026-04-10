@@ -70,6 +70,10 @@ miniclue.setup {
     -- Surround
     { mode = 'n', keys = 's' },
 
+    -- U, git commands
+    { mode = 'n', keys = 'U' },
+    { mode = 'x', keys = 'U' },
+
     -- Window commands
     { mode = 'n', keys = '<C-w>' },
 
@@ -83,6 +87,8 @@ miniclue.setup {
     { mode = 'n', keys = '<Leader>f', desc = '+Find' },
     { mode = 'n', keys = '<Leader>t', desc = '+Test' },
     { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+    { mode = { 'n', 'x' }, keys = 'U1', desc = '+Line' },
+    { mode = { 'n', 'x' }, keys = 'Uw', desc = '+Web' },
     miniclue.gen_clues.g(),
     miniclue.gen_clues.marks(),
     miniclue.gen_clues.registers(),
