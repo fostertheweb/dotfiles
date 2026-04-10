@@ -65,9 +65,11 @@ vim.api.nvim_create_autocmd('LspProgress', {
     })
 
     -- Clears after 3 seconds
-    vim.defer_fn(function()
-      vim.api.nvim_echo({ { '', '' } }, false, {})
-    end, 3000)
+    if ev.value.kind == 'end' then
+      vim.defer_fn(function()
+        vim.api.nvim_echo({ { '', '' } }, false, {})
+      end, 3000)
+    end
   end,
 })
 
