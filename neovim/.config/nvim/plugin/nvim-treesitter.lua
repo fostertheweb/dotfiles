@@ -10,6 +10,17 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    local filetype = args.match
+    local lang = vim.treesitter.language.get_lang(filetype)
+    if vim.treesitter.language.add(lang) then
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      vim.treesitter.start()
+    end
+  end,
+})
+
 vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
@@ -39,6 +50,7 @@ local parsersToInstall = vim
     return not vim.tbl_contains(alreadyInstalled, parser)
   end)
   :totable()
+
 require('nvim-treesitter').install(parsersToInstall)
 
 require('nvim-treesitter-textobjects').setup {}
