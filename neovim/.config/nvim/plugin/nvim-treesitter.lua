@@ -1,3 +1,11 @@
+vim.pack.add {
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter-context',
+  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+  'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
+  'https://github.com/windwp/nvim-ts-autotag',
+}
+
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
@@ -20,14 +28,6 @@ vim.api.nvim_create_autocmd('FileType', {
     end
   end,
 })
-
-vim.pack.add {
-  'https://github.com/nvim-treesitter/nvim-treesitter',
-  'https://github.com/nvim-treesitter/nvim-treesitter-context',
-  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
-  'https://github.com/JoosepAlviste/nvim-ts-context-commentstring',
-  'https://github.com/windwp/nvim-ts-autotag',
-}
 
 local ensureInstalled = {
   'css',
