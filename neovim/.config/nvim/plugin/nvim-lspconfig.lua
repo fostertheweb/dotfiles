@@ -63,6 +63,11 @@ vim.api.nvim_create_autocmd('LspProgress', {
       status = value.kind ~= 'end' and 'running' or 'success',
       percent = value.percentage,
     })
+
+    -- Clears after 3 seconds
+    vim.defer_fn(function()
+      vim.api.nvim_echo({ { '', '' } }, false, {})
+    end, 3000)
   end,
 })
 
