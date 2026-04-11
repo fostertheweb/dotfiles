@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-    if client:supports_method 'textDocument/completion' then
+    if client and client:supports_method 'textDocument/completion' then
       vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
       vim.bo[event.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
       local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('mini.completion').get_lsp_capabilities())
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
       id = 'lsp.' .. ev.data.client_id,
       kind = 'progress',
       source = 'vim.lsp',
-      title = ('[%s] %s'):format(client.name, value.title),
+      title = client and ('[%s] %s'):format(client.name, value.title) or value.title,
       status = value.kind ~= 'end' and 'running' or 'success',
       percent = value.percentage,
     })
