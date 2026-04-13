@@ -141,27 +141,13 @@ vim.api.nvim_create_user_command('DiffOriginMain', function()
   }
 end, {})
 
-require('mini.files').setup {
-  mappings = {
-    go_in = '',
-    go_in_plus = 'l',
-  },
-  windows = {
-    preview = false,
-    max_number = 2,
-    width_focus = 30,
-    width_nofocus = 30,
-    width_preview = 80,
-  },
-}
-
-vim.keymap.set('n', '-', function()
-  local buf_name = vim.api.nvim_buf_get_name(0)
-  local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
-  require('mini.files').open(path)
-end, { desc = 'Open file explorer' })
-
 require('mini.icons').setup {}
 require('mini.icons').mock_nvim_web_devicons()
 
+require('mini.pairs').setup()
 require('mini.surround').setup()
+
+local MiniVisits = require 'mini.visits'
+MiniVisits.setup()
+
+vim.keymap.set('n', '<leader>j', function() end, { desc = 'Visits' })
