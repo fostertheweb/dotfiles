@@ -1,5 +1,5 @@
 local utils = require 'utils'
-local default_agent = utils.is_work_computer() and 'claude' or 'amp'
+local default_agent = utils.is_work_computer() and 'claude' or 'pi'
 
 vim.pack.add {
   'https://github.com/folke/sidekick.nvim',
@@ -10,6 +10,7 @@ require('sidekick').setup {
     picker = 'snacks',
     tools = {
       amp = { cmd = { 'amp' }, url = 'https://ampcode.com/' },
+      pi = { cmd = { 'pi' }, url = 'https://pi.dev/' },
     },
   },
   nes = {
