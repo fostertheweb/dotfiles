@@ -9,11 +9,12 @@ require('oil').setup {
   },
   keymaps = {
     ['<C-j>'] = 'actions.select',
+    ['<Esc>'] = 'actions.close',
   },
 }
 
 vim.keymap.set('n', '-', function()
-  require('oil').open()
+  require('oil').open_float()
   vim.wait(1000, function()
     return require('oil').get_cursor_entry() ~= nil
   end)

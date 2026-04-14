@@ -1,4 +1,7 @@
-vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+vim.pack.add {
+  'https://github.com/nvim-mini/mini.nvim',
+  'https://github.com/malewicz1337/oil-git.nvim',
+}
 
 require('mini.ai').setup {}
 
@@ -150,4 +153,4 @@ require('mini.surround').setup()
 local MiniVisits = require 'mini.visits'
 MiniVisits.setup()
 
-vim.keymap.set('n', '<leader>j', function() end, { desc = 'Visits' })
+-- vim.keymap.set('n', '<leader>j', function() end, { desc = 'Visits' })
