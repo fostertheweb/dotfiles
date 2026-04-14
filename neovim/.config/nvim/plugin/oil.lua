@@ -1,5 +1,6 @@
 vim.pack.add {
   'https://github.com/stevearc/oil.nvim',
+  'https://github.com/malewicz1337/oil-git.nvim',
 }
 
 require('oil').setup {
@@ -12,6 +13,8 @@ require('oil').setup {
     ['<Esc>'] = 'actions.close',
   },
 }
+
+require('oil-git').setup()
 
 vim.keymap.set('n', '-', function()
   require('oil').open_float()

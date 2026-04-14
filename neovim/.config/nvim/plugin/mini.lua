@@ -1,6 +1,5 @@
 vim.pack.add {
   'https://github.com/nvim-mini/mini.nvim',
-  'https://github.com/malewicz1337/oil-git.nvim',
 }
 
 require('mini.ai').setup {}
