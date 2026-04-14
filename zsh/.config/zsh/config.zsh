@@ -12,6 +12,6 @@ else
 	# personal computer
 	export TERMINAL_FONT_FAMILY="BerkeleyMono Nerd Font"
 	export TERMINAL_FONT_SIZE=14
-	export GHOSTTY_THEME="light:koda-moss,dark:koda"
+	export GHOSTTY_THEME="light:koda-moss,dark:koda-dark"
 	export DEFAULT_AGENT="pi"
 fi
