@@ -20,6 +20,11 @@ if utils.is_work_computer() then
   vim.o.background = 'dark'
   vim.cmd 'colorscheme melange'
 else
-  vim.o.background = 'dark'
-  vim.cmd 'colorscheme koda'
+  if utils.is_dark_mode() then
+    vim.o.background = 'dark'
+    vim.cmd 'colorscheme koda'
+  else
+    vim.o.background = 'light'
+    vim.cmd 'colorscheme koda-moss'
+  end
 end
