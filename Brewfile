@@ -55,7 +55,6 @@ brew 'zsh-history-substring-search'
 brew 'zsh-syntax-highlighting'
 
 cask '1password-cli'
-cask 'alt-tab'
 cask 'font-hack-nerd-font'
 cask 'font-iosevka-term-nerd-font'
 cask 'font-sf-pro'

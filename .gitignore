@@ -9,6 +9,9 @@ broot/.config/broot/skins
 
 karabiner/.config/karabiner/automatic_backups/
 
+pi/.pi/agent/auth.json
+pi/.pi/agent/sessions/
+
 .ruby-lsp
 
 debug.log
