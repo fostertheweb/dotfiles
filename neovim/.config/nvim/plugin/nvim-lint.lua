@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('lint', { clear = true }),
       callback = function()
-        if vim.opt_local.modifiable:get() and has_config_file() then
+        if vim.bo.filetype ~= 'oil' and vim.opt_local.modifiable:get() and has_config_file() then
           lint.try_lint()
         end
       end,
