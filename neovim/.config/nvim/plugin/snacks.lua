@@ -115,7 +115,10 @@ vim.keymap.set('n', '<leader>h', function()
 end, { desc = 'Help' })
 
 vim.keymap.set('n', '<leader>p', function()
-  Snacks.picker.smart { hidden = true }
+  Snacks.picker.smart {
+    multi = { 'buffers', 'files' },
+    hidden = true,
+  }
 end, { desc = 'Files' })
 
 vim.keymap.set('n', '<leader>gs', function()

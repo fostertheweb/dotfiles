@@ -89,6 +89,7 @@ miniclue.setup {
     { mode = 'n', keys = '<Leader>f', desc = '+Find' },
     { mode = 'n', keys = '<Leader>t', desc = '+Test' },
     { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+    { mode = 'n', keys = '<Leader>j', desc = '+Jump' },
     { mode = { 'n', 'x' }, keys = 'U1', desc = '+Line' },
     { mode = { 'n', 'x' }, keys = 'Uw', desc = '+Web' },
     miniclue.gen_clues.g(),
@@ -152,4 +153,50 @@ require('mini.surround').setup()
 local MiniVisits = require 'mini.visits'
 MiniVisits.setup()
 
--- vim.keymap.set('n', '<leader>j', function() end, { desc = 'Visits' })
+vim.keymap.set('n', 'b', function()
+  MiniVisits.add_label 'default'
+  vim.notify('Added to visits', vim.log.levels.INFO)
+end, { desc = 'Add default label' })
+
+vim.keymap.set('n', 'B', function()
+  MiniVisits.remove_label 'default'
+  vim.notify('Removed from visits', vim.log.levels.INFO)
+end, { desc = 'Remove default label' })
+
+vim.keymap.set('n', '<leader>jj', function()
+  MiniVisits.select_path('', { filter = 'default' })
+end, { desc = 'Jump to visited' })
+
+vim.keymap.set('n', '<leader>jA', function()
+  local label = vim.fn.input 'Label: '
+  if label ~= '' then
+    MiniVisits.add_label(label)
+    vim.notify('Added label: ' .. label, vim.log.levels.INFO)
+  end
+end, { desc = 'Add custom label' })
+
+local function with_label(prompt, callback)
+  local labels = MiniVisits.list_labels()
+  if #labels == 0 then
+    vim.notify('No existing labels', vim.log.levels.WARN)
+    return
+  end
+  vim.ui.select(labels, { prompt = prompt }, function(label)
+    if label then
+      callback(label)
+    end
+  end)
+end
+
+vim.keymap.set('n', '<leader>ja', function()
+  with_label('Add label:', function(label)
+    MiniVisits.add_label(label)
+    vim.notify('Added label: ' .. label, vim.log.levels.INFO)
+  end)
+end, { desc = 'Add existing label' })
+
+vim.keymap.set('n', '<leader>jf', function()
+  with_label('Select label:', function(label)
+    MiniVisits.select_path('', { filter = label })
+  end)
+end, { desc = 'List paths for label' })
