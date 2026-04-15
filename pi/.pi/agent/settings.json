@@ -1,6 +1,6 @@
 {
-  "defaultModel": "gemma4",
-  "defaultProvider": "ollama",
-  "lastChangelogVersion": "0.67.1",
+  "defaultModel": "kimi-k2.5",
+  "defaultProvider": "opencode-go",
+  "lastChangelogVersion": "0.67.2",
   "packages": []
 }
