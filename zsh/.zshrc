@@ -95,7 +95,6 @@ alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias ai="opencode"
 alias merge="nvim -c GitConflictListQf"
-alias journal="$ZSH_CONFIG/bin/journal"
 
 source "$HOME/.config/broot/launcher/bash/br"
 
@@ -103,7 +102,6 @@ source "$ZSH_CONFIG/functions/extras.zsh"
 source "$ZSH_CONFIG/functions/git.zsh"
 source "$ZSH_CONFIG/functions/jobs.zsh"
 source "$ZSH_CONFIG/functions/node.zsh"
-source "$ZSH_CONFIG/functions/opencode.zsh"
 source "$ZSH_CONFIG/functions/search.zsh"
 
 source "$ZSH_CONFIG/keybinds.zsh"
@@ -140,4 +138,3 @@ else
 fi
 
 # Show profiling info on demand with `zprof` command
-
