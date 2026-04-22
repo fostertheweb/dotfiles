@@ -17,7 +17,7 @@ require('oil').setup {
 require('oil-git').setup()
 
 vim.keymap.set('n', '-', function()
-  require('oil').open_float()
+  require('oil').open()
   vim.wait(1000, function()
     return require('oil').get_cursor_entry() ~= nil
   end)
