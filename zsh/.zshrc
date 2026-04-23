@@ -94,7 +94,6 @@ alias tree="eza --tree -a"
 alias history="fc -l 1"
 alias .="cd $HOME/.dotfiles"
 alias ai="opencode"
-alias merge="nvim -c GitConflictListQf"
 
 source "$HOME/.config/broot/launcher/bash/br"
 

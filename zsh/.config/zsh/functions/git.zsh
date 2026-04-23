@@ -61,3 +61,14 @@ function get-or-create-worktree() {
 
   echo "$worktree"
 }
+
+function merge() {
+  local trunk=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
+  local original_branch=$(git branch --show-current)
+  git switch $trunk
+  git pull
+  git switch $original_branch
+  git merge $trunk
+
+  nvim -c GitConflictListQf
+}
