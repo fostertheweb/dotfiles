@@ -1,6 +1,6 @@
 {
   "defaultModel": "kimi-k2.5",
   "defaultProvider": "opencode-go",
-  "lastChangelogVersion": "0.67.68",
+  "lastChangelogVersion": "0.69.0",
   "packages": []
 }
