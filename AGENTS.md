@@ -3,7 +3,7 @@
 - reference plugin help docs in ~/.local/share/nvim/site/pack/core/opt/<plugin>/doc
 
 ## Commit instructions
-into multiple commits if some changes are not related to another
+- run `git log --oneline -n 10` to review commit style
+- break up into multiple commits if some changes are not related to another
 - group commits by program or area of config
 - sometimes mutiple tool configs need changes for one cohesive feature
-- run `git log --oneline -n 10` to review commit style
