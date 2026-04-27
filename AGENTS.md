@@ -1,4 +1,6 @@
 ## neovim configuration tips
+- do not search the web
+- do not clone plugin repos
 - reference neovim help docs in /opt/homebrew/Cellar/neovim/<version>/share/nvim/runtime/doc/help.txt
 - reference plugin help docs in ~/.local/share/nvim/site/pack/core/opt/<plugin>/doc
 
