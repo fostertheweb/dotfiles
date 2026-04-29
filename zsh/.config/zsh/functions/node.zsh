@@ -1,7 +1,20 @@
 #!/usr/bin/env zsh
 
+function install-npm-globals() {
+  local dotfiles_prefix script_path
+  dotfiles_prefix="${DOTFILES_PREFIX:-$HOME/.dotfiles}"
+  script_path="$dotfiles_prefix/scripts/npm.zsh"
+
+  if [ -f "$script_path" ]; then
+    zsh "$script_path"
+  fi
+}
+
 # pair with: add-zsh-hook chpwd load-nvmrc
 function load-nvmrc() {
+  local previous_node_version current_node_version
+  previous_node_version="$(nvm version)"
+
   local nvmrc_path
   nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -17,5 +30,11 @@ function load-nvmrc() {
   elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
+  fi
+
+  current_node_version="$(nvm version)"
+
+  if [ "$current_node_version" != "$previous_node_version" ]; then
+    install-npm-globals
   fi
 }
