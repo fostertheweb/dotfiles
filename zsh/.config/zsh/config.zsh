@@ -6,8 +6,8 @@ if [[ "$(whoami)" == "jonathan.foster" ]]; then
 	# work computer
 	export TERMINAL_FONT_FAMILY="BlexMono Nerd Font Mono"
 	export TERMINAL_FONT_SIZE=14
-	export GHOSTTY_THEME="Melange Dark"
-	export DEFAULT_AGENT="claude"
+	export GHOSTTY_THEME="muted-autumn"
+	export DEFAULT_AGENT="codex"
 else
 	# personal computer
 	export TERMINAL_FONT_FAMILY="BerkeleyMono Nerd Font"

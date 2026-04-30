@@ -1,5 +1,5 @@
 local utils = require 'utils'
-local default_agent = utils.is_work_computer() and 'claude' or 'pi'
+local default_agent = utils.is_work_computer() and 'codex' or 'pi'
 
 vim.pack.add {
   'https://github.com/folke/sidekick.nvim',
