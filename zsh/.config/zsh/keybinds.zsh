@@ -31,13 +31,13 @@ bindkey -s '\ef' 'find-file^M'
 # Open nvim
 bindkey -s '\ee' 'nvim^M'
 
-# cmd -
-# Open broot to navigate files
-bindkey -s '\e-' 'br^M'
-
 # cmd-d
+# Open broot to navigate files
+bindkey -s '\ed' 'br^M'
+
+# cmd-.
 # Go to dotfiles
-bindkey -s '\ed' 'cd $HOME/.dotfiles^M'
+bindkey -s '\e.' 'cd $HOME/.dotfiles^M'
 
 # cmd-i
 # launch opencode
