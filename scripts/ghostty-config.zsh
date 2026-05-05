@@ -6,7 +6,7 @@ OUTPUT_FILE="${GHOSTTY_DIR}/config"
 
 : ${TERMINAL_FONT_FAMILY:="BerkeleyMono Nerd Font"}
 : ${TERMINAL_FONT_SIZE:="14"}
-: ${GHOSTTY_THEME:="light:jellybeans-light,dark:conifer"}
+: ${GHOSTTY_THEME:="light:olive-crt,dark:carvion"}
 
 if [[ ! -f "$TEMPLATE_FILE" ]]; then
 	echo "Error: Template file not found at $TEMPLATE_FILE"

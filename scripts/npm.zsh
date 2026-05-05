@@ -1,6 +1,7 @@
 #! /usr/bin/env zsh
 
 npm install -g @astrojs/language-server \
+	@mariozechner/pi-coding-agent \
 	@github/copilot-language-server \
 	eslint_d \
 	prettier \
