@@ -46,7 +46,7 @@ esac
 export GOPATH="$HOME/Developer/go"
 
 # update PATH
-export PATH="$HOME/.local/bin:$HOME/.bun/bin:$GOPATH/bin:$HOME/.deno/bin:$PATH"
+export PATH="$HOME/.cache/lm-studio/bin:$HOME/.local/bin:$HOME/.bun/bin:$GOPATH/bin:$HOME/.deno/bin:$PATH"
 
 export BAT_THEME=ansi
 
