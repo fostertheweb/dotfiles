@@ -60,6 +60,10 @@
       "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "minuet-ai.nvim": {
+      "rev": "7e696b717082e524286192ddaf397f709427f1a5",
+      "src": "https://github.com/milanglacier/minuet-ai.nvim"
+    },
     "momiji": {
       "rev": "eae4961fe337e7cb0589826dc1f5486eb8a1d332",
       "src": "https://github.com/kyoh86/momiji"
@@ -123,14 +127,6 @@
     "nvim-web-devicons": {
       "rev": "d7462543c9e366c0d196c7f67a945eaaf5d99414",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
-    },
-    "oil-git.nvim": {
-      "rev": "85731c6e0deb6da473ca627f09b7de6ca0f07435",
-      "src": "https://github.com/malewicz1337/oil-git.nvim"
-    },
-    "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
-      "src": "https://github.com/stevearc/oil.nvim"
     },
     "olive-crt.nvim": {
       "rev": "2596d43957d18a080514fefac2ea4867fdbcd5a2",
