@@ -12,17 +12,9 @@
       "rev": "086a40dc7ed8242c03be9f47fbcee68699cc2395",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "conifer.nvim": {
-      "rev": "1ca7ac8879c346d7f6d5c1b1dbf4f49c5cbd6f8a",
-      "src": "https://github.com/lucasadelino/conifer.nvim"
-    },
     "eyeliner.nvim": {
       "rev": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6",
       "src": "https://github.com/jinh0/eyeliner.nvim"
-    },
-    "eyes.nvim": {
-      "rev": "2b06d219787cfe2cbbcf8857598f81434ff2bcb1",
-      "src": "https://github.com/amedoeyes/eyes.nvim"
     },
     "farout.nvim": {
       "rev": "ebfcb874c3ebdb86fff8f22de4ae0944c3fa2bbc",
@@ -36,18 +28,6 @@
       "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
       "src": "https://github.com/smoka7/hop.nvim"
     },
-    "jellybeans.nvim": {
-      "rev": "f75e0cfba0cdf3b7530301df8375367c29fbd310",
-      "src": "https://github.com/wtfox/jellybeans.nvim"
-    },
-    "koda.nvim": {
-      "rev": "18a21bcef1b6746d1aaeaae2d1ca54b46f6aa8fe",
-      "src": "http://github.com/oskarnurm/koda.nvim"
-    },
-    "lazydev.nvim": {
-      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
-      "src": "https://github.com/folke/lazydev.nvim"
-    },
     "lualine.nvim": {
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
@@ -59,18 +39,6 @@
     "mini.nvim": {
       "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",
       "src": "https://github.com/nvim-mini/mini.nvim"
-    },
-    "minuet-ai.nvim": {
-      "rev": "7e696b717082e524286192ddaf397f709427f1a5",
-      "src": "https://github.com/milanglacier/minuet-ai.nvim"
-    },
-    "momiji": {
-      "rev": "eae4961fe337e7cb0589826dc1f5486eb8a1d332",
-      "src": "https://github.com/kyoh86/momiji"
-    },
-    "muted.nvim": {
-      "rev": "69c5e95bb231bc5219b6cbc06b64399ce618098b",
-      "src": "https://github.com/pisgahk/muted.nvim"
     },
     "neotest": {
       "rev": "72bc8f1ec62a590fb47368c81f89610e0f353e28",
@@ -133,7 +101,7 @@
       "src": "https://github.com/reobin/olive-crt.nvim"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "quicker.nvim": {
