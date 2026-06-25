@@ -18,6 +18,7 @@ debug.log
 
 emacs/.config/emacs/auto-save-list/
 emacs/.config/emacs/eln-cache/
+emacs/.config/emacs/elpa/
 emacs/.config/emacs/*~
 emacs/.config/emacs/#*#
 emacs/.config/emacs/.#*
