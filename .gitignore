@@ -15,3 +15,9 @@ pi/.pi/agent/sessions/
 .ruby-lsp
 
 debug.log
+
+emacs/.config/emacs/auto-save-list/
+emacs/.config/emacs/eln-cache/
+emacs/.config/emacs/*~
+emacs/.config/emacs/#*#
+emacs/.config/emacs/.#*
