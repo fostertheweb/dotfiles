@@ -58,6 +58,8 @@ The DWIM behaviour of this command is as follows:
 (menu-bar-mode 1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(global-display-line-numbers-mode t)
+(setq inhibit-startup-screen t)
 
 (let ((mono-spaced-font "IosevkaTerm Nerd Font Mono")
       (proportionately-spaced-font "Sans"))
@@ -164,3 +166,43 @@ The DWIM behaviour of this command is as follows:
   (setq trashed-use-header-line t)
   (setq trashed-sort-key '("Date deleted" . t))
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
+
+(use-package avy
+  :bind (("M-g g" . avy-goto-char-2)
+         ("M-g w" . avy-goto-word-1)))
+
+(use-package which-key
+  :init (which-key-mode)
+  :config (setq which-key-idle-delay 0.3))
+
+(use-package copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("C-f" . copilot-accept-completion)))
+
+(use-package consult
+  :bind (("C-s"         . consult-line)
+         ("C-x b"       . consult-buffer)
+         ("C-x 4 b"     . consult-buffer-other-window)
+         ("C-x 5 b"     . consult-buffer-other-frame)
+         ("C-x r b"     . consult-bookmark)
+         ("C-x r m"     . bookmark-set)
+         ("C-c f"       . consult-fd)
+         ("C-c g"       . consult-ripgrep)
+         ("C-c o"       . consult-outline)
+         ("C-c i"       . consult-imenu)
+         ("C-c n"       . consult-flymake)
+         ("C-x C-r"     . consult-recent-file)
+         ("M-y"         . consult-yank-pop)
+         ("C-x C-x"     . consult-mark)
+         ("C-c a"       . consult-apropos))
+  :custom
+  ;; Search hidden files but keep respecting .gitignore (fd/rg ignore VCS by default).
+  (consult-fd-args
+   '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
+     "--full-path --color=never --hidden"))
+  (consult-ripgrep-args
+   (concat "rg --null --line-buffered --color=never --max-columns=1000 "
+           "--path-separator / --smart-case --no-heading --with-filename "
+           "--line-number --search-zip --hidden")))
+
