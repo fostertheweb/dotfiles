@@ -206,3 +206,5 @@ The DWIM behaviour of this command is as follows:
            "--path-separator / --smart-case --no-heading --with-filename "
            "--line-number --search-zip --hidden")))
 
+(use-package vterm
+    :ensure t)
