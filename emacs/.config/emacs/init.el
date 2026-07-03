@@ -72,11 +72,6 @@ The DWIM behaviour of this command is as follows:
   :config
   (load-theme 'modus-vivendi-tinted :no-confirm-loading))
 
-;; Remember to do M-x and run `nerd-icons-install-fonts' to get the
-;; font files.  Then restart Emacs to see the effect.
-(use-package nerd-icons
-  :ensure t)
-
 (use-package nerd-icons-completion
   :ensure t
   :after marginalia
@@ -168,8 +163,28 @@ The DWIM behaviour of this command is as follows:
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
 (use-package avy
-  :bind (("M-g g" . avy-goto-char-2)
-         ("M-g w" . avy-goto-word-1)))
+  :bind (("M-g w" . avy-goto-word-0))
+  :config
+  (setq avy-style 'at-full)
+  (setq avy-background -1)
+  (setq avy-keys '(?e ?t ?o ?v ?x ?q ?p ?d ?y ?g ?f ?b ?l ?z ?h ?c ?k ?i ?s ?u ?r ?a ?n)))
+
+(custom-set-faces
+ ;; The background of the text you aren't targeting (the dimming effect)
+ '(avy-background-face
+   ((t (:foreground "#666666" :slant italic)))) ; Use a muted grey/comment color
+
+ ;; The first character of the jump hint (e.g., the 'A' in 'AS')
+ '(avy-lead-face
+   ((t (:foreground "#00dfff" :weight bold :underline nil))))
+
+ ;; The subsequent characters of the jump hint (e.g., the 'S' in 'AS')
+ '(avy-lead-face-0
+   ((t (:foreground "#2b8db3" :weight bold :underline nil))))
+ 
+ ;; Ensure avy doesn't draw an ugly box around the characters
+ '(avy-lead-face-1
+   ((t (:inherit avy-lead-face-0)))))
 
 (use-package which-key
   :init (which-key-mode)
@@ -187,24 +202,34 @@ The DWIM behaviour of this command is as follows:
          ("C-x 5 b"     . consult-buffer-other-frame)
          ("C-x r b"     . consult-bookmark)
          ("C-x r m"     . bookmark-set)
-         ("C-c f"       . consult-fd)
          ("C-c g"       . consult-ripgrep)
          ("C-c o"       . consult-outline)
          ("C-c i"       . consult-imenu)
          ("C-c n"       . consult-flymake)
          ("C-x C-r"     . consult-recent-file)
          ("M-y"         . consult-yank-pop)
-         ("C-x C-x"     . consult-mark)
-         ("C-c a"       . consult-apropos))
+         ("C-x C-x"     . consult-mark))
   :custom
-  ;; Search hidden files but keep respecting .gitignore (fd/rg ignore VCS by default).
-  (consult-fd-args
-   '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
-     "--full-path --color=never --hidden"))
+  ;; Search hidden files but keep respecting .gitignore (fd/rg ignore VCS by default)
   (consult-ripgrep-args
    (concat "rg --null --line-buffered --color=never --max-columns=1000 "
            "--path-separator / --smart-case --no-heading --with-filename "
            "--line-number --search-zip --hidden")))
 
 (use-package vterm
-    :ensure t)
+    :ensure t
+    :hook (vterm-mode . (lambda () (display-line-numbers-mode -1))))
+
+(use-package crux
+  :ensure t
+  :bind (("S-C-o" . crux-smart-open-line-above)
+         ("C-o" . crux-smart-open-line))) ; This opens a line below and indents
+
+(use-package better-jumper
+  :ensure t
+  :init
+  (better-jumper-mode +1)
+  :bind
+  ;; Bind to whatever keys you prefer (e.g., M-o and M-i to avoid overriding defaults)
+  (("M-o" . better-jumper-jump-backward)
+   ("M-i" . better-jumper-jump-forward)))
