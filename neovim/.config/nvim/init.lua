@@ -107,21 +107,21 @@ vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<leader>u', '<CMD>Undotree<CR>', { desc = 'Undo tree' })
 vim.keymap.set('n', '<leader>m', '<CMD>messages<CR>', { desc = 'Messages' })
 vim.keymap.set('n', '<leader>w', '<CMD>write!<CR>', { desc = 'Write' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', '<CMD>wq<CR>', { desc = ':wq' })
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Q', '<CMD>wq<CR>', { desc = 'wq' })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
 -- Terminal mode escape
-vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')
+vim.keymap.set('t', '<C-[>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Swap b with q
-vim.keymap.set({ 'n', 'v' }, 'q', 'b')
-vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
+vim.keymap.set({ 'n', 'v' }, 'q', 'b', { desc = 'Jump back' })
+vim.keymap.set({ 'n', 'v' }, 'Q', 'B', { desc = 'Jump back WORD' })
 
 -- Use m to record macros
-vim.keymap.set({ 'n', 'v' }, 'm', 'q')
+vim.keymap.set({ 'n', 'v' }, 'm', 'q', { desc = 'Record macro' })
 
 -- Override s default behavior
-vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+vim.keymap.set({ 'n', 'x' }, 's', '<Nop>', { desc = 'Disabled' })
 
 -- Line movements
 vim.keymap.set({ 'n', 'v' }, 'gh', '0', { desc = 'Go to beginning of line' })
@@ -129,7 +129,7 @@ vim.keymap.set({ 'n', 'v' }, 'gs', '^', { desc = 'Go to start of text' })
 vim.keymap.set({ 'n', 'v' }, 'gl', '$', { desc = 'Go to end of line' })
 
 -- Window commands
-vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank window' })
+vim.keymap.set('n', '<C-w>y', '<CMD>%y+<CR>', { desc = 'Yank buffer' })
 vim.keymap.set('n', '<C-w>f', '<CMD>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-w>b', '<CMD>bp<CR>', { desc = 'Previous buffer' })
 
@@ -138,16 +138,16 @@ vim.keymap.set('x', '<C-y>', "<CMD>'<,'>y+<CR>", { desc = 'Yank visual selection
 vim.keymap.set('x', '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
 
 -- Center cursor after page up/down
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Page down (centered)' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Page up (centered)' })
 
 -- Page up/down
-vim.keymap.set('t', '<S-C-u>', '<PageUp>')
-vim.keymap.set('t', '<S-C-d>', '<PageDown>')
+vim.keymap.set('t', '<S-C-u>', '<PageUp>', { desc = 'Page up (terminal)' })
+vim.keymap.set('t', '<S-C-d>', '<PageDown>', { desc = 'Page down (terminal)' })
 
 -- Move selected line up/down
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- Built-in find
 vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })

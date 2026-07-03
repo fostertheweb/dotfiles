@@ -1,19 +1,22 @@
 local utils = require 'utils'
 
-local mini_layout = {
+local picker_layout = {
   preview = 'main',
   layout = {
-    backdrop = false,
-    border = 'single',
     box = 'vertical',
-    col = 0,
-    row = -2,
+    backdrop = false,
+    row = -1,
+    width = 0,
     height = 0.4,
-    width = 0.6,
-    title = '{title}',
+    border = 'top',
+    title = ' {title} {live} {flags}',
     title_pos = 'left',
-    { win = 'input', height = 1, border = 'none' },
-    { win = 'list', border = 'none' },
+    { win = 'input', height = 1, border = 'bottom' },
+    {
+      box = 'horizontal',
+      { win = 'list', border = 'none' },
+      { win = 'preview', title = '{preview}', width = 1.0, border = 'none' },
+    },
   },
 }
 
@@ -21,6 +24,9 @@ vim.pack.add { 'https://github.com/folke/snacks.nvim' }
 
 require('snacks').setup {
   bufdelete = {},
+  explorer = {
+    hidden = true,
+  },
   gh = {},
   image = {},
   indent = {
@@ -34,16 +40,30 @@ require('snacks').setup {
   input = {},
   layout = {},
   picker = {
-    layout = mini_layout,
+    hidden = true,
+    layout = picker_layout,
     matcher = {
       frecency = true,
     },
+    preivew = false,
     ui_select = true,
     formatters = {
       file = {
         filename_first = true,
         truncate = 60,
         icon_width = 3,
+      },
+    },
+    sources = {
+      explorer = {
+        preview = function()
+          return false
+        end,
+        auto_close = true,
+        layout = picker_layout,
+      },
+      sources = {
+        files = { hidden = true },
       },
     },
     actions = {
@@ -78,12 +98,20 @@ require('snacks').setup {
   },
 }
 
+vim.keymap.set('n', '<leader>d', function()
+  Snacks.explorer.reveal()
+end, { desc = 'Directory' })
+
 vim.keymap.set('n', '<leader>/', function()
-  Snacks.picker.grep { hidden = true, ignored = false, layout = 'default' }
-end, { desc = 'Search' })
+  Snacks.picker.lines()
+end, { desc = 'Grep' })
+
+vim.keymap.set('n', '<leader>fg', function()
+  Snacks.picker.grep { hidden = true, ignored = false }
+end, { desc = 'Grep' })
 
 vim.keymap.set('n', '<leader><leader>', function()
-  Snacks.picker.buffers { layout = 'select' }
+  Snacks.picker.buffers()
 end, { desc = 'Buffers' })
 
 vim.keymap.set('n', '<leader>fs', function()
@@ -95,7 +123,7 @@ vim.keymap.set('n', '<leader>fo', function()
 end, { desc = 'Document Symbols' })
 
 vim.keymap.set('n', '<leader>fr', function()
-  Snacks.picker.lsp_references { layout = 'default' }
+  Snacks.picker.lsp_references()
 end, { desc = 'References' })
 
 vim.keymap.set({ 'n', 'x' }, '<leader>fw', function()
@@ -122,16 +150,13 @@ vim.keymap.set('n', '<leader>p', function()
 end, { desc = 'Files' })
 
 vim.keymap.set('n', '<leader>gs', function()
-  Snacks.picker.git_status {
-    layout = 'default',
-  }
+  Snacks.picker.git_status()
 end, { desc = 'Status' })
 
 vim.keymap.set('n', '<leader>gd', function()
   Snacks.picker.git_diff {
     group = true,
     base = 'origin/head',
-    layout = 'default',
   }
 end, { desc = 'Changes' })
 

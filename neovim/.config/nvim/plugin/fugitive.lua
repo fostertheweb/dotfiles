@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.keymap.set({ 'n', 'x' }, 'U', '<Nop>')
+vim.keymap.set({ 'n', 'x' }, 'U', '<Nop>', { desc = 'Git prefix' })
 vim.keymap.set('n', 'Us', '<CMD>Git<CR>', { desc = 'Stage' })
 vim.keymap.set('n', 'Ud', '<CMD>Git diff<CR>', { desc = 'Diff' })
 vim.keymap.set('n', 'Uc', '<CMD>Git commit<CR>', { desc = 'Commit' })
