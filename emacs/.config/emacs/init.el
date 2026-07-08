@@ -1,3 +1,10 @@
+;;; init.el --- Emacs configuration -*- lexical-binding: t; no-byte-compile: t -*-
+
+;; Commentary:
+;; My personal Emacs configuration.
+
+;;; Code:
+
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
 
@@ -59,6 +66,7 @@ The DWIM behaviour of this command is as follows:
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (global-display-line-numbers-mode t)
+(column-number-mode t)
 (setq inhibit-startup-screen t)
 
 (let ((mono-spaced-font "IosevkaTerm Nerd Font Mono")
@@ -67,10 +75,22 @@ The DWIM behaviour of this command is as follows:
   (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
   (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
-(use-package modus-themes
+(use-package ef-themes
   :ensure t
+  :init
+  ;; This makes the Modus commands listed below consider only the Ef
+  ;; themes.  For an alternative that includes Modus and all
+  ;; derivative themes (like Ef), enable the
+  ;; `modus-themes-include-derivatives-mode' instead.  The manual of
+  ;; the Ef themes has a section that explains all the possibilities:
+  ;;
+  ;; - Evaluate `(info "(ef-themes) Working with other Modus themes or taking over Modus")'
+  ;; - Visit <https://protesilaos.com/emacs/ef-themes#h:6585235a-5219-4f78-9dd5-6a64d87d1b6e>
+  (ef-themes-take-over-modus-themes-mode 1)
   :config
-  (load-theme 'modus-vivendi-tinted :no-confirm-loading))
+  (setq modus-themes-mixed-fonts t)
+  (setq modus-themes-italic-constructs t)
+  (modus-themes-load-theme 'ef-dream))
 
 (use-package nerd-icons-completion
   :ensure t
@@ -162,30 +182,6 @@ The DWIM behaviour of this command is as follows:
   (setq trashed-sort-key '("Date deleted" . t))
   (setq trashed-date-format "%Y-%m-%d %H:%M:%S"))
 
-(use-package avy
-  :bind (("M-g w" . avy-goto-word-0))
-  :config
-  (setq avy-style 'at-full)
-  (setq avy-background -1)
-  (setq avy-keys '(?e ?t ?o ?v ?x ?q ?p ?d ?y ?g ?f ?b ?l ?z ?h ?c ?k ?i ?s ?u ?r ?a ?n)))
-
-(custom-set-faces
- ;; The background of the text you aren't targeting (the dimming effect)
- '(avy-background-face
-   ((t (:foreground "#666666" :slant italic)))) ; Use a muted grey/comment color
-
- ;; The first character of the jump hint (e.g., the 'A' in 'AS')
- '(avy-lead-face
-   ((t (:foreground "#00dfff" :weight bold :underline nil))))
-
- ;; The subsequent characters of the jump hint (e.g., the 'S' in 'AS')
- '(avy-lead-face-0
-   ((t (:foreground "#2b8db3" :weight bold :underline nil))))
- 
- ;; Ensure avy doesn't draw an ugly box around the characters
- '(avy-lead-face-1
-   ((t (:inherit avy-lead-face-0)))))
-
 (use-package which-key
   :init (which-key-mode)
   :config (setq which-key-idle-delay 0.3))
@@ -193,7 +189,7 @@ The DWIM behaviour of this command is as follows:
 (use-package copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-              ("C-f" . copilot-accept-completion)))
+	      ("C-f" . copilot-accept-completion)))
 
 (use-package consult
   :bind (("C-s"         . consult-line)
@@ -216,20 +212,78 @@ The DWIM behaviour of this command is as follows:
            "--path-separator / --smart-case --no-heading --with-filename "
            "--line-number --search-zip --hidden")))
 
-(use-package vterm
-    :ensure t
-    :hook (vterm-mode . (lambda () (display-line-numbers-mode -1))))
+(use-package embark
+  :bind (("C-."   . embark-act)
+         ("C-;"   . embark-dwim)
+         ("C-h B" . embark-bindings))
+  :init (setq prefix-help-command #'embark-prefix-help-command))
 
+(use-package ghostel
+  :hook (ghostel-mode . (lambda () (display-line-numbers-mode -1)))
+  :bind (("C-x m" . ghostel)
+         :map ghostel-semi-char-mode-map
+         ("C-s"  . consult-line)
+         ("C-k"  . my/ghostel-send-C-k-and-kill)
+         ;; ;; I'm used to go up/down the shell history with M-n/p from eshell
+         ;; ;; Simulate this behavior in ghostel by sending C-p and C-n
+         ("M-p" . (lambda () (interactive) (ghostel-send-key "p" "ctrl")))
+         ("M-n" . (lambda () (interactive) (ghostel-send-key "n" "ctrl")))
+         :map project-prefix-map
+         ("m" . ghostel-project)
+         ("M" . ghostel-project-list-buffers))
+  :config
+  (defun my/ghostel-send-C-k-and-kill ()
+    "Send `C-k' to ghostel.
+Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
+    (interactive)
+    (kill-ring-save (point) (line-end-position))
+    (ghostel-send-key "k" "ctrl"))
+
+  (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
+  (add-to-list 'ghostel-eval-cmds '("magit-status-setup-buffer" magit-status-setup-buffer)))
+
+;; vim-like behaviors
 (use-package crux
   :ensure t
   :bind (("S-C-o" . crux-smart-open-line-above)
          ("C-o" . crux-smart-open-line))) ; This opens a line below and indents
 
-(use-package better-jumper
-  :ensure t
-  :init
-  (better-jumper-mode +1)
-  :bind
-  ;; Bind to whatever keys you prefer (e.g., M-o and M-i to avoid overriding defaults)
-  (("M-o" . better-jumper-jump-backward)
-   ("M-i" . better-jumper-jump-forward)))
+;; LSP
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-c l"
+	      lsp-completion-provider :corfu
+	      lsp-idle-delay 0.3
+	      lsp-log-io nil)
+  :hook ((prog-mode . lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :config (setq lsp-warn-no-matched-clients nil))
+
+(use-package lsp-ui
+  :after lsp-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :config (setq lsp-ui-doc-enable t
+                lsp-ui-sideline-enable t))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (setq-local lsp-disabled-clients '(elisp-ls))))
+(add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook #'flymake-mode)
+
+(use-package apheleia
+  :hook ((prog-mode . apheleia-mode)))
+
+;; Treesitter
+(use-package treesit
+  :ensure nil
+  :config
+  ;; Run once: M-x treesit-install-language-grammar
+  ;; Install: css go html javascript json jsx lua markdown ruby rust tsx typescript
+  )
+
+(add-hook 'prog-mode-hook #'electric-pair-mode)
+
+(provide 'init)
+;;; init.el ends here
+

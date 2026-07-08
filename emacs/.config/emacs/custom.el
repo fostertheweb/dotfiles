@@ -4,17 +4,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("998bc02f2e52205ad06df88a14d53168aef1ec1bbcc6fe2b0cd15fed8e5c8dae"
+     default))
  '(package-selected-packages
-   '(better-jumper consult-fd corfu dired-subtree magit marginalia
-		   modus-themes nerd-icons nerd-icons-completion
-		   nerd-icons-corfu nerd-icons-dired orderless trashed
-		   vertico vterm)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(avy-background-face ((t (:foreground "#5c6370" :slant italic))))
- '(avy-lead-face ((t (:foreground "#98c379" :background "#282c34" :weight bold :underline nil))))
- '(avy-lead-face-0 ((t (:foreground "#61afef" :background "#282c34" :weight bold :underline nil))))
- '(avy-lead-face-1 ((t (:inherit avy-lead-face-0)))))
+   '(better-jumper consult-fd corfu dired-subtree ef-themes ghostel magit
+		   marginalia modus-themes nerd-icons
+		   nerd-icons-completion nerd-icons-corfu
+		   nerd-icons-dired orderless spacious-padding trashed
+		   vertico)))

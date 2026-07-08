@@ -24,6 +24,7 @@ emacs/.config/emacs/custom.el
 emacs/.config/emacs/history
 emacs/.config/emacs/projects.eld
 emacs/.config/emacs/tramp
+emacs/.config/emacs/tree-sitter
 emacs/.config/emacs/*.bak
 emacs/.config/emacs/*~
 emacs/.config/emacs/#*#
