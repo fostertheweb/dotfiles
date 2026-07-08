@@ -249,6 +249,11 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   :bind (("S-C-o" . crux-smart-open-line-above)
          ("C-o" . crux-smart-open-line))) ; This opens a line below and indents
 
+(use-package avy
+  :bind (("M-j" . avy-goto-char-timer))
+  :config
+  (setq avy-keys '(?e ?t ?o ?v ?x ?q ?p ?d ?y ?g ?f ?b ?l ?z ?h ?c ?k ?i ?s ?u ?r ?a ?n)))
+
 ;; LSP
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-c l"
