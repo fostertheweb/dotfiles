@@ -30,5 +30,8 @@ emacs/.config/emacs/*.bak
 emacs/.config/emacs/*~
 emacs/.config/emacs/#*#
 emacs/.config/emacs/.#*
+emacs/.config/emacs/.cache/
+emacs/.config/emacs/.lsp-session-*
+emacs/.config/emacs/recentf.eld
 
 **/#*#
