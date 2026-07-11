@@ -9,10 +9,10 @@
      default))
  '(package-selected-packages
    '(better-jumper consult-fd corfu dired-subtree ef-themes flycheck
-		   ghostel magit marginalia meow modus-themes
-		   nerd-icons nerd-icons-completion nerd-icons-corfu
-		   nerd-icons-dired orderless spacious-padding trashed
-		   vertico)))
+		   ghostel indent-guide magit marginalia meow
+		   modus-themes nerd-icons nerd-icons-completion
+		   nerd-icons-corfu nerd-icons-dired orderless
+		   spacious-padding trashed vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

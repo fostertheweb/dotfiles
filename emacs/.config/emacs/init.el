@@ -272,6 +272,12 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   :config (setq lsp-ui-doc-enable t
                 lsp-ui-sideline-enable t))
 
+(use-package indent-guide
+  :ensure t
+  :config
+  (setq indent-guide-char "|"))
+
+(add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq-local lsp-disabled-clients '(elisp-ls))))
