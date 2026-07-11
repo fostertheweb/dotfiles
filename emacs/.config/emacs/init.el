@@ -9,15 +9,30 @@
 (load custom-file :no-error-if-file-is-missing)
 
 (require 'package)
+
+;; Add MELPA before `package-initialize' so its contents are included in
+;; `package-archive-contents'.  Otherwise packages from MELPA cannot be found.
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+;; Initialize package system (automatic on Emacs 27+, harmless to call again).
 (package-initialize)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; Refresh archive contents if they are missing or don't include MELPA packages.
+;; `package-archive-contents' can be non-nil from GNU ELPA only, so we check
+;; for known MELPA packages to decide whether a refresh is needed.
+(when (or (null package-archive-contents)
+          (not (assoc 'apheleia package-archive-contents))
+          (not (assoc 'consult package-archive-contents)))
+  (package-refresh-contents))
 
-(when (< emacs-major-version 29)
-  (unless (package-installed-p 'use-package)
-    (unless package-archive-contents
-      (package-refresh-contents))
-    (package-install 'use-package)))
+;; Ensure `use-package' is available.  It is built-in from Emacs 29, but
+;; older versions need it installed from MELPA.
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+;; Make `use-package' install packages by default.  Built-in packages must
+;; explicitly use `:ensure nil'.
+(setq use-package-always-ensure t)
 
 (add-to-list 'display-buffer-alist
              '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
@@ -58,23 +73,9 @@ The DWIM behaviour of this command is as follows:
 
 ;;; Tweak the looks of Emacs
 
-;; Those three belong in the early-init.el, but I am putting them here
-;; for convenience.  If the early-init.el exists in the same directory
-;; as the init.el, then Emacs will read+evaluate it before moving to
-;; the init.el.
-(menu-bar-mode 1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
 (global-display-line-numbers-mode t)
 (column-number-mode t)
 (recentf-mode t)
-(setq inhibit-startup-screen t)
-
-(let ((mono-spaced-font "IosevkaTerm Nerd Font Mono")
-      (proportionately-spaced-font "Sans"))
-  (set-face-attribute 'default nil :family mono-spaced-font :height 160)
-  (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
-  (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
 (use-package ef-themes
   :ensure t
@@ -190,7 +191,10 @@ The DWIM behaviour of this command is as follows:
 (use-package copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-	      ("C-f" . copilot-accept-completion)))
+	      ("C-f" . copilot-accept-completion))
+  :config
+  ;; Silence native-compiler warning about `project-root'.
+  (require 'project))
 
 (use-package consult
   :bind (("C-s"         . consult-line)
@@ -219,6 +223,14 @@ The DWIM behaviour of this command is as follows:
          ("C-h B" . embark-bindings))
   :init (setq prefix-help-command #'embark-prefix-help-command))
 
+(use-package embark-consult
+  :after (embark consult)
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
+
 (use-package ghostel
   :hook (ghostel-mode . (lambda () (display-line-numbers-mode -1)))
   :bind (("C-x m" . ghostel)
@@ -242,7 +254,13 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
   (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
-  (add-to-list 'ghostel-eval-cmds '("magit-status-setup-buffer" magit-status-setup-buffer)))
+  (add-to-list 'ghostel-eval-cmds '("magit-status-setup-buffer" magit-status-setup-buffer))
+
+  ;; Download the Ghostel native module if it is missing.
+  (unless (file-exists-p (expand-file-name
+                          "ghostel-module.dylib"
+                          (file-name-directory (locate-library "ghostel"))))
+    (ghostel-download-module)))
 
 ;; vim-like behaviors
 (use-package crux
@@ -275,22 +293,25 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 (use-package indent-guide
   :ensure t
   :config
-  (setq indent-guide-char "|"))
+  (setq indent-guide-char "│"))
 
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq-local lsp-disabled-clients '(elisp-ls))))
 (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
-(add-hook 'emacs-lisp-mode-hook #'flymake-mode)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (when (buffer-file-name)
+              (flymake-mode))))
 
 (use-package apheleia
+  :ensure t
   :hook ((prog-mode . apheleia-mode)))
 
 (use-package flycheck
   :ensure t
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  :hook ((prog-mode . flycheck-mode)))
 
 ;; Treesitter
 (use-package treesit

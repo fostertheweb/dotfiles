@@ -22,7 +22,11 @@ emacs/.config/emacs/elpa/
 emacs/.config/emacs/*.elc
 emacs/.config/emacs/custom.el
 emacs/.config/emacs/history
+emacs/.config/emacs/eshell/history
+emacs/.config/emacs/projects
 emacs/.config/emacs/projects.eld
+emacs/.config/emacs/recentf
+emacs/.config/emacs/recentf.eld
 emacs/.config/emacs/tramp
 emacs/.config/emacs/transient/
 emacs/.config/emacs/tree-sitter
