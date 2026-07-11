@@ -231,6 +231,19 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :bind (("C-x g" . magit-status)))
 
+(use-package diff-hl
+  :hook (prog-mode . diff-hl-mode)
+  :config
+  (setq diff-hl-draw-borders nil)
+  (diff-hl-dired-mode 1)
+  (diff-hl-flydiff-mode 1)
+  ;; Use the theme's diff faces for fringe/margin indicators.
+  (set-face-attribute 'diff-hl-insert nil :inherit 'diff-added :background nil)
+  (set-face-attribute 'diff-hl-delete nil :inherit 'diff-removed :background nil)
+  (set-face-attribute 'diff-hl-change nil :inherit 'diff-changed :background nil))
+
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
 (use-package ghostel
   :hook (ghostel-mode . (lambda () (display-line-numbers-mode -1)))
   :bind (("C-x m" . ghostel)
@@ -294,16 +307,12 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   :ensure t
   :config
   (setq indent-guide-char "│"))
+:hook (prog-mode . indent-guide-mode)
 
-(add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (setq-local lsp-disabled-clients '(elisp-ls))))
 (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (when (buffer-file-name)
-              (flymake-mode))))
 
 (use-package apheleia
   :ensure t
@@ -311,7 +320,9 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (use-package flycheck
   :ensure t
-  :hook ((prog-mode . flycheck-mode)))
+  :hook (prog-mode . (lambda ()
+                       (when (buffer-file-name)
+                         (flycheck-mode)))))
 
 ;; Treesitter
 (use-package treesit

@@ -16,6 +16,11 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
+(setq-default left-fringe-width 4)
+
+;; Disable tab bars.
+(setq ns-use-native-tabs nil)
+(tab-bar-mode -1)
 
 ;; Fonts: set before the first frame is created to avoid flicker.
 (let ((mono-spaced-font "IosevkaTerm Nerd Font Mono")
