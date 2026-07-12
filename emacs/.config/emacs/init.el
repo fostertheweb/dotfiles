@@ -39,6 +39,8 @@
                (display-buffer-no-window)
                (allow-no-window . t)))
 
+(setq-default line-spacing 0.25)
+
 ;;; Basic behaviour
 
 (use-package delsel
