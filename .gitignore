@@ -23,6 +23,7 @@ emacs/.config/emacs/*.elc
 emacs/.config/emacs/custom.el
 emacs/.config/emacs/history
 emacs/.config/emacs/eshell/history
+emacs/.config/emacs/places.eld
 emacs/.config/emacs/projects
 emacs/.config/emacs/projects.eld
 emacs/.config/emacs/recentf
