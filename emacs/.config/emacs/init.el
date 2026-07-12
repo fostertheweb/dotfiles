@@ -297,7 +297,9 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 	      lsp-log-io nil)
   :hook ((prog-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
-  :config (setq lsp-warn-no-matched-clients nil))
+  :config
+  (setq lsp-warn-no-matched-clients nil)
+  (setq lsp-eslint-enable t))
 
 (use-package lsp-ui
   :after lsp-mode
@@ -322,6 +324,9 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (use-package flycheck
   :ensure t
+  :config
+  (with-eval-after-load 'lsp-mode
+    (lsp-flycheck-enable t)))
   :hook (prog-mode . (lambda ()
                        (when (buffer-file-name)
                          (flycheck-mode)))))
