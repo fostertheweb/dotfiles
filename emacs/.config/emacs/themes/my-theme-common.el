@@ -1,0 +1,108 @@
+;;; my-theme-common.el --- Common helpers for custom themes -*- lexical-binding: t -*-
+
+;; Commentary:
+;; Shared helper used by the Neovim-ported custom themes.
+
+;;; Code:
+
+(defun my-theme-color (colors key &optional fallback)
+  "Lookup KEY in COLORS alist, returning FALLBACK if absent."
+  (or (cdr (assoc key colors)) fallback))
+
+(defun my-theme-set-faces (theme colors)
+  "Set faces for THEME using COLORS alist.
+
+COLORS is an alist of symbolic color names to hex strings.  Supported
+names: bg, fg, bg-alt, fg-alt, comment, keyword, string, function,
+type, constant, variable, builtin, warning, error, info, success,
+modeline-bg, modeline-fg, region, cursor, line-number,
+line-number-current, diff-added, diff-removed, diff-changed."
+  (let* ((bg (my-theme-color colors 'bg))
+         (fg (my-theme-color colors 'fg))
+         (bg-alt (my-theme-color colors 'bg-alt bg))
+         (fg-alt (my-theme-color colors 'fg-alt fg))
+         (comment (my-theme-color colors 'comment fg-alt))
+         (keyword (my-theme-color colors 'keyword fg))
+         (string (my-theme-color colors 'string fg))
+         (function (my-theme-color colors 'function fg))
+         (type (my-theme-color colors 'type fg))
+         (constant (my-theme-color colors 'constant fg))
+         (variable (my-theme-color colors 'variable fg))
+         (builtin (my-theme-color colors 'builtin keyword))
+         (warning (my-theme-color colors 'warning fg))
+         (error (my-theme-color colors 'error fg))
+         (info (my-theme-color colors 'info fg))
+         (success (my-theme-color colors 'success fg))
+         (modeline-bg (my-theme-color colors 'modeline-bg bg-alt))
+         (modeline-fg (my-theme-color colors 'modeline-fg fg))
+         (region (my-theme-color colors 'region bg-alt))
+         (cursor (my-theme-color colors 'cursor fg))
+         (line-number (my-theme-color colors 'line-number fg-alt))
+         (line-number-current (my-theme-color colors 'line-number-current fg))
+         (diff-added (my-theme-color colors 'diff-added success))
+         (diff-removed (my-theme-color colors 'diff-removed error))
+         (diff-changed (my-theme-color colors 'diff-changed info))
+         (border (my-theme-color colors 'border fg-alt)))
+    (custom-theme-set-faces
+     theme
+     `(default ((t (:background ,bg :foreground ,fg))))
+     `(cursor ((t (:background ,cursor))))
+     `(region ((t (:background ,region))))
+     `(highlight ((t (:background ,region))))
+     `(hl-line ((t (:background ,bg-alt))))
+     `(line-number ((t (:foreground ,line-number :background ,bg))))
+     `(line-number-current-line ((t (:foreground ,line-number-current :background ,bg-alt))))
+     `(mode-line ((t (:background ,modeline-bg :foreground ,modeline-fg))))
+     `(mode-line-inactive ((t (:background ,bg-alt :foreground ,fg-alt))))
+     `(mode-line-highlight ((t (:background ,region))))
+     `(header-line ((t (:background ,bg-alt :foreground ,fg))))
+     `(minibuffer-prompt ((t (:foreground ,keyword))))
+     `(link ((t (:foreground ,info :underline t))))
+     `(link-visited ((t (:foreground ,constant :underline t))))
+     `(shadow ((t (:foreground ,fg-alt))))
+     `(secondary-selection ((t (:background ,region))))
+     `(trailing-whitespace ((t (:background ,error))))
+     `(font-lock-comment-face ((t (:foreground ,comment))))
+     `(font-lock-comment-delimiter-face ((t (:foreground ,comment))))
+     `(font-lock-string-face ((t (:foreground ,string))))
+     `(font-lock-keyword-face ((t (:foreground ,keyword))))
+     `(font-lock-function-name-face ((t (:foreground ,function))))
+     `(font-lock-type-face ((t (:foreground ,type))))
+     `(font-lock-constant-face ((t (:foreground ,constant))))
+     `(font-lock-variable-name-face ((t (:foreground ,variable))))
+     `(font-lock-builtin-face ((t (:foreground ,builtin))))
+     `(font-lock-preprocessor-face ((t (:foreground ,builtin))))
+     `(font-lock-warning-face ((t (:foreground ,warning))))
+     `(font-lock-negation-char-face ((t (:foreground ,error))))
+     `(error ((t (:foreground ,error))))
+     `(warning ((t (:foreground ,warning))))
+     `(success ((t (:foreground ,success))))
+     `(diff-added ((t (:background ,diff-added :foreground ,fg))))
+     `(diff-removed ((t (:background ,diff-removed :foreground ,fg))))
+     `(diff-changed ((t (:background ,diff-changed :foreground ,fg))))
+     `(diff-hl-insert ((t (:foreground ,diff-added :background nil))))
+     `(diff-hl-delete ((t (:foreground ,diff-removed :background nil))))
+     `(diff-hl-change ((t (:foreground ,diff-changed :background nil))))
+     `(fringe ((t (:background ,bg))))
+     `(vertical-border ((t (:foreground ,border))))
+     `(window-divider ((t (:foreground ,border))))
+     `(tooltip ((t (:background ,bg-alt :foreground ,fg))))
+     `(show-paren-match ((t (:background ,region :foreground ,fg :weight bold))))
+     `(show-paren-mismatch ((t (:background ,error :foreground ,bg :weight bold))))
+     `(isearch ((t (:background ,info :foreground ,bg))))
+     `(lazy-highlight ((t (:background ,region :foreground ,fg))))
+     `(match ((t (:background ,success :foreground ,bg))))
+     `(completions-highlight ((t (:background ,region :foreground ,fg))))
+     `(corfu-default ((t (:background ,bg-alt :foreground ,fg))))
+     `(corfu-current ((t (:background ,region :foreground ,fg))))
+     `(corfu-border ((t (:background ,border))))
+     `(corfu-bar ((t (:background ,fg-alt))))
+     `(vertico-current ((t (:background ,region :foreground ,fg))))
+     `(marginalia-field ((t (:foreground ,fg-alt))))
+     `(orderless-match-face-0 ((t (:foreground ,info :weight bold))))
+     `(orderless-match-face-1 ((t (:foreground ,success :weight bold))))
+     `(orderless-match-face-2 ((t (:foreground ,warning :weight bold))))
+     `(orderless-match-face-3 ((t (:foreground ,constant :weight bold)))))))
+
+(provide 'my-theme-common)
+;;; my-theme-common.el ends here

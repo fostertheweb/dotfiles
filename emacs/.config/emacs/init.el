@@ -34,6 +34,11 @@
 ;; explicitly use `:ensure nil'.
 (setq use-package-always-ensure t)
 
+;; Load custom themes from the `themes' subdirectory.
+(let ((themes-dir (locate-user-emacs-file "themes")))
+  (add-to-list 'load-path themes-dir)
+  (add-to-list 'custom-theme-load-path themes-dir))
+
 (add-to-list 'display-buffer-alist
              '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
                (display-buffer-no-window)
@@ -79,22 +84,25 @@ The DWIM behaviour of this command is as follows:
 (column-number-mode t)
 (recentf-mode t)
 
-(use-package ef-themes
-  :ensure t
-  :init
-  ;; This makes the Modus commands listed below consider only the Ef
-  ;; themes.  For an alternative that includes Modus and all
-  ;; derivative themes (like Ef), enable the
-  ;; `modus-themes-include-derivatives-mode' instead.  The manual of
-  ;; the Ef themes has a section that explains all the possibilities:
-  ;;
-  ;; - Evaluate `(info "(ef-themes) Working with other Modus themes or taking over Modus")'
-  ;; - Visit <https://protesilaos.com/emacs/ef-themes#h:6585235a-5219-4f78-9dd5-6a64d87d1b6e>
-  (ef-themes-take-over-modus-themes-mode 1)
-  :config
-  (setq modus-themes-mixed-fonts t)
-  (setq modus-themes-italic-constructs t)
-  (modus-themes-load-theme 'ef-dream))
+(defun my/dark-mode-p ()
+  "Return non-nil if macOS is in dark mode."
+  (condition-case nil
+      (string-match-p "true"
+                      (shell-command-to-string
+                       "osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode'"))
+    (error t)))
+
+(defun my/load-theme ()
+  "Load the appropriate theme based on machine and system appearance."
+  (cond
+   ((string= (getenv "USER") "jonathan.foster")
+    (load-theme 'witchesbrew-bright t))
+   ((my/dark-mode-p)
+    (load-theme 'carvion t))
+   (t
+    (load-theme 'olive-crt t))))
+
+(my/load-theme)
 
 (use-package nerd-icons-completion
   :ensure t
@@ -352,6 +360,10 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
      '("<escape>" . ignore))
     (meow-leader-define-key
      ;; Use SPC (0-9) for digit arguments.
+     '("p" . project-find-file)
+     '("fr" . consult-recent-file)
+     '("d" . dired)
+     '("w" . save-buffer)
      '("1" . meow-digit-argument)
      '("2" . meow-digit-argument)
      '("3" . meow-digit-argument)
@@ -428,7 +440,7 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
      '("<escape>" . ignore)))
   :config
   (meow-setup)
-  (meow-global-mode -1))
+  (meow-global-mode 1))
 
 (provide 'init)
 ;;; init.el ends here
