@@ -84,25 +84,9 @@ The DWIM behaviour of this command is as follows:
 (column-number-mode t)
 (recentf-mode t)
 
-(defun my/dark-mode-p ()
-  "Return non-nil if macOS is in dark mode."
-  (condition-case nil
-      (string-match-p "true"
-                      (shell-command-to-string
-                       "osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode'"))
-    (error t)))
-
-(defun my/load-theme ()
-  "Load the appropriate theme based on machine and system appearance."
-  (cond
-   ((string= (getenv "USER") "jonathan.foster")
-    (load-theme 'witchesbrew-bright t))
-   ((my/dark-mode-p)
-    (load-theme 'carvion t))
-   (t
-    (load-theme 'olive-crt t))))
-
-(my/load-theme)
+(use-package gruber-darker-theme
+  :ensure t
+  :config (load-theme 'gruber-darker t))
 
 (use-package nerd-icons-completion
   :ensure t
@@ -317,9 +301,9 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (use-package indent-guide
   :ensure t
+  :hook (prog-mode . indent-guide-mode)
   :config
   (setq indent-guide-char "│"))
-:hook (prog-mode . indent-guide-mode)
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -334,7 +318,7 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   :ensure t
   :config
   (with-eval-after-load 'lsp-mode
-    (lsp-flycheck-enable t)))
+    (setq lsp-diagnostics-provider :flycheck))
   :hook (prog-mode . (lambda ()
                        (when (buffer-file-name)
                          (flycheck-mode)))))
