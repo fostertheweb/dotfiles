@@ -120,7 +120,9 @@ The DWIM behaviour of this command is as follows:
   :config
   (setq completion-styles '(orderless basic))
   (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil))
+  (setq completion-category-overrides nil)
+  (setq orderless-matching-styles
+        '(orderless-literal orderless-regexp orderless-flex)))
 
 (use-package savehist
   :ensure nil ; it is built-in
@@ -239,7 +241,6 @@ The DWIM behaviour of this command is as follows:
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 (use-package ghostel
-  :hook (ghostel-mode . (lambda () (display-line-numbers-mode -1)))
   :bind (("C-x m" . ghostel)
          :map ghostel-semi-char-mode-map
          ("C-s"  . consult-line)
@@ -252,6 +253,16 @@ The DWIM behaviour of this command is as follows:
          ("m" . ghostel-project)
          ("M" . ghostel-project-list-buffers))
   :config
+  (defun my/disable-line-numbers-in-ghostel ()
+    "Disable line numbers after entering `ghostel-mode'."
+    (when (derived-mode-p 'ghostel-mode)
+      (display-line-numbers-mode -1)))
+
+  ;; Globalized minor modes run after major-mode hooks, so disable line
+  ;; numbers from the later hook to prevent them from being re-enabled.
+  (add-hook 'after-change-major-mode-hook
+            #'my/disable-line-numbers-in-ghostel t)
+
   (defun my/ghostel-send-C-k-and-kill ()
     "Send `C-k' to ghostel.
 Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
@@ -333,99 +344,5 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 
-(use-package meow
-  :ensure t
-  :init
-  (defun meow-setup ()
-    (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-    (meow-motion-define-key
-     '("j" . meow-next)
-     '("k" . meow-prev)
-     '("<escape>" . ignore))
-    (meow-leader-define-key
-     ;; Use SPC (0-9) for digit arguments.
-     '("p" . project-find-file)
-     '("fr" . consult-recent-file)
-     '("d" . dired)
-     '("w" . save-buffer)
-     '("1" . meow-digit-argument)
-     '("2" . meow-digit-argument)
-     '("3" . meow-digit-argument)
-     '("4" . meow-digit-argument)
-     '("5" . meow-digit-argument)
-     '("6" . meow-digit-argument)
-     '("7" . meow-digit-argument)
-     '("8" . meow-digit-argument)
-     '("9" . meow-digit-argument)
-     '("0" . meow-digit-argument)
-     '("/" . meow-keypad-describe-key)
-     '("?" . meow-cheatsheet))
-    (meow-normal-define-key
-     '("0" . meow-expand-0)
-     '("9" . meow-expand-9)
-     '("8" . meow-expand-8)
-     '("7" . meow-expand-7)
-     '("6" . meow-expand-6)
-     '("5" . meow-expand-5)
-     '("4" . meow-expand-4)
-     '("3" . meow-expand-3)
-     '("2" . meow-expand-2)
-     '("1" . meow-expand-1)
-     '("-" . negative-argument)
-     '(";" . meow-reverse)
-     '("," . meow-inner-of-thing)
-     '("." . meow-bounds-of-thing)
-     '("[" . meow-beginning-of-thing)
-     '("]" . meow-end-of-thing)
-     '("a" . meow-append)
-     '("A" . meow-open-below)
-     '("b" . meow-back-word)
-     '("B" . meow-back-symbol)
-     '("c" . meow-change)
-     '("d" . meow-delete)
-     '("D" . meow-backward-delete)
-     '("e" . meow-next-word)
-     '("E" . meow-next-symbol)
-     '("f" . meow-find)
-     '("g" . meow-cancel-selection)
-     '("G" . meow-grab)
-     '("h" . meow-left)
-     '("H" . meow-left-expand)
-     '("i" . meow-insert)
-     '("I" . meow-open-above)
-     '("j" . meow-next)
-     '("J" . meow-next-expand)
-     '("k" . meow-prev)
-     '("K" . meow-prev-expand)
-     '("l" . meow-right)
-     '("L" . meow-right-expand)
-     '("m" . meow-join)
-     '("n" . meow-search)
-     '("o" . meow-block)
-     '("O" . meow-to-block)
-     '("p" . meow-yank)
-     '("q" . meow-quit)
-     '("Q" . meow-goto-line)
-     '("r" . meow-replace)
-     '("R" . meow-swap-grab)
-     '("s" . meow-kill)
-     '("t" . meow-till)
-     '("u" . meow-undo)
-     '("U" . meow-undo-in-selection)
-     '("v" . meow-visit)
-     '("w" . meow-mark-word)
-     '("W" . meow-mark-symbol)
-     '("x" . meow-line)
-     '("X" . meow-goto-line)
-     '("y" . meow-save)
-     '("Y" . meow-sync-grab)
-     '("z" . meow-pop-selection)
-     '("'" . repeat)
-     '("<escape>" . ignore)))
-  :config
-  (meow-setup)
-  (meow-global-mode 1))
-
 (provide 'init)
 ;;; init.el ends here
-
