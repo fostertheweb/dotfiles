@@ -1,6 +1,6 @@
 ;;; early-init.el --- Early initialization -*- lexical-binding: t -*-
 
-;; Commentary:
+;;; Commentary:
 ;; Settings that must take effect before the package system initializes or the
 ;; first frame is created.
 
@@ -19,7 +19,6 @@
 (setq-default left-fringe-width 4)
 
 ;; Disable tab bars.
-(setq ns-use-native-tabs nil)
 (tab-bar-mode -1)
 
 ;; Fonts: set before the first frame is created to avoid flicker.

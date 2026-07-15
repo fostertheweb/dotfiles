@@ -7,7 +7,6 @@
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file :no-error-if-file-is-missing)
-
 (require 'package)
 
 ;; Add MELPA before `package-initialize' so its contents are included in
@@ -118,9 +117,13 @@ The DWIM behaviour of this command is as follows:
 (use-package orderless
   :ensure t
   :config
+  (orderless-define-completion-style orderless-strict
+    (orderless-matching-styles '(orderless-literal orderless-regexp)))
+
   (setq completion-styles '(orderless basic))
   (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil)
+  (setq completion-category-overrides
+        '((consult-line (styles orderless-strict))))
   (setq orderless-matching-styles
         '(orderless-literal orderless-regexp orderless-flex)))
 
@@ -211,7 +214,9 @@ The DWIM behaviour of this command is as follows:
   (consult-ripgrep-args
    (concat "rg --null --line-buffered --color=never --max-columns=1000 "
            "--path-separator / --smart-case --no-heading --with-filename "
-           "--line-number --search-zip --hidden")))
+           "--line-number --search-zip --hidden"))
+  :config
+  (consult-customize consult-line :category 'consult-line))
 
 (use-package embark
   :bind (("C-."   . embark-act)
