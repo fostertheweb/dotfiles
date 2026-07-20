@@ -17,6 +17,12 @@
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
 (setq-default left-fringe-width 4)
+(setq initial-frame-alist
+      (append initial-frame-alist
+              '((left   . 40)
+                (top    . 40)
+                (width  . 140)
+                (height . 40))))
 
 ;; Disable tab bars.
 (tab-bar-mode -1)
