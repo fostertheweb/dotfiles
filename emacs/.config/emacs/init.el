@@ -306,6 +306,11 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
   :hook ((prog-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
   :config
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (define-key lsp-mode-map (kbd "C-c r") #'lsp-rename)
+  ;; (define-key lsp-mode-map (kbd "C-c d") #'lsp-find-definition)
+  (define-key lsp-mode-map (kbd "C-c a") #'lsp-execute-code-action)
+  (define-key lsp-mode-map (kbd "C-c f") #'lsp-format-buffer)
   (setq lsp-warn-no-matched-clients nil)
   (setq lsp-eslint-enable t))
 
