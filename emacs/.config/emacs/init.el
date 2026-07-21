@@ -354,5 +354,18 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 
+(use-package org
+  :ensure t
+  :bind
+  ;; Global keybindings to access core Org features anywhere in Emacs
+  (("C-c x" . org-store-link)
+   ("C-c t" . org-agenda)
+   ("C-c c" . org-capture))
+  :config
+  ;; Tell Org where to find your agenda files
+  (setq org-agenda-files '("~/org/"))
+  ;; Enable clean indentation mode visually
+  (setq org-startup-indented t))
+
 (provide 'init)
 ;;; init.el ends here
