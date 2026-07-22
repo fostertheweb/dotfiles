@@ -124,6 +124,10 @@
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "south.nvim": {
+      "rev": "605c7efede69435ebebc2b45e5f131df1e158b4b",
+      "src": "https://github.com/arnauKL/south.nvim"
+    },
     "ts-error-translator.nvim": {
       "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
       "src": "https://github.com/dmmulroy/ts-error-translator.nvim"
