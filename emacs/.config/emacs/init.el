@@ -362,6 +362,11 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 
+(use-package solaire-mode
+  :ensure t
+  :config
+  (solaire-global-mode +1))
+
 (use-package org
   :ensure t
   :bind
