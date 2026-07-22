@@ -307,6 +307,7 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 	      lsp-completion-provider :corfu
 	      lsp-idle-delay 0.3
 	      lsp-log-io nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
   :hook ((prog-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
   :config

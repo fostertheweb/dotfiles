@@ -3,6 +3,7 @@ local utils = require 'utils'
 vim.pack.add {
   'https://github.com/zitrocode/carvion.nvim',
   'https://github.com/thallada/farout.nvim',
+  'https://github.com/metalelf0/kintsugi-nvim',
   'https://github.com/savq/melange-nvim',
   'https://github.com/reobin/olive-crt.nvim',
   'https://github.com/arnauKL/south.nvim',
