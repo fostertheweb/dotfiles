@@ -362,19 +362,6 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 
 (add-hook 'prog-mode-hook #'electric-pair-mode)
 
-(use-package solaire-mode
-  :ensure t
-  :config
-  ;; Enable solaire-mode globally across file and sidebar buffers
-  (solaire-global-mode +1))
-
-(use-package demap
-  :ensure t
-  :after solaire-mode
-  :config
-  (setq demap-minimap-window-side 'right
-        demap-minimap-window-width 20))
-
 (use-package org
   :ensure t
   :bind
