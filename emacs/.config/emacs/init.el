@@ -47,6 +47,10 @@
 
 ;;; Basic behaviour
 
+(setq-default tab-width 2
+              standard-indent 2
+              indent-tabs-mode nil)
+
 (use-package delsel
   :ensure nil
   :hook (after-init . delete-selection-mode))
