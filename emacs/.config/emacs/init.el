@@ -87,9 +87,11 @@ The DWIM behaviour of this command is as follows:
 (column-number-mode t)
 (recentf-mode t)
 
-(use-package gruber-darker-theme
-  :ensure t
-  :config (load-theme 'gruber-darker t))
+(use-package south-theme
+  :vc (:url "https://github.com/SophieBosio/south"
+            :rev :newest
+            :branch "main")
+  :config (load-theme 'south t))
 
 (use-package nerd-icons-completion
   :ensure t
@@ -194,7 +196,7 @@ The DWIM behaviour of this command is as follows:
 (use-package copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-	      ("C-f" . copilot-accept-completion))
+	            ("C-f" . copilot-accept-completion))
   :config
   ;; Silence native-compiler warning about `project-root'.
   (require 'project))
@@ -304,9 +306,9 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 ;; LSP
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-c l"
-	      lsp-completion-provider :corfu
-	      lsp-idle-delay 0.3
-	      lsp-log-io nil)
+	            lsp-completion-provider :corfu
+	            lsp-idle-delay 0.3
+	            lsp-log-io nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   :hook ((prog-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
