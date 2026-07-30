@@ -169,3 +169,7 @@ end, { desc = 'Recent Files' })
 vim.keymap.set('n', '<leader><BS>', function()
   Snacks.bufdelete()
 end, { desc = 'Delete buffer' })
+
+vim.keymap.set('n', '<leader>fc', function()
+  Snacks.picker.colorschemes()
+end, { desc = 'Colors' })
