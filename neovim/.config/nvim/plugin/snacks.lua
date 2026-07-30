@@ -45,7 +45,6 @@ require('snacks').setup {
     matcher = {
       frecency = true,
     },
-    preivew = false,
     ui_select = true,
     formatters = {
       file = {
@@ -56,12 +55,11 @@ require('snacks').setup {
     },
     sources = {
       explorer = {
-        preview = function()
-          return false
-        end,
         auto_close = true,
-        layout = picker_layout,
+        layout = { preview = false },
       },
+      help = { layout = { preview = false } },
+      select = { layout = { preview = false } },
       sources = {
         files = { hidden = true },
       },
