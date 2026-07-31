@@ -8,6 +8,10 @@
       "rev": "a5a120d535b83fec5b08efab2557effbc2f34602",
       "src": "https://github.com/zitrocode/carvion.nvim"
     },
+    "cendre": {
+      "rev": "f62d04d09e126cbac944d87f852908303172654e",
+      "src": "https://github.com/Aejkatappaja/cendre"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
