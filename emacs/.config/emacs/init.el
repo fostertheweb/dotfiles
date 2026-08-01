@@ -88,12 +88,6 @@ The DWIM behaviour of this command is as follows:
 (recentf-mode t)
 (global-hl-line-mode 1)
 
-(use-package south-theme
-  :vc (:url "https://github.com/SophieBosio/south"
-            :rev :newest
-            :branch "main")
-  :config (load-theme 'south t))
-
 (use-package nerd-icons-completion
   :ensure t
   :after marginalia
@@ -126,7 +120,6 @@ The DWIM behaviour of this command is as follows:
   :config
   (orderless-define-completion-style orderless-strict
     (orderless-matching-styles '(orderless-literal orderless-regexp)))
-
   (setq completion-styles '(orderless basic))
   (setq completion-category-defaults nil)
   (setq completion-category-overrides
@@ -154,8 +147,6 @@ The DWIM behaviour of this command is as follows:
   (with-eval-after-load 'savehist
     (corfu-history-mode 1)
     (add-to-list 'savehist-additional-variables 'corfu-history)))
-
-;;; The file manager (Dired)
 
 (use-package dired
   :ensure nil
@@ -370,15 +361,18 @@ Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
 (use-package org
   :ensure t
   :bind
-  ;; Global keybindings to access core Org features anywhere in Emacs
   (("C-c x" . org-store-link)
    ("C-c t" . org-agenda)
    ("C-c c" . org-capture))
   :config
-  ;; Tell Org where to find your agenda files
   (setq org-agenda-files '("~/org/"))
-  ;; Enable clean indentation mode visually
   (setq org-startup-indented t))
+
+(use-package auto-dark
+  :ensure t
+  :custom
+  (auto-dark-themes '((leuven-dark) (leuven)))
+  :init (auto-dark-mode))
 
 (provide 'init)
 ;;; init.el ends here
