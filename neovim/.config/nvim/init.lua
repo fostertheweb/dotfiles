@@ -152,6 +152,16 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 -- Built-in find
 vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
 
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = { '*.txt' },
+  callback = function()
+    if vim.o.filetype == 'help' then
+      vim.cmd.wincmd 'L'
+    end
+  end,
+  desc = 'Open help in right split',
+})
+
 local term_group = vim.api.nvim_create_augroup('TerminalBehaviorGroup', { clear = true })
 
 vim.api.nvim_create_autocmd('TabClosed', {
