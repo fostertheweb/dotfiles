@@ -1,3 +1,8 @@
+require 'diagnostics'
+require 'find'
+require 'grep'
+require 'prompt'
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -141,6 +146,14 @@ vim.keymap.set('x', '<leader>y', '"+y<CR>', { desc = 'Yank to clipboard' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Page down (centered)' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Page up (centered)' })
 
+-- Center buffer when navigating up and down
+vim.keymap.set('n', '<S-k>', '<C-u>zz', { desc = 'Scroll up and center' })
+vim.keymap.set('n', '<S-j>', '<C-d>zz', { desc = 'Scroll down and center' })
+
+-- Center buffer when progressing through search results
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result centered' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result centered' })
+
 -- Page up/down
 vim.keymap.set('t', '<S-C-u>', '<PageUp>', { desc = 'Page up (terminal)' })
 vim.keymap.set('t', '<S-C-d>', '<PageDown>', { desc = 'Page down (terminal)' })
@@ -149,8 +162,7 @@ vim.keymap.set('t', '<S-C-d>', '<PageDown>', { desc = 'Page down (terminal)' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
--- Built-in find
-vim.keymap.set('n', '<leader>ff', ':find ', { desc = 'Files' })
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = false, desc = 'Search and replace' })
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
   pattern = { '*.txt' },
@@ -213,37 +225,6 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function(ev)
     vim.bo[ev.buf].bufhidden = 'wipe'
     vim.cmd 'startinsert'
-  end,
-})
-
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Update path via fd for find command',
-  pattern = '*',
-  callback = function()
-    if vim.fn.executable 'fd' == 1 then
-      local fd_results = vim.fn.systemlist 'fd --type f --hidden --follow --exclude .git'
-      local dirs = {}
-      for _, file in ipairs(fd_results) do
-        local dir = vim.fn.fnamemodify(file, ':h')
-        dirs[dir] = true
-      end
-      local path_list = {}
-      for dir, _ in pairs(dirs) do
-        table.insert(path_list, dir)
-      end
-      vim.o.path = table.concat(path_list, ',')
-    end
-    local fd_results = vim.fn.systemlist 'fd --type f --hidden --follow --exclude .git'
-    local dirs = {}
-    for _, file in ipairs(fd_results) do
-      local dir = vim.fn.fnamemodify(file, ':h')
-      dirs[dir] = true
-    end
-    local path_list = {}
-    for dir, _ in pairs(dirs) do
-      table.insert(path_list, dir)
-    end
-    vim.o.path = table.concat(path_list, ',')
   end,
 })
 
