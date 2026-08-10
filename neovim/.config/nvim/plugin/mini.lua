@@ -43,33 +43,6 @@ vim.keymap.set('i', '<Tab>', function()
   return vim.fn.pumvisible() == 1 and '<C-y>' or '<Tab>'
 end, { expr = true, noremap = true, desc = 'Accept completion' })
 
-local MiniDiff = require 'mini.diff'
-MiniDiff.setup {
-  mappings = {
-    apply = '',
-    reset = '',
-    textobject = '',
-  },
-}
-
-vim.keymap.set('n', '<leader>gD', MiniDiff.toggle_overlay, { desc = 'Diff overlay' })
-
-vim.api.nvim_create_user_command('DiffOriginMain', function()
-  MiniDiff.setup {
-    source = {
-      attach = function(buf_id)
-        local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf_id), ':.')
-        local ref = vim.fn.system { 'git', 'show', 'origin/main:' .. path }
-        if vim.v.shell_error == 0 then
-          MiniDiff.set_ref_text(buf_id, ref)
-        else
-          return false
-        end
-      end,
-    },
-  }
-end, {})
-
 require('mini.icons').setup {}
 require('mini.icons').mock_nvim_web_devicons()
 

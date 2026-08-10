@@ -16,6 +16,14 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "differ.nvim": {
+      "rev": "be104af454c25ae696071228ab5d87fa3bf3cad0",
+      "src": "https://github.com/undont/differ.nvim"
+    },
+    "diffs.nvim": {
+      "rev": "e6d3aa4bb400287ba1a612e28b5cd55e0ba15726",
+      "src": "https://github.com/barrettruth/diffs.nvim"
+    },
     "eyeliner.nvim": {
       "rev": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6",
       "src": "https://github.com/jinh0/eyeliner.nvim"
@@ -31,6 +39,10 @@
     "git-conflict.nvim": {
       "rev": "a1badcd070d176172940eb55d9d59029dad1c5a6",
       "src": "https://github.com/akinsho/git-conflict.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "31d6fb2d618bca1482b9f274751ead5f03461408",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "hop.nvim": {
       "rev": "707049feaca9ae65abb3696eff9aefc7879e66aa",
