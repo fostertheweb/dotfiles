@@ -4,9 +4,9 @@ GHOSTTY_DIR="${DOTFILES_PREFIX}/ghostty/.config/ghostty"
 TEMPLATE_FILE="${GHOSTTY_DIR}/config.template"
 OUTPUT_FILE="${GHOSTTY_DIR}/config"
 
-: ${TERMINAL_FONT_FAMILY:="BerkeleyMono Nerd Font"}
-: ${TERMINAL_FONT_SIZE:="14"}
-: ${GHOSTTY_THEME:="light:olive-crt,dark:carvion"}
+: ${TERMINAL_FONT_FAMILY:="IosevkaTerm Nerd Font Mono"}
+: ${TERMINAL_FONT_SIZE:="16"}
+: ${GHOSTTY_THEME:="light:cendre-soft,dark:cendre-hard"}
 
 if [[ ! -f "$TEMPLATE_FILE" ]]; then
 	echo "Error: Template file not found at $TEMPLATE_FILE"

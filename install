@@ -227,16 +227,16 @@ async function main() {
     await step("Install from Brewfile", "brew bundle");
   }
 
+  if (await askUser("Configure Ghostty?")) {
+    await step("Genereate config", "zsh ./scripts/config.zsh");
+  }
+
   if (await askUser("Install npm globals?")) {
     await step("Install npm globals", "zsh ./scripts/npm.zsh");
   }
 
   if (await askUser("Install cargo bins?")) {
     await step("Install cargo bins", "zsh ./scripts/cargo.zsh");
-  }
-
-  if (await askUser("Install python packages?")) {
-    await step("Install python packages", "zsh ./scripts/pip.zsh");
   }
 
   if (await askUser("Install gh extensions?")) {
