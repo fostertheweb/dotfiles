@@ -28,14 +28,16 @@ vim.o.background = 'dark'
 
 if utils.is_work_computer() then
   if utils.is_dark_mode() then
-    vim.cmd 'colorscheme carvion'
+    vim.cmd 'colorscheme kintsugi-dark'
   else
     vim.cmd 'colorscheme south'
   end
 else
   if utils.is_dark_mode() then
-    vim.cmd 'colorscheme carvion'
+    vim.cmd 'colorscheme cendre'
+    vim.cmd 'CendreBackground hard'
   else
-    vim.cmd 'colorscheme olive-crt'
+    vim.cmd 'colorscheme cendre'
+    vim.cmd 'CendreBackground soft'
   end
 end
