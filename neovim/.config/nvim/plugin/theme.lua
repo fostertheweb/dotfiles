@@ -8,6 +8,7 @@ vim.pack.add {
   'https://github.com/savq/melange-nvim',
   'https://github.com/reobin/olive-crt.nvim',
   'https://github.com/arnauKL/south.nvim',
+  'https://github.com/WeiTing1991/suannhai.nvim',
   'https://github.com/shoenot/witchesbrew.nvim',
 }
 

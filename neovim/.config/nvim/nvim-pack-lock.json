@@ -156,6 +156,10 @@
       "rev": "605c7efede69435ebebc2b45e5f131df1e158b4b",
       "src": "https://github.com/arnauKL/south.nvim"
     },
+    "suannhai.nvim": {
+      "rev": "a23b9de33680a82cea19b215c9e4d7ef3891b2f4",
+      "src": "https://github.com/WeiTing1991/suannhai.nvim"
+    },
     "ts-error-translator.nvim": {
       "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
       "src": "https://github.com/dmmulroy/ts-error-translator.nvim"
