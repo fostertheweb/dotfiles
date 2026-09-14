@@ -20,10 +20,10 @@ require('which-key').setup {
 
 local wk = require 'which-key'
 wk.add {
+  { '<leader>c', desc = '+Copy' },
   { '<leader>f', desc = '+Find' },
   { '<leader>t', desc = '+Test' },
   { '<leader>g', desc = '+Git' },
-  { '<leader>j', desc = '+Jump' },
   { 'U1', mode = { 'n', 'x' }, desc = '+Line' },
   { 'Uw', mode = { 'n', 'x' }, desc = '+Web' },
 }
