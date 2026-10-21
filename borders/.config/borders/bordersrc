@@ -3,7 +3,7 @@
 if [[ "$(whoami)" == "jonathan.foster" ]]; then
 	active_color=0xffcf9dff
 else
-	active_color=0xff6AC4A2
+	active_color=0xee0055BC
 fi
 
 options=(
@@ -11,7 +11,7 @@ options=(
 	width=8.0
 	hidpi=on
 	active_color=$active_color
-	inactive_color=0x00000000
+	inactive_color=0x55eeeeee
 )
 
 borders "${options[@]}"
