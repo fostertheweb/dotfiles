@@ -7,6 +7,7 @@ else
 fi
 
 options=(
+	blacklist=Simulator
 	style=round
 	width=8.0
 	hidpi=on
